@@ -87,7 +87,7 @@ deps-buf-update buf.lock:
 
 deps-py: env
 deps-py-update env:
-	python3 -m venv env
+	python3.8 -m venv env
 	source env/bin/activate \
 	&& pip install -U pip setuptools \
 	&& pip install -e '.[dev]'

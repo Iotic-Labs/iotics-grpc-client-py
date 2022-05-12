@@ -1,2 +1,4 @@
 /env/
 /src/iotics_grpc_client.egg-info/
+__pycache__
+.idea
