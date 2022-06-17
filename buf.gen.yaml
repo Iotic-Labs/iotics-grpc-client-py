@@ -1,0 +1,12 @@
+# run: buf generate
+# see https://github.com/johanbrandhorst/grpc-gateway-boilerplate/blob/master/buf.gen.yaml
+version: v1beta1
+plugins:
+  - name: python
+    out: src
+  - name: python_grpc
+    out: src
+  - name: mypy
+    out: src
+  - name: mypy_grpc
+    out: src
