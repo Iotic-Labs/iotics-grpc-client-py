@@ -12,6 +12,7 @@ import google.protobuf.wrappers_pb2
 import google.rpc.status_pb2
 import iotics.api.common_pb2
 import iotics.api.feed_pb2
+import iotics.api.input_pb2
 import typing
 import typing_extensions
 
@@ -168,6 +169,27 @@ class SearchResponse(google.protobuf.message.Message):
         def HasField(self, field_name: typing_extensions.Literal["feed",b"feed"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing_extensions.Literal["feed",b"feed","properties",b"properties","storeLast",b"storeLast"]) -> None: ...
 
+    class InputDetails(google.protobuf.message.Message):
+        """Search response input details. Included with response type: FULL."""
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        INPUT_FIELD_NUMBER: builtins.int
+        PROPERTIES_FIELD_NUMBER: builtins.int
+        @property
+        def input(self) -> iotics.api.input_pb2.Input:
+            """Input"""
+            pass
+        @property
+        def properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Property]:
+            """Input custom properties."""
+            pass
+        def __init__(self,
+            *,
+            input: typing.Optional[iotics.api.input_pb2.Input] = ...,
+            properties: typing.Optional[typing.Iterable[iotics.api.common_pb2.Property]] = ...,
+            ) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["input",b"input"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["input",b"input","properties",b"properties"]) -> None: ...
+
     class TwinDetails(google.protobuf.message.Message):
         """Search response twin details."""
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -176,6 +198,7 @@ class SearchResponse(google.protobuf.message.Message):
         VISIBILITY_FIELD_NUMBER: builtins.int
         PROPERTIES_FIELD_NUMBER: builtins.int
         FEEDS_FIELD_NUMBER: builtins.int
+        INPUTS_FIELD_NUMBER: builtins.int
         @property
         def id(self) -> iotics.api.common_pb2.TwinID:
             """Twin identifier. Included with response type: FULL, LOCATED and MINIMAL"""
@@ -195,6 +218,10 @@ class SearchResponse(google.protobuf.message.Message):
         def feeds(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SearchResponse.FeedDetails]:
             """Feed details. Included with response type: FULL"""
             pass
+        @property
+        def inputs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SearchResponse.InputDetails]:
+            """Input details. Included with response type: FULL"""
+            pass
         def __init__(self,
             *,
             id: typing.Optional[iotics.api.common_pb2.TwinID] = ...,
@@ -202,9 +229,10 @@ class SearchResponse(google.protobuf.message.Message):
             visibility: iotics.api.common_pb2.Visibility.ValueType = ...,
             properties: typing.Optional[typing.Iterable[iotics.api.common_pb2.Property]] = ...,
             feeds: typing.Optional[typing.Iterable[global___SearchResponse.FeedDetails]] = ...,
+            inputs: typing.Optional[typing.Iterable[global___SearchResponse.InputDetails]] = ...,
             ) -> None: ...
         def HasField(self, field_name: typing_extensions.Literal["id",b"id","location",b"location"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feeds",b"feeds","id",b"id","location",b"location","properties",b"properties","visibility",b"visibility"]) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["feeds",b"feeds","id",b"id","inputs",b"inputs","location",b"location","properties",b"properties","visibility",b"visibility"]) -> None: ...
 
     class Payload(google.protobuf.message.Message):
         """Search Response Payload."""

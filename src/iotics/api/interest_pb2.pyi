@@ -9,10 +9,128 @@ import google.protobuf.message
 import google.protobuf.wrappers_pb2
 import iotics.api.common_pb2
 import iotics.api.feed_pb2
+import iotics.api.input_pb2
 import typing
 import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+
+class InputInterest(google.protobuf.message.Message):
+    """An interest is the relationship between a Twin and an Input."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    class DestinationInput(google.protobuf.message.Message):
+        """InputInterest destination input identification."""
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        INPUT_FIELD_NUMBER: builtins.int
+        HOSTID_FIELD_NUMBER: builtins.int
+        @property
+        def input(self) -> iotics.api.input_pb2.Input:
+            """Input to send the message to"""
+            pass
+        @property
+        def hostId(self) -> iotics.api.common_pb2.HostID:
+            """HostID to identify a remote input (Optional, keep empty if input is local)"""
+            pass
+        def __init__(self,
+            *,
+            input: typing.Optional[iotics.api.input_pb2.Input] = ...,
+            hostId: typing.Optional[iotics.api.common_pb2.HostID] = ...,
+            ) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["hostId",b"hostId","input",b"input"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["hostId",b"hostId","input",b"input"]) -> None: ...
+
+    SENDERTWINID_FIELD_NUMBER: builtins.int
+    DESTINPUT_FIELD_NUMBER: builtins.int
+    @property
+    def senderTwinId(self) -> iotics.api.common_pb2.TwinID:
+        """Sender twin unique identifier."""
+        pass
+    @property
+    def destInput(self) -> global___InputInterest.DestinationInput:
+        """a reference to the input of interest"""
+        pass
+    def __init__(self,
+        *,
+        senderTwinId: typing.Optional[iotics.api.common_pb2.TwinID] = ...,
+        destInput: typing.Optional[global___InputInterest.DestinationInput] = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["destInput",b"destInput","senderTwinId",b"senderTwinId"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["destInput",b"destInput","senderTwinId",b"senderTwinId"]) -> None: ...
+global___InputInterest = InputInterest
+
+class SendInputMessageRequest(google.protobuf.message.Message):
+    """SendInputMessageRequest is used to send a message to a given input."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    class Payload(google.protobuf.message.Message):
+        """SendInputMessageRequest payload."""
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        MESSAGE_FIELD_NUMBER: builtins.int
+        @property
+        def message(self) -> iotics.api.input_pb2.InputMessage:
+            """Message to send"""
+            pass
+        def __init__(self,
+            *,
+            message: typing.Optional[iotics.api.input_pb2.InputMessage] = ...,
+            ) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["message",b"message"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["message",b"message"]) -> None: ...
+
+    class Arguments(google.protobuf.message.Message):
+        """SendInputMessageRequest arguments."""
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        INTEREST_FIELD_NUMBER: builtins.int
+        @property
+        def interest(self) -> global___InputInterest:
+            """The interest"""
+            pass
+        def __init__(self,
+            *,
+            interest: typing.Optional[global___InputInterest] = ...,
+            ) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["interest",b"interest"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["interest",b"interest"]) -> None: ...
+
+    HEADERS_FIELD_NUMBER: builtins.int
+    ARGS_FIELD_NUMBER: builtins.int
+    PAYLOAD_FIELD_NUMBER: builtins.int
+    @property
+    def headers(self) -> iotics.api.common_pb2.Headers:
+        """SendInputMessageRequest headers"""
+        pass
+    @property
+    def args(self) -> global___SendInputMessageRequest.Arguments:
+        """SendInputMessageRequest mandatory arguments"""
+        pass
+    @property
+    def payload(self) -> global___SendInputMessageRequest.Payload:
+        """SendInputMessageRequest payload"""
+        pass
+    def __init__(self,
+        *,
+        headers: typing.Optional[iotics.api.common_pb2.Headers] = ...,
+        args: typing.Optional[global___SendInputMessageRequest.Arguments] = ...,
+        payload: typing.Optional[global___SendInputMessageRequest.Payload] = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["args",b"args","headers",b"headers","payload",b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["args",b"args","headers",b"headers","payload",b"payload"]) -> None: ...
+global___SendInputMessageRequest = SendInputMessageRequest
+
+class SendInputMessageResponse(google.protobuf.message.Message):
+    """SendInputMessageResponse is used to indicate a successful send."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    HEADERS_FIELD_NUMBER: builtins.int
+    @property
+    def headers(self) -> iotics.api.common_pb2.Headers:
+        """SendInputMessageResponse headers"""
+        pass
+    def __init__(self,
+        *,
+        headers: typing.Optional[iotics.api.common_pb2.Headers] = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["headers",b"headers"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["headers",b"headers"]) -> None: ...
+global___SendInputMessageResponse = SendInputMessageResponse
 
 class Interest(google.protobuf.message.Message):
     """An interest is the relationship between a Twin and a Feed. For example, creating

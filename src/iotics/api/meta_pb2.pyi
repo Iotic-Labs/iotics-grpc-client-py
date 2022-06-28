@@ -152,7 +152,7 @@ class SparqlQueryResponse(google.protobuf.message.Message):
         """Content type of the result."""
 
         resultChunk: builtins.bytes
-        """Query result chunk, encoded according to actualType. 
+        """Query result chunk, encoded according to actualType.
         Note that:
         - The maximum size of each chunk is host-specific.
         """

@@ -42,6 +42,11 @@ class InterestAPIStub(object):
                 request_serializer=iotics_dot_api_dot_interest__pb2.DeleteInterestRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_interest__pb2.DeleteInterestResponse.FromString,
                 )
+        self.SendInputMessage = channel.unary_unary(
+                '/iotics.api.InterestAPI/SendInputMessage',
+                request_serializer=iotics_dot_api_dot_interest__pb2.SendInputMessageRequest.SerializeToString,
+                response_deserializer=iotics_dot_api_dot_interest__pb2.SendInputMessageResponse.FromString,
+                )
 
 
 class InterestAPIServicer(object):
@@ -51,14 +56,14 @@ class InterestAPIServicer(object):
     """
 
     def FetchInterests(self, request, context):
-        """Fetch feed data for this interest.
+        """Fetch feed data for this interest. (local and remote)
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def FetchLastStored(self, request, context):
-        """Fetch last data shared on this interest.
+        """Fetch last data shared on this interest. (local and remote)
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -72,14 +77,21 @@ class InterestAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def CreateInterest(self, request, context):
-        """Create an interest between a follower twin and a followed feed.
+        """Create an interest between a follower twin and a followed feed. (Not implemented yet).
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DeleteInterest(self, request, context):
-        """Delete an existing interest.
+        """Delete an existing interest. (Not implemented yet).
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SendInputMessage(self, request, context):
+        """Send a message to an input. (local and remote)
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -112,6 +124,11 @@ def add_InterestAPIServicer_to_server(servicer, server):
                     servicer.DeleteInterest,
                     request_deserializer=iotics_dot_api_dot_interest__pb2.DeleteInterestRequest.FromString,
                     response_serializer=iotics_dot_api_dot_interest__pb2.DeleteInterestResponse.SerializeToString,
+            ),
+            'SendInputMessage': grpc.unary_unary_rpc_method_handler(
+                    servicer.SendInputMessage,
+                    request_deserializer=iotics_dot_api_dot_interest__pb2.SendInputMessageRequest.FromString,
+                    response_serializer=iotics_dot_api_dot_interest__pb2.SendInputMessageResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -208,5 +225,22 @@ class InterestAPI(object):
         return grpc.experimental.unary_unary(request, target, '/iotics.api.InterestAPI/DeleteInterest',
             iotics_dot_api_dot_interest__pb2.DeleteInterestRequest.SerializeToString,
             iotics_dot_api_dot_interest__pb2.DeleteInterestResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SendInputMessage(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/iotics.api.InterestAPI/SendInputMessage',
+            iotics_dot_api_dot_interest__pb2.SendInputMessageRequest.SerializeToString,
+            iotics_dot_api_dot_interest__pb2.SendInputMessageResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

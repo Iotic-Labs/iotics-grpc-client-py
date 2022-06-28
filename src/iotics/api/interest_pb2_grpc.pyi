@@ -16,12 +16,12 @@ class InterestAPIStub:
     FetchInterests: grpc.UnaryStreamMultiCallable[
         iotics.api.interest_pb2.FetchInterestRequest,
         iotics.api.interest_pb2.FetchInterestResponse]
-    """Fetch feed data for this interest."""
+    """Fetch feed data for this interest. (local and remote)"""
 
     FetchLastStored: grpc.UnaryUnaryMultiCallable[
         iotics.api.interest_pb2.FetchLastStoredRequest,
         iotics.api.interest_pb2.FetchInterestResponse]
-    """Fetch last data shared on this interest."""
+    """Fetch last data shared on this interest. (local and remote)"""
 
     ListAllInterests: grpc.UnaryUnaryMultiCallable[
         iotics.api.interest_pb2.ListAllInterestsRequest,
@@ -31,12 +31,17 @@ class InterestAPIStub:
     CreateInterest: grpc.UnaryUnaryMultiCallable[
         iotics.api.interest_pb2.CreateInterestRequest,
         iotics.api.interest_pb2.CreateInterestResponse]
-    """Create an interest between a follower twin and a followed feed."""
+    """Create an interest between a follower twin and a followed feed. (Not implemented yet)."""
 
     DeleteInterest: grpc.UnaryUnaryMultiCallable[
         iotics.api.interest_pb2.DeleteInterestRequest,
         iotics.api.interest_pb2.DeleteInterestResponse]
-    """Delete an existing interest."""
+    """Delete an existing interest. (Not implemented yet)."""
+
+    SendInputMessage: grpc.UnaryUnaryMultiCallable[
+        iotics.api.interest_pb2.SendInputMessageRequest,
+        iotics.api.interest_pb2.SendInputMessageResponse]
+    """Send a message to an input. (local and remote)"""
 
 
 class InterestAPIServicer(metaclass=abc.ABCMeta):
@@ -49,7 +54,7 @@ class InterestAPIServicer(metaclass=abc.ABCMeta):
         request: iotics.api.interest_pb2.FetchInterestRequest,
         context: grpc.ServicerContext,
     ) -> typing.Iterator[iotics.api.interest_pb2.FetchInterestResponse]:
-        """Fetch feed data for this interest."""
+        """Fetch feed data for this interest. (local and remote)"""
         pass
 
     @abc.abstractmethod
@@ -57,7 +62,7 @@ class InterestAPIServicer(metaclass=abc.ABCMeta):
         request: iotics.api.interest_pb2.FetchLastStoredRequest,
         context: grpc.ServicerContext,
     ) -> iotics.api.interest_pb2.FetchInterestResponse:
-        """Fetch last data shared on this interest."""
+        """Fetch last data shared on this interest. (local and remote)"""
         pass
 
     @abc.abstractmethod
@@ -73,7 +78,7 @@ class InterestAPIServicer(metaclass=abc.ABCMeta):
         request: iotics.api.interest_pb2.CreateInterestRequest,
         context: grpc.ServicerContext,
     ) -> iotics.api.interest_pb2.CreateInterestResponse:
-        """Create an interest between a follower twin and a followed feed."""
+        """Create an interest between a follower twin and a followed feed. (Not implemented yet)."""
         pass
 
     @abc.abstractmethod
@@ -81,7 +86,15 @@ class InterestAPIServicer(metaclass=abc.ABCMeta):
         request: iotics.api.interest_pb2.DeleteInterestRequest,
         context: grpc.ServicerContext,
     ) -> iotics.api.interest_pb2.DeleteInterestResponse:
-        """Delete an existing interest."""
+        """Delete an existing interest. (Not implemented yet)."""
+        pass
+
+    @abc.abstractmethod
+    def SendInputMessage(self,
+        request: iotics.api.interest_pb2.SendInputMessageRequest,
+        context: grpc.ServicerContext,
+    ) -> iotics.api.interest_pb2.SendInputMessageResponse:
+        """Send a message to an input. (local and remote)"""
         pass
 
 

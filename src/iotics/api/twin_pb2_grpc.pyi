@@ -10,6 +10,7 @@ class TwinAPIStub:
     """---------------------------------------------------------------------------------------------------------------------
 
     TwinAPI enables creation and management of Iotics twins.
+    Services only affect local resources, unless stated otherwise.
     """
     def __init__(self, channel: grpc.Channel) -> None: ...
     CreateTwin: grpc.UnaryUnaryMultiCallable[
@@ -38,7 +39,7 @@ class TwinAPIStub:
     DescribeTwin: grpc.UnaryUnaryMultiCallable[
         iotics.api.twin_pb2.DescribeTwinRequest,
         iotics.api.twin_pb2.DescribeTwinResponse]
-    """Describes a twin."""
+    """Describes a twin. (local and remote)"""
 
     ListAllTwins: grpc.UnaryUnaryMultiCallable[
         iotics.api.twin_pb2.ListAllTwinsRequest,
@@ -50,6 +51,7 @@ class TwinAPIServicer(metaclass=abc.ABCMeta):
     """---------------------------------------------------------------------------------------------------------------------
 
     TwinAPI enables creation and management of Iotics twins.
+    Services only affect local resources, unless stated otherwise.
     """
     @abc.abstractmethod
     def CreateTwin(self,
@@ -91,7 +93,7 @@ class TwinAPIServicer(metaclass=abc.ABCMeta):
         request: iotics.api.twin_pb2.DescribeTwinRequest,
         context: grpc.ServicerContext,
     ) -> iotics.api.twin_pb2.DescribeTwinResponse:
-        """Describes a twin."""
+        """Describes a twin. (local and remote)"""
         pass
 
     @abc.abstractmethod

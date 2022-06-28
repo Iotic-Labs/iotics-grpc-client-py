@@ -17,6 +17,7 @@ from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__
 from google.rpc import status_pb2 as google_dot_rpc_dot_status__pb2
 from iotics.api import common_pb2 as iotics_dot_api_dot_common__pb2
 from iotics.api import feed_pb2 as iotics_dot_api_dot_feed__pb2
+from iotics.api import input_pb2 as iotics_dot_api_dot_input__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -25,9 +26,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\016com.iotics.apiB\013SearchProtoP\001Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\242\002\003IAX\252\002\nIotics.Api\312\002\nIotics\\Api',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x17iotics/api/search.proto\x12\niotics.api\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/rpc/status.proto\x1a\x17iotics/api/common.proto\x1a\x15iotics/api/feed.proto\"\xf3\x04\n\rSearchRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\'\n\x05scope\x18\x02 \x01(\x0e\x32\x11.iotics.api.ScopeR\x05scope\x12\x30\n\x04lang\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValueR\x04lang\x12;\n\x07payload\x18\x06 \x01(\x0b\x32!.iotics.api.SearchRequest.PayloadR\x07payload\x12\'\n\x05range\x18\x14 \x01(\x0b\x32\x11.iotics.api.RangeR\x05range\x1a\xf1\x02\n\x07Payload\x12<\n\x0cresponseType\x18\x01 \x01(\x0e\x32\x18.iotics.api.ResponseTypeR\x0cresponseType\x12@\n\rexpiryTimeout\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\rexpiryTimeout\x12@\n\x06\x66ilter\x18\x03 \x01(\x0b\x32(.iotics.api.SearchRequest.Payload.FilterR\x06\x66ilter\x1a\xa3\x01\n\x06\x46ilter\x12\x30\n\x04text\x18\x01 \x01(\x0b\x32\x1c.google.protobuf.StringValueR\x04text\x12\x31\n\x08location\x18\x02 \x01(\x0b\x32\x15.iotics.api.GeoCircleR\x08location\x12\x34\n\nproperties\x18\x03 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\"\x88\x06\n\x0eSearchResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12<\n\x07payload\x18\x02 \x01(\x0b\x32\".iotics.api.SearchResponse.PayloadR\x07payload\x1a\x87\x01\n\x0b\x46\x65\x65\x64\x44\x65tails\x12$\n\x04\x66\x65\x65\x64\x18\x01 \x01(\x0b\x32\x10.iotics.api.FeedR\x04\x66\x65\x65\x64\x12\x1c\n\tstoreLast\x18\x03 \x01(\x08R\tstoreLast\x12\x34\n\nproperties\x18\x04 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1a\x92\x02\n\x0bTwinDetails\x12\"\n\x02id\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x02id\x12\x33\n\x08location\x18\x02 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x36\n\nvisibility\x18\x03 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\x12\x34\n\nproperties\x18\x05 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x12<\n\x05\x66\x65\x65\x64s\x18\n \x03(\x0b\x32&.iotics.api.SearchResponse.FeedDetailsR\x05\x66\x65\x65\x64s\x1a\xe9\x01\n\x07Payload\x12<\n\x0cresponseType\x18\x01 \x01(\x0e\x32\x18.iotics.api.ResponseTypeR\x0cresponseType\x12*\n\x06status\x18\x02 \x01(\x0b\x32\x12.google.rpc.StatusR\x06status\x12\x36\n\x0cremoteHostId\x18\x04 \x01(\x0b\x32\x12.iotics.api.HostIDR\x0cremoteHostId\x12<\n\x05twins\x18\n \x03(\x0b\x32&.iotics.api.SearchResponse.TwinDetailsR\x05twins\"\x18\n\x16\x44ispatchSearchResponse*2\n\x0cResponseType\x12\x08\n\x04\x46ULL\x10\x00\x12\x0b\n\x07LOCATED\x10\x01\x12\x0b\n\x07MINIMAL\x10\x02\x32\x93\x02\n\tSearchAPI\x12X\n\x15\x44ispatchSearchRequest\x12\x19.iotics.api.SearchRequest\x1a\".iotics.api.DispatchSearchResponse\"\x00\x12N\n\x11SynchronousSearch\x12\x19.iotics.api.SearchRequest\x1a\x1a.iotics.api.SearchResponse\"\x00\x30\x01\x12\\\n\x19ReceiveAllSearchResponses\x12\x1f.iotics.api.SubscriptionHeaders\x1a\x1a.iotics.api.SearchResponse\"\x00\x30\x01\x42\x7f\n\x0e\x63om.iotics.apiB\x0bSearchProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3'
+  serialized_pb=b'\n\x17iotics/api/search.proto\x12\niotics.api\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/rpc/status.proto\x1a\x17iotics/api/common.proto\x1a\x15iotics/api/feed.proto\x1a\x16iotics/api/input.proto\"\xf3\x04\n\rSearchRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\'\n\x05scope\x18\x02 \x01(\x0e\x32\x11.iotics.api.ScopeR\x05scope\x12\x30\n\x04lang\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValueR\x04lang\x12;\n\x07payload\x18\x06 \x01(\x0b\x32!.iotics.api.SearchRequest.PayloadR\x07payload\x12\'\n\x05range\x18\x14 \x01(\x0b\x32\x11.iotics.api.RangeR\x05range\x1a\xf1\x02\n\x07Payload\x12<\n\x0cresponseType\x18\x01 \x01(\x0e\x32\x18.iotics.api.ResponseTypeR\x0cresponseType\x12@\n\rexpiryTimeout\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\rexpiryTimeout\x12@\n\x06\x66ilter\x18\x03 \x01(\x0b\x32(.iotics.api.SearchRequest.Payload.FilterR\x06\x66ilter\x1a\xa3\x01\n\x06\x46ilter\x12\x30\n\x04text\x18\x01 \x01(\x0b\x32\x1c.google.protobuf.StringValueR\x04text\x12\x31\n\x08location\x18\x02 \x01(\x0b\x32\x15.iotics.api.GeoCircleR\x08location\x12\x34\n\nproperties\x18\x03 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\"\xb8\x07\n\x0eSearchResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12<\n\x07payload\x18\x02 \x01(\x0b\x32\".iotics.api.SearchResponse.PayloadR\x07payload\x1a\x87\x01\n\x0b\x46\x65\x65\x64\x44\x65tails\x12$\n\x04\x66\x65\x65\x64\x18\x01 \x01(\x0b\x32\x10.iotics.api.FeedR\x04\x66\x65\x65\x64\x12\x1c\n\tstoreLast\x18\x03 \x01(\x08R\tstoreLast\x12\x34\n\nproperties\x18\x04 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1am\n\x0cInputDetails\x12\'\n\x05input\x18\x01 \x01(\x0b\x32\x11.iotics.api.InputR\x05input\x12\x34\n\nproperties\x18\x04 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1a\xd3\x02\n\x0bTwinDetails\x12\"\n\x02id\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x02id\x12\x33\n\x08location\x18\x02 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x36\n\nvisibility\x18\x03 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\x12\x34\n\nproperties\x18\x05 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x12<\n\x05\x66\x65\x65\x64s\x18\n \x03(\x0b\x32&.iotics.api.SearchResponse.FeedDetailsR\x05\x66\x65\x65\x64s\x12?\n\x06inputs\x18\x0b \x03(\x0b\x32\'.iotics.api.SearchResponse.InputDetailsR\x06inputs\x1a\xe9\x01\n\x07Payload\x12<\n\x0cresponseType\x18\x01 \x01(\x0e\x32\x18.iotics.api.ResponseTypeR\x0cresponseType\x12*\n\x06status\x18\x02 \x01(\x0b\x32\x12.google.rpc.StatusR\x06status\x12\x36\n\x0cremoteHostId\x18\x04 \x01(\x0b\x32\x12.iotics.api.HostIDR\x0cremoteHostId\x12<\n\x05twins\x18\n \x03(\x0b\x32&.iotics.api.SearchResponse.TwinDetailsR\x05twins\"\x18\n\x16\x44ispatchSearchResponse*2\n\x0cResponseType\x12\x08\n\x04\x46ULL\x10\x00\x12\x0b\n\x07LOCATED\x10\x01\x12\x0b\n\x07MINIMAL\x10\x02\x32\x93\x02\n\tSearchAPI\x12X\n\x15\x44ispatchSearchRequest\x12\x19.iotics.api.SearchRequest\x1a\".iotics.api.DispatchSearchResponse\"\x00\x12N\n\x11SynchronousSearch\x12\x19.iotics.api.SearchRequest\x1a\x1a.iotics.api.SearchResponse\"\x00\x30\x01\x12\\\n\x19ReceiveAllSearchResponses\x12\x1f.iotics.api.SubscriptionHeaders\x1a\x1a.iotics.api.SearchResponse\"\x00\x30\x01\x42\x7f\n\x0e\x63om.iotics.apiB\x0bSearchProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3'
   ,
-  dependencies=[google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_rpc_dot_status__pb2.DESCRIPTOR,iotics_dot_api_dot_common__pb2.DESCRIPTOR,iotics_dot_api_dot_feed__pb2.DESCRIPTOR,])
+  dependencies=[google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_rpc_dot_status__pb2.DESCRIPTOR,iotics_dot_api_dot_common__pb2.DESCRIPTOR,iotics_dot_api_dot_feed__pb2.DESCRIPTOR,iotics_dot_api_dot_input__pb2.DESCRIPTOR,])
 
 _RESPONSETYPE = _descriptor.EnumDescriptor(
   name='ResponseType',
@@ -54,8 +55,8 @@ _RESPONSETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1612,
-  serialized_end=1662,
+  serialized_start=1812,
+  serialized_end=1862,
 )
 _sym_db.RegisterEnumDescriptor(_RESPONSETYPE)
 
@@ -107,8 +108,8 @@ _SEARCHREQUEST_PAYLOAD_FILTER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=642,
-  serialized_end=805,
+  serialized_start=666,
+  serialized_end=829,
 )
 
 _SEARCHREQUEST_PAYLOAD = _descriptor.Descriptor(
@@ -152,8 +153,8 @@ _SEARCHREQUEST_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=436,
-  serialized_end=805,
+  serialized_start=460,
+  serialized_end=829,
 )
 
 _SEARCHREQUEST = _descriptor.Descriptor(
@@ -211,8 +212,8 @@ _SEARCHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=178,
-  serialized_end=805,
+  serialized_start=202,
+  serialized_end=829,
 )
 
 
@@ -257,8 +258,46 @@ _SEARCHRESPONSE_FEEDDETAILS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=936,
-  serialized_end=1071,
+  serialized_start=960,
+  serialized_end=1095,
+)
+
+_SEARCHRESPONSE_INPUTDETAILS = _descriptor.Descriptor(
+  name='InputDetails',
+  full_name='iotics.api.SearchResponse.InputDetails',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='input', full_name='iotics.api.SearchResponse.InputDetails.input', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='input', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='properties', full_name='iotics.api.SearchResponse.InputDetails.properties', index=1,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='properties', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1097,
+  serialized_end=1206,
 )
 
 _SEARCHRESPONSE_TWINDETAILS = _descriptor.Descriptor(
@@ -304,6 +343,13 @@ _SEARCHRESPONSE_TWINDETAILS = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, json_name='feeds', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='inputs', full_name='iotics.api.SearchResponse.TwinDetails.inputs', index=5,
+      number=11, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='inputs', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -316,8 +362,8 @@ _SEARCHRESPONSE_TWINDETAILS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1074,
-  serialized_end=1348,
+  serialized_start=1209,
+  serialized_end=1548,
 )
 
 _SEARCHRESPONSE_PAYLOAD = _descriptor.Descriptor(
@@ -368,8 +414,8 @@ _SEARCHRESPONSE_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1351,
-  serialized_end=1584,
+  serialized_start=1551,
+  serialized_end=1784,
 )
 
 _SEARCHRESPONSE = _descriptor.Descriptor(
@@ -397,7 +443,7 @@ _SEARCHRESPONSE = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_SEARCHRESPONSE_FEEDDETAILS, _SEARCHRESPONSE_TWINDETAILS, _SEARCHRESPONSE_PAYLOAD, ],
+  nested_types=[_SEARCHRESPONSE_FEEDDETAILS, _SEARCHRESPONSE_INPUTDETAILS, _SEARCHRESPONSE_TWINDETAILS, _SEARCHRESPONSE_PAYLOAD, ],
   enum_types=[
   ],
   serialized_options=None,
@@ -406,8 +452,8 @@ _SEARCHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=808,
-  serialized_end=1584,
+  serialized_start=832,
+  serialized_end=1784,
 )
 
 
@@ -431,8 +477,8 @@ _DISPATCHSEARCHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1586,
-  serialized_end=1610,
+  serialized_start=1786,
+  serialized_end=1810,
 )
 
 _SEARCHREQUEST_PAYLOAD_FILTER.fields_by_name['text'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
@@ -451,11 +497,15 @@ _SEARCHREQUEST.fields_by_name['range'].message_type = iotics_dot_api_dot_common_
 _SEARCHRESPONSE_FEEDDETAILS.fields_by_name['feed'].message_type = iotics_dot_api_dot_feed__pb2._FEED
 _SEARCHRESPONSE_FEEDDETAILS.fields_by_name['properties'].message_type = iotics_dot_api_dot_common__pb2._PROPERTY
 _SEARCHRESPONSE_FEEDDETAILS.containing_type = _SEARCHRESPONSE
+_SEARCHRESPONSE_INPUTDETAILS.fields_by_name['input'].message_type = iotics_dot_api_dot_input__pb2._INPUT
+_SEARCHRESPONSE_INPUTDETAILS.fields_by_name['properties'].message_type = iotics_dot_api_dot_common__pb2._PROPERTY
+_SEARCHRESPONSE_INPUTDETAILS.containing_type = _SEARCHRESPONSE
 _SEARCHRESPONSE_TWINDETAILS.fields_by_name['id'].message_type = iotics_dot_api_dot_common__pb2._TWINID
 _SEARCHRESPONSE_TWINDETAILS.fields_by_name['location'].message_type = iotics_dot_api_dot_common__pb2._GEOLOCATION
 _SEARCHRESPONSE_TWINDETAILS.fields_by_name['visibility'].enum_type = iotics_dot_api_dot_common__pb2._VISIBILITY
 _SEARCHRESPONSE_TWINDETAILS.fields_by_name['properties'].message_type = iotics_dot_api_dot_common__pb2._PROPERTY
 _SEARCHRESPONSE_TWINDETAILS.fields_by_name['feeds'].message_type = _SEARCHRESPONSE_FEEDDETAILS
+_SEARCHRESPONSE_TWINDETAILS.fields_by_name['inputs'].message_type = _SEARCHRESPONSE_INPUTDETAILS
 _SEARCHRESPONSE_TWINDETAILS.containing_type = _SEARCHRESPONSE
 _SEARCHRESPONSE_PAYLOAD.fields_by_name['responseType'].enum_type = _RESPONSETYPE
 _SEARCHRESPONSE_PAYLOAD.fields_by_name['status'].message_type = google_dot_rpc_dot_status__pb2._STATUS
@@ -502,6 +552,13 @@ SearchResponse = _reflection.GeneratedProtocolMessageType('SearchResponse', (_me
     })
   ,
 
+  'InputDetails' : _reflection.GeneratedProtocolMessageType('InputDetails', (_message.Message,), {
+    'DESCRIPTOR' : _SEARCHRESPONSE_INPUTDETAILS,
+    '__module__' : 'iotics.api.search_pb2'
+    # @@protoc_insertion_point(class_scope:iotics.api.SearchResponse.InputDetails)
+    })
+  ,
+
   'TwinDetails' : _reflection.GeneratedProtocolMessageType('TwinDetails', (_message.Message,), {
     'DESCRIPTOR' : _SEARCHRESPONSE_TWINDETAILS,
     '__module__' : 'iotics.api.search_pb2'
@@ -521,6 +578,7 @@ SearchResponse = _reflection.GeneratedProtocolMessageType('SearchResponse', (_me
   })
 _sym_db.RegisterMessage(SearchResponse)
 _sym_db.RegisterMessage(SearchResponse.FeedDetails)
+_sym_db.RegisterMessage(SearchResponse.InputDetails)
 _sym_db.RegisterMessage(SearchResponse.TwinDetails)
 _sym_db.RegisterMessage(SearchResponse.Payload)
 
@@ -541,8 +599,8 @@ _SEARCHAPI = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=1665,
-  serialized_end=1940,
+  serialized_start=1865,
+  serialized_end=2140,
   methods=[
   _descriptor.MethodDescriptor(
     name='DispatchSearchRequest',

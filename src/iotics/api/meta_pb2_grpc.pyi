@@ -11,6 +11,7 @@ class MetaAPIStub:
     """---------------------------------------------------------------------------------------------------------------------
 
     MetaAPI enables querying of metadata associated with Twins and Feeds.
+    Services only affect local resources, unless stated otherwise.
     """
     def __init__(self, channel: grpc.Channel) -> None: ...
     SparqlQuery: grpc.UnaryStreamMultiCallable[
@@ -21,15 +22,15 @@ class MetaAPIStub:
       results (when performing a non-local query). See scope parameter in SparqlQueryRequest;
     - The call will only complete once the (specified or host default) request timeout has been reached. The client can
       choose to end the stream early once they have received enough results. (E.g. in the case of Scope.LOCAL this
-      would be after the one and only sequence of chunks has been received.)
+      would be after the one and only sequence of chunks has been received.). (local and remote)
     """
 
     SparqlUpdate: grpc.UnaryUnaryMultiCallable[
         iotics.api.meta_pb2.SparqlUpdateRequest,
         iotics.api.meta_pb2.SparqlUpdateResponse]
-    """SparqlUpdate performs a SPARQL 1.1 update. When performing an update, the update query must contain a reference to 
+    """SparqlUpdate performs a SPARQL 1.1 update. When performing an update, the update query must contain a reference to
     one of the following graph IRIs:
-    1. http://data.iotics.com/graph#custom-public (aka custom public graph) - All metadata written to this graph will be 
+    1. http://data.iotics.com/graph#custom-public (aka custom public graph) - All metadata written to this graph will be
        visible during SPARQL queries both with local & global scope (and thus, the Iotics network).
     """
 
@@ -38,6 +39,7 @@ class MetaAPIServicer(metaclass=abc.ABCMeta):
     """---------------------------------------------------------------------------------------------------------------------
 
     MetaAPI enables querying of metadata associated with Twins and Feeds.
+    Services only affect local resources, unless stated otherwise.
     """
     @abc.abstractmethod
     def SparqlQuery(self,
@@ -49,7 +51,7 @@ class MetaAPIServicer(metaclass=abc.ABCMeta):
           results (when performing a non-local query). See scope parameter in SparqlQueryRequest;
         - The call will only complete once the (specified or host default) request timeout has been reached. The client can
           choose to end the stream early once they have received enough results. (E.g. in the case of Scope.LOCAL this
-          would be after the one and only sequence of chunks has been received.)
+          would be after the one and only sequence of chunks has been received.). (local and remote)
         """
         pass
 
@@ -58,9 +60,9 @@ class MetaAPIServicer(metaclass=abc.ABCMeta):
         request: iotics.api.meta_pb2.SparqlUpdateRequest,
         context: grpc.ServicerContext,
     ) -> iotics.api.meta_pb2.SparqlUpdateResponse:
-        """SparqlUpdate performs a SPARQL 1.1 update. When performing an update, the update query must contain a reference to 
+        """SparqlUpdate performs a SPARQL 1.1 update. When performing an update, the update query must contain a reference to
         one of the following graph IRIs:
-        1. http://data.iotics.com/graph#custom-public (aka custom public graph) - All metadata written to this graph will be 
+        1. http://data.iotics.com/graph#custom-public (aka custom public graph) - All metadata written to this graph will be
            visible during SPARQL queries both with local & global scope (and thus, the Iotics network).
         """
         pass

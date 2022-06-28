@@ -14,6 +14,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
 from iotics.api import common_pb2 as iotics_dot_api_dot_common__pb2
 from iotics.api import feed_pb2 as iotics_dot_api_dot_feed__pb2
+from iotics.api import input_pb2 as iotics_dot_api_dot_input__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -22,11 +23,228 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\016com.iotics.apiB\rInterestProtoP\001Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\242\002\003IAX\252\002\nIotics.Api\312\002\nIotics\\Api',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x19iotics/api/interest.proto\x12\niotics.api\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x17iotics/api/common.proto\x1a\x15iotics/api/feed.proto\"\xef\x01\n\x08Interest\x12:\n\x0e\x66ollowerTwinId\x18\x02 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x0e\x66ollowerTwinId\x12\x45\n\x0c\x66ollowedFeed\x18\x03 \x01(\x0b\x32!.iotics.api.Interest.FollowedFeedR\x0c\x66ollowedFeed\x1a`\n\x0c\x46ollowedFeed\x12$\n\x04\x66\x65\x65\x64\x18\x01 \x01(\x0b\x32\x10.iotics.api.FeedR\x04\x66\x65\x65\x64\x12*\n\x06hostId\x18\x02 \x01(\x0b\x32\x12.iotics.api.HostIDR\x06hostId\"\xc2\x02\n\x15\x43reateInterestRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x04\x61rgs\x18\x02 \x01(\x0b\x32+.iotics.api.CreateInterestRequest.ArgumentsR\x04\x61rgs\x12\x43\n\x07payload\x18\x03 \x01(\x0b\x32).iotics.api.CreateInterestRequest.PayloadR\x07payload\x1a;\n\x07Payload\x12\x30\n\x08interest\x18\x02 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xf2\x01\n\x16\x43reateInterestResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x44\n\x07payload\x18\x02 \x01(\x0b\x32*.iotics.api.CreateInterestResponse.PayloadR\x07payload\x1a\x63\n\x07Payload\x12\x30\n\x08interest\x18\x02 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\x12&\n\x0e\x61lreadyCreated\x18\x03 \x01(\x08R\x0e\x61lreadyCreated\"\xed\x01\n\x17ListAllInterestsRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x41\n\x04\x61rgs\x18\x02 \x01(\x0b\x32-.iotics.api.ListAllInterestsRequest.ArgumentsR\x04\x61rgs\x12\'\n\x05range\x18\x14 \x01(\x0b\x32\x11.iotics.api.RangeR\x05range\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xd0\x01\n\x18ListAllInterestsResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x46\n\x07payload\x18\x02 \x01(\x0b\x32,.iotics.api.ListAllInterestsResponse.PayloadR\x07payload\x1a=\n\x07Payload\x12\x32\n\tinterests\x18\x01 \x03(\x0b\x32\x14.iotics.api.InterestR\tinterests\"\x8a\x02\n\x14\x46\x65tchInterestRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12>\n\x04\x61rgs\x18\x02 \x01(\x0b\x32*.iotics.api.FetchInterestRequest.ArgumentsR\x04\x61rgs\x12\x44\n\x0f\x66\x65tchLastStored\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.BoolValueR\x0f\x66\x65tchLastStored\x1a=\n\tArguments\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\"\xfa\x01\n\x15\x46\x65tchInterestResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x43\n\x07payload\x18\x02 \x01(\x0b\x32).iotics.api.FetchInterestResponse.PayloadR\x07payload\x1am\n\x07Payload\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\x12\x30\n\x08\x66\x65\x65\x64\x44\x61ta\x18\x02 \x01(\x0b\x32\x14.iotics.api.FeedDataR\x08\x66\x65\x65\x64\x44\x61ta\"\xc8\x01\n\x16\x46\x65tchLastStoredRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x04\x61rgs\x18\x02 \x01(\x0b\x32,.iotics.api.FetchLastStoredRequest.ArgumentsR\x04\x61rgs\x1a=\n\tArguments\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\"\xc6\x01\n\x15\x44\x65leteInterestRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x04\x61rgs\x18\x02 \x01(\x0b\x32+.iotics.api.DeleteInterestRequest.ArgumentsR\x04\x61rgs\x1a=\n\tArguments\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\"\xca\x01\n\x16\x44\x65leteInterestResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x44\n\x07payload\x18\x02 \x01(\x0b\x32*.iotics.api.DeleteInterestResponse.PayloadR\x07payload\x1a;\n\x07Payload\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest2\xdb\x03\n\x0bInterestAPI\x12Y\n\x0e\x46\x65tchInterests\x12 .iotics.api.FetchInterestRequest\x1a!.iotics.api.FetchInterestResponse\"\x00\x30\x01\x12Z\n\x0f\x46\x65tchLastStored\x12\".iotics.api.FetchLastStoredRequest\x1a!.iotics.api.FetchInterestResponse\"\x00\x12_\n\x10ListAllInterests\x12#.iotics.api.ListAllInterestsRequest\x1a$.iotics.api.ListAllInterestsResponse\"\x00\x12Y\n\x0e\x43reateInterest\x12!.iotics.api.CreateInterestRequest\x1a\".iotics.api.CreateInterestResponse\"\x00\x12Y\n\x0e\x44\x65leteInterest\x12!.iotics.api.DeleteInterestRequest\x1a\".iotics.api.DeleteInterestResponse\"\x00\x42\x81\x01\n\x0e\x63om.iotics.apiB\rInterestProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3'
+  serialized_pb=b'\n\x19iotics/api/interest.proto\x12\niotics.api\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x17iotics/api/common.proto\x1a\x15iotics/api/feed.proto\x1a\x16iotics/api/input.proto\"\xfa\x01\n\rInputInterest\x12\x36\n\x0csenderTwinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x0csenderTwinId\x12H\n\tdestInput\x18\x02 \x01(\x0b\x32*.iotics.api.InputInterest.DestinationInputR\tdestInput\x1ag\n\x10\x44\x65stinationInput\x12\'\n\x05input\x18\x01 \x01(\x0b\x32\x11.iotics.api.InputR\x05input\x12*\n\x06hostId\x18\x02 \x01(\x0b\x32\x12.iotics.api.HostIDR\x06hostId\"\xd5\x02\n\x17SendInputMessageRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x41\n\x04\x61rgs\x18\x02 \x01(\x0b\x32-.iotics.api.SendInputMessageRequest.ArgumentsR\x04\x61rgs\x12\x45\n\x07payload\x18\x03 \x01(\x0b\x32+.iotics.api.SendInputMessageRequest.PayloadR\x07payload\x1a=\n\x07Payload\x12\x32\n\x07message\x18\x01 \x01(\x0b\x32\x18.iotics.api.InputMessageR\x07message\x1a\x42\n\tArguments\x12\x35\n\x08interest\x18\x01 \x01(\x0b\x32\x19.iotics.api.InputInterestR\x08interest\"I\n\x18SendInputMessageResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\"\xef\x01\n\x08Interest\x12:\n\x0e\x66ollowerTwinId\x18\x02 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x0e\x66ollowerTwinId\x12\x45\n\x0c\x66ollowedFeed\x18\x03 \x01(\x0b\x32!.iotics.api.Interest.FollowedFeedR\x0c\x66ollowedFeed\x1a`\n\x0c\x46ollowedFeed\x12$\n\x04\x66\x65\x65\x64\x18\x01 \x01(\x0b\x32\x10.iotics.api.FeedR\x04\x66\x65\x65\x64\x12*\n\x06hostId\x18\x02 \x01(\x0b\x32\x12.iotics.api.HostIDR\x06hostId\"\xc2\x02\n\x15\x43reateInterestRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x04\x61rgs\x18\x02 \x01(\x0b\x32+.iotics.api.CreateInterestRequest.ArgumentsR\x04\x61rgs\x12\x43\n\x07payload\x18\x03 \x01(\x0b\x32).iotics.api.CreateInterestRequest.PayloadR\x07payload\x1a;\n\x07Payload\x12\x30\n\x08interest\x18\x02 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xf2\x01\n\x16\x43reateInterestResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x44\n\x07payload\x18\x02 \x01(\x0b\x32*.iotics.api.CreateInterestResponse.PayloadR\x07payload\x1a\x63\n\x07Payload\x12\x30\n\x08interest\x18\x02 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\x12&\n\x0e\x61lreadyCreated\x18\x03 \x01(\x08R\x0e\x61lreadyCreated\"\xed\x01\n\x17ListAllInterestsRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x41\n\x04\x61rgs\x18\x02 \x01(\x0b\x32-.iotics.api.ListAllInterestsRequest.ArgumentsR\x04\x61rgs\x12\'\n\x05range\x18\x14 \x01(\x0b\x32\x11.iotics.api.RangeR\x05range\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xd0\x01\n\x18ListAllInterestsResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x46\n\x07payload\x18\x02 \x01(\x0b\x32,.iotics.api.ListAllInterestsResponse.PayloadR\x07payload\x1a=\n\x07Payload\x12\x32\n\tinterests\x18\x01 \x03(\x0b\x32\x14.iotics.api.InterestR\tinterests\"\x8a\x02\n\x14\x46\x65tchInterestRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12>\n\x04\x61rgs\x18\x02 \x01(\x0b\x32*.iotics.api.FetchInterestRequest.ArgumentsR\x04\x61rgs\x12\x44\n\x0f\x66\x65tchLastStored\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.BoolValueR\x0f\x66\x65tchLastStored\x1a=\n\tArguments\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\"\xfa\x01\n\x15\x46\x65tchInterestResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x43\n\x07payload\x18\x02 \x01(\x0b\x32).iotics.api.FetchInterestResponse.PayloadR\x07payload\x1am\n\x07Payload\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\x12\x30\n\x08\x66\x65\x65\x64\x44\x61ta\x18\x02 \x01(\x0b\x32\x14.iotics.api.FeedDataR\x08\x66\x65\x65\x64\x44\x61ta\"\xc8\x01\n\x16\x46\x65tchLastStoredRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x04\x61rgs\x18\x02 \x01(\x0b\x32,.iotics.api.FetchLastStoredRequest.ArgumentsR\x04\x61rgs\x1a=\n\tArguments\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\"\xc6\x01\n\x15\x44\x65leteInterestRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x04\x61rgs\x18\x02 \x01(\x0b\x32+.iotics.api.DeleteInterestRequest.ArgumentsR\x04\x61rgs\x1a=\n\tArguments\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\"\xca\x01\n\x16\x44\x65leteInterestResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x44\n\x07payload\x18\x02 \x01(\x0b\x32*.iotics.api.DeleteInterestResponse.PayloadR\x07payload\x1a;\n\x07Payload\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest2\xbc\x04\n\x0bInterestAPI\x12Y\n\x0e\x46\x65tchInterests\x12 .iotics.api.FetchInterestRequest\x1a!.iotics.api.FetchInterestResponse\"\x00\x30\x01\x12Z\n\x0f\x46\x65tchLastStored\x12\".iotics.api.FetchLastStoredRequest\x1a!.iotics.api.FetchInterestResponse\"\x00\x12_\n\x10ListAllInterests\x12#.iotics.api.ListAllInterestsRequest\x1a$.iotics.api.ListAllInterestsResponse\"\x00\x12Y\n\x0e\x43reateInterest\x12!.iotics.api.CreateInterestRequest\x1a\".iotics.api.CreateInterestResponse\"\x00\x12Y\n\x0e\x44\x65leteInterest\x12!.iotics.api.DeleteInterestRequest\x1a\".iotics.api.DeleteInterestResponse\"\x00\x12_\n\x10SendInputMessage\x12#.iotics.api.SendInputMessageRequest\x1a$.iotics.api.SendInputMessageResponse\"\x00\x42\x81\x01\n\x0e\x63om.iotics.apiB\rInterestProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3'
   ,
-  dependencies=[google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,iotics_dot_api_dot_common__pb2.DESCRIPTOR,iotics_dot_api_dot_feed__pb2.DESCRIPTOR,])
+  dependencies=[google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,iotics_dot_api_dot_common__pb2.DESCRIPTOR,iotics_dot_api_dot_feed__pb2.DESCRIPTOR,iotics_dot_api_dot_input__pb2.DESCRIPTOR,])
 
 
+
+
+_INPUTINTEREST_DESTINATIONINPUT = _descriptor.Descriptor(
+  name='DestinationInput',
+  full_name='iotics.api.InputInterest.DestinationInput',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='input', full_name='iotics.api.InputInterest.DestinationInput.input', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='input', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='hostId', full_name='iotics.api.InputInterest.DestinationInput.hostId', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='hostId', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=293,
+  serialized_end=396,
+)
+
+_INPUTINTEREST = _descriptor.Descriptor(
+  name='InputInterest',
+  full_name='iotics.api.InputInterest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='senderTwinId', full_name='iotics.api.InputInterest.senderTwinId', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='senderTwinId', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='destInput', full_name='iotics.api.InputInterest.destInput', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='destInput', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[_INPUTINTEREST_DESTINATIONINPUT, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=146,
+  serialized_end=396,
+)
+
+
+_SENDINPUTMESSAGEREQUEST_PAYLOAD = _descriptor.Descriptor(
+  name='Payload',
+  full_name='iotics.api.SendInputMessageRequest.Payload',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='message', full_name='iotics.api.SendInputMessageRequest.Payload.message', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='message', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=611,
+  serialized_end=672,
+)
+
+_SENDINPUTMESSAGEREQUEST_ARGUMENTS = _descriptor.Descriptor(
+  name='Arguments',
+  full_name='iotics.api.SendInputMessageRequest.Arguments',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='interest', full_name='iotics.api.SendInputMessageRequest.Arguments.interest', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='interest', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=674,
+  serialized_end=740,
+)
+
+_SENDINPUTMESSAGEREQUEST = _descriptor.Descriptor(
+  name='SendInputMessageRequest',
+  full_name='iotics.api.SendInputMessageRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='headers', full_name='iotics.api.SendInputMessageRequest.headers', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='headers', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='args', full_name='iotics.api.SendInputMessageRequest.args', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='args', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='payload', full_name='iotics.api.SendInputMessageRequest.payload', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='payload', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[_SENDINPUTMESSAGEREQUEST_PAYLOAD, _SENDINPUTMESSAGEREQUEST_ARGUMENTS, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=399,
+  serialized_end=740,
+)
+
+
+_SENDINPUTMESSAGERESPONSE = _descriptor.Descriptor(
+  name='SendInputMessageResponse',
+  full_name='iotics.api.SendInputMessageResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='headers', full_name='iotics.api.SendInputMessageResponse.headers', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='headers', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=742,
+  serialized_end=815,
+)
 
 
 _INTEREST_FOLLOWEDFEED = _descriptor.Descriptor(
@@ -63,8 +281,8 @@ _INTEREST_FOLLOWEDFEED = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=265,
-  serialized_end=361,
+  serialized_start=961,
+  serialized_end=1057,
 )
 
 _INTEREST = _descriptor.Descriptor(
@@ -101,8 +319,8 @@ _INTEREST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=122,
-  serialized_end=361,
+  serialized_start=818,
+  serialized_end=1057,
 )
 
 
@@ -133,8 +351,8 @@ _CREATEINTERESTREQUEST_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=570,
-  serialized_end=629,
+  serialized_start=1266,
+  serialized_end=1325,
 )
 
 _CREATEINTERESTREQUEST_ARGUMENTS = _descriptor.Descriptor(
@@ -164,8 +382,8 @@ _CREATEINTERESTREQUEST_ARGUMENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=631,
-  serialized_end=686,
+  serialized_start=1327,
+  serialized_end=1382,
 )
 
 _CREATEINTERESTREQUEST = _descriptor.Descriptor(
@@ -209,8 +427,8 @@ _CREATEINTERESTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=364,
-  serialized_end=686,
+  serialized_start=1060,
+  serialized_end=1382,
 )
 
 
@@ -248,8 +466,8 @@ _CREATEINTERESTRESPONSE_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=832,
-  serialized_end=931,
+  serialized_start=1528,
+  serialized_end=1627,
 )
 
 _CREATEINTERESTRESPONSE = _descriptor.Descriptor(
@@ -286,8 +504,8 @@ _CREATEINTERESTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=689,
-  serialized_end=931,
+  serialized_start=1385,
+  serialized_end=1627,
 )
 
 
@@ -318,8 +536,8 @@ _LISTALLINTERESTSREQUEST_ARGUMENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=631,
-  serialized_end=686,
+  serialized_start=1327,
+  serialized_end=1382,
 )
 
 _LISTALLINTERESTSREQUEST = _descriptor.Descriptor(
@@ -363,8 +581,8 @@ _LISTALLINTERESTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=934,
-  serialized_end=1171,
+  serialized_start=1630,
+  serialized_end=1867,
 )
 
 
@@ -395,8 +613,8 @@ _LISTALLINTERESTSRESPONSE_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1321,
-  serialized_end=1382,
+  serialized_start=2017,
+  serialized_end=2078,
 )
 
 _LISTALLINTERESTSRESPONSE = _descriptor.Descriptor(
@@ -433,8 +651,8 @@ _LISTALLINTERESTSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1174,
-  serialized_end=1382,
+  serialized_start=1870,
+  serialized_end=2078,
 )
 
 
@@ -465,8 +683,8 @@ _FETCHINTERESTREQUEST_ARGUMENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1590,
-  serialized_end=1651,
+  serialized_start=2286,
+  serialized_end=2347,
 )
 
 _FETCHINTERESTREQUEST = _descriptor.Descriptor(
@@ -510,8 +728,8 @@ _FETCHINTERESTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1385,
-  serialized_end=1651,
+  serialized_start=2081,
+  serialized_end=2347,
 )
 
 
@@ -549,8 +767,8 @@ _FETCHINTERESTRESPONSE_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1795,
-  serialized_end=1904,
+  serialized_start=2491,
+  serialized_end=2600,
 )
 
 _FETCHINTERESTRESPONSE = _descriptor.Descriptor(
@@ -587,8 +805,8 @@ _FETCHINTERESTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1654,
-  serialized_end=1904,
+  serialized_start=2350,
+  serialized_end=2600,
 )
 
 
@@ -619,8 +837,8 @@ _FETCHLASTSTOREDREQUEST_ARGUMENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1590,
-  serialized_end=1651,
+  serialized_start=2286,
+  serialized_end=2347,
 )
 
 _FETCHLASTSTOREDREQUEST = _descriptor.Descriptor(
@@ -657,8 +875,8 @@ _FETCHLASTSTOREDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1907,
-  serialized_end=2107,
+  serialized_start=2603,
+  serialized_end=2803,
 )
 
 
@@ -689,8 +907,8 @@ _DELETEINTERESTREQUEST_ARGUMENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1590,
-  serialized_end=1651,
+  serialized_start=2286,
+  serialized_end=2347,
 )
 
 _DELETEINTERESTREQUEST = _descriptor.Descriptor(
@@ -727,8 +945,8 @@ _DELETEINTERESTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2110,
-  serialized_end=2308,
+  serialized_start=2806,
+  serialized_end=3004,
 )
 
 
@@ -759,8 +977,8 @@ _DELETEINTERESTRESPONSE_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1795,
-  serialized_end=1854,
+  serialized_start=2491,
+  serialized_end=2550,
 )
 
 _DELETEINTERESTRESPONSE = _descriptor.Descriptor(
@@ -797,10 +1015,23 @@ _DELETEINTERESTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2311,
-  serialized_end=2513,
+  serialized_start=3007,
+  serialized_end=3209,
 )
 
+_INPUTINTEREST_DESTINATIONINPUT.fields_by_name['input'].message_type = iotics_dot_api_dot_input__pb2._INPUT
+_INPUTINTEREST_DESTINATIONINPUT.fields_by_name['hostId'].message_type = iotics_dot_api_dot_common__pb2._HOSTID
+_INPUTINTEREST_DESTINATIONINPUT.containing_type = _INPUTINTEREST
+_INPUTINTEREST.fields_by_name['senderTwinId'].message_type = iotics_dot_api_dot_common__pb2._TWINID
+_INPUTINTEREST.fields_by_name['destInput'].message_type = _INPUTINTEREST_DESTINATIONINPUT
+_SENDINPUTMESSAGEREQUEST_PAYLOAD.fields_by_name['message'].message_type = iotics_dot_api_dot_input__pb2._INPUTMESSAGE
+_SENDINPUTMESSAGEREQUEST_PAYLOAD.containing_type = _SENDINPUTMESSAGEREQUEST
+_SENDINPUTMESSAGEREQUEST_ARGUMENTS.fields_by_name['interest'].message_type = _INPUTINTEREST
+_SENDINPUTMESSAGEREQUEST_ARGUMENTS.containing_type = _SENDINPUTMESSAGEREQUEST
+_SENDINPUTMESSAGEREQUEST.fields_by_name['headers'].message_type = iotics_dot_api_dot_common__pb2._HEADERS
+_SENDINPUTMESSAGEREQUEST.fields_by_name['args'].message_type = _SENDINPUTMESSAGEREQUEST_ARGUMENTS
+_SENDINPUTMESSAGEREQUEST.fields_by_name['payload'].message_type = _SENDINPUTMESSAGEREQUEST_PAYLOAD
+_SENDINPUTMESSAGERESPONSE.fields_by_name['headers'].message_type = iotics_dot_api_dot_common__pb2._HEADERS
 _INTEREST_FOLLOWEDFEED.fields_by_name['feed'].message_type = iotics_dot_api_dot_feed__pb2._FEED
 _INTEREST_FOLLOWEDFEED.fields_by_name['hostId'].message_type = iotics_dot_api_dot_common__pb2._HOSTID
 _INTEREST_FOLLOWEDFEED.containing_type = _INTEREST
@@ -848,6 +1079,9 @@ _DELETEINTERESTRESPONSE_PAYLOAD.fields_by_name['interest'].message_type = _INTER
 _DELETEINTERESTRESPONSE_PAYLOAD.containing_type = _DELETEINTERESTRESPONSE
 _DELETEINTERESTRESPONSE.fields_by_name['headers'].message_type = iotics_dot_api_dot_common__pb2._HEADERS
 _DELETEINTERESTRESPONSE.fields_by_name['payload'].message_type = _DELETEINTERESTRESPONSE_PAYLOAD
+DESCRIPTOR.message_types_by_name['InputInterest'] = _INPUTINTEREST
+DESCRIPTOR.message_types_by_name['SendInputMessageRequest'] = _SENDINPUTMESSAGEREQUEST
+DESCRIPTOR.message_types_by_name['SendInputMessageResponse'] = _SENDINPUTMESSAGERESPONSE
 DESCRIPTOR.message_types_by_name['Interest'] = _INTEREST
 DESCRIPTOR.message_types_by_name['CreateInterestRequest'] = _CREATEINTERESTREQUEST
 DESCRIPTOR.message_types_by_name['CreateInterestResponse'] = _CREATEINTERESTRESPONSE
@@ -859,6 +1093,51 @@ DESCRIPTOR.message_types_by_name['FetchLastStoredRequest'] = _FETCHLASTSTOREDREQ
 DESCRIPTOR.message_types_by_name['DeleteInterestRequest'] = _DELETEINTERESTREQUEST
 DESCRIPTOR.message_types_by_name['DeleteInterestResponse'] = _DELETEINTERESTRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+InputInterest = _reflection.GeneratedProtocolMessageType('InputInterest', (_message.Message,), {
+
+  'DestinationInput' : _reflection.GeneratedProtocolMessageType('DestinationInput', (_message.Message,), {
+    'DESCRIPTOR' : _INPUTINTEREST_DESTINATIONINPUT,
+    '__module__' : 'iotics.api.interest_pb2'
+    # @@protoc_insertion_point(class_scope:iotics.api.InputInterest.DestinationInput)
+    })
+  ,
+  'DESCRIPTOR' : _INPUTINTEREST,
+  '__module__' : 'iotics.api.interest_pb2'
+  # @@protoc_insertion_point(class_scope:iotics.api.InputInterest)
+  })
+_sym_db.RegisterMessage(InputInterest)
+_sym_db.RegisterMessage(InputInterest.DestinationInput)
+
+SendInputMessageRequest = _reflection.GeneratedProtocolMessageType('SendInputMessageRequest', (_message.Message,), {
+
+  'Payload' : _reflection.GeneratedProtocolMessageType('Payload', (_message.Message,), {
+    'DESCRIPTOR' : _SENDINPUTMESSAGEREQUEST_PAYLOAD,
+    '__module__' : 'iotics.api.interest_pb2'
+    # @@protoc_insertion_point(class_scope:iotics.api.SendInputMessageRequest.Payload)
+    })
+  ,
+
+  'Arguments' : _reflection.GeneratedProtocolMessageType('Arguments', (_message.Message,), {
+    'DESCRIPTOR' : _SENDINPUTMESSAGEREQUEST_ARGUMENTS,
+    '__module__' : 'iotics.api.interest_pb2'
+    # @@protoc_insertion_point(class_scope:iotics.api.SendInputMessageRequest.Arguments)
+    })
+  ,
+  'DESCRIPTOR' : _SENDINPUTMESSAGEREQUEST,
+  '__module__' : 'iotics.api.interest_pb2'
+  # @@protoc_insertion_point(class_scope:iotics.api.SendInputMessageRequest)
+  })
+_sym_db.RegisterMessage(SendInputMessageRequest)
+_sym_db.RegisterMessage(SendInputMessageRequest.Payload)
+_sym_db.RegisterMessage(SendInputMessageRequest.Arguments)
+
+SendInputMessageResponse = _reflection.GeneratedProtocolMessageType('SendInputMessageResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SENDINPUTMESSAGERESPONSE,
+  '__module__' : 'iotics.api.interest_pb2'
+  # @@protoc_insertion_point(class_scope:iotics.api.SendInputMessageResponse)
+  })
+_sym_db.RegisterMessage(SendInputMessageResponse)
 
 Interest = _reflection.GeneratedProtocolMessageType('Interest', (_message.Message,), {
 
@@ -1028,8 +1307,8 @@ _INTERESTAPI = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=2516,
-  serialized_end=2991,
+  serialized_start=3212,
+  serialized_end=3784,
   methods=[
   _descriptor.MethodDescriptor(
     name='FetchInterests',
@@ -1078,6 +1357,16 @@ _INTERESTAPI = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_DELETEINTERESTREQUEST,
     output_type=_DELETEINTERESTRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SendInputMessage',
+    full_name='iotics.api.InterestAPI.SendInputMessage',
+    index=5,
+    containing_service=None,
+    input_type=_SENDINPUTMESSAGEREQUEST,
+    output_type=_SENDINPUTMESSAGERESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
