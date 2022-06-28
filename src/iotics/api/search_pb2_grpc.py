@@ -10,6 +10,7 @@ class SearchAPIStub(object):
     """---------------------------------------------------------------------------------------------------------------------
 
     SearchAPI provides a set of services to run synchronous and asynchronous search.
+    Services only affect local resources, unless stated otherwise.
     """
 
     def __init__(self, channel):
@@ -39,17 +40,18 @@ class SearchAPIServicer(object):
     """---------------------------------------------------------------------------------------------------------------------
 
     SearchAPI provides a set of services to run synchronous and asynchronous search.
+    Services only affect local resources, unless stated otherwise.
     """
 
     def DispatchSearchRequest(self, request, context):
-        """Send a search request. Results are expected asynchronously.
+        """Send a search request. Results are expected asynchronously. (local and remote)
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def SynchronousSearch(self, request, context):
-        """Run a synchronous search based on a user timeout.
+        """Run a synchronous search based on a user timeout. (local and remote)
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -91,6 +93,7 @@ class SearchAPI(object):
     """---------------------------------------------------------------------------------------------------------------------
 
     SearchAPI provides a set of services to run synchronous and asynchronous search.
+    Services only affect local resources, unless stated otherwise.
     """
 
     @staticmethod

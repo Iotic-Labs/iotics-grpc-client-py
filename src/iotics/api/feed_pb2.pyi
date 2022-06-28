@@ -20,11 +20,11 @@ class Feed(google.protobuf.message.Message):
     TWINID_FIELD_NUMBER: builtins.int
     @property
     def id(self) -> iotics.api.common_pb2.FeedID:
-        """feed identifier (unique within the scope of a twin identifier)"""
+        """Feed identifier (unique within the scope of a twin identifier's feed set)"""
         pass
     @property
     def twinId(self) -> iotics.api.common_pb2.TwinID:
-        """twin unique identifier (twin to which the feed belongs)"""
+        """Twin unique identifier (twin to which the feed belongs)"""
         pass
     def __init__(self,
         *,
@@ -104,9 +104,7 @@ class CreateFeedResponse(google.protobuf.message.Message):
         FEED_FIELD_NUMBER: builtins.int
         @property
         def feed(self) -> global___Feed:
-            """The created feed
-            AlreadyCreated indicates if the feed already existed (the create is idempotent)
-            """
+            """The created feed"""
             pass
         def __init__(self,
             *,
@@ -135,10 +133,7 @@ class CreateFeedResponse(google.protobuf.message.Message):
 global___CreateFeedResponse = CreateFeedResponse
 
 class DeleteFeedRequest(google.protobuf.message.Message):
-    """---------------------------------------
-
-    DeleteFeedRequest is used to delete a feed from a given twin.
-    """
+    """DeleteFeedRequest is used to delete a feed from a given twin."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     class Arguments(google.protobuf.message.Message):
         """DeleteFeedRequest arguments."""
@@ -182,7 +177,9 @@ class DeleteFeedResponse(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         FEED_FIELD_NUMBER: builtins.int
         @property
-        def feed(self) -> global___Feed: ...
+        def feed(self) -> global___Feed:
+            """Deleted feed"""
+            pass
         def __init__(self,
             *,
             feed: typing.Optional[global___Feed] = ...,
@@ -210,10 +207,7 @@ class DeleteFeedResponse(google.protobuf.message.Message):
 global___DeleteFeedResponse = DeleteFeedResponse
 
 class UpdateFeedRequest(google.protobuf.message.Message):
-    """---------------------------------------
-
-    UpdateFeedRequest is used to update attributes (including metadata) of a given feed.
-    """
+    """UpdateFeedRequest is used to update attributes (including metadata) of a given feed."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     class Payload(google.protobuf.message.Message):
         """UpdateFeedRequest payload. One or more fields can be provided, depending on what needs to be updated.
@@ -226,11 +220,11 @@ class UpdateFeedRequest(google.protobuf.message.Message):
         PROPERTIES_FIELD_NUMBER: builtins.int
         @property
         def storeLast(self) -> google.protobuf.wrappers_pb2.BoolValue:
-            """storeLast dictates whether to store the last shared sample of a feed."""
+            """StoreLast dictates whether to store the last shared sample of a feed."""
             pass
         @property
         def values(self) -> iotics.api.common_pb2.Values:
-            """values are descriptive individual data items to add/remove."""
+            """Values are descriptive individual data items to add/remove."""
             pass
         @property
         def properties(self) -> iotics.api.common_pb2.PropertyUpdate:
@@ -292,7 +286,7 @@ class UpdateFeedResponse(google.protobuf.message.Message):
         FEED_FIELD_NUMBER: builtins.int
         @property
         def feed(self) -> global___Feed:
-            """Updated Twin"""
+            """Updated feed"""
             pass
         def __init__(self,
             *,
@@ -321,17 +315,16 @@ class UpdateFeedResponse(google.protobuf.message.Message):
 global___UpdateFeedResponse = UpdateFeedResponse
 
 class ShareFeedDataRequest(google.protobuf.message.Message):
-    """---------------------------------------
-
-    ShareFeedDataRequest is used to share a new sample of data for the given feed.
-    """
+    """ShareFeedDataRequest is used to share a new sample of data for the given feed."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     class Payload(google.protobuf.message.Message):
         """ShareFeedDataRequest payload."""
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         SAMPLE_FIELD_NUMBER: builtins.int
         @property
-        def sample(self) -> iotics.api.common_pb2.FeedData: ...
+        def sample(self) -> iotics.api.common_pb2.FeedData:
+            """Sample to share"""
+            pass
         def __init__(self,
             *,
             sample: typing.Optional[iotics.api.common_pb2.FeedData] = ...,
@@ -344,7 +337,9 @@ class ShareFeedDataRequest(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         FEED_FIELD_NUMBER: builtins.int
         @property
-        def feed(self) -> global___Feed: ...
+        def feed(self) -> global___Feed:
+            """Feed sharing the sample"""
+            pass
         def __init__(self,
             *,
             feed: typing.Optional[global___Feed] = ...,
@@ -394,10 +389,7 @@ class ShareFeedDataResponse(google.protobuf.message.Message):
 global___ShareFeedDataResponse = ShareFeedDataResponse
 
 class ListAllFeedsRequest(google.protobuf.message.Message):
-    """---------------------------------------
-
-    ListAllFeedsRequest is used to list all the feeds owned by a given twin.
-    """
+    """ListAllFeedsRequest is used to list all the feeds owned by a given twin."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     class Arguments(google.protobuf.message.Message):
         """ListAllFeedsRequest mandatory arguments."""
@@ -481,7 +473,7 @@ class DescribeFeedRequest(google.protobuf.message.Message):
     """Description of twin: Provides public metadata lookup for individual resources."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     class Arguments(google.protobuf.message.Message):
-        """Only one action argument is necessary."""
+        """DescribeFeedRequest arguments."""
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         FEED_FIELD_NUMBER: builtins.int
         REMOTEHOSTID_FIELD_NUMBER: builtins.int
@@ -491,7 +483,7 @@ class DescribeFeedRequest(google.protobuf.message.Message):
             pass
         @property
         def remoteHostId(self) -> iotics.api.common_pb2.HostID:
-            """optional HostID to describe a remote feed"""
+            """HostID to describe a remote feed (Optional, keep empty if feed is local)"""
             pass
         def __init__(self,
             *,
@@ -504,7 +496,9 @@ class DescribeFeedRequest(google.protobuf.message.Message):
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
     @property
-    def headers(self) -> iotics.api.common_pb2.Headers: ...
+    def headers(self) -> iotics.api.common_pb2.Headers:
+        """DescribeFeedRequest headers"""
+        pass
     @property
     def args(self) -> global___DescribeFeedRequest.Arguments:
         """DescribeFeedRequest mandatory arguments"""
@@ -529,7 +523,7 @@ class DescribeFeedResponse(google.protobuf.message.Message):
         PROPERTIES_FIELD_NUMBER: builtins.int
         @property
         def values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Value]:
-            """values semantically describing the share payload of Feed or expected arguments for a Control request"""
+            """Values semantically describing the share payload of Feed"""
             pass
         storeLast: builtins.bool
         """Whether this feed might have its most recent data sample stored. If so, it can be retrieved via FetchLastStored
@@ -555,11 +549,17 @@ class DescribeFeedResponse(google.protobuf.message.Message):
         RESULT_FIELD_NUMBER: builtins.int
         REMOTEHOSTID_FIELD_NUMBER: builtins.int
         @property
-        def feed(self) -> global___Feed: ...
+        def feed(self) -> global___Feed:
+            """Described feed"""
+            pass
         @property
-        def result(self) -> global___DescribeFeedResponse.MetaResult: ...
+        def result(self) -> global___DescribeFeedResponse.MetaResult:
+            """Metadata result"""
+            pass
         @property
-        def remoteHostId(self) -> iotics.api.common_pb2.HostID: ...
+        def remoteHostId(self) -> iotics.api.common_pb2.HostID:
+            """HostID of the described feed. (Optional, empty if feed is local)"""
+            pass
         def __init__(self,
             *,
             feed: typing.Optional[global___Feed] = ...,
@@ -572,9 +572,13 @@ class DescribeFeedResponse(google.protobuf.message.Message):
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
     @property
-    def headers(self) -> iotics.api.common_pb2.Headers: ...
+    def headers(self) -> iotics.api.common_pb2.Headers:
+        """DescribeFeedResponse headers"""
+        pass
     @property
-    def payload(self) -> global___DescribeFeedResponse.Payload: ...
+    def payload(self) -> global___DescribeFeedResponse.Payload:
+        """DescribeFeedResponse payload"""
+        pass
     def __init__(self,
         *,
         headers: typing.Optional[iotics.api.common_pb2.Headers] = ...,
@@ -595,15 +599,15 @@ class UpsertFeedWithMeta(google.protobuf.message.Message):
     """Id of the feed to create/update"""
 
     storeLast: builtins.bool
-    """storeLast dictates whether to store the last shared sample of the feed. Default 'False'"""
+    """StoreLast dictates whether to store the last shared sample of the feed. Default 'False'"""
 
     @property
     def values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Value]:
-        """values to set"""
+        """Values to set"""
         pass
     @property
     def properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Property]:
-        """feed properties to set"""
+        """Feed properties to set"""
         pass
     def __init__(self,
         *,

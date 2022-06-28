@@ -12,6 +12,7 @@ class FeedAPIStub:
     Create a feed owned by the provided twin.
     A twin may have one or more feeds. Any twin can subscribe to a feed (access control permitting).
     A feed generates data in a 1-to-many relationship: one feed may produce data that is used by many consumers (twins).
+    Services only affect local resources, unless stated otherwise.
     """
     def __init__(self, channel: grpc.Channel) -> None: ...
     CreateFeed: grpc.UnaryUnaryMultiCallable[
@@ -37,12 +38,12 @@ class FeedAPIStub:
     ListAllFeeds: grpc.UnaryUnaryMultiCallable[
         iotics.api.feed_pb2.ListAllFeedsRequest,
         iotics.api.feed_pb2.ListAllFeedsResponse]
-    """List all feeds owned by a twin."""
+    """Lists all feeds owned by a twin."""
 
     DescribeFeed: grpc.UnaryUnaryMultiCallable[
         iotics.api.feed_pb2.DescribeFeedRequest,
         iotics.api.feed_pb2.DescribeFeedResponse]
-    """Describe feed."""
+    """Describes a feed. (local and remote)"""
 
 
 class FeedAPIServicer(metaclass=abc.ABCMeta):
@@ -51,6 +52,7 @@ class FeedAPIServicer(metaclass=abc.ABCMeta):
     Create a feed owned by the provided twin.
     A twin may have one or more feeds. Any twin can subscribe to a feed (access control permitting).
     A feed generates data in a 1-to-many relationship: one feed may produce data that is used by many consumers (twins).
+    Services only affect local resources, unless stated otherwise.
     """
     @abc.abstractmethod
     def CreateFeed(self,
@@ -89,7 +91,7 @@ class FeedAPIServicer(metaclass=abc.ABCMeta):
         request: iotics.api.feed_pb2.ListAllFeedsRequest,
         context: grpc.ServicerContext,
     ) -> iotics.api.feed_pb2.ListAllFeedsResponse:
-        """List all feeds owned by a twin."""
+        """Lists all feeds owned by a twin."""
         pass
 
     @abc.abstractmethod
@@ -97,7 +99,7 @@ class FeedAPIServicer(metaclass=abc.ABCMeta):
         request: iotics.api.feed_pb2.DescribeFeedRequest,
         context: grpc.ServicerContext,
     ) -> iotics.api.feed_pb2.DescribeFeedResponse:
-        """Describe feed."""
+        """Describes a feed. (local and remote)"""
         pass
 
 

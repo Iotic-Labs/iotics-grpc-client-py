@@ -8,6 +8,7 @@ import google.protobuf.internal.containers
 import google.protobuf.message
 import iotics.api.common_pb2
 import iotics.api.feed_pb2
+import iotics.api.input_pb2
 import typing
 import typing_extensions
 
@@ -328,6 +329,20 @@ class FeedMeta(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal["feedId",b"feedId","storeLast",b"storeLast"]) -> None: ...
 global___FeedMeta = FeedMeta
 
+class InputMeta(google.protobuf.message.Message):
+    """Metadata message for this input."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    INPUTID_FIELD_NUMBER: builtins.int
+    @property
+    def inputId(self) -> iotics.api.common_pb2.InputID: ...
+    def __init__(self,
+        *,
+        inputId: typing.Optional[iotics.api.common_pb2.InputID] = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["inputId",b"inputId"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["inputId",b"inputId"]) -> None: ...
+global___InputMeta = InputMeta
+
 class DescribeTwinResponse(google.protobuf.message.Message):
     """The response for a description request on this twin."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -336,11 +351,14 @@ class DescribeTwinResponse(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         LOCATION_FIELD_NUMBER: builtins.int
         FEEDS_FIELD_NUMBER: builtins.int
+        INPUTS_FIELD_NUMBER: builtins.int
         PROPERTIES_FIELD_NUMBER: builtins.int
         @property
         def location(self) -> iotics.api.common_pb2.GeoLocation: ...
         @property
         def feeds(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FeedMeta]: ...
+        @property
+        def inputs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___InputMeta]: ...
         @property
         def properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Property]:
             """Custom properties associated with this twin."""
@@ -349,10 +367,11 @@ class DescribeTwinResponse(google.protobuf.message.Message):
             *,
             location: typing.Optional[iotics.api.common_pb2.GeoLocation] = ...,
             feeds: typing.Optional[typing.Iterable[global___FeedMeta]] = ...,
+            inputs: typing.Optional[typing.Iterable[global___InputMeta]] = ...,
             properties: typing.Optional[typing.Iterable[iotics.api.common_pb2.Property]] = ...,
             ) -> None: ...
         def HasField(self, field_name: typing_extensions.Literal["location",b"location"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feeds",b"feeds","location",b"location","properties",b"properties"]) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["feeds",b"feeds","inputs",b"inputs","location",b"location","properties",b"properties"]) -> None: ...
 
     class Payload(google.protobuf.message.Message):
         """Payload of described twins."""
@@ -550,6 +569,7 @@ class UpsertTwinRequest(google.protobuf.message.Message):
         PROPERTIES_FIELD_NUMBER: builtins.int
         LOCATION_FIELD_NUMBER: builtins.int
         FEEDS_FIELD_NUMBER: builtins.int
+        INPUTS_FIELD_NUMBER: builtins.int
         twinId: typing.Text
         """Unique ID of the twin to create/update"""
 
@@ -566,7 +586,11 @@ class UpsertTwinRequest(google.protobuf.message.Message):
             pass
         @property
         def feeds(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.feed_pb2.UpsertFeedWithMeta]:
-            """Feeds with metadata to set to the twin"""
+            """Feeds with metadata to set for the twin"""
+            pass
+        @property
+        def inputs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.input_pb2.UpsertInputWithMeta]:
+            """Inputs with metadata to set for the twin"""
             pass
         def __init__(self,
             *,
@@ -575,9 +599,10 @@ class UpsertTwinRequest(google.protobuf.message.Message):
             properties: typing.Optional[typing.Iterable[iotics.api.common_pb2.Property]] = ...,
             location: typing.Optional[iotics.api.common_pb2.GeoLocation] = ...,
             feeds: typing.Optional[typing.Iterable[iotics.api.feed_pb2.UpsertFeedWithMeta]] = ...,
+            inputs: typing.Optional[typing.Iterable[iotics.api.input_pb2.UpsertInputWithMeta]] = ...,
             ) -> None: ...
         def HasField(self, field_name: typing_extensions.Literal["location",b"location"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feeds",b"feeds","location",b"location","properties",b"properties","twinId",b"twinId","visibility",b"visibility"]) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["feeds",b"feeds","inputs",b"inputs","location",b"location","properties",b"properties","twinId",b"twinId","visibility",b"visibility"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int

@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-BUF_VERSION ?= 0.52.0
+BUF_VERSION ?= 1.6.0
 PROTOC_VERSION ?= 3.17.3
 VENV_PATH ?= ./env
 

@@ -22,36 +22,10 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\016com.iotics.apiB\013CommonProtoP\001Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\242\002\003IAX\252\002\nIotics.Api\312\002\nIotics\\Api',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x17iotics/api/common.proto\x12\niotics.api\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x1d\n\x05Limit\x12\x14\n\x05value\x18\x01 \x01(\rR\x05value\"\x1e\n\x06Offset\x12\x14\n\x05value\x18\x01 \x01(\rR\x05value\"\\\n\x05Range\x12\'\n\x05limit\x18\x01 \x01(\x0b\x32\x11.iotics.api.LimitR\x05limit\x12*\n\x06offset\x18\x02 \x01(\x0b\x32\x12.iotics.api.OffsetR\x06offset\"7\n\x0bLangLiteral\x12\x12\n\x04lang\x18\x01 \x01(\tR\x04lang\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value\"%\n\rStringLiteral\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value\";\n\x07Literal\x12\x1a\n\x08\x64\x61taType\x18\x01 \x01(\tR\x08\x64\x61taType\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value\"\x1b\n\x03Uri\x12\x14\n\x05value\x18\x01 \x01(\tR\x05value\"\xa3\x02\n\x08Property\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x39\n\x0cliteralValue\x18\x02 \x01(\x0b\x32\x13.iotics.api.LiteralH\x00R\x0cliteralValue\x12\x45\n\x10langLiteralValue\x18\x03 \x01(\x0b\x32\x17.iotics.api.LangLiteralH\x00R\x10langLiteralValue\x12K\n\x12stringLiteralValue\x18\x04 \x01(\x0b\x32\x19.iotics.api.StringLiteralH\x00R\x12stringLiteralValue\x12-\n\x08uriValue\x18\x05 \x01(\x0b\x32\x0f.iotics.api.UriH\x00R\x08uriValueB\x07\n\x05value\"1\n\x0bGeoLocation\x12\x10\n\x03lat\x18\x01 \x01(\x01R\x03lat\x12\x10\n\x03lon\x18\x02 \x01(\x01R\x03lon\"\\\n\tGeoCircle\x12\x33\n\x08location\x18\x01 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x1a\n\x08radiusKm\x18\x02 \x01(\x01R\x08radiusKm\"\xf9\x01\n\x07Headers\x12\x1c\n\tclientRef\x18\x01 \x01(\tR\tclientRef\x12 \n\x0b\x63lientAppId\x18\x02 \x01(\tR\x0b\x63lientAppId\x12&\n\x0etransactionRef\x18\x03 \x03(\tR\x0etransactionRef\x12\x42\n\rconsumerGroup\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValueR\rconsumerGroup\x12\x42\n\x0erequestTimeout\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0erequestTimeout\"\xa3\x01\n\x13SubscriptionHeaders\x12 \n\x0b\x63lientAppId\x18\x01 \x01(\tR\x0b\x63lientAppId\x12&\n\x0etransactionRef\x18\x02 \x03(\tR\x0etransactionRef\x12\x42\n\rconsumerGroup\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValueR\rconsumerGroup\"\x1e\n\x06HostID\x12\x14\n\x05value\x18\x01 \x01(\tR\x05value\"\x1e\n\x06TwinID\x12\x14\n\x05value\x18\x01 \x01(\tR\x05value\"\x1e\n\x06\x46\x65\x65\x64ID\x12\x14\n\x05value\x18\x01 \x01(\tR\x05value\"g\n\x05Value\x12\x14\n\x05label\x18\x01 \x01(\tR\x05label\x12\x18\n\x07\x63omment\x18\x02 \x01(\tR\x07\x63omment\x12\x12\n\x04unit\x18\x03 \x01(\tR\x04unit\x12\x1a\n\x08\x64\x61taType\x18\x04 \x01(\tR\x08\x64\x61taType\"Y\n\x06Values\x12\'\n\x05\x61\x64\x64\x65\x64\x18\x01 \x03(\x0b\x32\x11.iotics.api.ValueR\x05\x61\x64\x64\x65\x64\x12&\n\x0e\x64\x65letedByLabel\x18\x02 \x03(\tR\x0e\x64\x65letedByLabel\"n\n\x08\x46\x65\x65\x64\x44\x61ta\x12:\n\noccurredAt\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\noccurredAt\x12\x12\n\x04mime\x18\x03 \x01(\tR\x04mime\x12\x12\n\x04\x64\x61ta\x18\x04 \x01(\x0cR\x04\x64\x61ta\"\xb0\x01\n\x0ePropertyUpdate\x12\x1e\n\nclearedAll\x18\x01 \x01(\x08R\nclearedAll\x12.\n\x07\x64\x65leted\x18\x02 \x03(\x0b\x32\x14.iotics.api.PropertyR\x07\x64\x65leted\x12\"\n\x0c\x64\x65letedByKey\x18\x03 \x03(\tR\x0c\x64\x65letedByKey\x12*\n\x05\x61\x64\x64\x65\x64\x18\x04 \x03(\x0b\x32\x14.iotics.api.PropertyR\x05\x61\x64\x64\x65\x64*\"\n\tPointType\x12\x08\n\x04\x46\x45\x45\x44\x10\x00\x12\x0b\n\x07\x43ONTROL\x10\x01*%\n\nVisibility\x12\x0b\n\x07PRIVATE\x10\x00\x12\n\n\x06PUBLIC\x10\x01*\x1e\n\x05Scope\x12\n\n\x06GLOBAL\x10\x00\x12\t\n\x05LOCAL\x10\x01\x42\x7f\n\x0e\x63om.iotics.apiB\x0b\x43ommonProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3'
+  serialized_pb=b'\n\x17iotics/api/common.proto\x12\niotics.api\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x1d\n\x05Limit\x12\x14\n\x05value\x18\x01 \x01(\rR\x05value\"\x1e\n\x06Offset\x12\x14\n\x05value\x18\x01 \x01(\rR\x05value\"\\\n\x05Range\x12\'\n\x05limit\x18\x01 \x01(\x0b\x32\x11.iotics.api.LimitR\x05limit\x12*\n\x06offset\x18\x02 \x01(\x0b\x32\x12.iotics.api.OffsetR\x06offset\"7\n\x0bLangLiteral\x12\x12\n\x04lang\x18\x01 \x01(\tR\x04lang\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value\"%\n\rStringLiteral\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value\";\n\x07Literal\x12\x1a\n\x08\x64\x61taType\x18\x01 \x01(\tR\x08\x64\x61taType\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value\"\x1b\n\x03Uri\x12\x14\n\x05value\x18\x01 \x01(\tR\x05value\"\xa3\x02\n\x08Property\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x39\n\x0cliteralValue\x18\x02 \x01(\x0b\x32\x13.iotics.api.LiteralH\x00R\x0cliteralValue\x12\x45\n\x10langLiteralValue\x18\x03 \x01(\x0b\x32\x17.iotics.api.LangLiteralH\x00R\x10langLiteralValue\x12K\n\x12stringLiteralValue\x18\x04 \x01(\x0b\x32\x19.iotics.api.StringLiteralH\x00R\x12stringLiteralValue\x12-\n\x08uriValue\x18\x05 \x01(\x0b\x32\x0f.iotics.api.UriH\x00R\x08uriValueB\x07\n\x05value\"1\n\x0bGeoLocation\x12\x10\n\x03lat\x18\x01 \x01(\x01R\x03lat\x12\x10\n\x03lon\x18\x02 \x01(\x01R\x03lon\"\\\n\tGeoCircle\x12\x33\n\x08location\x18\x01 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x1a\n\x08radiusKm\x18\x02 \x01(\x01R\x08radiusKm\"\xf9\x01\n\x07Headers\x12\x1c\n\tclientRef\x18\x01 \x01(\tR\tclientRef\x12 \n\x0b\x63lientAppId\x18\x02 \x01(\tR\x0b\x63lientAppId\x12&\n\x0etransactionRef\x18\x03 \x03(\tR\x0etransactionRef\x12\x42\n\rconsumerGroup\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValueR\rconsumerGroup\x12\x42\n\x0erequestTimeout\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0erequestTimeout\"\xa3\x01\n\x13SubscriptionHeaders\x12 \n\x0b\x63lientAppId\x18\x01 \x01(\tR\x0b\x63lientAppId\x12&\n\x0etransactionRef\x18\x02 \x03(\tR\x0etransactionRef\x12\x42\n\rconsumerGroup\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValueR\rconsumerGroup\"\x1e\n\x06HostID\x12\x14\n\x05value\x18\x01 \x01(\tR\x05value\"\x1e\n\x06TwinID\x12\x14\n\x05value\x18\x01 \x01(\tR\x05value\"\x1e\n\x06\x46\x65\x65\x64ID\x12\x14\n\x05value\x18\x01 \x01(\tR\x05value\"\x1f\n\x07InputID\x12\x14\n\x05value\x18\x01 \x01(\tR\x05value\"g\n\x05Value\x12\x14\n\x05label\x18\x01 \x01(\tR\x05label\x12\x18\n\x07\x63omment\x18\x02 \x01(\tR\x07\x63omment\x12\x12\n\x04unit\x18\x03 \x01(\tR\x04unit\x12\x1a\n\x08\x64\x61taType\x18\x04 \x01(\tR\x08\x64\x61taType\"Y\n\x06Values\x12\'\n\x05\x61\x64\x64\x65\x64\x18\x01 \x03(\x0b\x32\x11.iotics.api.ValueR\x05\x61\x64\x64\x65\x64\x12&\n\x0e\x64\x65letedByLabel\x18\x02 \x03(\tR\x0e\x64\x65letedByLabel\"n\n\x08\x46\x65\x65\x64\x44\x61ta\x12:\n\noccurredAt\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\noccurredAt\x12\x12\n\x04mime\x18\x03 \x01(\tR\x04mime\x12\x12\n\x04\x64\x61ta\x18\x04 \x01(\x0cR\x04\x64\x61ta\"\xb0\x01\n\x0ePropertyUpdate\x12\x1e\n\nclearedAll\x18\x01 \x01(\x08R\nclearedAll\x12.\n\x07\x64\x65leted\x18\x02 \x03(\x0b\x32\x14.iotics.api.PropertyR\x07\x64\x65leted\x12\"\n\x0c\x64\x65letedByKey\x18\x03 \x03(\tR\x0c\x64\x65letedByKey\x12*\n\x05\x61\x64\x64\x65\x64\x18\x04 \x03(\x0b\x32\x14.iotics.api.PropertyR\x05\x61\x64\x64\x65\x64*%\n\nVisibility\x12\x0b\n\x07PRIVATE\x10\x00\x12\n\n\x06PUBLIC\x10\x01*\x1e\n\x05Scope\x12\n\n\x06GLOBAL\x10\x00\x12\t\n\x05LOCAL\x10\x01\x42\x7f\n\x0e\x63om.iotics.apiB\x0b\x43ommonProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
-_POINTTYPE = _descriptor.EnumDescriptor(
-  name='PointType',
-  full_name='iotics.api.PointType',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='FEED', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='CONTROL', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=1887,
-  serialized_end=1921,
-)
-_sym_db.RegisterEnumDescriptor(_POINTTYPE)
-
-PointType = enum_type_wrapper.EnumTypeWrapper(_POINTTYPE)
 _VISIBILITY = _descriptor.EnumDescriptor(
   name='Visibility',
   full_name='iotics.api.Visibility',
@@ -72,8 +46,8 @@ _VISIBILITY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1923,
-  serialized_end=1960,
+  serialized_start=1920,
+  serialized_end=1957,
 )
 _sym_db.RegisterEnumDescriptor(_VISIBILITY)
 
@@ -98,14 +72,12 @@ _SCOPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1962,
-  serialized_end=1992,
+  serialized_start=1959,
+  serialized_end=1989,
 )
 _sym_db.RegisterEnumDescriptor(_SCOPE)
 
 Scope = enum_type_wrapper.EnumTypeWrapper(_SCOPE)
-FEED = 0
-CONTROL = 1
 PRIVATE = 0
 PUBLIC = 1
 GLOBAL = 0
@@ -703,6 +675,38 @@ _FEEDID = _descriptor.Descriptor(
 )
 
 
+_INPUTID = _descriptor.Descriptor(
+  name='InputID',
+  full_name='iotics.api.InputID',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='value', full_name='iotics.api.InputID.value', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='value', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1400,
+  serialized_end=1431,
+)
+
+
 _VALUE = _descriptor.Descriptor(
   name='Value',
   full_name='iotics.api.Value',
@@ -751,8 +755,8 @@ _VALUE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1400,
-  serialized_end=1503,
+  serialized_start=1433,
+  serialized_end=1536,
 )
 
 
@@ -790,8 +794,8 @@ _VALUES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1505,
-  serialized_end=1594,
+  serialized_start=1538,
+  serialized_end=1627,
 )
 
 
@@ -836,8 +840,8 @@ _FEEDDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1596,
-  serialized_end=1706,
+  serialized_start=1629,
+  serialized_end=1739,
 )
 
 
@@ -889,8 +893,8 @@ _PROPERTYUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1709,
-  serialized_end=1885,
+  serialized_start=1742,
+  serialized_end=1918,
 )
 
 _RANGE.fields_by_name['limit'].message_type = _LIMIT
@@ -934,11 +938,11 @@ DESCRIPTOR.message_types_by_name['SubscriptionHeaders'] = _SUBSCRIPTIONHEADERS
 DESCRIPTOR.message_types_by_name['HostID'] = _HOSTID
 DESCRIPTOR.message_types_by_name['TwinID'] = _TWINID
 DESCRIPTOR.message_types_by_name['FeedID'] = _FEEDID
+DESCRIPTOR.message_types_by_name['InputID'] = _INPUTID
 DESCRIPTOR.message_types_by_name['Value'] = _VALUE
 DESCRIPTOR.message_types_by_name['Values'] = _VALUES
 DESCRIPTOR.message_types_by_name['FeedData'] = _FEEDDATA
 DESCRIPTOR.message_types_by_name['PropertyUpdate'] = _PROPERTYUPDATE
-DESCRIPTOR.enum_types_by_name['PointType'] = _POINTTYPE
 DESCRIPTOR.enum_types_by_name['Visibility'] = _VISIBILITY
 DESCRIPTOR.enum_types_by_name['Scope'] = _SCOPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -1047,6 +1051,13 @@ FeedID = _reflection.GeneratedProtocolMessageType('FeedID', (_message.Message,),
   # @@protoc_insertion_point(class_scope:iotics.api.FeedID)
   })
 _sym_db.RegisterMessage(FeedID)
+
+InputID = _reflection.GeneratedProtocolMessageType('InputID', (_message.Message,), {
+  'DESCRIPTOR' : _INPUTID,
+  '__module__' : 'iotics.api.common_pb2'
+  # @@protoc_insertion_point(class_scope:iotics.api.InputID)
+  })
+_sym_db.RegisterMessage(InputID)
 
 Value = _reflection.GeneratedProtocolMessageType('Value', (_message.Message,), {
   'DESCRIPTOR' : _VALUE,

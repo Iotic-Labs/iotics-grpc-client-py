@@ -11,6 +11,7 @@ class FeedAPIStub(object):
     Create a feed owned by the provided twin.
     A twin may have one or more feeds. Any twin can subscribe to a feed (access control permitting).
     A feed generates data in a 1-to-many relationship: one feed may produce data that is used by many consumers (twins).
+    Services only affect local resources, unless stated otherwise.
     """
 
     def __init__(self, channel):
@@ -57,6 +58,7 @@ class FeedAPIServicer(object):
     Create a feed owned by the provided twin.
     A twin may have one or more feeds. Any twin can subscribe to a feed (access control permitting).
     A feed generates data in a 1-to-many relationship: one feed may produce data that is used by many consumers (twins).
+    Services only affect local resources, unless stated otherwise.
     """
 
     def CreateFeed(self, request, context):
@@ -88,14 +90,14 @@ class FeedAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def ListAllFeeds(self, request, context):
-        """List all feeds owned by a twin.
+        """Lists all feeds owned by a twin.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def DescribeFeed(self, request, context):
-        """Describe feed.
+        """Describes a feed. (local and remote)
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -147,6 +149,7 @@ class FeedAPI(object):
     Create a feed owned by the provided twin.
     A twin may have one or more feeds. Any twin can subscribe to a feed (access control permitting).
     A feed generates data in a 1-to-many relationship: one feed may produce data that is used by many consumers (twins).
+    Services only affect local resources, unless stated otherwise.
     """
 
     @staticmethod

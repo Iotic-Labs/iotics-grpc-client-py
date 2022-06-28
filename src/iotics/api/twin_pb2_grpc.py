@@ -9,6 +9,7 @@ class TwinAPIStub(object):
     """---------------------------------------------------------------------------------------------------------------------
 
     TwinAPI enables creation and management of Iotics twins.
+    Services only affect local resources, unless stated otherwise.
     """
 
     def __init__(self, channel):
@@ -53,6 +54,7 @@ class TwinAPIServicer(object):
     """---------------------------------------------------------------------------------------------------------------------
 
     TwinAPI enables creation and management of Iotics twins.
+    Services only affect local resources, unless stated otherwise.
     """
 
     def CreateTwin(self, request, context):
@@ -86,7 +88,7 @@ class TwinAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def DescribeTwin(self, request, context):
-        """Describes a twin.
+        """Describes a twin. (local and remote)
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -143,6 +145,7 @@ class TwinAPI(object):
     """---------------------------------------------------------------------------------------------------------------------
 
     TwinAPI enables creation and management of Iotics twins.
+    Services only affect local resources, unless stated otherwise.
     """
 
     @staticmethod

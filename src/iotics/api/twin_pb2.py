@@ -11,9 +11,9 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
 from iotics.api import common_pb2 as iotics_dot_api_dot_common__pb2
 from iotics.api import feed_pb2 as iotics_dot_api_dot_feed__pb2
+from iotics.api import input_pb2 as iotics_dot_api_dot_input__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -22,9 +22,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\016com.iotics.apiB\tTwinProtoP\001Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\242\002\003IAX\252\002\nIotics.Api\312\002\nIotics\\Api',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x15iotics/api/twin.proto\x12\niotics.api\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x17iotics/api/common.proto\x1a\x15iotics/api/feed.proto\"b\n\x04Twin\x12\"\n\x02id\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x02id\x12\x36\n\nvisibility\x18\x02 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\"m\n\x13ListAllTwinsRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\'\n\x05range\x18\x14 \x01(\x0b\x32\x11.iotics.api.RangeR\x05range\"\xaf\x03\n\x14ListAllTwinsResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x42\n\x07payload\x18\x02 \x01(\x0b\x32(.iotics.api.ListAllTwinsResponse.PayloadR\x07payload\x1a\xd4\x01\n\x0bTwinDetails\x12\"\n\x02id\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x02id\x12\x36\n\nvisibility\x18\x02 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\x12\x33\n\x08location\x18\x03 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x34\n\nproperties\x18\x05 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1aM\n\x07Payload\x12\x42\n\x05twins\x18\x01 \x03(\x0b\x32,.iotics.api.ListAllTwinsResponse.TwinDetailsR\x05twins\"\xba\x01\n\x11\x43reateTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x07payload\x18\x02 \x01(\x0b\x32%.iotics.api.CreateTwinRequest.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xbc\x01\n\x12\x43reateTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.CreateTwinResponse.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xb8\x01\n\x11\x44\x65leteTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12;\n\x04\x61rgs\x18\x02 \x01(\x0b\x32\'.iotics.api.DeleteTwinRequest.ArgumentsR\x04\x61rgs\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xbc\x01\n\x12\x44\x65leteTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.DeleteTwinResponse.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xf4\x01\n\x13\x44\x65scribeTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12=\n\x04\x61rgs\x18\x03 \x01(\x0b\x32).iotics.api.DescribeTwinRequest.ArgumentsR\x04\x61rgs\x1ao\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\x12\x36\n\x0cremoteHostId\x18\x02 \x01(\x0b\x32\x12.iotics.api.HostIDR\x0cremoteHostId\"T\n\x08\x46\x65\x65\x64Meta\x12*\n\x06\x66\x65\x65\x64Id\x18\x01 \x01(\x0b\x32\x12.iotics.api.FeedIDR\x06\x66\x65\x65\x64Id\x12\x1c\n\tstoreLast\x18\x03 \x01(\x08R\tstoreLast\"\xde\x03\n\x14\x44\x65scribeTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x42\n\x07payload\x18\x02 \x01(\x0b\x32(.iotics.api.DescribeTwinResponse.PayloadR\x07payload\x1a\xa3\x01\n\nMetaResult\x12\x33\n\x08location\x18\x01 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12*\n\x05\x66\x65\x65\x64s\x18\x04 \x03(\x0b\x32\x14.iotics.api.FeedMetaR\x05\x66\x65\x65\x64s\x12\x34\n\nproperties\x18\x06 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1a\xac\x01\n\x07Payload\x12$\n\x04twin\x18\x01 \x01(\x0b\x32\x10.iotics.api.TwinR\x04twin\x12\x43\n\x06result\x18\x02 \x01(\x0b\x32+.iotics.api.DescribeTwinResponse.MetaResultR\x06result\x12\x36\n\x0cremoteHostId\x18\x03 \x01(\x0b\x32\x12.iotics.api.HostIDR\x0cremoteHostId\"J\n\x10VisibilityUpdate\x12\x36\n\nvisibility\x18\x01 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\"H\n\x11GeoLocationUpdate\x12\x33\n\x08location\x18\x01 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\"\xc0\x03\n\x11UpdateTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12;\n\x04\x61rgs\x18\x02 \x01(\x0b\x32\'.iotics.api.UpdateTwinRequest.ArgumentsR\x04\x61rgs\x12?\n\x07payload\x18\x03 \x01(\x0b\x32%.iotics.api.UpdateTwinRequest.PayloadR\x07payload\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\x1a\xc4\x01\n\x07Payload\x12\x42\n\rnewVisibility\x18\x02 \x01(\x0b\x32\x1c.iotics.api.VisibilityUpdateR\rnewVisibility\x12:\n\nproperties\x18\x03 \x01(\x0b\x32\x1a.iotics.api.PropertyUpdateR\nproperties\x12\x39\n\x08location\x18\x06 \x01(\x0b\x32\x1d.iotics.api.GeoLocationUpdateR\x08location\"\xbc\x01\n\x12UpdateTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.UpdateTwinResponse.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\x80\x03\n\x11UpsertTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x07payload\x18\x02 \x01(\x0b\x32%.iotics.api.UpsertTwinRequest.PayloadR\x07payload\x1a\xfa\x01\n\x07Payload\x12\x16\n\x06twinId\x18\x01 \x01(\tR\x06twinId\x12\x36\n\nvisibility\x18\x02 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\x12\x34\n\nproperties\x18\x05 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x12\x33\n\x08location\x18\x06 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x34\n\x05\x66\x65\x65\x64s\x18\x07 \x03(\x0b\x32\x1e.iotics.api.UpsertFeedWithMetaR\x05\x66\x65\x65\x64s\"\xa8\x01\n\x12UpsertTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.UpsertTwinResponse.PayloadR\x07payload\x1a!\n\x07Payload\x12\x16\n\x06twinId\x18\x01 \x01(\tR\x06twinId2\xef\x03\n\x07TwinAPI\x12M\n\nCreateTwin\x12\x1d.iotics.api.CreateTwinRequest\x1a\x1e.iotics.api.CreateTwinResponse\"\x00\x12M\n\nUpsertTwin\x12\x1d.iotics.api.UpsertTwinRequest\x1a\x1e.iotics.api.UpsertTwinResponse\"\x00\x12M\n\nDeleteTwin\x12\x1d.iotics.api.DeleteTwinRequest\x1a\x1e.iotics.api.DeleteTwinResponse\"\x00\x12M\n\nUpdateTwin\x12\x1d.iotics.api.UpdateTwinRequest\x1a\x1e.iotics.api.UpdateTwinResponse\"\x00\x12S\n\x0c\x44\x65scribeTwin\x12\x1f.iotics.api.DescribeTwinRequest\x1a .iotics.api.DescribeTwinResponse\"\x00\x12S\n\x0cListAllTwins\x12\x1f.iotics.api.ListAllTwinsRequest\x1a .iotics.api.ListAllTwinsResponse\"\x00\x42}\n\x0e\x63om.iotics.apiB\tTwinProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3'
+  serialized_pb=b'\n\x15iotics/api/twin.proto\x12\niotics.api\x1a\x17iotics/api/common.proto\x1a\x15iotics/api/feed.proto\x1a\x16iotics/api/input.proto\"b\n\x04Twin\x12\"\n\x02id\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x02id\x12\x36\n\nvisibility\x18\x02 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\"m\n\x13ListAllTwinsRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\'\n\x05range\x18\x14 \x01(\x0b\x32\x11.iotics.api.RangeR\x05range\"\xaf\x03\n\x14ListAllTwinsResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x42\n\x07payload\x18\x02 \x01(\x0b\x32(.iotics.api.ListAllTwinsResponse.PayloadR\x07payload\x1a\xd4\x01\n\x0bTwinDetails\x12\"\n\x02id\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x02id\x12\x36\n\nvisibility\x18\x02 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\x12\x33\n\x08location\x18\x03 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x34\n\nproperties\x18\x05 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1aM\n\x07Payload\x12\x42\n\x05twins\x18\x01 \x03(\x0b\x32,.iotics.api.ListAllTwinsResponse.TwinDetailsR\x05twins\"\xba\x01\n\x11\x43reateTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x07payload\x18\x02 \x01(\x0b\x32%.iotics.api.CreateTwinRequest.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xbc\x01\n\x12\x43reateTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.CreateTwinResponse.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xb8\x01\n\x11\x44\x65leteTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12;\n\x04\x61rgs\x18\x02 \x01(\x0b\x32\'.iotics.api.DeleteTwinRequest.ArgumentsR\x04\x61rgs\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xbc\x01\n\x12\x44\x65leteTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.DeleteTwinResponse.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xf4\x01\n\x13\x44\x65scribeTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12=\n\x04\x61rgs\x18\x03 \x01(\x0b\x32).iotics.api.DescribeTwinRequest.ArgumentsR\x04\x61rgs\x1ao\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\x12\x36\n\x0cremoteHostId\x18\x02 \x01(\x0b\x32\x12.iotics.api.HostIDR\x0cremoteHostId\"T\n\x08\x46\x65\x65\x64Meta\x12*\n\x06\x66\x65\x65\x64Id\x18\x01 \x01(\x0b\x32\x12.iotics.api.FeedIDR\x06\x66\x65\x65\x64Id\x12\x1c\n\tstoreLast\x18\x03 \x01(\x08R\tstoreLast\":\n\tInputMeta\x12-\n\x07inputId\x18\x01 \x01(\x0b\x32\x13.iotics.api.InputIDR\x07inputId\"\x8d\x04\n\x14\x44\x65scribeTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x42\n\x07payload\x18\x02 \x01(\x0b\x32(.iotics.api.DescribeTwinResponse.PayloadR\x07payload\x1a\xd2\x01\n\nMetaResult\x12\x33\n\x08location\x18\x01 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12*\n\x05\x66\x65\x65\x64s\x18\x04 \x03(\x0b\x32\x14.iotics.api.FeedMetaR\x05\x66\x65\x65\x64s\x12-\n\x06inputs\x18\x05 \x03(\x0b\x32\x15.iotics.api.InputMetaR\x06inputs\x12\x34\n\nproperties\x18\x06 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1a\xac\x01\n\x07Payload\x12$\n\x04twin\x18\x01 \x01(\x0b\x32\x10.iotics.api.TwinR\x04twin\x12\x43\n\x06result\x18\x02 \x01(\x0b\x32+.iotics.api.DescribeTwinResponse.MetaResultR\x06result\x12\x36\n\x0cremoteHostId\x18\x03 \x01(\x0b\x32\x12.iotics.api.HostIDR\x0cremoteHostId\"J\n\x10VisibilityUpdate\x12\x36\n\nvisibility\x18\x01 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\"H\n\x11GeoLocationUpdate\x12\x33\n\x08location\x18\x01 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\"\xc0\x03\n\x11UpdateTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12;\n\x04\x61rgs\x18\x02 \x01(\x0b\x32\'.iotics.api.UpdateTwinRequest.ArgumentsR\x04\x61rgs\x12?\n\x07payload\x18\x03 \x01(\x0b\x32%.iotics.api.UpdateTwinRequest.PayloadR\x07payload\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\x1a\xc4\x01\n\x07Payload\x12\x42\n\rnewVisibility\x18\x02 \x01(\x0b\x32\x1c.iotics.api.VisibilityUpdateR\rnewVisibility\x12:\n\nproperties\x18\x03 \x01(\x0b\x32\x1a.iotics.api.PropertyUpdateR\nproperties\x12\x39\n\x08location\x18\x06 \x01(\x0b\x32\x1d.iotics.api.GeoLocationUpdateR\x08location\"\xbc\x01\n\x12UpdateTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.UpdateTwinResponse.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xb9\x03\n\x11UpsertTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x07payload\x18\x02 \x01(\x0b\x32%.iotics.api.UpsertTwinRequest.PayloadR\x07payload\x1a\xb3\x02\n\x07Payload\x12\x16\n\x06twinId\x18\x01 \x01(\tR\x06twinId\x12\x36\n\nvisibility\x18\x02 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\x12\x34\n\nproperties\x18\x05 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x12\x33\n\x08location\x18\x06 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x34\n\x05\x66\x65\x65\x64s\x18\x07 \x03(\x0b\x32\x1e.iotics.api.UpsertFeedWithMetaR\x05\x66\x65\x65\x64s\x12\x37\n\x06inputs\x18\x08 \x03(\x0b\x32\x1f.iotics.api.UpsertInputWithMetaR\x06inputs\"\xa8\x01\n\x12UpsertTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.UpsertTwinResponse.PayloadR\x07payload\x1a!\n\x07Payload\x12\x16\n\x06twinId\x18\x01 \x01(\tR\x06twinId2\xef\x03\n\x07TwinAPI\x12M\n\nCreateTwin\x12\x1d.iotics.api.CreateTwinRequest\x1a\x1e.iotics.api.CreateTwinResponse\"\x00\x12M\n\nUpsertTwin\x12\x1d.iotics.api.UpsertTwinRequest\x1a\x1e.iotics.api.UpsertTwinResponse\"\x00\x12M\n\nDeleteTwin\x12\x1d.iotics.api.DeleteTwinRequest\x1a\x1e.iotics.api.DeleteTwinResponse\"\x00\x12M\n\nUpdateTwin\x12\x1d.iotics.api.UpdateTwinRequest\x1a\x1e.iotics.api.UpdateTwinResponse\"\x00\x12S\n\x0c\x44\x65scribeTwin\x12\x1f.iotics.api.DescribeTwinRequest\x1a .iotics.api.DescribeTwinResponse\"\x00\x12S\n\x0cListAllTwins\x12\x1f.iotics.api.ListAllTwinsRequest\x1a .iotics.api.ListAllTwinsResponse\"\x00\x42}\n\x0e\x63om.iotics.apiB\tTwinProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3'
   ,
-  dependencies=[google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,iotics_dot_api_dot_common__pb2.DESCRIPTOR,iotics_dot_api_dot_feed__pb2.DESCRIPTOR,])
+  dependencies=[iotics_dot_api_dot_common__pb2.DESCRIPTOR,iotics_dot_api_dot_feed__pb2.DESCRIPTOR,iotics_dot_api_dot_input__pb2.DESCRIPTOR,])
 
 
 
@@ -63,8 +63,8 @@ _TWIN = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=117,
-  serialized_end=215,
+  serialized_start=109,
+  serialized_end=207,
 )
 
 
@@ -102,8 +102,8 @@ _LISTALLTWINSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=217,
-  serialized_end=326,
+  serialized_start=209,
+  serialized_end=318,
 )
 
 
@@ -155,8 +155,8 @@ _LISTALLTWINSRESPONSE_TWINDETAILS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=469,
-  serialized_end=681,
+  serialized_start=461,
+  serialized_end=673,
 )
 
 _LISTALLTWINSRESPONSE_PAYLOAD = _descriptor.Descriptor(
@@ -186,8 +186,8 @@ _LISTALLTWINSRESPONSE_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=683,
-  serialized_end=760,
+  serialized_start=675,
+  serialized_end=752,
 )
 
 _LISTALLTWINSRESPONSE = _descriptor.Descriptor(
@@ -224,8 +224,8 @@ _LISTALLTWINSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=329,
-  serialized_end=760,
+  serialized_start=321,
+  serialized_end=752,
 )
 
 
@@ -256,8 +256,8 @@ _CREATETWINREQUEST_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=896,
-  serialized_end=949,
+  serialized_start=888,
+  serialized_end=941,
 )
 
 _CREATETWINREQUEST = _descriptor.Descriptor(
@@ -294,8 +294,8 @@ _CREATETWINREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=763,
-  serialized_end=949,
+  serialized_start=755,
+  serialized_end=941,
 )
 
 
@@ -326,8 +326,8 @@ _CREATETWINRESPONSE_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=896,
-  serialized_end=949,
+  serialized_start=888,
+  serialized_end=941,
 )
 
 _CREATETWINRESPONSE = _descriptor.Descriptor(
@@ -364,8 +364,8 @@ _CREATETWINRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=952,
-  serialized_end=1140,
+  serialized_start=944,
+  serialized_end=1132,
 )
 
 
@@ -396,8 +396,8 @@ _DELETETWINREQUEST_ARGUMENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1272,
-  serialized_end=1327,
+  serialized_start=1264,
+  serialized_end=1319,
 )
 
 _DELETETWINREQUEST = _descriptor.Descriptor(
@@ -434,8 +434,8 @@ _DELETETWINREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1143,
-  serialized_end=1327,
+  serialized_start=1135,
+  serialized_end=1319,
 )
 
 
@@ -466,8 +466,8 @@ _DELETETWINRESPONSE_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=896,
-  serialized_end=949,
+  serialized_start=888,
+  serialized_end=941,
 )
 
 _DELETETWINRESPONSE = _descriptor.Descriptor(
@@ -504,8 +504,8 @@ _DELETETWINRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1330,
-  serialized_end=1518,
+  serialized_start=1322,
+  serialized_end=1510,
 )
 
 
@@ -543,8 +543,8 @@ _DESCRIBETWINREQUEST_ARGUMENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1654,
-  serialized_end=1765,
+  serialized_start=1646,
+  serialized_end=1757,
 )
 
 _DESCRIBETWINREQUEST = _descriptor.Descriptor(
@@ -581,8 +581,8 @@ _DESCRIBETWINREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1521,
-  serialized_end=1765,
+  serialized_start=1513,
+  serialized_end=1757,
 )
 
 
@@ -620,8 +620,40 @@ _FEEDMETA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1767,
-  serialized_end=1851,
+  serialized_start=1759,
+  serialized_end=1843,
+)
+
+
+_INPUTMETA = _descriptor.Descriptor(
+  name='InputMeta',
+  full_name='iotics.api.InputMeta',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='inputId', full_name='iotics.api.InputMeta.inputId', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='inputId', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1845,
+  serialized_end=1903,
 )
 
 
@@ -648,7 +680,14 @@ _DESCRIBETWINRESPONSE_METARESULT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, json_name='feeds', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='properties', full_name='iotics.api.DescribeTwinResponse.MetaResult.properties', index=2,
+      name='inputs', full_name='iotics.api.DescribeTwinResponse.MetaResult.inputs', index=2,
+      number=5, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='inputs', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='properties', full_name='iotics.api.DescribeTwinResponse.MetaResult.properties', index=3,
       number=6, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -666,8 +705,8 @@ _DESCRIBETWINRESPONSE_METARESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1994,
-  serialized_end=2157,
+  serialized_start=2046,
+  serialized_end=2256,
 )
 
 _DESCRIBETWINRESPONSE_PAYLOAD = _descriptor.Descriptor(
@@ -711,8 +750,8 @@ _DESCRIBETWINRESPONSE_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2160,
-  serialized_end=2332,
+  serialized_start=2259,
+  serialized_end=2431,
 )
 
 _DESCRIBETWINRESPONSE = _descriptor.Descriptor(
@@ -749,8 +788,8 @@ _DESCRIBETWINRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1854,
-  serialized_end=2332,
+  serialized_start=1906,
+  serialized_end=2431,
 )
 
 
@@ -781,8 +820,8 @@ _VISIBILITYUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2334,
-  serialized_end=2408,
+  serialized_start=2433,
+  serialized_end=2507,
 )
 
 
@@ -813,8 +852,8 @@ _GEOLOCATIONUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2410,
-  serialized_end=2482,
+  serialized_start=2509,
+  serialized_end=2581,
 )
 
 
@@ -845,8 +884,8 @@ _UPDATETWINREQUEST_ARGUMENTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1272,
-  serialized_end=1327,
+  serialized_start=1264,
+  serialized_end=1319,
 )
 
 _UPDATETWINREQUEST_PAYLOAD = _descriptor.Descriptor(
@@ -890,8 +929,8 @@ _UPDATETWINREQUEST_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2737,
-  serialized_end=2933,
+  serialized_start=2836,
+  serialized_end=3032,
 )
 
 _UPDATETWINREQUEST = _descriptor.Descriptor(
@@ -935,8 +974,8 @@ _UPDATETWINREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2485,
-  serialized_end=2933,
+  serialized_start=2584,
+  serialized_end=3032,
 )
 
 
@@ -967,8 +1006,8 @@ _UPDATETWINRESPONSE_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=896,
-  serialized_end=949,
+  serialized_start=888,
+  serialized_end=941,
 )
 
 _UPDATETWINRESPONSE = _descriptor.Descriptor(
@@ -1005,8 +1044,8 @@ _UPDATETWINRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2936,
-  serialized_end=3124,
+  serialized_start=3035,
+  serialized_end=3223,
 )
 
 
@@ -1053,6 +1092,13 @@ _UPSERTTWINREQUEST_PAYLOAD = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, json_name='feeds', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='inputs', full_name='iotics.api.UpsertTwinRequest.Payload.inputs', index=5,
+      number=8, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='inputs', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1065,8 +1111,8 @@ _UPSERTTWINREQUEST_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3261,
-  serialized_end=3511,
+  serialized_start=3360,
+  serialized_end=3667,
 )
 
 _UPSERTTWINREQUEST = _descriptor.Descriptor(
@@ -1103,8 +1149,8 @@ _UPSERTTWINREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3127,
-  serialized_end=3511,
+  serialized_start=3226,
+  serialized_end=3667,
 )
 
 
@@ -1135,8 +1181,8 @@ _UPSERTTWINRESPONSE_PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3261,
-  serialized_end=3294,
+  serialized_start=3360,
+  serialized_end=3393,
 )
 
 _UPSERTTWINRESPONSE = _descriptor.Descriptor(
@@ -1173,8 +1219,8 @@ _UPSERTTWINRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3514,
-  serialized_end=3682,
+  serialized_start=3670,
+  serialized_end=3838,
 )
 
 _TWIN.fields_by_name['id'].message_type = iotics_dot_api_dot_common__pb2._TWINID
@@ -1212,8 +1258,10 @@ _DESCRIBETWINREQUEST_ARGUMENTS.containing_type = _DESCRIBETWINREQUEST
 _DESCRIBETWINREQUEST.fields_by_name['headers'].message_type = iotics_dot_api_dot_common__pb2._HEADERS
 _DESCRIBETWINREQUEST.fields_by_name['args'].message_type = _DESCRIBETWINREQUEST_ARGUMENTS
 _FEEDMETA.fields_by_name['feedId'].message_type = iotics_dot_api_dot_common__pb2._FEEDID
+_INPUTMETA.fields_by_name['inputId'].message_type = iotics_dot_api_dot_common__pb2._INPUTID
 _DESCRIBETWINRESPONSE_METARESULT.fields_by_name['location'].message_type = iotics_dot_api_dot_common__pb2._GEOLOCATION
 _DESCRIBETWINRESPONSE_METARESULT.fields_by_name['feeds'].message_type = _FEEDMETA
+_DESCRIBETWINRESPONSE_METARESULT.fields_by_name['inputs'].message_type = _INPUTMETA
 _DESCRIBETWINRESPONSE_METARESULT.fields_by_name['properties'].message_type = iotics_dot_api_dot_common__pb2._PROPERTY
 _DESCRIBETWINRESPONSE_METARESULT.containing_type = _DESCRIBETWINRESPONSE
 _DESCRIBETWINRESPONSE_PAYLOAD.fields_by_name['twin'].message_type = _TWIN
@@ -1241,6 +1289,7 @@ _UPSERTTWINREQUEST_PAYLOAD.fields_by_name['visibility'].enum_type = iotics_dot_a
 _UPSERTTWINREQUEST_PAYLOAD.fields_by_name['properties'].message_type = iotics_dot_api_dot_common__pb2._PROPERTY
 _UPSERTTWINREQUEST_PAYLOAD.fields_by_name['location'].message_type = iotics_dot_api_dot_common__pb2._GEOLOCATION
 _UPSERTTWINREQUEST_PAYLOAD.fields_by_name['feeds'].message_type = iotics_dot_api_dot_feed__pb2._UPSERTFEEDWITHMETA
+_UPSERTTWINREQUEST_PAYLOAD.fields_by_name['inputs'].message_type = iotics_dot_api_dot_input__pb2._UPSERTINPUTWITHMETA
 _UPSERTTWINREQUEST_PAYLOAD.containing_type = _UPSERTTWINREQUEST
 _UPSERTTWINREQUEST.fields_by_name['headers'].message_type = iotics_dot_api_dot_common__pb2._HEADERS
 _UPSERTTWINREQUEST.fields_by_name['payload'].message_type = _UPSERTTWINREQUEST_PAYLOAD
@@ -1256,6 +1305,7 @@ DESCRIPTOR.message_types_by_name['DeleteTwinRequest'] = _DELETETWINREQUEST
 DESCRIPTOR.message_types_by_name['DeleteTwinResponse'] = _DELETETWINRESPONSE
 DESCRIPTOR.message_types_by_name['DescribeTwinRequest'] = _DESCRIBETWINREQUEST
 DESCRIPTOR.message_types_by_name['FeedMeta'] = _FEEDMETA
+DESCRIPTOR.message_types_by_name['InputMeta'] = _INPUTMETA
 DESCRIPTOR.message_types_by_name['DescribeTwinResponse'] = _DESCRIBETWINRESPONSE
 DESCRIPTOR.message_types_by_name['VisibilityUpdate'] = _VISIBILITYUPDATE
 DESCRIPTOR.message_types_by_name['GeoLocationUpdate'] = _GEOLOCATIONUPDATE
@@ -1384,6 +1434,13 @@ FeedMeta = _reflection.GeneratedProtocolMessageType('FeedMeta', (_message.Messag
   })
 _sym_db.RegisterMessage(FeedMeta)
 
+InputMeta = _reflection.GeneratedProtocolMessageType('InputMeta', (_message.Message,), {
+  'DESCRIPTOR' : _INPUTMETA,
+  '__module__' : 'iotics.api.twin_pb2'
+  # @@protoc_insertion_point(class_scope:iotics.api.InputMeta)
+  })
+_sym_db.RegisterMessage(InputMeta)
+
 DescribeTwinResponse = _reflection.GeneratedProtocolMessageType('DescribeTwinResponse', (_message.Message,), {
 
   'MetaResult' : _reflection.GeneratedProtocolMessageType('MetaResult', (_message.Message,), {
@@ -1499,8 +1556,8 @@ _TWINAPI = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=3685,
-  serialized_end=4180,
+  serialized_start=3841,
+  serialized_end=4336,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateTwin',

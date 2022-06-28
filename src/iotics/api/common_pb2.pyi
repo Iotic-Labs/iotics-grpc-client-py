@@ -14,22 +14,6 @@ import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-class _PointType:
-    ValueType = typing.NewType('ValueType', builtins.int)
-    V: typing_extensions.TypeAlias = ValueType
-class _PointTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_PointType.ValueType], builtins.type):
-    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
-    FEED: _PointType.ValueType  # 0
-    CONTROL: _PointType.ValueType  # 1
-class PointType(_PointType, metaclass=_PointTypeEnumTypeWrapper):
-    """PointType used to describe a point as a FEED or a CONTROL."""
-    pass
-
-FEED: PointType.ValueType  # 0
-CONTROL: PointType.ValueType  # 1
-global___PointType = PointType
-
-
 class _Visibility:
     ValueType = typing.NewType('ValueType', builtins.int)
     V: typing_extensions.TypeAlias = ValueType
@@ -368,7 +352,7 @@ class TwinID(google.protobuf.message.Message):
 global___TwinID = TwinID
 
 class FeedID(google.protobuf.message.Message):
-    """FeedID is a unique feed identifier (scoped to the TwinID)."""
+    """FeedID is a unique feed identifier (scoped to the set of feeds for a TwinID)."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VALUE_FIELD_NUMBER: builtins.int
     value: typing.Text
@@ -381,9 +365,23 @@ class FeedID(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal["value",b"value"]) -> None: ...
 global___FeedID = FeedID
 
+class InputID(google.protobuf.message.Message):
+    """InputID is a unique input identifier (scoped to the set of inputs for a TwinID)."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    VALUE_FIELD_NUMBER: builtins.int
+    value: typing.Text
+    """Input Identifier string representation (simple string)"""
+
+    def __init__(self,
+        *,
+        value: typing.Text = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["value",b"value"]) -> None: ...
+global___InputID = InputID
+
 class Value(google.protobuf.message.Message):
-    """Value is the definition of an individual piece of data within a Feed share. Values are purely descriptive, e.g. a
-    Feed follower should expect data to match the values associated with said Feed but must be able to recover where this
+    """Value is the definition of an individual piece of data within a Feed share or an Input send. Values are purely descriptive, e.g. a
+    follower should expect data to match the values associated with said Feed/Input but must be able to recover where this
     is not the case.
     """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -450,6 +448,7 @@ class FeedData(google.protobuf.message.Message):
     def occurredAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """occurredAt is the UTC timestamp of the sample. Typically this is either the time at which an application shared
         this sample or the time applicable to the sample itself (such as an hourly weather observation).
+        (Optional: set to host time if not provided)
         """
         pass
     mime: typing.Text
@@ -457,7 +456,7 @@ class FeedData(google.protobuf.message.Message):
 
     data: builtins.bytes
     """data is the actual set of datapoints, encoded according the the mime type. The data should follow the Feed's
-    value defintions but that is not enforced. (See also Value)
+    value definitions but that is not enforced. (See also Value)
     """
 
     def __init__(self,

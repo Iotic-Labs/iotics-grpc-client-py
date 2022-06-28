@@ -12,17 +12,18 @@ class SearchAPIStub:
     """---------------------------------------------------------------------------------------------------------------------
 
     SearchAPI provides a set of services to run synchronous and asynchronous search.
+    Services only affect local resources, unless stated otherwise.
     """
     def __init__(self, channel: grpc.Channel) -> None: ...
     DispatchSearchRequest: grpc.UnaryUnaryMultiCallable[
         iotics.api.search_pb2.SearchRequest,
         iotics.api.search_pb2.DispatchSearchResponse]
-    """Send a search request. Results are expected asynchronously."""
+    """Send a search request. Results are expected asynchronously. (local and remote)"""
 
     SynchronousSearch: grpc.UnaryStreamMultiCallable[
         iotics.api.search_pb2.SearchRequest,
         iotics.api.search_pb2.SearchResponse]
-    """Run a synchronous search based on a user timeout."""
+    """Run a synchronous search based on a user timeout. (local and remote)"""
 
     ReceiveAllSearchResponses: grpc.UnaryStreamMultiCallable[
         iotics.api.common_pb2.SubscriptionHeaders,
@@ -34,13 +35,14 @@ class SearchAPIServicer(metaclass=abc.ABCMeta):
     """---------------------------------------------------------------------------------------------------------------------
 
     SearchAPI provides a set of services to run synchronous and asynchronous search.
+    Services only affect local resources, unless stated otherwise.
     """
     @abc.abstractmethod
     def DispatchSearchRequest(self,
         request: iotics.api.search_pb2.SearchRequest,
         context: grpc.ServicerContext,
     ) -> iotics.api.search_pb2.DispatchSearchResponse:
-        """Send a search request. Results are expected asynchronously."""
+        """Send a search request. Results are expected asynchronously. (local and remote)"""
         pass
 
     @abc.abstractmethod
@@ -48,7 +50,7 @@ class SearchAPIServicer(metaclass=abc.ABCMeta):
         request: iotics.api.search_pb2.SearchRequest,
         context: grpc.ServicerContext,
     ) -> typing.Iterator[iotics.api.search_pb2.SearchResponse]:
-        """Run a synchronous search based on a user timeout."""
+        """Run a synchronous search based on a user timeout. (local and remote)"""
         pass
 
     @abc.abstractmethod

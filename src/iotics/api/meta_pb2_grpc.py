@@ -9,6 +9,7 @@ class MetaAPIStub(object):
     """---------------------------------------------------------------------------------------------------------------------
 
     MetaAPI enables querying of metadata associated with Twins and Feeds.
+    Services only affect local resources, unless stated otherwise.
     """
 
     def __init__(self, channel):
@@ -33,6 +34,7 @@ class MetaAPIServicer(object):
     """---------------------------------------------------------------------------------------------------------------------
 
     MetaAPI enables querying of metadata associated with Twins and Feeds.
+    Services only affect local resources, unless stated otherwise.
     """
 
     def SparqlQuery(self, request, context):
@@ -41,16 +43,16 @@ class MetaAPIServicer(object):
         results (when performing a non-local query). See scope parameter in SparqlQueryRequest;
         - The call will only complete once the (specified or host default) request timeout has been reached. The client can
         choose to end the stream early once they have received enough results. (E.g. in the case of Scope.LOCAL this
-        would be after the one and only sequence of chunks has been received.)
+        would be after the one and only sequence of chunks has been received.). (local and remote)
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def SparqlUpdate(self, request, context):
-        """SparqlUpdate performs a SPARQL 1.1 update. When performing an update, the update query must contain a reference to 
+        """SparqlUpdate performs a SPARQL 1.1 update. When performing an update, the update query must contain a reference to
         one of the following graph IRIs:
-        1. http://data.iotics.com/graph#custom-public (aka custom public graph) - All metadata written to this graph will be 
+        1. http://data.iotics.com/graph#custom-public (aka custom public graph) - All metadata written to this graph will be
         visible during SPARQL queries both with local & global scope (and thus, the Iotics network).
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -81,6 +83,7 @@ class MetaAPI(object):
     """---------------------------------------------------------------------------------------------------------------------
 
     MetaAPI enables querying of metadata associated with Twins and Feeds.
+    Services only affect local resources, unless stated otherwise.
     """
 
     @staticmethod
