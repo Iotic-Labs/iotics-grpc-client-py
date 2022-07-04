@@ -90,3 +90,20 @@ $(VENV_PATH)/bin:
 	&& pip install -U pip setuptools \
 	&& pip install -e '.[dev]'
 deps-py-update: clean deps-py
+
+
+################
+## CI helpers ##
+################
+
+verify-import: deps-py
+	source "$(VENV_PATH)"/bin/activate \
+	&& python -c 'from iotics.lib.grpc import IoticsApi'
+
+run-examples: deps-py
+	source "$(VENV_PATH)"/bin/activate \
+	&& python examples/search_twin_models.py \
+	&& python examples/search_location.py \
+	&& python examples/sparql.py \
+	&& python examples/create_edit_twins_feeds.py \
+	&& python examples/follow_feed.py

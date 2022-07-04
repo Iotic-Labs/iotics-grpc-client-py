@@ -1,0 +1,67 @@
+name: Check API client stubs
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: "0 7 * * *"
+
+jobs:
+  # Ensure we can regenerate API stubs using the protocol buffer compiler.
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Enable caching for Docker
+        uses: satackey/action-docker-layer-caching@v0.0.11
+        continue-on-error: true
+        with:
+          key: iotics-grpc-client-py-builder-{hash}
+          restore-keys: |
+            iotics-grpc-client-py-builder-
+      - name: Generate client (stubs) files
+        # Install all dependencies and generate API stubs.
+        run: make build
+      - name: Check for changed files
+        uses: tj-actions/verify-changed-files@v10
+        id: verify-changed-files
+        with:
+          files: |
+            src/iotics/api
+      - name: Check that the generated files are unmodified
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.setFailed("Modified files detected: ${{ steps.verify-changed-files.outputs.changed_files }}")
+
+  # Ensure package correctly imports dependencies and can communicate with the IOTICSpace.
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Check that the package can be imported
+        run: make verify-import
+      - name: Mask secrets
+        run: |
+          echo "::add-mask::${{ secrets.SPACE }}"
+          echo "::add-mask::${{ secrets.USER_SEED }}"
+          echo "::add-mask::${{ secrets.USER_KEY_NAME }}"
+          echo "::add-mask::${{ secrets.USER_NAME }}"
+          echo "::add-mask::${{ secrets.AGENT_SEED }}"
+          echo "::add-mask::${{ secrets.AGENT_KEY_NAME }}"
+          echo "::add-mask::${{ secrets.AGENT_NAME }}"
+      - name: Run examples
+        run: make run-examples
+        env:
+          SPACE: ${{ secrets.SPACE }}
+          USER_SEED: ${{ secrets.USER_SEED }}
+          USER_KEY_NAME: ${{ secrets.USER_KEY_NAME }}
+          USER_NAME: ${{ secrets.USER_NAME }}
+          AGENT_SEED: ${{ secrets.AGENT_SEED }}
+          AGENT_KEY_NAME: ${{ secrets.AGENT_KEY_NAME }}
+          AGENT_NAME: ${{ secrets.AGENT_NAME }}
