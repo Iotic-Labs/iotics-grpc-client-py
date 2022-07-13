@@ -11,19 +11,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+import json
 import typing
 
 import grpc
 import grpc._channel
 from google.protobuf.wrappers_pb2 import BoolValue
 
-from .base import ApiBase
-from .helpers import create_headers
-from iotics.api import interest_pb2_grpc
-from iotics.api import interest_pb2
-from iotics.api import feed_pb2
 from iotics.api import common_pb2
+from iotics.api import feed_pb2
+from iotics.api import input_pb2
+from iotics.api import interest_pb2
+from iotics.api import interest_pb2_grpc
+from .base import ApiBase
+from .helpers import create_headers, create_timestamp
 
 
 class InterestApi(ApiBase):
@@ -111,3 +112,46 @@ class InterestApi(ApiBase):
             )
         )
         return self.stub.FetchLastStored(req)
+
+    def send_input_message(
+        self,
+        sender_twin_id: str,
+        #TODO(Adrian): It make sense to be here (from/to/message), but would need to explicitly pass None for local twins) :?
+        target_remote_host_id: typing.Optional[str],
+        target_twin_id: str,
+        target_input_id: str,
+        message: typing.Any,
+        # TODO(Adrian): Does it have to match with headers in the listener?
+        headers: typing.Optional[common_pb2.Headers] = None,
+    ) -> interest_pb2.SendInputMessageResponse:
+        """Send a message to an input (local or remote).
+
+        Args:
+            sender_twin_id:
+            target_remote_host_id:
+            target_twin_id:
+            target_input_id:
+            message: JSON serialisable data.
+            client_app_id:
+
+        Returns:
+        """
+        destination_input = interest_pb2.InputInterest.DestinationInput(
+            input=self.build_input(target_twin_id, target_input_id),
+            hostId=self.build_host_id(target_remote_host_id),
+        )
+        input_interest = interest_pb2.InputInterest(
+            senderTwinId=common_pb2.TwinID(value=sender_twin_id),
+            destInput=destination_input,
+        )
+        input_message = input_pb2.InputMessage(
+            occurredAt=create_timestamp(),
+            mime='application/json',
+            data=json.dumps(message).encode(),
+        )
+        request = interest_pb2.SendInputMessageRequest(
+            headers=headers or create_headers(),
+            args=interest_pb2.SendInputMessageRequest.Arguments(interest=input_interest),
+            payload=interest_pb2.SendInputMessageRequest.Payload(message=input_message),
+        )
+        return self.stub.SendInputMessage(request=request)

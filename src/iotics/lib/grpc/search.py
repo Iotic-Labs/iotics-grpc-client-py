@@ -21,6 +21,7 @@ from google.protobuf.wrappers_pb2 import StringValue
 from iotics.api import common_pb2
 from iotics.api import search_pb2
 from iotics.api import search_pb2_grpc
+from iotics.lib.grpc import create_headers
 from iotics.lib.grpc.base import ApiBase
 
 PER_PAGE_LIMIT = 100
@@ -133,7 +134,7 @@ class SearchApi(ApiBase):
             request.
         """
         client_ref = f'{client_app_id}_page{page}'
-        headers = common_pb2.Headers(clientRef=client_ref, clientAppId=client_app_id, transactionRef=[client_app_id])
+        headers = create_headers(client_ref=client_ref, client_app_id=client_app_id)
         result_range = common_pb2.Range(
             limit=common_pb2.Limit(value=PER_PAGE_LIMIT),
             offset=common_pb2.Offset(value=PER_PAGE_LIMIT * page)

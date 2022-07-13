@@ -20,6 +20,7 @@ from iotics.lib.grpc.auth import AuthInterface
 from iotics.lib.grpc.base import ApiBase
 from iotics.lib.grpc.feeds import FeedApi
 from iotics.lib.grpc.helpers import get_channel
+from iotics.lib.grpc.input import InputApi
 from iotics.lib.grpc.interest import InterestApi
 from iotics.lib.grpc.search import SearchApi
 from iotics.lib.grpc.sparql import SparqlApi
@@ -32,6 +33,7 @@ class IoticsApi:
         self._channel: typing.Optional[grpc.Channel] = channel
         self._twin_api: typing.Optional[TwinApi] = None
         self._feed_api: typing.Optional[FeedApi] = None
+        self._input_api: typing.Optional[InputApi] = None
         self._search_api: typing.Optional[SearchApi] = None
         self._interest_api: typing.Optional[InterestApi] = None
         self._sparql_api: typing.Optional[SparqlApi] = None
@@ -42,6 +44,12 @@ class IoticsApi:
         self.share_feed_data = self.feed_api.share_feed_data
         self.list_all_feeds = self.feed_api.list_all_feeds
         self.describe_feed = self.feed_api.describe_feed
+        # TODO(Adrian): Add `build_` helpers?
+        # self.build_input = self.input_api.build_input
+        self.describe_input = self.input_api.describe_input
+        self.delete_input = self.input_api.delete_input
+        self.receive_input_message = self.input_api.receive_input_message
+        self.send_input_message = self.interest_api.send_input_message
         self.fetch_interests = self.interest_api.fetch_interests
         self.fetch_last_stored = self.interest_api.fetch_last_stored
         self.get_search_payload = self.search_api.get_search_payload
@@ -78,6 +86,12 @@ class IoticsApi:
         return self._feed_api
 
     @property
+    def input_api(self) -> InputApi:
+        if not self._input_api:
+            self._input_api = InputApi(self._auth, self.channel)
+        return self._input_api
+
+    @property
     def interest_api(self) -> InterestApi:
         if not self._interest_api:
             self._interest_api = InterestApi(self._auth, self.channel)
@@ -110,6 +124,8 @@ class IoticsApi:
             self._twin_api = TwinApi(self._auth, channel)
         elif isinstance(api, FeedApi):
             self._feed_api = FeedApi(self._auth, channel)
+        elif isinstance(api, InputApi):
+            self._input_api = InputApi(self._auth, channel)
         elif isinstance(api, InterestApi):
             self._interest_api = InterestApi(self._auth, channel)
         elif isinstance(api, SearchApi):
@@ -121,6 +137,7 @@ class IoticsApi:
         return [
             self._twin_api,
             self._feed_api,
+            self._input_api,
             self._search_api,
             self._interest_api,
             self._sparql_api

@@ -14,11 +14,13 @@
 
 import typing
 
+from iotics.api import common_pb2
+from iotics.api import feed_pb2
+from iotics.api import input_pb2
+from iotics.api import twin_pb2
+from iotics.api import twin_pb2_grpc
 from .base import ApiBase
 from .helpers import create_headers
-from iotics.api import twin_pb2_grpc
-from iotics.api import twin_pb2
-from iotics.api import common_pb2
 
 
 class TwinApi(ApiBase):
@@ -140,10 +142,11 @@ class TwinApi(ApiBase):
     def upsert_twin(
             self,
             twin_did: str,
-            visibility: common_pb2.Visibility = None,
+            visibility: common_pb2.Visibility.ValueType = None,
             location: typing.Optional[common_pb2.GeoLocation] = None,
-            properties: typing.Optional[list] = None,
-            feeds: typing.Optional[list] = None,
+            properties: typing.Optional[typing.Iterable[common_pb2.Property]] = None,
+            feeds: typing.Optional[typing.Iterable[feed_pb2.UpsertFeedWithMeta]] = None,
+            inputs: typing.Optional[typing.Iterable[input_pb2.UpsertInputWithMeta]] = None,
             headers: typing.Optional[common_pb2.Headers] = None
     ) -> twin_pb2.UpsertTwinResponse:
         """Upserts a twin with the given details, ie, the given ID will specify a twin with these details regardless of
@@ -157,6 +160,7 @@ class TwinApi(ApiBase):
                 create_property helper
             feeds: A list of feeds on which the twin may share real-time data, created using the create_feed_with_meta
                 helper
+            inputs: A list of inputs to be added for the twin.
             headers: optional request headers
 
         Returns: Response object confirming the ID of the twin that was upserted
@@ -168,7 +172,8 @@ class TwinApi(ApiBase):
                 visibility=visibility,
                 location=location,
                 properties=properties,
-                feeds=feeds
+                feeds=feeds,
+                inputs=inputs,
             )
         )
         return self.stub.UpsertTwin(req)

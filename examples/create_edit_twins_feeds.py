@@ -33,6 +33,7 @@ def main():
     # You can now use this DID to create a twin.
     api.create_twin(twin_did)
     # Make the twin findable by providing some metadata, such as its location and a semantic property.
+    # TODO(Adrian): Does visibility work as expected? Shouldn't be: `common_pb2.Visibility.PUBLIC`?
     api.update_twin(twin_did, location=CAMBRIDGE, visibility='PUBLIC', props_added=[
         create_property(key='http://test-ontology.com/test#key', value='12', datatype='integer')
     ])
@@ -53,6 +54,7 @@ def main():
     api.share_feed_data(twin_did, FEED_NAME, {'temp': 42})
     # Using the upsert command we can replace twin and feed metadata at the same time, creating any that weren't already
     # present.
+    # TODO(Adrian): Does visibility work as expected? Shouldn't be: `common_pb2.Visibility.PRIVATE`?
     api.upsert_twin(twin_did, location=LONDON, visibility='PRIVATE', properties=[
         create_property(key='http://test-ontology.com/test#key', value='hi', language='en')
     ], feeds=[create_feed_with_meta('foo', values=[create_feed_value(
