@@ -1,7 +1,7 @@
 import typing
 
 import requests
-from iotics.lib.identity import get_rest_high_level_identity_api
+from iotics.lib.identity import get_rest_high_level_identity_api, build_user_secrets, build_agent_secrets,SeedMethod
 
 from iotics.lib.grpc.auth import AuthInterface
 
@@ -43,14 +43,31 @@ class IdentityAuth(AuthInterface):
                 raise IdentityAuthError(f'Could not fetch resolver URL from `{index_url}`.')
 
         self.high_level_api = api = get_rest_high_level_identity_api(resolver_url=resolver_url)
-        user_registered_id, self.agent_registered_id = api.create_user_and_agent_with_auth_delegation(
-            user_seed=bytearray.fromhex(user_seed),
-            user_key_name=user_key_name,
-            agent_seed=bytearray.fromhex(agent_seed),
-            agent_key_name=agent_key_name,
-            user_name=user_name,
-            agent_name=agent_name,
-        )
+        # user_registered_id, self.agent_registered_id = api.create_user_and_agent_with_auth_delegation(
+        #     user_seed=bytearray.fromhex(user_seed),
+        #     user_key_name=user_key_name,
+        #     agent_seed=bytearray.fromhex(agent_seed),
+        #     agent_key_name=agent_key_name,
+        #     user_name=user_name,
+        #     agent_name=agent_name,
+        #     delegation_name='#AuthorityDelegation2'
+        # )
+        user_key_pair_secrets = build_user_secrets(bytearray.fromhex(user_seed), user_key_name, SeedMethod.SEED_METHOD_BIP39,
+                                                   '')
+        user_registered_id = api.advanced_api.new_registered_user_identity(user_key_pair_secrets, user_name,
+                                                                                  False)
+        agent_key_pair_secrets = build_agent_secrets(bytearray.fromhex(agent_seed), agent_key_name, SeedMethod.SEED_METHOD_NONE,
+                                                     '')
+        self.agent_registered_id = api.advanced_api.new_registered_agent_identity(agent_key_pair_secrets,
+                                                                                    agent_name,
+                                                                                    False)
+        api.advanced_api.delegate_authentication(user_registered_id.key_pair_secrets,
+                                                  user_registered_id.issuer.did,
+                                                  self.agent_registered_id.key_pair_secrets,
+                                                  self.agent_registered_id.issuer.did,
+                                                  '#AuthorityDelegation')
+        
+
         print(f'User DID: {user_registered_id.did}')
         print(f'Agent DID: {self.agent_registered_id.did}')
         self.grpc_token = api.create_agent_auth_token(self.agent_registered_id, user_registered_id.did, token_ttl)
@@ -71,3 +88,4 @@ class IdentityAuth(AuthInterface):
         twin_registered_identity = self.high_level_api.create_twin_with_control_delegation(
             seed, key_name, self.agent_registered_id, '#AuthorityDelegation', twin_name)
         return twin_registered_identity.did
+    
