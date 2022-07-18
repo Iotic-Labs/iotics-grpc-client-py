@@ -1,4 +1,6 @@
 # Iotics gRPC Python Client
+![GHA check workflow](https://github.com/Iotic-Labs/iotics-grpc-client-py/actions/workflows/check.yml/badge.svg)
+
 A Python library for interacting with Iotics API.
 
 
