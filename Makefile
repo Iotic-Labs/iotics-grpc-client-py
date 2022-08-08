@@ -106,4 +106,5 @@ run-examples: deps-py
 	&& python examples/search_location.py \
 	&& python examples/sparql.py \
 	&& python examples/create_edit_twins_feeds.py \
-	&& python examples/follow_feed.py
+	&& python examples/follow_feed.py \
+	&& python examples/inputs.py

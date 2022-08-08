@@ -11,13 +11,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import datetime
+import uuid
 
 import grpc
-import uuid
+from google.protobuf.timestamp_pb2 import Timestamp
 
 from iotics.api.common_pb2 import GeoLocation, Headers, LangLiteral, Literal, Property, StringLiteral, Uri, Value
 from iotics.api.feed_pb2 import UpsertFeedWithMeta
 from iotics.lib.grpc.auth import AuthInterface
+from iotics.api.input_pb2 import UpsertInputWithMeta
 
 
 def get_channel(auth: AuthInterface) -> grpc.Channel:
@@ -69,19 +72,35 @@ def create_feed_with_meta(feed_id, store_last=True, values=None, properties=None
     )
 
 
-def create_feed_value(label, comment=None, unit=None, data_type=None):
+def create_input_with_meta(input_id, values=None, properties=None):
+    return UpsertInputWithMeta(
+        id=input_id,
+        values=values,
+        properties=properties
+    )
+
+
+def create_value(label, comment=None, unit=None, data_type=None):
     return Value(label=label, comment=comment, unit=unit, dataType=data_type)
 
 
 def create_headers(client_ref=None, client_app_id=None, transaction_ref=None, consumer_group=None,
                    request_timeout=None):
+    client_app_id = client_app_id or uuid.uuid4().hex
     return Headers(
         clientRef=client_ref or 'IOTICS GRPC Python client',
-        clientAppId=client_app_id or uuid.uuid4().hex,
-        transactionRef=transaction_ref or [uuid.uuid4().hex],
+        clientAppId=client_app_id,
+        transactionRef=transaction_ref or [client_app_id],
         consumerGroup=consumer_group,
         requestTimeout=request_timeout
     )
+
+
+def create_timestamp() -> Timestamp:
+    """Create a Google protobuf timestamp with current time in UTC."""
+    timestamp = Timestamp()
+    timestamp.FromDatetime(datetime.datetime.now(datetime.timezone.utc))
+    return timestamp
 
 
 PROPERTY_IS_DIGITAL_TWIN = Property(

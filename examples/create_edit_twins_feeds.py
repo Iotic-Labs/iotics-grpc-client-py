@@ -1,5 +1,6 @@
 from identity_auth import IdentityAuth, IdentityAuthError
-from iotics.lib.grpc.helpers import create_location, create_property, create_feed_with_meta, create_feed_value
+from iotics.api.common_pb2 import Visibility
+from iotics.lib.grpc.helpers import create_location, create_property, create_feed_with_meta, create_value
 from iotics.lib.grpc.iotics_api import IoticsApi
 
 FEED_NAME = 'myFeed'
@@ -33,7 +34,7 @@ def main():
     # You can now use this DID to create a twin.
     api.create_twin(twin_did)
     # Make the twin findable by providing some metadata, such as its location and a semantic property.
-    api.update_twin(twin_did, location=CAMBRIDGE, visibility='PUBLIC', props_added=[
+    api.update_twin(twin_did, location=CAMBRIDGE, visibility=Visibility.PUBLIC, props_added=[
         create_property(key='http://test-ontology.com/test#key', value='12', datatype='integer')
     ])
     # IOTICS Twins can provide real-time streams of data using Feeds. Create a feed, making sure the name you provide
@@ -43,7 +44,7 @@ def main():
     # the Value objects tell us what sort of value is found at each key (the value's Label, the first argument). Feeds
     # may also be given semantic properties just like twins.
     api.update_feed(twin_did, FEED_NAME, store_last=False, values_added=[
-        create_feed_value('temp', 'temperature in Celsius', 'http://purl.obolibrary.org/obo/UO_0000027', 'float')
+        create_value('temp', 'temperature in Celsius', 'http://purl.obolibrary.org/obo/UO_0000027', 'float')
     ], props_added=[create_property(key='http://test-ontology.com/test#feedIs', value='great')])
     # Our twin and feed are fully decorated! Let's see how it looks:
     print('BEFORE UPSERT:')
@@ -53,9 +54,9 @@ def main():
     api.share_feed_data(twin_did, FEED_NAME, {'temp': 42})
     # Using the upsert command we can replace twin and feed metadata at the same time, creating any that weren't already
     # present.
-    api.upsert_twin(twin_did, location=LONDON, visibility='PRIVATE', properties=[
+    api.upsert_twin(twin_did, location=LONDON, visibility=Visibility.PRIVATE, properties=[
         create_property(key='http://test-ontology.com/test#key', value='hi', language='en')
-    ], feeds=[create_feed_with_meta('foo', values=[create_feed_value(
+    ], feeds=[create_feed_with_meta('foo', values=[create_value(
         'speed', 'speed in m/s', 'http://purl.obolibrary.org/obo/UO_0000094', 'float'
     )], properties=[create_property(key='http://test-ontology.com/test#feedIs', value='terrible')])])
     print('AFTER UPSERT:')
