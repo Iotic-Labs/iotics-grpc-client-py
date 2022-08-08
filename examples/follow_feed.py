@@ -3,7 +3,7 @@ import threading
 from time import sleep
 
 from identity_auth import IdentityAuth, IdentityAuthError
-from iotics.lib.grpc.helpers import create_feed_with_meta, create_feed_value
+from iotics.lib.grpc.helpers import create_feed_with_meta, create_value
 from iotics.lib.grpc.iotics_api import IoticsApi
 
 FEED_NAME = 'countdown'
@@ -27,7 +27,7 @@ def get_auth():
 
 def create_twins(api: IoticsApi):
     followed_did = api.auth.generate_twin_did('followed')
-    api.upsert_twin(followed_did, feeds=[create_feed_with_meta(FEED_NAME, True, [create_feed_value(
+    api.upsert_twin(followed_did, feeds=[create_feed_with_meta(FEED_NAME, True, [create_value(
         'countdown', 'time remaining until liftoff', None, 'float'
     )])])
     follower_did = api.auth.generate_twin_did('follower')
@@ -53,7 +53,7 @@ def main():
     api = IoticsApi(auth)
     # Create two twins: One which will present a feed to be followed, and the other which will do the following.
     follower_did, followed_did = create_twins(api)
-    # The followed twin shares data to its feed every 10 seconds.
+    # The followed twin shares data to its feed every second for 10 seconds.
     share_thread = threading.Thread(target=share_to_feed, args=(api, followed_did, FEED_NAME))
     share_thread.start()
     print('LAST STORED: ')
