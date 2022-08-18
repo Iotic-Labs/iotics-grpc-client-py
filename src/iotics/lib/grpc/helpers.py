@@ -109,7 +109,7 @@ PROPERTY_IS_DIGITAL_TWIN = Property(
 )
 PROPERTY_IS_MODEL = Property(
     key='http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-    uriValue=Uri(value='http://data.iotics.com/app#Model')
+    uriValue=Uri(value='https://data.iotics.com/app#Model')
 )
 PROPERTY_CREATED_BY_MODEL = Property(
     key='http://data.iotics.com/app#CreationMeans',
@@ -123,9 +123,11 @@ PROPERTY_ALLOW_NONE = Property(
     key='http://data.iotics.com/public#hostAllowList',
     uriValue=Uri(value='http://data.iotics.com/public#noHost')
 )
-PROPERTY_KEY_HAS_MODEL = 'http://data.iotics.com/app#model'
-PROPERTY_KEY_COLOR = 'http://data.iotics.com/app#color'
-PROPERTY_KEY_CREATED_AT = 'http://data.iotics.com/app#createdAt'
-PROPERTY_KEY_CREATED_BY = 'http://data.iotics.com/app#createdBy'
-PROPERTY_KEY_UPDATED_AT = 'http://data.iotics.com/app#updatedAt'
-PROPERTY_KEY_UPDATED_BY = 'http://data.iotics.com/app#updatedBy'
+PROPERTY_KEY_HAS_MODEL = 'https://data.iotics.com/app#model'
+PROPERTY_KEY_COLOR = 'https://data.iotics.com/app#color'
+PROPERTY_KEY_CREATED_AT = 'https://data.iotics.com/app#createdAt'
+PROPERTY_KEY_CREATED_BY = 'https://data.iotics.com/app#createdBy'
+PROPERTY_KEY_UPDATED_AT = 'https://data.iotics.com/app#updatedAt'
+PROPERTY_KEY_UPDATED_BY = 'https://data.iotics.com/app#updatedBy'
+PROPERTY_KEY_LABEL = "http://www.w3.org/2000/01/rdf-schema#label"
+PROPERTY_KEY_COMMENT = "http://www.w3.org/2000/01/rdf-schema#comment"
