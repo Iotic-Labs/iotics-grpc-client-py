@@ -6,8 +6,24 @@ on:
     branches: [ "dev-sz-ei-976" ]
 
 jobs:
-  job1:
-    name: job1 success
+  package:
+    name: Package the library
     runs-on: ubuntu-latest
     steps:
-    - run: echo "job1 success"
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip wheel==0.36.2
+      - name: Package
+        run: |
+          python3 setup.py -q clean -a
+          python3 setup.py sdist bdist_wheel
+      - uses: actions/upload-artifact@master
+        with:
+          name: pkgs
+          path: dist/
+
