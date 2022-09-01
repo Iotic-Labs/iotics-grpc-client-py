@@ -57,7 +57,7 @@ jobs:
         shell: bash
       - name: Check wheel package
         run: |
-          pip install iotics-grpc-client-*.whl
+          pip install iotics_grpc_client-*.whl
           python -c 'import iotics.lib.grpc.iotics_api'
           pip uninstall -y iotics-grpc-client
         shell: bash
