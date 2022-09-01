@@ -27,3 +27,37 @@ jobs:
           name: pkgs
           path: dist/
 
+  check-pkgs:
+    name: Validate the packages on "${{ matrix.os }}" with python:${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    needs: package
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        python-version: [3.8, 3.9]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+      - uses: actions/download-artifact@master
+        with:
+          name: pkgs
+          path: .
+      - name: Check source package
+        run: |
+          pip install iotics-grpc-client-*.tar.gz
+          python -c 'import iotics.lib.grpc.iotics_api'
+          pip uninstall -y iotics-grpc-client
+        shell: bash
+      - name: Check wheel package
+        run: |
+          pip install iotics-grpc-client-*.whl
+          python -c 'import iotics.lib.grpc.iotics_api'
+          pip uninstall -y iotics-grpc-client
+        shell: bash
