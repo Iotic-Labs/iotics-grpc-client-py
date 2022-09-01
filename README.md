@@ -11,7 +11,7 @@ pip install iotics-grpc-client
 # Examples
 ## Configuring identity
 To run examples, either set up required environment variables or create an `.env` file with the following values. For
-more information on the meaning of these values and how to create them, consult https://docs.iotics.com/docs/identity-advanced
+more information on the meaning of these values and how to create them, consult https://docs.iotics.com/docs/identity-api-and-credentials
 * __Required__:
   * `SPACE` - Domain name of the IOTICSpace with which to communicate. The scheme can be omitted, eg. examplecorp.
     iotics.space
@@ -28,7 +28,7 @@ more information on the meaning of these values and how to create them, consult 
    `#agent-0`.
 
 ## Running example scripts
-Next, create and activate your virtual environment and run any of the scripts in the [examples](./examples) directory, 
+Next, create and activate your virtual environment and run any of the scripts in the [examples](https://github.com/Iotic-Labs/iotics-grpc-client-py/tree/main/examples) directory, 
 e.g.:
 ```bash
 make deps-py
@@ -37,10 +37,10 @@ python examples/search_twin_models.py
 ```
 
 
-## Contributing
+# Contributing
 
 
-### Installing dependencies and generating gRPC client
+## Installing dependencies and generating gRPC client
 * To satisfy all dependencies, lint proto files and regenerate client files (inside a Docker container):
   ```shell
   make build
@@ -71,5 +71,26 @@ python examples/search_twin_models.py
   * `deps-*-update` - update specific requirements when applicable.
 
 
-### PRs
-Should contain a summary of the changes in [CHANGELOG.md](./CHANGELOG.md) under the "Unreleased" section.
+## PRs
+Should contain a summary of the changes in [CHANGELOG.md](https://github.com/Iotic-Labs/iotics-grpc-client-py/blob/main/CHANGELOG.md) under the "Unreleased" section.
+
+
+## Versioning
+
+This package will have the same version as the [API](https://github.com/Iotic-Labs/api/tags) but with the API's minor and patch numbers bumped to major and minor. If/when there's a change in the grpc client but not in the API we will change the patch number. We can then know that e.g. API version 0.2.5 works with grpc clients 2.5.X
+
+## Releasing
+* Update package version in [setup.py](./setup.py) for the release:
+* Update [CHANGELOG.md](https://github.com/Iotic-Labs/iotics-grpc-client-py/blob/main/CHANGELOG.md) (move notes from unreleased section, ensure right tags are used, etc.)
+  and any other files as needed.
+* Commit changes and create a [PR](https://github.com/Iotic-Labs/iotics-grpc-client-py/compare).
+* Once PR is merged manually run the [Create Draft Release GitHub Action](https://github.com/Iotic-Labs/iotics-grpc-client-py/actions/workflows/draft_release.yml), this will create a tag with the version in setup.py and create a draft release in [releases](https://github.com/Iotic-Labs/iotics-grpc-client-py/releases).
+* Update the release's information and press the publish button on the release to publish it.
+* The [Publish GitHub Action](https://github.com/Iotic-Labs/iotics-grpc-client-ts/actions/workflows/publish.yml)
+  will create a package and will publish it to [PyPI](https://pypi.org/project/iotics-grpc-client).
+
+
+# License
+
+Copyright © 2022 IOTIC LABS LTD. info@iotics.com. All rights reserved. Licensed under the Apache License, Version 2.0. See [LICENSE](https://github.com/Iotic-Labs/iotics-grpc-client-py/tree/main/LICENSE) in the project root for license information.
+
