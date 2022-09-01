@@ -1,0 +1,13 @@
+
+name: Test GHA
+
+on:
+  push:
+    branches: [ "dev-sz-ei-976" ]
+
+jobs:
+  job1:
+    name: job1 success
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "job1 success"
