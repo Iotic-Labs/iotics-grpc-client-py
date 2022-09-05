@@ -1,7 +1,7 @@
 name: Draft Release
 
 on:
-  workflow_dispatch:
+  push:
     branches: [ "dev-sz-ei-976" ]
 
 jobs:
