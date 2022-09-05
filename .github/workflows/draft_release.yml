@@ -1,0 +1,35 @@
+name: Draft Release
+
+on:
+  workflow_dispatch:
+    branches: [ "dev-sz-ei-976" ]
+
+jobs:
+  tag-repo:
+    name: Tag Iotics gRPC Client Python Repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Tag the git repo
+        run: |
+          pip install .
+          TAG=$(python -c 'from importlib.metadata import version; print(version("iotics-identity"))')
+          echo $TAG
+
+  release:
+    runs-on: ubuntu-latest
+    needs: tag-repo
+    steps:
+      - name: Checkout code
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: true

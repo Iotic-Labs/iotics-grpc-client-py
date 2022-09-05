@@ -73,3 +73,29 @@ python examples/search_twin_models.py
 
 ### PRs
 Should contain a summary of the changes in [CHANGELOG.md](https://github.com/Iotic-Labs/iotics-grpc-client-py/blob/main/CHANGELOG.md) under the "Unreleased" section.
+
+### Releasing
+* Update package version in [setup.py](./setup.py) for the release:
+* Update [CHANGELOG.md](https://github.com/Iotic-Labs/iotics-grpc-client-py/blob/main/CHANGELOG.md) (move notes from unreleased section, ensure right tags are used, etc.)
+  and any other files as needed.
+* Commit changes and create a [PR](https://github.com/Iotic-Labs/iotics-grpc-client-py/compare).
+* Once PR is merged, tag the commit:
+  ```bash
+  _ver=vX.X.X
+  git tag -a "$_ver" -m "$_ver"
+  git push origin "$_ver"
+  ```
+* The [Draft Release GitHub Action](https://github.com/Iotic-Labs/iotics-grpc-client-py/actions/workflows/draft_release.yml)
+  will pick it up and create a draft release in [releases](https://github.com/Iotic-Labs/iotics-grpc-client-py/releases).
+* Update the release's information and publish it.
+* The [Publish GitHub Action](https://github.com/Iotic-Labs/iotics-grpc-client-ts/actions/workflows/publish.yml)
+  will create a package and will publish it to the [NPM](https://www.npmjs.com/package/@iotics/grpc-client).
+  Note that at this point, the package for the specified version can no longer be changed.
+  To learn more about how the npm registry treats versions, see their
+  [unpublish policies](https://docs.npmjs.com/policies/unpublish).
+
+
+### License
+
+Copyright © 2022 IOTIC LABS LTD. info@iotics.com. All rights reserved. Licensed under the Apache License, Version 2.0. See [LICENSE](https://github.com/Iotic-Labs/iotics-grpc-client-py/tree/main/LICENSE) in the project root for license information.
+
