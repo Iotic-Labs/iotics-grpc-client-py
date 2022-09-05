@@ -11,7 +11,7 @@ pip install iotics-grpc-client
 # Examples
 ## Configuring identity
 To run examples, either set up required environment variables or create an `.env` file with the following values. For
-more information on the meaning of these values and how to create them, consult https://docs.iotics.com/docs/identity-advanced
+more information on the meaning of these values and how to create them, consult https://docs.iotics.com/docs/identity-api-and-credentials
 * __Required__:
   * `SPACE` - Domain name of the IOTICSpace with which to communicate. The scheme can be omitted, eg. examplecorp.
     iotics.space
@@ -28,7 +28,7 @@ more information on the meaning of these values and how to create them, consult 
    `#agent-0`.
 
 ## Running example scripts
-Next, create and activate your virtual environment and run any of the scripts in the [examples](./examples) directory, 
+Next, create and activate your virtual environment and run any of the scripts in the [examples](https://github.com/Iotic-Labs/iotics-grpc-client-py/tree/main/examples) directory, 
 e.g.:
 ```bash
 make deps-py
@@ -72,4 +72,4 @@ python examples/search_twin_models.py
 
 
 ### PRs
-Should contain a summary of the changes in [CHANGELOG.md](./CHANGELOG.md) under the "Unreleased" section.
+Should contain a summary of the changes in [CHANGELOG.md](https://github.com/Iotic-Labs/iotics-grpc-client-py/blob/main/CHANGELOG.md) under the "Unreleased" section.
