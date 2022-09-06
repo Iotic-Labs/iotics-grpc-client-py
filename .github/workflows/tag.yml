@@ -1,0 +1,22 @@
+name: Create Tag
+
+on:
+  push:
+    branches: [ "dev-sz-ei-976" ]
+
+jobs:
+  tag-repo:
+    name: Tag Iotics gRPC Client Python Repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Tag the git repo
+        run: |
+          pip install .
+          TAG=v$(python -c 'from importlib.metadata import version; print(version("iotics-grpc-client"))')
+          git tag $TAG
+          git push origin $TAG

@@ -79,7 +79,7 @@ Should contain a summary of the changes in [CHANGELOG.md](https://github.com/Iot
 * Update [CHANGELOG.md](https://github.com/Iotic-Labs/iotics-grpc-client-py/blob/main/CHANGELOG.md) (move notes from unreleased section, ensure right tags are used, etc.)
   and any other files as needed.
 * Commit changes and create a [PR](https://github.com/Iotic-Labs/iotics-grpc-client-py/compare).
-* Once PR is merged manually run the [Draft Release GitHub Action](https://github.com/Iotic-Labs/iotics-grpc-client-py/actions/workflows/draft_release.yml) this will create a draft release in [releases](https://github.com/Iotic-Labs/iotics-grpc-client-py/releases).
+* Once PR is merged manually run the [Tag GitHub Action](https://github.com/Iotic-Labs/iotics-grpc-client-py/actions/workflows/tag.yml) this will cause a draft release to be created in [releases](https://github.com/Iotic-Labs/iotics-grpc-client-py/releases).
 * Update the release's information and press the publish button on the release to publish it.
 * The [Publish GitHub Action](https://github.com/Iotic-Labs/iotics-grpc-client-ts/actions/workflows/publish.yml)
   will create a package and will publish it to [PyPI](https://pypi.org/project/iotics-grpc-client).
