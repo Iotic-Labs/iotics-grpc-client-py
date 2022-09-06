@@ -17,7 +17,7 @@ jobs:
       - name: Tag the git repo
         run: |
           pip install .
-          TAG=$(python -c 'from importlib.metadata import version; print(version("iotics-grpc-client"))')
+          TAG=v$(python -c 'from importlib.metadata import version; print(version("iotics-grpc-client"))')
           echo $TAG
 
   release:
