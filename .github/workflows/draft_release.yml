@@ -25,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: tag-repo
     steps:
+      - uses: actions/checkout@v2
       - name: Get tags
         run: git fetch --tags origin
       - name: Create Release
