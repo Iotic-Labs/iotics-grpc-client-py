@@ -2,10 +2,8 @@ name: Draft Release
 
 on:
   push:
-    branches: [ "dev-sz-ei-976" ]
-  # push:
-  #   tags:
-  #     - 'v[0-9]*'
+    tags:
+      - 'v[0-9]*'
 
 jobs:
   release:

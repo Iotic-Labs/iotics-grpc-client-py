@@ -20,3 +20,6 @@ jobs:
           TAG=v$(python -c 'from importlib.metadata import version; print(version("iotics-grpc-client"))')
           git tag $TAG
           git push origin $TAG
+      - name: echo tag
+        run: echo $TAG
+
