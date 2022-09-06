@@ -18,10 +18,8 @@ jobs:
         run: |
           pip install .
           TAG=v$(python -c 'from importlib.metadata import version; print(version("iotics-grpc-client"))')
-          echo ::set-output name=release_name::$TAG
+          echo TAG=$TAG >> $GITHUB_ENV
       - name: echo release name
-        with:
-          a_name: ${{ steps.vars.outputs.release_name }}
-        run: |
-          echo "trying to print release name"
-          echo ${{ steps.vars.outputs.release_name }}
+        run: 
+          echo "echoing tag"
+          echo ${{ env.TAG }}
