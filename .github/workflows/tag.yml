@@ -20,9 +20,9 @@ jobs:
           TAG=v$(python -c 'from importlib.metadata import version; print(version("iotics-grpc-client"))')
           echo ::set-output name=release_name::$TAG
       - name: echo release name
+        with:
+          release_name: ${{ steps.vars.outputs.release_name }}
         run: |
           echo "trying to print release name"
           echo ${{ steps.vars.outputs.release_name }}
-        with:
-          release_name: ${{ steps.vars.outputs.release_name }}
 
