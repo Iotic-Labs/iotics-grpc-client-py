@@ -23,4 +23,5 @@ jobs:
         run: |
           echo "trying to print release name"
           echo ${{ steps.vars.outputs.release_name }}
-
+        with:
+          a_name: ${{ steps.vars.outputs.release_name }}
