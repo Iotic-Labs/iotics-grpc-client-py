@@ -18,7 +18,8 @@ jobs:
         run: |
           pip install .
           TAG=v$(python -c 'from importlib.metadata import version; print(version("iotics-grpc-client"))')
-          echo $TAG
+          git tag $TAG
+          git push origin $TAG
 
   release:
     runs-on: ubuntu-latest
