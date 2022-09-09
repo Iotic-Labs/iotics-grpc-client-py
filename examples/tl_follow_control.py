@@ -9,8 +9,7 @@ from iotics.lib.grpc.helpers import create_input_with_meta, create_value, create
 from iotics.lib.grpc.iotics_api import IoticsApi
 
 
-INPUT_NAME = 'countdown'
-VALUE_NAME = 'countdown'
+VALUE_NAME = 'state'
 
 
 def get_auth():
@@ -39,17 +38,32 @@ def search_traffic_lights(api):
     ])
 
     hosts = set()
+    twins = set()
     twins_total_count = 0
     for response in api.search_iter(client_app_id, payload, scope=Scope.GLOBAL, timeout=5):
         hostId = response.payload.remoteHostId.value or 'local'
         status = response.payload.status.message or 'OK'
         page = int(response.headers.clientRef.split('_page')[1]) + 1
         twins_count = len(response.payload.twins)
+        if twins_count > 0:
+            for twin in response.payload.twins:
+                twins.add(twin.id.value)
         print(f'Host: {hostId:>53} Twins: {twins_count:>3} Page: {page:>2} Status: {status}')
         hosts.add(hostId)
         twins_total_count += twins_count
 
     print(f'Got replies from {len(hosts)} hosts and found {twins_total_count} twins in total.')
+    return twins
+
+    
+def follow_feed(api: IoticsApi, follower_did, tl_twin_did, feed_name):
+    shares = api.fetch_interests(follower_did, tl_twin_did, feed_name, fetch_last_stored=True)
+
+    while True:
+        latest = next(shares)
+        data = json.loads(latest.payload.feedData.data)
+        t = data[VALUE_NAME]
+        print("\nReceived message: %s" % t)
 
 
 def main():
@@ -60,21 +74,37 @@ def main():
         return
     
     api = IoticsApi(auth)
-    # Create two twins: One which will send messages, and another which presents an input which will receive them.
-    print('Creating twins...')
+    # Create the follower / controller twin
+    print('Creating twin...')
     follower_did = api.auth.generate_twin_did('follower')
     api.create_twin(follower_did)
 
     print('Searching for traffic lights...')
-    input_did = search_traffic_lights(api)
+    twins = search_traffic_lights(api)
+    print('Describing found traffic lights...')
+    for twin in twins:
+        tl_twin_did = twin
+        description = api.describe_twin(twin)
+        print(description)
+        for feed in description.payload.result.feeds:
+            feed_id = feed.feedId.value
+        for control in description.payload.result.inputs:
+            input_id = control.inputId.value
+        print(feed_id)
+        print(input_id)
+        break
+
+    receiver_thread = threading.Thread(target=follow_feed, args=(api, follower_did, tl_twin_did, feed_id))
+    receiver_thread.start()
 
     try:
         while True:
-            # receive input
+            # receive input from command line
             text = input("press enter to change traffic light state")
+            api.send_input_message({VALUE_NAME: ""}, follower_did, tl_twin_did, input_id)
             # send control message
     except KeyboardInterrupt:
-        print('\n')
+        print('\n Exiting')
     finally:
         print('Cleaning space...')
         api.delete_twin(follower_did)
