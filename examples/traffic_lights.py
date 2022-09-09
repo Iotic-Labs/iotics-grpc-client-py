@@ -3,13 +3,17 @@ import threading
 from time import sleep
 
 from identity_auth import IdentityAuth, IdentityAuthError
-from iotics.lib.grpc.helpers import create_input_with_meta, create_value
+from iotics.api.common_pb2 import Visibility
+from iotics.lib.grpc.helpers import create_input_with_meta, create_value, create_location, create_property, create_feed_with_meta
 from iotics.lib.grpc.iotics_api import IoticsApi
 
 import pibrella
 
+CAMBRIDGE = create_location(52.2, 0.1)
 INPUT_NAME = 'countdown'
 VALUE_NAME = 'countdown'
+FEED_NAME = 'tl_state'
+VALUE_NAME = 'state'
 
 
 def get_auth():
@@ -28,14 +32,37 @@ def get_auth():
     return auth
 
 
-def create_twins(api: IoticsApi):
+def create_twin(api: IoticsApi):
     receiver_did = api.auth.generate_twin_did('receiver')
     api.upsert_twin(receiver_did, inputs=[create_input_with_meta(INPUT_NAME, [create_value(
-        VALUE_NAME, 'time remaining until liftoff', None, 'float'
+        VALUE_NAME, 'next state', None, 'string'
     )])])
-    sender_did = api.auth.generate_twin_did('sender')
-    api.create_twin(sender_did)
-    return sender_did, receiver_did
+
+    # Make the twin findable by providing some metadata, such as its location and a semantic property.
+    rdf_property_type_key = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
+    rdf_property_type_value_tl = 'http://www.productontology.org/id/Traffic_light'
+    rdf_property_label_key = 'http://www.w3.org/2000/01/rdf-schema#label'
+    rdf_property_label_value_tl = 'Demo pibrella traffic lights'
+    rdf_property_sdo_city = 'https://schema.org/City'
+    rdf_property_wd_cambridge = 'https://www.wikidata.org/wiki/Q350'
+
+    api.update_twin(receiver_did, location=CAMBRIDGE, visibility=Visibility.PUBLIC, props_added=[
+        create_property(rdf_property_type_key, rdf_property_type_value_tl, is_uri=True),
+        create_property(rdf_property_label_key, rdf_property_label_value_tl, is_uri=False),
+        create_property(rdf_property_sdo_city, rdf_property_wd_cambridge, is_uri=True)
+    ])
+    # IOTICS Twins can provide real-time streams of data using Feeds. Create a feed, making sure the name you provide
+    # isn't already used by another feed on the same twin.
+    api.create_feed(receiver_did, FEED_NAME)
+    # Feed metadata helps us understand what sort of data it shares. Feed shares take the form of key-value pairs, and
+    # the Value objects tell us what sort of value is found at each key (the value's Label, the first argument). Feeds
+    # may also be given semantic properties just like twins.
+    api.update_feed(receiver_did, FEED_NAME, store_last=True, 
+        values_added=[create_value('state', 'traffic lights state', None, 'string'),],
+        props_added=[create_property(key=rdf_property_label_key, value='Traffic light state', is_uri=False)]
+        )
+
+    return receiver_did
 
 
 def receive_messages(api: IoticsApi, twin_did, input_name, tl):
@@ -48,10 +75,12 @@ def receive_messages(api: IoticsApi, twin_did, input_name, tl):
         data = json.loads(latest.payload.message.data)
         t = data[VALUE_NAME]
         print("Received message: %s" % t)
-        print("traffic state: %s" % next(tl.state))
-        if t == '!':
-            # We know the message, so stop listening for input messages once we get the last character.
+        if t == "stop":
             break
+        next_state = next(tl.state)
+        api.share_feed_data(twin_did, FEED_NAME, {'state': next_state})
+        print("traffic state: %s" % next_state)
+
 
 class TrafficLights():
     def __init__(self):
@@ -88,25 +117,32 @@ def main():
     except IdentityAuthError as error:
         print(error)
         return
-    
+
     tl = TrafficLights()
-    def button_changed(pin):
-        if pin.read() == 1:
-            print("traffic state: %s" % next(tl.state))
-    pibrella.button.changed(button_changed) 
 
     api = IoticsApi(auth)
     # Create two twins: One which will send messages, and another which presents an input which will receive them.
-    print('Creating twins...')
-    sender_did, receiver_did = create_twins(api)
+    print('Creating twin...')
+    receiver_did = create_twin(api)
     print('Preparing to receive messages...')
+    stop_threads = False
     receiver_thread = threading.Thread(target=receive_messages, args=(api, receiver_did, INPUT_NAME, tl))
     receiver_thread.start()
-    # The sender twin sends this message one letter at a time to the receiver, with messages one second apart.
+
+    # pibrella stuff
+    def button_changed(pin):
+        if pin.read() == 1:
+            next_state = next(tl.state)
+            # twin_did.share next_state
+            print("traffic state: %s" % next_state)
+            api.share_feed_data(receiver_did, FEED_NAME, {'state': next_state})
+    pibrella.button.changed(button_changed) 
+
+    # We send this message one letter at a time to the ourselves, with messages one second apart. Just to show things are working
     print('Sending messages...')
-    message = 'HELLO, IOTICS!'
+    message = 'HELLO'
     for char in message:
-        api.send_input_message({VALUE_NAME: char}, sender_did, receiver_did, INPUT_NAME)
+        api.send_input_message({VALUE_NAME: char}, receiver_did, receiver_did, INPUT_NAME)
         sleep(1)
 
     try:
@@ -115,11 +151,12 @@ def main():
         pass
     finally:
         print('Cleaning space...')
-        api.delete_twin(sender_did)
+        api.send_input_message({VALUE_NAME: "stop"}, receiver_did, receiver_did, INPUT_NAME)
         api.delete_twin(receiver_did)
         print('Done!')
 
         pibrella.light.off() # turn off all the lights before we leave
+
 
 if __name__ == '__main__':
     main()
