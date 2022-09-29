@@ -19,7 +19,7 @@ from iotics.api import feed_pb2 as iotics_dot_api_dot_feed__pb2
 from iotics.api import input_pb2 as iotics_dot_api_dot_input__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17iotics/api/search.proto\x12\niotics.api\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/rpc/status.proto\x1a\x17iotics/api/common.proto\x1a\x15iotics/api/feed.proto\x1a\x16iotics/api/input.proto\"\xf3\x04\n\rSearchRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\'\n\x05scope\x18\x02 \x01(\x0e\x32\x11.iotics.api.ScopeR\x05scope\x12\x30\n\x04lang\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValueR\x04lang\x12;\n\x07payload\x18\x06 \x01(\x0b\x32!.iotics.api.SearchRequest.PayloadR\x07payload\x12\'\n\x05range\x18\x14 \x01(\x0b\x32\x11.iotics.api.RangeR\x05range\x1a\xf1\x02\n\x07Payload\x12<\n\x0cresponseType\x18\x01 \x01(\x0e\x32\x18.iotics.api.ResponseTypeR\x0cresponseType\x12@\n\rexpiryTimeout\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\rexpiryTimeout\x12@\n\x06\x66ilter\x18\x03 \x01(\x0b\x32(.iotics.api.SearchRequest.Payload.FilterR\x06\x66ilter\x1a\xa3\x01\n\x06\x46ilter\x12\x30\n\x04text\x18\x01 \x01(\x0b\x32\x1c.google.protobuf.StringValueR\x04text\x12\x31\n\x08location\x18\x02 \x01(\x0b\x32\x15.iotics.api.GeoCircleR\x08location\x12\x34\n\nproperties\x18\x03 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\"\xb8\x07\n\x0eSearchResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12<\n\x07payload\x18\x02 \x01(\x0b\x32\".iotics.api.SearchResponse.PayloadR\x07payload\x1a\x87\x01\n\x0b\x46\x65\x65\x64\x44\x65tails\x12$\n\x04\x66\x65\x65\x64\x18\x01 \x01(\x0b\x32\x10.iotics.api.FeedR\x04\x66\x65\x65\x64\x12\x1c\n\tstoreLast\x18\x03 \x01(\x08R\tstoreLast\x12\x34\n\nproperties\x18\x04 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1am\n\x0cInputDetails\x12\'\n\x05input\x18\x01 \x01(\x0b\x32\x11.iotics.api.InputR\x05input\x12\x34\n\nproperties\x18\x04 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1a\xd3\x02\n\x0bTwinDetails\x12\"\n\x02id\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x02id\x12\x33\n\x08location\x18\x02 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x36\n\nvisibility\x18\x03 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\x12\x34\n\nproperties\x18\x05 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x12<\n\x05\x66\x65\x65\x64s\x18\n \x03(\x0b\x32&.iotics.api.SearchResponse.FeedDetailsR\x05\x66\x65\x65\x64s\x12?\n\x06inputs\x18\x0b \x03(\x0b\x32\'.iotics.api.SearchResponse.InputDetailsR\x06inputs\x1a\xe9\x01\n\x07Payload\x12<\n\x0cresponseType\x18\x01 \x01(\x0e\x32\x18.iotics.api.ResponseTypeR\x0cresponseType\x12*\n\x06status\x18\x02 \x01(\x0b\x32\x12.google.rpc.StatusR\x06status\x12\x36\n\x0cremoteHostId\x18\x04 \x01(\x0b\x32\x12.iotics.api.HostIDR\x0cremoteHostId\x12<\n\x05twins\x18\n \x03(\x0b\x32&.iotics.api.SearchResponse.TwinDetailsR\x05twins\"\x18\n\x16\x44ispatchSearchResponse*2\n\x0cResponseType\x12\x08\n\x04\x46ULL\x10\x00\x12\x0b\n\x07LOCATED\x10\x01\x12\x0b\n\x07MINIMAL\x10\x02\x32\x93\x02\n\tSearchAPI\x12X\n\x15\x44ispatchSearchRequest\x12\x19.iotics.api.SearchRequest\x1a\".iotics.api.DispatchSearchResponse\"\x00\x12N\n\x11SynchronousSearch\x12\x19.iotics.api.SearchRequest\x1a\x1a.iotics.api.SearchResponse\"\x00\x30\x01\x12\\\n\x19ReceiveAllSearchResponses\x12\x1f.iotics.api.SubscriptionHeaders\x1a\x1a.iotics.api.SearchResponse\"\x00\x30\x01\x42\x7f\n\x0e\x63om.iotics.apiB\x0bSearchProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17iotics/api/search.proto\x12\niotics.api\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/rpc/status.proto\x1a\x17iotics/api/common.proto\x1a\x15iotics/api/feed.proto\x1a\x16iotics/api/input.proto\"\xf3\x04\n\rSearchRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\'\n\x05scope\x18\x02 \x01(\x0e\x32\x11.iotics.api.ScopeR\x05scope\x12\x30\n\x04lang\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValueR\x04lang\x12;\n\x07payload\x18\x06 \x01(\x0b\x32!.iotics.api.SearchRequest.PayloadR\x07payload\x12\'\n\x05range\x18\x14 \x01(\x0b\x32\x11.iotics.api.RangeR\x05range\x1a\xf1\x02\n\x07Payload\x12<\n\x0cresponseType\x18\x01 \x01(\x0e\x32\x18.iotics.api.ResponseTypeR\x0cresponseType\x12@\n\rexpiryTimeout\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\rexpiryTimeout\x12@\n\x06\x66ilter\x18\x03 \x01(\x0b\x32(.iotics.api.SearchRequest.Payload.FilterR\x06\x66ilter\x1a\xa3\x01\n\x06\x46ilter\x12\x30\n\x04text\x18\x01 \x01(\x0b\x32\x1c.google.protobuf.StringValueR\x04text\x12\x31\n\x08location\x18\x02 \x01(\x0b\x32\x15.iotics.api.GeoCircleR\x08location\x12\x34\n\nproperties\x18\x03 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\"\xa0\x08\n\x0eSearchResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12<\n\x07payload\x18\x02 \x01(\x0b\x32\".iotics.api.SearchResponse.PayloadR\x07payload\x1a\x8d\x01\n\x0b\x46\x65\x65\x64\x44\x65tails\x12*\n\x06\x66\x65\x65\x64Id\x18\x01 \x01(\x0b\x32\x12.iotics.api.FeedIDR\x06\x66\x65\x65\x64Id\x12\x1c\n\tstoreLast\x18\x03 \x01(\x08R\tstoreLast\x12\x34\n\nproperties\x18\x04 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1as\n\x0cInputDetails\x12-\n\x07inputId\x18\x01 \x01(\x0b\x32\x13.iotics.api.InputIDR\x07inputId\x12\x34\n\nproperties\x18\x04 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1a\xcf\x03\n\x0bTwinDetails\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\x12\x33\n\x08location\x18\x02 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x36\n\nvisibility\x18\x03 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\x12\x34\n\nproperties\x18\x05 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x12<\n\x05\x66\x65\x65\x64s\x18\n \x03(\x0b\x32&.iotics.api.SearchResponse.FeedDetailsR\x05\x66\x65\x65\x64s\x12?\n\x06inputs\x18\x0b \x03(\x0b\x32\'.iotics.api.SearchResponse.InputDetailsR\x06inputs\x12\x38\n\tcreatedAt\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x38\n\tupdatedAt\x18\r \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tupdatedAt\x1a\xc9\x01\n\x07Payload\x12<\n\x0cresponseType\x18\x01 \x01(\x0e\x32\x18.iotics.api.ResponseTypeR\x0cresponseType\x12*\n\x06status\x18\x02 \x01(\x0b\x32\x12.google.rpc.StatusR\x06status\x12\x16\n\x06hostId\x18\x03 \x01(\tR\x06hostId\x12<\n\x05twins\x18\n \x03(\x0b\x32&.iotics.api.SearchResponse.TwinDetailsR\x05twins\"\x18\n\x16\x44ispatchSearchResponse*2\n\x0cResponseType\x12\x08\n\x04\x46ULL\x10\x00\x12\x0b\n\x07LOCATED\x10\x01\x12\x0b\n\x07MINIMAL\x10\x02\x32\x93\x02\n\tSearchAPI\x12X\n\x15\x44ispatchSearchRequest\x12\x19.iotics.api.SearchRequest\x1a\".iotics.api.DispatchSearchResponse\"\x00\x12N\n\x11SynchronousSearch\x12\x19.iotics.api.SearchRequest\x1a\x1a.iotics.api.SearchResponse\"\x00\x30\x01\x12\\\n\x19ReceiveAllSearchResponses\x12\x1f.iotics.api.SubscriptionHeaders\x1a\x1a.iotics.api.SearchResponse\"\x00\x30\x01\x42\x7f\n\x0e\x63om.iotics.apiB\x0bSearchProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'iotics.api.search_pb2', globals())
@@ -27,8 +27,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\016com.iotics.apiB\013SearchProtoP\001Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\242\002\003IAX\252\002\nIotics.Api\312\002\nIotics\\Api'
-  _RESPONSETYPE._serialized_start=1812
-  _RESPONSETYPE._serialized_end=1862
+  _RESPONSETYPE._serialized_start=1916
+  _RESPONSETYPE._serialized_end=1966
   _SEARCHREQUEST._serialized_start=202
   _SEARCHREQUEST._serialized_end=829
   _SEARCHREQUEST_PAYLOAD._serialized_start=460
@@ -36,17 +36,17 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _SEARCHREQUEST_PAYLOAD_FILTER._serialized_start=666
   _SEARCHREQUEST_PAYLOAD_FILTER._serialized_end=829
   _SEARCHRESPONSE._serialized_start=832
-  _SEARCHRESPONSE._serialized_end=1784
+  _SEARCHRESPONSE._serialized_end=1888
   _SEARCHRESPONSE_FEEDDETAILS._serialized_start=960
-  _SEARCHRESPONSE_FEEDDETAILS._serialized_end=1095
-  _SEARCHRESPONSE_INPUTDETAILS._serialized_start=1097
-  _SEARCHRESPONSE_INPUTDETAILS._serialized_end=1206
-  _SEARCHRESPONSE_TWINDETAILS._serialized_start=1209
-  _SEARCHRESPONSE_TWINDETAILS._serialized_end=1548
-  _SEARCHRESPONSE_PAYLOAD._serialized_start=1551
-  _SEARCHRESPONSE_PAYLOAD._serialized_end=1784
-  _DISPATCHSEARCHRESPONSE._serialized_start=1786
-  _DISPATCHSEARCHRESPONSE._serialized_end=1810
-  _SEARCHAPI._serialized_start=1865
-  _SEARCHAPI._serialized_end=2140
+  _SEARCHRESPONSE_FEEDDETAILS._serialized_end=1101
+  _SEARCHRESPONSE_INPUTDETAILS._serialized_start=1103
+  _SEARCHRESPONSE_INPUTDETAILS._serialized_end=1218
+  _SEARCHRESPONSE_TWINDETAILS._serialized_start=1221
+  _SEARCHRESPONSE_TWINDETAILS._serialized_end=1684
+  _SEARCHRESPONSE_PAYLOAD._serialized_start=1687
+  _SEARCHRESPONSE_PAYLOAD._serialized_end=1888
+  _DISPATCHSEARCHRESPONSE._serialized_start=1890
+  _DISPATCHSEARCHRESPONSE._serialized_end=1914
+  _SEARCHAPI._serialized_start=1969
+  _SEARCHAPI._serialized_end=2244
 # @@protoc_insertion_point(module_scope)

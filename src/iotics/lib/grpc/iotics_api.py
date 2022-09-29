@@ -25,6 +25,7 @@ from iotics.lib.grpc.interest import InterestApi
 from iotics.lib.grpc.search import SearchApi
 from iotics.lib.grpc.sparql import SparqlApi
 from iotics.lib.grpc.twins import TwinApi
+from iotics.lib.grpc.host import HostApi
 
 
 class IoticsApi:
@@ -37,6 +38,8 @@ class IoticsApi:
         self._search_api: typing.Optional[SearchApi] = None
         self._interest_api: typing.Optional[InterestApi] = None
         self._sparql_api: typing.Optional[SparqlApi] = None
+        self._host_api: typing.Optional[HostApi] = None
+        self._local_host_id: str = None
 
         self.create_feed = self.feed_api.create_feed
         self.delete_feed = self.feed_api.delete_feed
@@ -60,6 +63,7 @@ class IoticsApi:
         self.list_twins = self.twin_api.list_twins
         self.update_twin = self.twin_api.update_twin
         self.upsert_twin = self.twin_api.upsert_twin
+        self.get_local_host_id = self.host_api.get_local_host_id
 
     @property
     def auth(self) -> AuthInterface:
@@ -107,6 +111,12 @@ class IoticsApi:
             self._sparql_api = SparqlApi(self._auth, self.channel)
         return self._sparql_api
 
+    @property
+    def host_api(self) -> HostApi:
+        if not self._host_api:
+            self._host_api = HostApi(self._auth, self.channel)
+        return self._host_api
+
     def update_auth(self, auth, channel=None):
         self._auth = auth
         self.update_channel(channel)
@@ -130,6 +140,8 @@ class IoticsApi:
             self._search_api = SearchApi(self._auth, channel)
         elif isinstance(api, SparqlApi):
             self._sparql_api = SparqlApi(self._auth, channel)
+        elif isinstance(api, HostApi):
+            self._host_api = HostApi(self._auth, channel)
 
     def _apis(self):
         return [
@@ -138,5 +150,6 @@ class IoticsApi:
             self._input_api,
             self._search_api,
             self._interest_api,
-            self._sparql_api
+            self._sparql_api,
+            self._host_api
         ]

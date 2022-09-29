@@ -6,9 +6,7 @@ Copyright (c) 2019-2022 Iotic Labs Ltd. All rights reserved.
 Iotics Web protocol definitions (interests)
 """
 import builtins
-import collections.abc
 import google.protobuf.descriptor
-import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.wrappers_pb2
 import iotics.api.common_pb2
@@ -28,44 +26,22 @@ class InputInterest(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    class DestinationInput(google.protobuf.message.Message):
-        """InputInterest destination input identification."""
-
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-        INPUT_FIELD_NUMBER: builtins.int
-        HOSTID_FIELD_NUMBER: builtins.int
-        @property
-        def input(self) -> iotics.api.input_pb2.Input:
-            """Input to send the message to"""
-        @property
-        def hostId(self) -> iotics.api.common_pb2.HostID:
-            """HostID to identify a remote input (Optional, keep empty if input is local)"""
-        def __init__(
-            self,
-            *,
-            input: iotics.api.input_pb2.Input | None = ...,
-            hostId: iotics.api.common_pb2.HostID | None = ...,
-        ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["hostId", b"hostId", "input", b"input"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["hostId", b"hostId", "input", b"input"]) -> None: ...
-
     SENDERTWINID_FIELD_NUMBER: builtins.int
-    DESTINPUT_FIELD_NUMBER: builtins.int
+    DESTINPUTID_FIELD_NUMBER: builtins.int
     @property
     def senderTwinId(self) -> iotics.api.common_pb2.TwinID:
         """Sender twin unique identifier."""
     @property
-    def destInput(self) -> global___InputInterest.DestinationInput:
+    def destInputId(self) -> iotics.api.input_pb2.InputID:
         """a reference to the input of interest"""
     def __init__(
         self,
         *,
         senderTwinId: iotics.api.common_pb2.TwinID | None = ...,
-        destInput: global___InputInterest.DestinationInput | None = ...,
+        destInputId: iotics.api.input_pb2.InputID | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["destInput", b"destInput", "senderTwinId", b"senderTwinId"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["destInput", b"destInput", "senderTwinId", b"senderTwinId"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["destInputId", b"destInputId", "senderTwinId", b"senderTwinId"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["destInputId", b"destInputId", "senderTwinId", b"senderTwinId"]) -> None: ...
 
 global___InputInterest = InputInterest
 
@@ -160,241 +136,24 @@ class Interest(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    class FollowedFeed(google.protobuf.message.Message):
-        """FollowedFeed fully identify the (local or remote) feed to follow."""
-
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-        FEED_FIELD_NUMBER: builtins.int
-        HOSTID_FIELD_NUMBER: builtins.int
-        @property
-        def feed(self) -> iotics.api.feed_pb2.Feed:
-            """Followed feed identifier"""
-        @property
-        def hostId(self) -> iotics.api.common_pb2.HostID:
-            """Feed remote host identifier (If not specified, the Interest is taken to be in scope of the host from which a request is made.)"""
-        def __init__(
-            self,
-            *,
-            feed: iotics.api.feed_pb2.Feed | None = ...,
-            hostId: iotics.api.common_pb2.HostID | None = ...,
-        ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["feed", b"feed", "hostId", b"hostId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feed", b"feed", "hostId", b"hostId"]) -> None: ...
-
     FOLLOWERTWINID_FIELD_NUMBER: builtins.int
-    FOLLOWEDFEED_FIELD_NUMBER: builtins.int
+    FOLLOWEDFEEDID_FIELD_NUMBER: builtins.int
     @property
     def followerTwinId(self) -> iotics.api.common_pb2.TwinID:
         """Follower twin unique identifier."""
     @property
-    def followedFeed(self) -> global___Interest.FollowedFeed:
+    def followedFeedId(self) -> iotics.api.feed_pb2.FeedID:
         """a reference to the interested feed"""
     def __init__(
         self,
         *,
         followerTwinId: iotics.api.common_pb2.TwinID | None = ...,
-        followedFeed: global___Interest.FollowedFeed | None = ...,
+        followedFeedId: iotics.api.feed_pb2.FeedID | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["followedFeed", b"followedFeed", "followerTwinId", b"followerTwinId"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["followedFeed", b"followedFeed", "followerTwinId", b"followerTwinId"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["followedFeedId", b"followedFeedId", "followerTwinId", b"followerTwinId"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["followedFeedId", b"followedFeedId", "followerTwinId", b"followerTwinId"]) -> None: ...
 
 global___Interest = Interest
-
-class CreateInterestRequest(google.protobuf.message.Message):
-    """CreateInterestRequest is used to create an interest between a twin and a feed."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    class Payload(google.protobuf.message.Message):
-        """CreateInterestRequest payload."""
-
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-        INTEREST_FIELD_NUMBER: builtins.int
-        @property
-        def interest(self) -> global___Interest: ...
-        def __init__(
-            self,
-            *,
-            interest: global___Interest | None = ...,
-        ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["interest", b"interest"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["interest", b"interest"]) -> None: ...
-
-    class Arguments(google.protobuf.message.Message):
-        """CreateInterestRequest mandatory arguments."""
-
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-        TWINID_FIELD_NUMBER: builtins.int
-        @property
-        def twinId(self) -> iotics.api.common_pb2.TwinID:
-            """Follower twin unique identifier"""
-        def __init__(
-            self,
-            *,
-            twinId: iotics.api.common_pb2.TwinID | None = ...,
-        ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["twinId", b"twinId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["twinId", b"twinId"]) -> None: ...
-
-    HEADERS_FIELD_NUMBER: builtins.int
-    ARGS_FIELD_NUMBER: builtins.int
-    PAYLOAD_FIELD_NUMBER: builtins.int
-    @property
-    def headers(self) -> iotics.api.common_pb2.Headers:
-        """CreateInterestRequest headers"""
-    @property
-    def args(self) -> global___CreateInterestRequest.Arguments:
-        """CreateInterestRequest arguments"""
-    @property
-    def payload(self) -> global___CreateInterestRequest.Payload:
-        """CreateInterestRequest payload"""
-    def __init__(
-        self,
-        *,
-        headers: iotics.api.common_pb2.Headers | None = ...,
-        args: global___CreateInterestRequest.Arguments | None = ...,
-        payload: global___CreateInterestRequest.Payload | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers", "payload", b"payload"]) -> None: ...
-
-global___CreateInterestRequest = CreateInterestRequest
-
-class CreateInterestResponse(google.protobuf.message.Message):
-    """CreateInterestResponse describes a successfully created interest."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    class Payload(google.protobuf.message.Message):
-        """CreateInterestResponse payload."""
-
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-        INTEREST_FIELD_NUMBER: builtins.int
-        ALREADYCREATED_FIELD_NUMBER: builtins.int
-        @property
-        def interest(self) -> global___Interest:
-            """Created interest"""
-        alreadyCreated: builtins.bool
-        """whether the interest exists already (creating an existing interest is idempotent)."""
-        def __init__(
-            self,
-            *,
-            interest: global___Interest | None = ...,
-            alreadyCreated: builtins.bool = ...,
-        ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["interest", b"interest"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["alreadyCreated", b"alreadyCreated", "interest", b"interest"]) -> None: ...
-
-    HEADERS_FIELD_NUMBER: builtins.int
-    PAYLOAD_FIELD_NUMBER: builtins.int
-    @property
-    def headers(self) -> iotics.api.common_pb2.Headers:
-        """CreateInterestResponse headers"""
-    @property
-    def payload(self) -> global___CreateInterestResponse.Payload:
-        """CreateInterestResponse payload"""
-    def __init__(
-        self,
-        *,
-        headers: iotics.api.common_pb2.Headers | None = ...,
-        payload: global___CreateInterestResponse.Payload | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
-
-global___CreateInterestResponse = CreateInterestResponse
-
-class ListAllInterestsRequest(google.protobuf.message.Message):
-    """---------------------------------------
-
-    ListAllInterestsRequest is used to list all interests initiated by a given twin.
-    """
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    class Arguments(google.protobuf.message.Message):
-        """ListAllInterestsRequest mandatory arguments."""
-
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-        TWINID_FIELD_NUMBER: builtins.int
-        @property
-        def twinId(self) -> iotics.api.common_pb2.TwinID:
-            """Follower twin unique identifier"""
-        def __init__(
-            self,
-            *,
-            twinId: iotics.api.common_pb2.TwinID | None = ...,
-        ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["twinId", b"twinId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["twinId", b"twinId"]) -> None: ...
-
-    HEADERS_FIELD_NUMBER: builtins.int
-    ARGS_FIELD_NUMBER: builtins.int
-    RANGE_FIELD_NUMBER: builtins.int
-    @property
-    def headers(self) -> iotics.api.common_pb2.Headers:
-        """ListAllInterestsRequest headers"""
-    @property
-    def args(self) -> global___ListAllInterestsRequest.Arguments:
-        """ListAllInterestsRequest arguments"""
-    @property
-    def range(self) -> iotics.api.common_pb2.Range:
-        """Limit the results according to the value (optional: when not supplied, assume no default limits required - platform specific)"""
-    def __init__(
-        self,
-        *,
-        headers: iotics.api.common_pb2.Headers | None = ...,
-        args: global___ListAllInterestsRequest.Arguments | None = ...,
-        range: iotics.api.common_pb2.Range | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers", "range", b"range"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers", "range", b"range"]) -> None: ...
-
-global___ListAllInterestsRequest = ListAllInterestsRequest
-
-class ListAllInterestsResponse(google.protobuf.message.Message):
-    """ListAllInterestsResponse describes all the interest initiated by the given twin."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    class Payload(google.protobuf.message.Message):
-        """ListAllInterestsResponse payload."""
-
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-        INTERESTS_FIELD_NUMBER: builtins.int
-        @property
-        def interests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Interest]: ...
-        def __init__(
-            self,
-            *,
-            interests: collections.abc.Iterable[global___Interest] | None = ...,
-        ) -> None: ...
-        def ClearField(self, field_name: typing_extensions.Literal["interests", b"interests"]) -> None: ...
-
-    HEADERS_FIELD_NUMBER: builtins.int
-    PAYLOAD_FIELD_NUMBER: builtins.int
-    @property
-    def headers(self) -> iotics.api.common_pb2.Headers:
-        """ListAllInterestsResponse headers"""
-    @property
-    def payload(self) -> global___ListAllInterestsResponse.Payload:
-        """ListAllInterestsResponse payload."""
-    def __init__(
-        self,
-        *,
-        headers: iotics.api.common_pb2.Headers | None = ...,
-        payload: global___ListAllInterestsResponse.Payload | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
-
-global___ListAllInterestsResponse = ListAllInterestsResponse
 
 class FetchInterestRequest(google.protobuf.message.Message):
     """---------------------------------------
@@ -534,88 +293,3 @@ class FetchLastStoredRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers"]) -> None: ...
 
 global___FetchLastStoredRequest = FetchLastStoredRequest
-
-class DeleteInterestRequest(google.protobuf.message.Message):
-    """---------------------------------------
-
-    DeleteInterestRequest is used to delete an interest.
-    """
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    class Arguments(google.protobuf.message.Message):
-        """DeleteInterestRequest mandatory arguments."""
-
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-        INTEREST_FIELD_NUMBER: builtins.int
-        @property
-        def interest(self) -> global___Interest:
-            """The interest"""
-        def __init__(
-            self,
-            *,
-            interest: global___Interest | None = ...,
-        ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["interest", b"interest"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["interest", b"interest"]) -> None: ...
-
-    HEADERS_FIELD_NUMBER: builtins.int
-    ARGS_FIELD_NUMBER: builtins.int
-    @property
-    def headers(self) -> iotics.api.common_pb2.Headers:
-        """DeleteInterestRequest headers"""
-    @property
-    def args(self) -> global___DeleteInterestRequest.Arguments:
-        """DeleteInterestRequest args"""
-    def __init__(
-        self,
-        *,
-        headers: iotics.api.common_pb2.Headers | None = ...,
-        args: global___DeleteInterestRequest.Arguments | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers"]) -> None: ...
-
-global___DeleteInterestRequest = DeleteInterestRequest
-
-class DeleteInterestResponse(google.protobuf.message.Message):
-    """DeleteInterestResponse describes a deleted interest."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    class Payload(google.protobuf.message.Message):
-        """DeleteInterestResponse payload."""
-
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-        INTEREST_FIELD_NUMBER: builtins.int
-        @property
-        def interest(self) -> global___Interest:
-            """The deleted interest."""
-        def __init__(
-            self,
-            *,
-            interest: global___Interest | None = ...,
-        ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["interest", b"interest"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["interest", b"interest"]) -> None: ...
-
-    HEADERS_FIELD_NUMBER: builtins.int
-    PAYLOAD_FIELD_NUMBER: builtins.int
-    @property
-    def headers(self) -> iotics.api.common_pb2.Headers:
-        """DeleteInterestResponse headers"""
-    @property
-    def payload(self) -> global___DeleteInterestResponse.Payload:
-        """DeleteInterestResponse payload"""
-    def __init__(
-        self,
-        *,
-        headers: iotics.api.common_pb2.Headers | None = ...,
-        payload: global___DeleteInterestResponse.Payload | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
-
-global___DeleteInterestResponse = DeleteInterestResponse

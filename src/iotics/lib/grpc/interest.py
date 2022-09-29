@@ -23,6 +23,10 @@ from iotics.api import feed_pb2
 from iotics.api import input_pb2
 from iotics.api import interest_pb2
 from iotics.api import interest_pb2_grpc
+from iotics.api.common_pb2 import TwinID
+from iotics.api.feed_pb2 import FeedID
+from iotics.api.input_pb2 import InputID
+from iotics.api.interest_pb2 import Interest
 from .base import ApiBase
 from .helpers import create_headers, create_timestamp
 
@@ -73,7 +77,8 @@ class InterestApi(ApiBase):
         req = interest_pb2.FetchInterestRequest(
             headers=headers or create_headers(),
             args=interest_pb2.FetchInterestRequest.Arguments(
-                interest=self._build_interest(follower_twin_did, followed_twin_did, followed_feed_id, remote_host_id)
+                interest=Interest(followerTwinId=TwinID(id=follower_twin_did), followedFeedId=FeedID(
+                    id=followed_feed_id, twinId=followed_twin_did, hostId=remote_host_id))
             ),
             fetchLastStored=BoolValue(value=fetch_last_stored)
         )
@@ -108,7 +113,8 @@ class InterestApi(ApiBase):
         req = interest_pb2.FetchLastStoredRequest(
             headers=headers or create_headers(),
             args=interest_pb2.FetchLastStoredRequest.Arguments(
-                interest=self._build_interest(follower_twin_did, followed_twin_did, followed_feed_id, remote_host_id)
+                interest=Interest(followerTwinId=TwinID(id=follower_twin_did), followedFeedId=FeedID(
+                    id=followed_feed_id, twinId=followed_twin_did, hostId=remote_host_id))
             )
         )
         return self.stub.FetchLastStored(req)
@@ -135,13 +141,9 @@ class InterestApi(ApiBase):
         Returns: Response object indicating success
 
         """
-        destination_input = interest_pb2.InputInterest.DestinationInput(
-            input=self.build_input(receiver_twin_id, input_id),
-            hostId=self.build_host_id(remote_host_id),
-        )
         input_interest = interest_pb2.InputInterest(
-            senderTwinId=common_pb2.TwinID(value=sender_twin_id),
-            destInput=destination_input,
+            senderTwinId=common_pb2.TwinID(id=sender_twin_id),
+            destInputId=InputID(id=input_id, twinId=receiver_twin_id, hostId=remote_host_id),
         )
         input_message = input_pb2.InputMessage(
             occurredAt=create_timestamp(),

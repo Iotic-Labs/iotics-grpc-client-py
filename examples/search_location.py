@@ -41,28 +41,31 @@ def get_twins_in_cambridge(api):
     cambridge = 52.1951, 0.1313, 5  # latitude, longitude, radius in km
     payload = api.get_search_payload(location=cambridge, response_type=ResponseType.FULL)
 
-    hosts = set()
+    local_host_id = api.get_local_host_id()
+
+    host_count = 0
     twins_total_count = 0
     for response in api.search_iter(client_app_id, payload, scope=Scope.GLOBAL, timeout=5):
-        hostId = response.payload.remoteHostId.value or 'local'
+        hostId = response.payload.hostId
         status = response.payload.status
         if status.code:
             print(f'Host: {hostId:>53}: {status.message}')
             return
 
         twins = [
-            f'- {twin.id.value} ({prop.langLiteralValue.lang}): {prop.langLiteralValue.value}'
+            f'- {twin.id} ({prop.langLiteralValue.lang}): {prop.langLiteralValue.value}'
             for twin in response.payload.twins
             for prop in twin.properties
             if prop.key == 'http://www.w3.org/2000/01/rdf-schema#label'
         ]
-        if twins:
-            print(f'{hostId}:\n' + '\n'.join(twins))
 
-        hosts.add(hostId)
+        host_count += 1
+
+        print(f'{hostId}{"(local host)" if not hostId or local_host_id == hostId else ""}:\n' + '\n'.join(twins))
+
         twins_total_count += len(response.payload.twins)
 
-    print(f'Got replies from {len(hosts)} hosts and found {twins_total_count} twins in total.')
+    print(f'Got replies from {host_count} hosts and found {twins_total_count} twins in total.')
 
 
 if __name__ == '__main__':
