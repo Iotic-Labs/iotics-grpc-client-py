@@ -21,29 +21,30 @@ else:
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-class Input(google.protobuf.message.Message):
+class InputID(google.protobuf.message.Message):
     """Representation of an input."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ID_FIELD_NUMBER: builtins.int
     TWINID_FIELD_NUMBER: builtins.int
-    @property
-    def id(self) -> iotics.api.common_pb2.InputID:
-        """Input identifier (unique within the scope of a twin identifier's input set)"""
-    @property
-    def twinId(self) -> iotics.api.common_pb2.TwinID:
-        """Twin unique identifier (twin to which the input belongs)"""
+    HOSTID_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    """Input Identifier string representation (simple string) (unique within the scope of a twin identifier's input set)"""
+    twinId: builtins.str
+    """Twin identifier string representation (simple string) (twin to which the feed belongs)"""
+    hostId: builtins.str
+    """Host identifier string representation (simple string) (Host to which the twin belongs)"""
     def __init__(
         self,
         *,
-        id: iotics.api.common_pb2.InputID | None = ...,
-        twinId: iotics.api.common_pb2.TwinID | None = ...,
+        id: builtins.str = ...,
+        twinId: builtins.str = ...,
+        hostId: builtins.str = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["id", b"id", "twinId", b"twinId"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["id", b"id", "twinId", b"twinId"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["hostId", b"hostId", "id", b"id", "twinId", b"twinId"]) -> None: ...
 
-global___Input = Input
+global___InputID = InputID
 
 class DeleteInputRequest(google.protobuf.message.Message):
     """DeleteInputRequest is used to delete an input from a given twin."""
@@ -55,17 +56,17 @@ class DeleteInputRequest(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        INPUT_FIELD_NUMBER: builtins.int
+        INPUTID_FIELD_NUMBER: builtins.int
         @property
-        def input(self) -> global___Input:
+        def inputId(self) -> global___InputID:
             """Input to delete"""
         def __init__(
             self,
             *,
-            input: global___Input | None = ...,
+            inputId: global___InputID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["input", b"input"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["input", b"input"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
@@ -96,17 +97,17 @@ class DeleteInputResponse(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        INPUT_FIELD_NUMBER: builtins.int
+        INPUTID_FIELD_NUMBER: builtins.int
         @property
-        def input(self) -> global___Input:
+        def inputId(self) -> global___InputID:
             """Deleted input"""
         def __init__(
             self,
             *,
-            input: global___Input | None = ...,
+            inputId: global___InputID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["input", b"input"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["input", b"input"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
@@ -137,22 +138,17 @@ class DescribeInputRequest(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        INPUT_FIELD_NUMBER: builtins.int
-        REMOTEHOSTID_FIELD_NUMBER: builtins.int
+        INPUTID_FIELD_NUMBER: builtins.int
         @property
-        def input(self) -> global___Input:
+        def inputId(self) -> global___InputID:
             """Input to describe"""
-        @property
-        def remoteHostId(self) -> iotics.api.common_pb2.HostID:
-            """HostID to describe a remote input (Optional, keep empty if input is local)"""
         def __init__(
             self,
             *,
-            input: global___Input | None = ...,
-            remoteHostId: iotics.api.common_pb2.HostID | None = ...,
+            inputId: global___InputID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["input", b"input", "remoteHostId", b"remoteHostId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["input", b"input", "remoteHostId", b"remoteHostId"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
@@ -204,27 +200,22 @@ class DescribeInputResponse(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        INPUT_FIELD_NUMBER: builtins.int
+        INPUTID_FIELD_NUMBER: builtins.int
         RESULT_FIELD_NUMBER: builtins.int
-        REMOTEHOSTID_FIELD_NUMBER: builtins.int
         @property
-        def input(self) -> global___Input:
+        def inputId(self) -> global___InputID:
             """Described input"""
         @property
         def result(self) -> global___DescribeInputResponse.MetaResult:
             """Metadata result"""
-        @property
-        def remoteHostId(self) -> iotics.api.common_pb2.HostID:
-            """HostID of the described input. (Optional, empty if input is local)"""
         def __init__(
             self,
             *,
-            input: global___Input | None = ...,
+            inputId: global___InputID | None = ...,
             result: global___DescribeInputResponse.MetaResult | None = ...,
-            remoteHostId: iotics.api.common_pb2.HostID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["input", b"input", "remoteHostId", b"remoteHostId", "result", b"result"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["input", b"input", "remoteHostId", b"remoteHostId", "result", b"result"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId", "result", b"result"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId", "result", b"result"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
@@ -254,7 +245,7 @@ class UpsertInputWithMeta(google.protobuf.message.Message):
     VALUES_FIELD_NUMBER: builtins.int
     PROPERTIES_FIELD_NUMBER: builtins.int
     id: builtins.str
-    """Id of the input to create/update"""
+    """Input Identifier string representation (simple string) (unique within the scope of a twin identifier's input set)"""
     @property
     def values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Value]:
         """Values to set"""
@@ -314,17 +305,17 @@ class ReceiveInputMessageRequest(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        INPUT_FIELD_NUMBER: builtins.int
+        INPUTID_FIELD_NUMBER: builtins.int
         @property
-        def input(self) -> global___Input:
+        def inputId(self) -> global___InputID:
             """Input to listen messages from"""
         def __init__(
             self,
             *,
-            input: global___Input | None = ...,
+            inputId: global___InputID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["input", b"input"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["input", b"input"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
@@ -353,10 +344,10 @@ class ReceiveInputMessageResponse(google.protobuf.message.Message):
     class Payload(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        INPUT_FIELD_NUMBER: builtins.int
+        INPUTID_FIELD_NUMBER: builtins.int
         MESSAGE_FIELD_NUMBER: builtins.int
         @property
-        def input(self) -> global___Input:
+        def inputId(self) -> global___InputID:
             """Input the message has been sent to"""
         @property
         def message(self) -> global___InputMessage:
@@ -364,11 +355,11 @@ class ReceiveInputMessageResponse(google.protobuf.message.Message):
         def __init__(
             self,
             *,
-            input: global___Input | None = ...,
+            inputId: global___InputID | None = ...,
             message: global___InputMessage | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["input", b"input", "message", b"message"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["input", b"input", "message", b"message"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId", "message", b"message"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId", "message", b"message"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int

@@ -15,7 +15,7 @@ from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__
 from iotics.api import common_pb2 as iotics_dot_api_dot_common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x16iotics/api/input.proto\x12\niotics.api\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17iotics/api/common.proto\"X\n\x05Input\x12#\n\x02id\x18\x01 \x01(\x0b\x32\x13.iotics.api.InputIDR\x02id\x12*\n\x06twinId\x18\x02 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xb7\x01\n\x12\x44\x65leteInputRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12<\n\x04\x61rgs\x18\x02 \x01(\x0b\x32(.iotics.api.DeleteInputRequest.ArgumentsR\x04\x61rgs\x1a\x34\n\tArguments\x12\'\n\x05input\x18\x01 \x01(\x0b\x32\x11.iotics.api.InputR\x05input\"\xbb\x01\n\x13\x44\x65leteInputResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x41\n\x07payload\x18\x02 \x01(\x0b\x32\'.iotics.api.DeleteInputResponse.PayloadR\x07payload\x1a\x32\n\x07Payload\x12\'\n\x05input\x18\x01 \x01(\x0b\x32\x11.iotics.api.InputR\x05input\"\xf3\x01\n\x14\x44\x65scribeInputRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12>\n\x04\x61rgs\x18\x02 \x01(\x0b\x32*.iotics.api.DescribeInputRequest.ArgumentsR\x04\x61rgs\x1al\n\tArguments\x12\'\n\x05input\x18\x01 \x01(\x0b\x32\x11.iotics.api.InputR\x05input\x12\x36\n\x0cremoteHostId\x18\x02 \x01(\x0b\x32\x12.iotics.api.HostIDR\x0cremoteHostId\"\xad\x03\n\x15\x44\x65scribeInputResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x43\n\x07payload\x18\x02 \x01(\x0b\x32).iotics.api.DescribeInputResponse.PayloadR\x07payload\x1am\n\nMetaResult\x12)\n\x06values\x18\x01 \x03(\x0b\x32\x11.iotics.api.ValueR\x06values\x12\x34\n\nproperties\x18\x02 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1a\xb0\x01\n\x07Payload\x12\'\n\x05input\x18\x01 \x01(\x0b\x32\x11.iotics.api.InputR\x05input\x12\x44\n\x06result\x18\x02 \x01(\x0b\x32,.iotics.api.DescribeInputResponse.MetaResultR\x06result\x12\x36\n\x0cremoteHostId\x18\x03 \x01(\x0b\x32\x12.iotics.api.HostIDR\x0cremoteHostId\"\x86\x01\n\x13UpsertInputWithMeta\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12)\n\x06values\x18\x02 \x03(\x0b\x32\x11.iotics.api.ValueR\x06values\x12\x34\n\nproperties\x18\x03 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\"r\n\x0cInputMessage\x12:\n\noccurredAt\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\noccurredAt\x12\x12\n\x04mime\x18\x02 \x01(\tR\x04mime\x12\x12\n\x04\x64\x61ta\x18\x03 \x01(\x0cR\x04\x64\x61ta\"\xc7\x01\n\x1aReceiveInputMessageRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x44\n\x04\x61rgs\x18\x02 \x01(\x0b\x32\x30.iotics.api.ReceiveInputMessageRequest.ArgumentsR\x04\x61rgs\x1a\x34\n\tArguments\x12\'\n\x05input\x18\x01 \x01(\x0b\x32\x11.iotics.api.InputR\x05input\"\xff\x01\n\x1bReceiveInputMessageResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12I\n\x07payload\x18\x02 \x01(\x0b\x32/.iotics.api.ReceiveInputMessageResponse.PayloadR\x07payload\x1a\x66\n\x07Payload\x12\'\n\x05input\x18\x01 \x01(\x0b\x32\x11.iotics.api.InputR\x05input\x12\x32\n\x07message\x18\x02 \x01(\x0b\x32\x18.iotics.api.InputMessageR\x07message2\xa1\x02\n\x08InputAPI\x12P\n\x0b\x44\x65leteInput\x12\x1e.iotics.api.DeleteInputRequest\x1a\x1f.iotics.api.DeleteInputResponse\"\x00\x12V\n\rDescribeInput\x12 .iotics.api.DescribeInputRequest\x1a!.iotics.api.DescribeInputResponse\"\x00\x12k\n\x14ReceiveInputMessages\x12&.iotics.api.ReceiveInputMessageRequest\x1a\'.iotics.api.ReceiveInputMessageResponse\"\x00\x30\x01\x42~\n\x0e\x63om.iotics.apiB\nInputProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x16iotics/api/input.proto\x12\niotics.api\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17iotics/api/common.proto\"I\n\x07InputID\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n\x06twinId\x18\x02 \x01(\tR\x06twinId\x12\x16\n\x06hostId\x18\x03 \x01(\tR\x06hostId\"\xbd\x01\n\x12\x44\x65leteInputRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12<\n\x04\x61rgs\x18\x02 \x01(\x0b\x32(.iotics.api.DeleteInputRequest.ArgumentsR\x04\x61rgs\x1a:\n\tArguments\x12-\n\x07inputId\x18\x01 \x01(\x0b\x32\x13.iotics.api.InputIDR\x07inputId\"\xc1\x01\n\x13\x44\x65leteInputResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x41\n\x07payload\x18\x02 \x01(\x0b\x32\'.iotics.api.DeleteInputResponse.PayloadR\x07payload\x1a\x38\n\x07Payload\x12-\n\x07inputId\x18\x01 \x01(\x0b\x32\x13.iotics.api.InputIDR\x07inputId\"\xc1\x01\n\x14\x44\x65scribeInputRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12>\n\x04\x61rgs\x18\x02 \x01(\x0b\x32*.iotics.api.DescribeInputRequest.ArgumentsR\x04\x61rgs\x1a:\n\tArguments\x12-\n\x07inputId\x18\x01 \x01(\x0b\x32\x13.iotics.api.InputIDR\x07inputId\"\xfa\x02\n\x15\x44\x65scribeInputResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x43\n\x07payload\x18\x02 \x01(\x0b\x32).iotics.api.DescribeInputResponse.PayloadR\x07payload\x1am\n\nMetaResult\x12)\n\x06values\x18\x01 \x03(\x0b\x32\x11.iotics.api.ValueR\x06values\x12\x34\n\nproperties\x18\x02 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1a~\n\x07Payload\x12-\n\x07inputId\x18\x01 \x01(\x0b\x32\x13.iotics.api.InputIDR\x07inputId\x12\x44\n\x06result\x18\x02 \x01(\x0b\x32,.iotics.api.DescribeInputResponse.MetaResultR\x06result\"\x86\x01\n\x13UpsertInputWithMeta\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12)\n\x06values\x18\x02 \x03(\x0b\x32\x11.iotics.api.ValueR\x06values\x12\x34\n\nproperties\x18\x03 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\"r\n\x0cInputMessage\x12:\n\noccurredAt\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\noccurredAt\x12\x12\n\x04mime\x18\x02 \x01(\tR\x04mime\x12\x12\n\x04\x64\x61ta\x18\x03 \x01(\x0cR\x04\x64\x61ta\"\xcd\x01\n\x1aReceiveInputMessageRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x44\n\x04\x61rgs\x18\x02 \x01(\x0b\x32\x30.iotics.api.ReceiveInputMessageRequest.ArgumentsR\x04\x61rgs\x1a:\n\tArguments\x12-\n\x07inputId\x18\x01 \x01(\x0b\x32\x13.iotics.api.InputIDR\x07inputId\"\x85\x02\n\x1bReceiveInputMessageResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12I\n\x07payload\x18\x02 \x01(\x0b\x32/.iotics.api.ReceiveInputMessageResponse.PayloadR\x07payload\x1al\n\x07Payload\x12-\n\x07inputId\x18\x01 \x01(\x0b\x32\x13.iotics.api.InputIDR\x07inputId\x12\x32\n\x07message\x18\x02 \x01(\x0b\x32\x18.iotics.api.InputMessageR\x07message2\xa1\x02\n\x08InputAPI\x12P\n\x0b\x44\x65leteInput\x12\x1e.iotics.api.DeleteInputRequest\x1a\x1f.iotics.api.DeleteInputResponse\"\x00\x12V\n\rDescribeInput\x12 .iotics.api.DescribeInputRequest\x1a!.iotics.api.DescribeInputResponse\"\x00\x12k\n\x14ReceiveInputMessages\x12&.iotics.api.ReceiveInputMessageRequest\x1a\'.iotics.api.ReceiveInputMessageResponse\"\x00\x30\x01\x42~\n\x0e\x63om.iotics.apiB\nInputProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'iotics.api.input_pb2', globals())
@@ -23,38 +23,38 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\016com.iotics.apiB\nInputProtoP\001Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\242\002\003IAX\252\002\nIotics.Api\312\002\nIotics\\Api'
-  _INPUT._serialized_start=96
-  _INPUT._serialized_end=184
-  _DELETEINPUTREQUEST._serialized_start=187
-  _DELETEINPUTREQUEST._serialized_end=370
-  _DELETEINPUTREQUEST_ARGUMENTS._serialized_start=318
-  _DELETEINPUTREQUEST_ARGUMENTS._serialized_end=370
-  _DELETEINPUTRESPONSE._serialized_start=373
-  _DELETEINPUTRESPONSE._serialized_end=560
-  _DELETEINPUTRESPONSE_PAYLOAD._serialized_start=510
-  _DELETEINPUTRESPONSE_PAYLOAD._serialized_end=560
-  _DESCRIBEINPUTREQUEST._serialized_start=563
-  _DESCRIBEINPUTREQUEST._serialized_end=806
-  _DESCRIBEINPUTREQUEST_ARGUMENTS._serialized_start=698
-  _DESCRIBEINPUTREQUEST_ARGUMENTS._serialized_end=806
-  _DESCRIBEINPUTRESPONSE._serialized_start=809
-  _DESCRIBEINPUTRESPONSE._serialized_end=1238
-  _DESCRIBEINPUTRESPONSE_METARESULT._serialized_start=950
-  _DESCRIBEINPUTRESPONSE_METARESULT._serialized_end=1059
-  _DESCRIBEINPUTRESPONSE_PAYLOAD._serialized_start=1062
-  _DESCRIBEINPUTRESPONSE_PAYLOAD._serialized_end=1238
-  _UPSERTINPUTWITHMETA._serialized_start=1241
-  _UPSERTINPUTWITHMETA._serialized_end=1375
-  _INPUTMESSAGE._serialized_start=1377
-  _INPUTMESSAGE._serialized_end=1491
-  _RECEIVEINPUTMESSAGEREQUEST._serialized_start=1494
-  _RECEIVEINPUTMESSAGEREQUEST._serialized_end=1693
-  _RECEIVEINPUTMESSAGEREQUEST_ARGUMENTS._serialized_start=318
-  _RECEIVEINPUTMESSAGEREQUEST_ARGUMENTS._serialized_end=370
-  _RECEIVEINPUTMESSAGERESPONSE._serialized_start=1696
-  _RECEIVEINPUTMESSAGERESPONSE._serialized_end=1951
-  _RECEIVEINPUTMESSAGERESPONSE_PAYLOAD._serialized_start=1849
-  _RECEIVEINPUTMESSAGERESPONSE_PAYLOAD._serialized_end=1951
-  _INPUTAPI._serialized_start=1954
-  _INPUTAPI._serialized_end=2243
+  _INPUTID._serialized_start=96
+  _INPUTID._serialized_end=169
+  _DELETEINPUTREQUEST._serialized_start=172
+  _DELETEINPUTREQUEST._serialized_end=361
+  _DELETEINPUTREQUEST_ARGUMENTS._serialized_start=303
+  _DELETEINPUTREQUEST_ARGUMENTS._serialized_end=361
+  _DELETEINPUTRESPONSE._serialized_start=364
+  _DELETEINPUTRESPONSE._serialized_end=557
+  _DELETEINPUTRESPONSE_PAYLOAD._serialized_start=501
+  _DELETEINPUTRESPONSE_PAYLOAD._serialized_end=557
+  _DESCRIBEINPUTREQUEST._serialized_start=560
+  _DESCRIBEINPUTREQUEST._serialized_end=753
+  _DESCRIBEINPUTREQUEST_ARGUMENTS._serialized_start=303
+  _DESCRIBEINPUTREQUEST_ARGUMENTS._serialized_end=361
+  _DESCRIBEINPUTRESPONSE._serialized_start=756
+  _DESCRIBEINPUTRESPONSE._serialized_end=1134
+  _DESCRIBEINPUTRESPONSE_METARESULT._serialized_start=897
+  _DESCRIBEINPUTRESPONSE_METARESULT._serialized_end=1006
+  _DESCRIBEINPUTRESPONSE_PAYLOAD._serialized_start=1008
+  _DESCRIBEINPUTRESPONSE_PAYLOAD._serialized_end=1134
+  _UPSERTINPUTWITHMETA._serialized_start=1137
+  _UPSERTINPUTWITHMETA._serialized_end=1271
+  _INPUTMESSAGE._serialized_start=1273
+  _INPUTMESSAGE._serialized_end=1387
+  _RECEIVEINPUTMESSAGEREQUEST._serialized_start=1390
+  _RECEIVEINPUTMESSAGEREQUEST._serialized_end=1595
+  _RECEIVEINPUTMESSAGEREQUEST_ARGUMENTS._serialized_start=303
+  _RECEIVEINPUTMESSAGEREQUEST_ARGUMENTS._serialized_end=361
+  _RECEIVEINPUTMESSAGERESPONSE._serialized_start=1598
+  _RECEIVEINPUTMESSAGERESPONSE._serialized_end=1859
+  _RECEIVEINPUTMESSAGERESPONSE_PAYLOAD._serialized_start=1751
+  _RECEIVEINPUTMESSAGERESPONSE_PAYLOAD._serialized_end=1859
+  _INPUTAPI._serialized_start=1862
+  _INPUTAPI._serialized_end=2151
 # @@protoc_insertion_point(module_scope)

@@ -17,6 +17,8 @@ import typing
 import grpc
 import grpc._channel
 
+from iotics.api.input_pb2 import InputID
+
 from .base import ApiBase
 from .helpers import create_headers
 from iotics.api import input_pb2_grpc
@@ -48,8 +50,7 @@ class InputApi(ApiBase):
         request = input_pb2.DescribeInputRequest(
             headers=headers or create_headers(),
             args=input_pb2.DescribeInputRequest.Arguments(
-                input=self.build_input(twin_id, input_id),
-                remoteHostId=self.build_host_id(remote_host_id),
+                inputId=InputID(id=input_id, twinId=twin_id, hostId=remote_host_id),
             )
         )
         return self.stub.DescribeInput(request)
@@ -72,7 +73,7 @@ class InputApi(ApiBase):
         """
         request = input_pb2.DeleteInputRequest(
             headers=headers or create_headers(),
-            args=input_pb2.DeleteInputRequest.Arguments(input=self.build_input(twin_id, input_id)),
+            args=input_pb2.DeleteInputRequest.Arguments(inputId=InputID(id=input_id, twinId=twin_id)),
         )
         return self.stub.DeleteInput(request)
 
@@ -95,7 +96,7 @@ class InputApi(ApiBase):
 
         Returns: Response iterator with extra blocking (e.g. `time_remaining`) and non-blocking (e.g. `code`) methods.
         """
-        args = input_pb2.ReceiveInputMessageRequest.Arguments(input=self.build_input(twin_id, input_id))
+        args = input_pb2.ReceiveInputMessageRequest.Arguments(inputId=InputID(id=input_id, twinId=twin_id))
         request = input_pb2.ReceiveInputMessageRequest(headers=headers or create_headers(), args=args)
 
         # Define type here to avoid: `TypeError: 'ABCMeta' object is not subscriptable`.

@@ -29,14 +29,3 @@ class ApiBase:
         self.stub = self.stub_class(channel)
         self.address = auth.get_host()
         self.token = auth.get_token()
-
-    @staticmethod
-    def build_host_id(host_id: typing.Optional[str]) -> typing.Optional[common_pb2.HostID]:
-        return host_id and common_pb2.HostID(value=host_id)
-
-    @staticmethod
-    def build_input(twin_id: str, input_id: str):
-        return input_pb2.Input(
-            id=common_pb2.InputID(value=input_id),
-            twinId=common_pb2.TwinID(value=twin_id),
-        )

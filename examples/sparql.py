@@ -1,3 +1,4 @@
+from time import sleep
 from typing import Dict
 
 import grpc
@@ -7,7 +8,8 @@ from iotics.api.meta_pb2 import SparqlQueryResponse
 
 
 def get_auth():
-    import dotenv, os
+    import dotenv
+    import os
     dotenv.load_dotenv()
     auth = IdentityAuth(
         os.environ['SPACE'],
@@ -29,7 +31,7 @@ def do_query(query, api):
     try:
         for response in stream:
             # Chunk processing per host per seq number
-            host_id = response.payload.remoteHostId.value or 'localhost'
+            host_id = response.payload.hostId or 'localhost'
             chunks = chunks_per_host.setdefault(host_id, {})
             chunks[response.payload.seqNum] = response
     # Exit the loop based on the timeout error (normal case)
@@ -69,6 +71,8 @@ def main():
     }'''
     print("DOING UPDATE")
     api.sparql_update(update)
+    # Wait for the update to be processed before querying
+    sleep(5)
     print("DOING QUERY")
     query = '''
     PREFIX iotg: <http://data.iotics.com/graph#>
@@ -87,6 +91,8 @@ def main():
         }
     }'''
     api.sparql_update(update)
+    # Wait for the update to be processed before querying
+    sleep(5)
     print('RE-QUERY (bindings should be empty)')
     do_query(query, api)
 

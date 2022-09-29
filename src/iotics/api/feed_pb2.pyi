@@ -21,29 +21,30 @@ else:
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-class Feed(google.protobuf.message.Message):
+class FeedID(google.protobuf.message.Message):
     """A feed representation."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ID_FIELD_NUMBER: builtins.int
     TWINID_FIELD_NUMBER: builtins.int
-    @property
-    def id(self) -> iotics.api.common_pb2.FeedID:
-        """Feed identifier (unique within the scope of a twin identifier's feed set)"""
-    @property
-    def twinId(self) -> iotics.api.common_pb2.TwinID:
-        """Twin unique identifier (twin to which the feed belongs)"""
+    HOSTID_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    """Feed identifier string representation (simple string) (unique within the scope of a twin identifier's feed set)"""
+    twinId: builtins.str
+    """Twin identifier string representation (simple string) (twin to which the feed belongs)"""
+    hostId: builtins.str
+    """Host identifier string representation (simple string) (Host to which the twin belongs)"""
     def __init__(
         self,
         *,
-        id: iotics.api.common_pb2.FeedID | None = ...,
-        twinId: iotics.api.common_pb2.TwinID | None = ...,
+        id: builtins.str = ...,
+        twinId: builtins.str = ...,
+        hostId: builtins.str = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["id", b"id", "twinId", b"twinId"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["id", b"id", "twinId", b"twinId"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["hostId", b"hostId", "id", b"id", "twinId", b"twinId"]) -> None: ...
 
-global___Feed = Feed
+global___FeedID = FeedID
 
 class CreateFeedRequest(google.protobuf.message.Message):
     """CreateFeedRequestCreate is used to create a new feed in a given twin."""
@@ -55,19 +56,15 @@ class CreateFeedRequest(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        FEEDID_FIELD_NUMBER: builtins.int
-        @property
-        def feedId(self) -> iotics.api.common_pb2.FeedID:
-            """ID of the feed to create
-            StoreLast indicates if the last received value should be stored of not
-            """
+        ID_FIELD_NUMBER: builtins.int
+        id: builtins.str
+        """Feed identifier string representation (simple string) (unique within the scope of a twin identifier's feed set)"""
         def __init__(
             self,
             *,
-            feedId: iotics.api.common_pb2.FeedID | None = ...,
+            id: builtins.str = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["id", b"id"]) -> None: ...
 
     class Arguments(google.protobuf.message.Message):
         """Arguments describes the mandatory arguments to identify the twin the feed belongs to."""
@@ -120,17 +117,17 @@ class CreateFeedResponse(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        FEED_FIELD_NUMBER: builtins.int
+        FEEDID_FIELD_NUMBER: builtins.int
         @property
-        def feed(self) -> global___Feed:
+        def feedId(self) -> global___FeedID:
             """The created feed"""
         def __init__(
             self,
             *,
-            feed: global___Feed | None = ...,
+            feedId: global___FeedID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["feed", b"feed"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feed", b"feed"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
@@ -161,17 +158,17 @@ class DeleteFeedRequest(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        FEED_FIELD_NUMBER: builtins.int
+        FEEDID_FIELD_NUMBER: builtins.int
         @property
-        def feed(self) -> global___Feed:
+        def feedId(self) -> global___FeedID:
             """Feed to delete"""
         def __init__(
             self,
             *,
-            feed: global___Feed | None = ...,
+            feedId: global___FeedID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["feed", b"feed"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feed", b"feed"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
@@ -202,17 +199,17 @@ class DeleteFeedResponse(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        FEED_FIELD_NUMBER: builtins.int
+        FEEDID_FIELD_NUMBER: builtins.int
         @property
-        def feed(self) -> global___Feed:
+        def feedId(self) -> global___FeedID:
             """Deleted feed"""
         def __init__(
             self,
             *,
-            feed: global___Feed | None = ...,
+            feedId: global___FeedID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["feed", b"feed"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feed", b"feed"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
@@ -273,16 +270,16 @@ class UpdateFeedRequest(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        FEED_FIELD_NUMBER: builtins.int
+        FEEDID_FIELD_NUMBER: builtins.int
         @property
-        def feed(self) -> global___Feed: ...
+        def feedId(self) -> global___FeedID: ...
         def __init__(
             self,
             *,
-            feed: global___Feed | None = ...,
+            feedId: global___FeedID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["feed", b"feed"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feed", b"feed"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
@@ -318,17 +315,17 @@ class UpdateFeedResponse(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        FEED_FIELD_NUMBER: builtins.int
+        FEEDID_FIELD_NUMBER: builtins.int
         @property
-        def feed(self) -> global___Feed:
+        def feedId(self) -> global___FeedID:
             """Updated feed"""
         def __init__(
             self,
             *,
-            feed: global___Feed | None = ...,
+            feedId: global___FeedID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["feed", b"feed"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feed", b"feed"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
@@ -376,17 +373,17 @@ class ShareFeedDataRequest(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        FEED_FIELD_NUMBER: builtins.int
+        FEEDID_FIELD_NUMBER: builtins.int
         @property
-        def feed(self) -> global___Feed:
+        def feedId(self) -> global___FeedID:
             """Feed sharing the sample"""
         def __init__(
             self,
             *,
-            feed: global___Feed | None = ...,
+            feedId: global___FeedID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["feed", b"feed"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feed", b"feed"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
@@ -489,16 +486,16 @@ class ListAllFeedsResponse(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        FEEDS_FIELD_NUMBER: builtins.int
+        FEEDIDS_FIELD_NUMBER: builtins.int
         @property
-        def feeds(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Feed]:
+        def feedIds(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FeedID]:
             """List of the feeds owned by the twin"""
         def __init__(
             self,
             *,
-            feeds: collections.abc.Iterable[global___Feed] | None = ...,
+            feedIds: collections.abc.Iterable[global___FeedID] | None = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feeds", b"feeds"]) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["feedIds", b"feedIds"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
@@ -529,22 +526,17 @@ class DescribeFeedRequest(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        FEED_FIELD_NUMBER: builtins.int
-        REMOTEHOSTID_FIELD_NUMBER: builtins.int
+        FEEDID_FIELD_NUMBER: builtins.int
         @property
-        def feed(self) -> global___Feed:
+        def feedId(self) -> global___FeedID:
             """Feed to describe"""
-        @property
-        def remoteHostId(self) -> iotics.api.common_pb2.HostID:
-            """HostID to describe a remote feed (Optional, keep empty if feed is local)"""
         def __init__(
             self,
             *,
-            feed: global___Feed | None = ...,
-            remoteHostId: iotics.api.common_pb2.HostID | None = ...,
+            feedId: global___FeedID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["feed", b"feed", "remoteHostId", b"remoteHostId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feed", b"feed", "remoteHostId", b"remoteHostId"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
@@ -602,27 +594,22 @@ class DescribeFeedResponse(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        FEED_FIELD_NUMBER: builtins.int
+        FEEDID_FIELD_NUMBER: builtins.int
         RESULT_FIELD_NUMBER: builtins.int
-        REMOTEHOSTID_FIELD_NUMBER: builtins.int
         @property
-        def feed(self) -> global___Feed:
+        def feedId(self) -> global___FeedID:
             """Described feed"""
         @property
         def result(self) -> global___DescribeFeedResponse.MetaResult:
             """Metadata result"""
-        @property
-        def remoteHostId(self) -> iotics.api.common_pb2.HostID:
-            """HostID of the described feed. (Optional, empty if feed is local)"""
         def __init__(
             self,
             *,
-            feed: global___Feed | None = ...,
+            feedId: global___FeedID | None = ...,
             result: global___DescribeFeedResponse.MetaResult | None = ...,
-            remoteHostId: iotics.api.common_pb2.HostID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["feed", b"feed", "remoteHostId", b"remoteHostId", "result", b"result"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feed", b"feed", "remoteHostId", b"remoteHostId", "result", b"result"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["feedId", b"feedId", "result", b"result"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["feedId", b"feedId", "result", b"result"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
@@ -653,7 +640,7 @@ class UpsertFeedWithMeta(google.protobuf.message.Message):
     VALUES_FIELD_NUMBER: builtins.int
     PROPERTIES_FIELD_NUMBER: builtins.int
     id: builtins.str
-    """Id of the feed to create/update"""
+    """Feed identifier string representation (simple string) (unique within the scope of a twin identifier's feed set)"""
     storeLast: builtins.bool
     """StoreLast dictates whether to store the last shared sample of the feed. Default 'False'"""
     @property

@@ -9,7 +9,8 @@ LONDON = create_location(51.5, -0.1)
 
 
 def main():
-    import dotenv, os
+    import dotenv
+    import os
     dotenv.load_dotenv()
     try:
         auth = IdentityAuth(
