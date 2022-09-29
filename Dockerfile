@@ -10,6 +10,13 @@ RUN apt-get install -y --no-install-recommends git
 RUN git -c advice.detachedHead=false clone -b v1.46.0 https://github.com/grpc/grpc grpc.git
 RUN cd grpc.git && git submodule update --init
 
+# for mac
+# Get Bazel build tool, use bazelisk to enable build on arm64
+# RUN apt-get install -y --no-install-recommends curl gnupg unzip
+# RUN curl -sL https://deb.nodesource.com/setup_16.x  | bash -
+# RUN apt-get -y install nodejs && \
+#     npm install -g @bazel/bazelisk
+
 # Get Bazel build tool
 RUN apt-get install -y --no-install-recommends curl gnupg
 RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > /etc/apt/trusted.gpg.d/bazel.gpg
@@ -26,6 +33,10 @@ RUN cd grpc.git \
 ARG UNAME=iotics
 ARG UID=1000
 ARG GID=1000
+
+# for mac 
+# RUN apt-get install -y --no-install-recommends unzip
+# RUN useradd -lm -u $UID -g $GID -s /bin/bash $UNAME
 RUN groupadd -g $GID $UNAME && useradd -lm -u $UID -g $GID -s /bin/bash $UNAME
 
 # Set up Golang

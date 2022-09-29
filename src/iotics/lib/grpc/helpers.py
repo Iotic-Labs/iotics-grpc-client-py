@@ -31,6 +31,8 @@ def get_channel(auth: AuthInterface) -> grpc.Channel:
 
     Returns: gRPC channel.
     """
+    # note: for testing against a local server without ssl
+    # you can use 'grpc.local_channel_credentials()' here instead
     channel_credentials = grpc.ssl_channel_credentials()
     call_credentials = grpc.access_token_call_credentials(auth.get_token())
     composite_credentials = grpc.composite_channel_credentials(channel_credentials, call_credentials)

@@ -10,6 +10,7 @@ import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
+import google.protobuf.timestamp_pb2
 import iotics.api.common_pb2
 import iotics.api.feed_pb2
 import iotics.api.input_pb2
@@ -21,31 +22,6 @@ else:
     import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
-
-class Twin(google.protobuf.message.Message):
-    """Twin is the virtual representation of a (physical, purely virtual or hybrid) device,
-    is only ever located in the host it was created.
-    """
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    ID_FIELD_NUMBER: builtins.int
-    VISIBILITY_FIELD_NUMBER: builtins.int
-    @property
-    def id(self) -> iotics.api.common_pb2.TwinID:
-        """Unique ID of the twin, assigned by the user."""
-    visibility: iotics.api.common_pb2.Visibility.ValueType
-    """Visibility of this twin"""
-    def __init__(
-        self,
-        *,
-        id: iotics.api.common_pb2.TwinID | None = ...,
-        visibility: iotics.api.common_pb2.Visibility.ValueType = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["id", b"id"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["id", b"id", "visibility", b"visibility"]) -> None: ...
-
-global___Twin = Twin
 
 class ListAllTwinsRequest(google.protobuf.message.Message):
     """List all twins."""
@@ -83,31 +59,41 @@ class ListAllTwinsResponse(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        ID_FIELD_NUMBER: builtins.int
+        TWINID_FIELD_NUMBER: builtins.int
         VISIBILITY_FIELD_NUMBER: builtins.int
         LOCATION_FIELD_NUMBER: builtins.int
         PROPERTIES_FIELD_NUMBER: builtins.int
+        CREATEDAT_FIELD_NUMBER: builtins.int
+        UPDATEDAT_FIELD_NUMBER: builtins.int
         @property
-        def id(self) -> iotics.api.common_pb2.TwinID:
+        def twinId(self) -> iotics.api.common_pb2.TwinID:
             """Twin identifier."""
         visibility: iotics.api.common_pb2.Visibility.ValueType
-        """Twin visibility. Enum that defines a twins level of visibility."""
+        """DEPRECATED - see field description for details."""
         @property
         def location(self) -> iotics.api.common_pb2.GeoLocation:
             """Twin location (if set)."""
         @property
         def properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Property]:
             """Twin custom properties."""
+        @property
+        def createdAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
+            """Twin createdAt timestamp."""
+        @property
+        def updatedAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
+            """Twin updatedAt timestamp."""
         def __init__(
             self,
             *,
-            id: iotics.api.common_pb2.TwinID | None = ...,
+            twinId: iotics.api.common_pb2.TwinID | None = ...,
             visibility: iotics.api.common_pb2.Visibility.ValueType = ...,
             location: iotics.api.common_pb2.GeoLocation | None = ...,
             properties: collections.abc.Iterable[iotics.api.common_pb2.Property] | None = ...,
+            createdAt: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+            updatedAt: google.protobuf.timestamp_pb2.Timestamp | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["id", b"id", "location", b"location"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["id", b"id", "location", b"location", "properties", b"properties", "visibility", b"visibility"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "location", b"location", "twinId", b"twinId", "updatedAt", b"updatedAt"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "location", b"location", "properties", b"properties", "twinId", b"twinId", "updatedAt", b"updatedAt", "visibility", b"visibility"]) -> None: ...
 
     class Payload(google.protobuf.message.Message):
         """Payload of listed twins."""
@@ -151,17 +137,15 @@ class CreateTwinRequest(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        TWINID_FIELD_NUMBER: builtins.int
-        @property
-        def twinId(self) -> iotics.api.common_pb2.TwinID:
-            """Unique ID of the twin to create"""
+        ID_FIELD_NUMBER: builtins.int
+        id: builtins.str
+        """Twin identifier string representation (simple string)"""
         def __init__(
             self,
             *,
-            twinId: iotics.api.common_pb2.TwinID | None = ...,
+            id: builtins.str = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["twinId", b"twinId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["twinId", b"twinId"]) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["id", b"id"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
@@ -319,21 +303,16 @@ class DescribeTwinRequest(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         TWINID_FIELD_NUMBER: builtins.int
-        REMOTEHOSTID_FIELD_NUMBER: builtins.int
         @property
         def twinId(self) -> iotics.api.common_pb2.TwinID:
-            """unique id of the twin to describe"""
-        @property
-        def remoteHostId(self) -> iotics.api.common_pb2.HostID:
-            """optional HostID to describe a remote twin"""
+            """Unique ID of the twin to describe"""
         def __init__(
             self,
             *,
             twinId: iotics.api.common_pb2.TwinID | None = ...,
-            remoteHostId: iotics.api.common_pb2.HostID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["remoteHostId", b"remoteHostId", "twinId", b"twinId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["remoteHostId", b"remoteHostId", "twinId", b"twinId"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["twinId", b"twinId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["twinId", b"twinId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
@@ -360,12 +339,12 @@ class FeedMeta(google.protobuf.message.Message):
     FEEDID_FIELD_NUMBER: builtins.int
     STORELAST_FIELD_NUMBER: builtins.int
     @property
-    def feedId(self) -> iotics.api.common_pb2.FeedID: ...
+    def feedId(self) -> iotics.api.feed_pb2.FeedID: ...
     storeLast: builtins.bool
     def __init__(
         self,
         *,
-        feedId: iotics.api.common_pb2.FeedID | None = ...,
+        feedId: iotics.api.feed_pb2.FeedID | None = ...,
         storeLast: builtins.bool = ...,
     ) -> None: ...
     def HasField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> builtins.bool: ...
@@ -380,11 +359,11 @@ class InputMeta(google.protobuf.message.Message):
 
     INPUTID_FIELD_NUMBER: builtins.int
     @property
-    def inputId(self) -> iotics.api.common_pb2.InputID: ...
+    def inputId(self) -> iotics.api.input_pb2.InputID: ...
     def __init__(
         self,
         *,
-        inputId: iotics.api.common_pb2.InputID | None = ...,
+        inputId: iotics.api.input_pb2.InputID | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> None: ...
@@ -402,11 +381,16 @@ class DescribeTwinResponse(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         LOCATION_FIELD_NUMBER: builtins.int
+        VISIBILITY_FIELD_NUMBER: builtins.int
         FEEDS_FIELD_NUMBER: builtins.int
         INPUTS_FIELD_NUMBER: builtins.int
         PROPERTIES_FIELD_NUMBER: builtins.int
+        CREATEDAT_FIELD_NUMBER: builtins.int
+        UPDATEDAT_FIELD_NUMBER: builtins.int
         @property
         def location(self) -> iotics.api.common_pb2.GeoLocation: ...
+        visibility: iotics.api.common_pb2.Visibility.ValueType
+        """Deprecated - see field description for details."""
         @property
         def feeds(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FeedMeta]: ...
         @property
@@ -414,43 +398,47 @@ class DescribeTwinResponse(google.protobuf.message.Message):
         @property
         def properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Property]:
             """Custom properties associated with this twin."""
+        @property
+        def createdAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
+            """Twin createdAt timestamp."""
+        @property
+        def updatedAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
+            """Twin updatedAt timestamp."""
         def __init__(
             self,
             *,
             location: iotics.api.common_pb2.GeoLocation | None = ...,
+            visibility: iotics.api.common_pb2.Visibility.ValueType = ...,
             feeds: collections.abc.Iterable[global___FeedMeta] | None = ...,
             inputs: collections.abc.Iterable[global___InputMeta] | None = ...,
             properties: collections.abc.Iterable[iotics.api.common_pb2.Property] | None = ...,
+            createdAt: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+            updatedAt: google.protobuf.timestamp_pb2.Timestamp | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["location", b"location"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feeds", b"feeds", "inputs", b"inputs", "location", b"location", "properties", b"properties"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "location", b"location", "updatedAt", b"updatedAt"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "feeds", b"feeds", "inputs", b"inputs", "location", b"location", "properties", b"properties", "updatedAt", b"updatedAt", "visibility", b"visibility"]) -> None: ...
 
     class Payload(google.protobuf.message.Message):
         """Payload of described twins."""
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        TWIN_FIELD_NUMBER: builtins.int
+        TWINID_FIELD_NUMBER: builtins.int
         RESULT_FIELD_NUMBER: builtins.int
-        REMOTEHOSTID_FIELD_NUMBER: builtins.int
         @property
-        def twin(self) -> global___Twin:
+        def twinId(self) -> iotics.api.common_pb2.TwinID:
             """the twin"""
         @property
         def result(self) -> global___DescribeTwinResponse.MetaResult:
             """the description details"""
-        @property
-        def remoteHostId(self) -> iotics.api.common_pb2.HostID:
-            """optional - if present indicates this response comes from a remote host"""
         def __init__(
             self,
             *,
-            twin: global___Twin | None = ...,
+            twinId: iotics.api.common_pb2.TwinID | None = ...,
             result: global___DescribeTwinResponse.MetaResult | None = ...,
-            remoteHostId: iotics.api.common_pb2.HostID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["remoteHostId", b"remoteHostId", "result", b"result", "twin", b"twin"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["remoteHostId", b"remoteHostId", "result", b"result", "twin", b"twin"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["result", b"result", "twinId", b"twinId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["result", b"result", "twinId", b"twinId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
@@ -472,14 +460,14 @@ global___DescribeTwinResponse = DescribeTwinResponse
 class VisibilityUpdate(google.protobuf.message.Message):
     """---------------------------------------
 
-    VisibilityUpdate describes the update of a twin visibility.
+    DEPRECATED - see Visibility field description for details.
     """
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     VISIBILITY_FIELD_NUMBER: builtins.int
     visibility: iotics.api.common_pb2.Visibility.ValueType
-    """New visibility for this twin"""
+    """DEPRECATED - see field description for details."""
     def __init__(
         self,
         *,
@@ -543,7 +531,7 @@ class UpdateTwinRequest(google.protobuf.message.Message):
         LOCATION_FIELD_NUMBER: builtins.int
         @property
         def newVisibility(self) -> global___VisibilityUpdate:
-            """New visibility"""
+            """DEPRECATED - see Visibility field description for details."""
         @property
         def properties(self) -> iotics.api.common_pb2.PropertyUpdate:
             """Custom properties to add/remove. Internal properties (such as location) cannot be modified here."""
@@ -641,10 +629,15 @@ class UpsertTwinRequest(google.protobuf.message.Message):
         LOCATION_FIELD_NUMBER: builtins.int
         FEEDS_FIELD_NUMBER: builtins.int
         INPUTS_FIELD_NUMBER: builtins.int
-        twinId: builtins.str
-        """Unique ID of the twin to create/update"""
+        @property
+        def twinId(self) -> iotics.api.common_pb2.TwinID:
+            """Unique ID of the twin to create/update"""
         visibility: iotics.api.common_pb2.Visibility.ValueType
-        """Twin visibility. Default value: 'PRIVATE'"""
+        """DEPRECATED - see field description for details.
+        If any metadata network allowlist property is provided, the visibility value will be ignored.
+
+        Default value: 'PRIVATE'
+        """
         @property
         def properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Property]:
             """Twin Properties to set"""
@@ -660,14 +653,14 @@ class UpsertTwinRequest(google.protobuf.message.Message):
         def __init__(
             self,
             *,
-            twinId: builtins.str = ...,
+            twinId: iotics.api.common_pb2.TwinID | None = ...,
             visibility: iotics.api.common_pb2.Visibility.ValueType = ...,
             properties: collections.abc.Iterable[iotics.api.common_pb2.Property] | None = ...,
             location: iotics.api.common_pb2.GeoLocation | None = ...,
             feeds: collections.abc.Iterable[iotics.api.feed_pb2.UpsertFeedWithMeta] | None = ...,
             inputs: collections.abc.Iterable[iotics.api.input_pb2.UpsertInputWithMeta] | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["location", b"location"]) -> builtins.bool: ...
+        def HasField(self, field_name: typing_extensions.Literal["location", b"location", "twinId", b"twinId"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing_extensions.Literal["feeds", b"feeds", "inputs", b"inputs", "location", b"location", "properties", b"properties", "twinId", b"twinId", "visibility", b"visibility"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
@@ -700,13 +693,15 @@ class UpsertTwinResponse(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         TWINID_FIELD_NUMBER: builtins.int
-        twinId: builtins.str
-        """created/updated twin"""
+        @property
+        def twinId(self) -> iotics.api.common_pb2.TwinID:
+            """Unique ID of the created/updated twin"""
         def __init__(
             self,
             *,
-            twinId: builtins.str = ...,
+            twinId: iotics.api.common_pb2.TwinID | None = ...,
         ) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["twinId", b"twinId"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing_extensions.Literal["twinId", b"twinId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int

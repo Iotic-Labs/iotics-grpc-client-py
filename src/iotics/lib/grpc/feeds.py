@@ -46,8 +46,8 @@ class FeedApi(ApiBase):
         """
         req = feed_pb2.CreateFeedRequest(
             headers=headers or create_headers(),
-            args=feed_pb2.CreateFeedRequest.Arguments(twinId=common_pb2.TwinID(value=twin_did)),
-            payload=feed_pb2.CreateFeedRequest.Payload(feedId=common_pb2.FeedID(value=feed_id))
+            args=feed_pb2.CreateFeedRequest.Arguments(twinId=common_pb2.TwinID(id=twin_did)),
+            payload=feed_pb2.CreateFeedRequest.Payload(id=feed_id)
         )
         return self.stub.CreateFeed(req)
 
@@ -68,9 +68,7 @@ class FeedApi(ApiBase):
         """
         req = feed_pb2.DeleteFeedRequest(
             headers=headers or create_headers(),
-            args=feed_pb2.DeleteFeedRequest.Arguments(
-                feed=feed_pb2.Feed(id=common_pb2.FeedID(value=feed_id), twinId=common_pb2.TwinID(value=twin_did))
-            ),
+            args=feed_pb2.DeleteFeedRequest.Arguments(feedId=feed_pb2.FeedID(id=feed_id, twinId=twin_did))
         )
         return self.stub.DeleteFeed(req)
 
@@ -108,7 +106,7 @@ class FeedApi(ApiBase):
         req = feed_pb2.UpdateFeedRequest(
             headers=headers or create_headers(),
             args=feed_pb2.UpdateFeedRequest.Arguments(
-                feed=feed_pb2.Feed(id=common_pb2.FeedID(value=feed_id), twinId=common_pb2.TwinID(value=twin_did))
+                feedId=feed_pb2.FeedID(id=feed_id, twinId=twin_did)
             ),
             payload=feed_pb2.UpdateFeedRequest.Payload(
                 storeLast=BoolValue(value=store_last),
@@ -144,7 +142,7 @@ class FeedApi(ApiBase):
         req = feed_pb2.ShareFeedDataRequest(
             headers=headers or create_headers(),
             args=feed_pb2.ShareFeedDataRequest.Arguments(
-                feed=feed_pb2.Feed(id=common_pb2.FeedID(value=feed_id), twinId=common_pb2.TwinID(value=twin_did))
+                feedId=feed_pb2.FeedID(id=feed_id, twinId=twin_did)
             ),
             payload=feed_pb2.ShareFeedDataRequest.Payload(sample=common_pb2.FeedData(
                 occurredAt=Timestamp(seconds=occurred_at if occurred_at else int(time.time())),
@@ -168,7 +166,7 @@ class FeedApi(ApiBase):
         """
         req = feed_pb2.ListAllFeedsRequest(
             headers=headers or create_headers(),
-            args=feed_pb2.ListAllFeedsRequest.Arguments(twinId=common_pb2.TwinID(value=twin_did))
+            args=feed_pb2.ListAllFeedsRequest.Arguments(twinId=common_pb2.TwinID(id=twin_did))
         )
         return self.stub.ListAllFeeds(req)
 
@@ -193,7 +191,6 @@ class FeedApi(ApiBase):
         req = feed_pb2.DescribeFeedRequest(
             headers=headers or create_headers(),
             args=feed_pb2.DescribeFeedRequest.Arguments(
-                feed=feed_pb2.Feed(id=common_pb2.FeedID(value=feed_id), twinId=common_pb2.TwinID(value=twin_did)),
-                remoteHostId=common_pb2.HostID(value=remote_host_id) if remote_host_id else None)
+                feedId=feed_pb2.FeedID(id=feed_id, twinId=twin_did, hostId=remote_host_id)),
         )
         return self.stub.DescribeFeed(req)

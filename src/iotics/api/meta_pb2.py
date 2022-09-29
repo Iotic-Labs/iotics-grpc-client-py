@@ -15,7 +15,7 @@ from google.rpc import status_pb2 as google_dot_rpc_dot_status__pb2
 from iotics.api import common_pb2 as iotics_dot_api_dot_common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15iotics/api/meta.proto\x12\niotics.api\x1a\x17google/rpc/status.proto\x1a\x17iotics/api/common.proto\"\x9b\x02\n\x12SparqlQueryRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\'\n\x05scope\x18\x02 \x01(\x0e\x32\x11.iotics.api.ScopeR\x05scope\x12@\n\x07payload\x18\x03 \x01(\x0b\x32&.iotics.api.SparqlQueryRequest.PayloadR\x07payload\x1ak\n\x07Payload\x12J\n\x11resultContentType\x18\x01 \x01(\x0e\x32\x1c.iotics.api.SparqlResultTypeR\x11resultContentType\x12\x14\n\x05query\x18\x02 \x01(\x0cR\x05query\"\x85\x03\n\x13SparqlQueryResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x41\n\x07payload\x18\x02 \x01(\x0b\x32\'.iotics.api.SparqlQueryResponse.PayloadR\x07payload\x1a\xfb\x01\n\x07Payload\x12\x36\n\x0cremoteHostId\x18\x01 \x01(\x0b\x32\x12.iotics.api.HostIDR\x0cremoteHostId\x12\x16\n\x06seqNum\x18\x02 \x01(\x04R\x06seqNum\x12\x12\n\x04last\x18\x03 \x01(\x08R\x04last\x12*\n\x06status\x18\x04 \x01(\x0b\x32\x12.google.rpc.StatusR\x06status\x12>\n\x0b\x63ontentType\x18\x05 \x01(\x0e\x32\x1c.iotics.api.SparqlResultTypeR\x0b\x63ontentType\x12 \n\x0bresultChunk\x18\x06 \x01(\x0cR\x0bresultChunk\"\xaa\x01\n\x13SparqlUpdateRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x41\n\x07payload\x18\x02 \x01(\x0b\x32\'.iotics.api.SparqlUpdateRequest.PayloadR\x07payload\x1a!\n\x07Payload\x12\x16\n\x06update\x18\x01 \x01(\x0cR\x06update\"E\n\x14SparqlUpdateResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers*r\n\x10SparqlResultType\x12\x0f\n\x0bSPARQL_JSON\x10\x00\x12\x0e\n\nSPARQL_XML\x10\x01\x12\x0e\n\nSPARQL_CSV\x10\x02\x12\x0e\n\nRDF_TURTLE\x10\x03\x12\x0b\n\x07RDF_XML\x10\x04\x12\x10\n\x0cRDF_NTRIPLES\x10\x05\x32\xb2\x01\n\x07MetaAPI\x12R\n\x0bSparqlQuery\x12\x1e.iotics.api.SparqlQueryRequest\x1a\x1f.iotics.api.SparqlQueryResponse\"\x00\x30\x01\x12S\n\x0cSparqlUpdate\x12\x1f.iotics.api.SparqlUpdateRequest\x1a .iotics.api.SparqlUpdateResponse\"\x00\x42}\n\x0e\x63om.iotics.apiB\tMetaProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15iotics/api/meta.proto\x12\niotics.api\x1a\x17google/rpc/status.proto\x1a\x17iotics/api/common.proto\"\x99\x02\n\x0f\x45xplorerRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\'\n\x05scope\x18\x02 \x01(\x0e\x32\x11.iotics.api.ScopeR\x05scope\x12=\n\x07payload\x18\x03 \x01(\x0b\x32#.iotics.api.ExplorerRequest.PayloadR\x07payload\x1ao\n\x07Payload\x12J\n\x11resultContentType\x18\x01 \x01(\x0e\x32\x1c.iotics.api.SparqlResultTypeR\x11resultContentType\x12\x18\n\x07keyword\x18\x02 \x01(\tR\x07keyword\"\x9b\x02\n\x12SparqlQueryRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\'\n\x05scope\x18\x02 \x01(\x0e\x32\x11.iotics.api.ScopeR\x05scope\x12@\n\x07payload\x18\x03 \x01(\x0b\x32&.iotics.api.SparqlQueryRequest.PayloadR\x07payload\x1ak\n\x07Payload\x12J\n\x11resultContentType\x18\x01 \x01(\x0e\x32\x1c.iotics.api.SparqlResultTypeR\x11resultContentType\x12\x14\n\x05query\x18\x02 \x01(\x0cR\x05query\"\xe5\x02\n\x13SparqlQueryResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x41\n\x07payload\x18\x02 \x01(\x0b\x32\'.iotics.api.SparqlQueryResponse.PayloadR\x07payload\x1a\xdb\x01\n\x07Payload\x12\x16\n\x06hostId\x18\x01 \x01(\tR\x06hostId\x12\x16\n\x06seqNum\x18\x02 \x01(\x04R\x06seqNum\x12\x12\n\x04last\x18\x03 \x01(\x08R\x04last\x12*\n\x06status\x18\x04 \x01(\x0b\x32\x12.google.rpc.StatusR\x06status\x12>\n\x0b\x63ontentType\x18\x05 \x01(\x0e\x32\x1c.iotics.api.SparqlResultTypeR\x0b\x63ontentType\x12 \n\x0bresultChunk\x18\x06 \x01(\x0cR\x0bresultChunk\"\xaa\x01\n\x13SparqlUpdateRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x41\n\x07payload\x18\x02 \x01(\x0b\x32\'.iotics.api.SparqlUpdateRequest.PayloadR\x07payload\x1a!\n\x07Payload\x12\x16\n\x06update\x18\x01 \x01(\x0cR\x06update\"E\n\x14SparqlUpdateResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers*r\n\x10SparqlResultType\x12\x0f\n\x0bSPARQL_JSON\x10\x00\x12\x0e\n\nSPARQL_XML\x10\x01\x12\x0e\n\nSPARQL_CSV\x10\x02\x12\x0e\n\nRDF_TURTLE\x10\x03\x12\x0b\n\x07RDF_XML\x10\x04\x12\x10\n\x0cRDF_NTRIPLES\x10\x05\x32\x85\x02\n\x07MetaAPI\x12R\n\x0bSparqlQuery\x12\x1e.iotics.api.SparqlQueryRequest\x1a\x1f.iotics.api.SparqlQueryResponse\"\x00\x30\x01\x12S\n\x0cSparqlUpdate\x12\x1f.iotics.api.SparqlUpdateRequest\x1a .iotics.api.SparqlUpdateResponse\"\x00\x12Q\n\rExplorerQuery\x12\x1b.iotics.api.ExplorerRequest\x1a\x1f.iotics.api.SparqlQueryResponse\"\x00\x30\x01\x42}\n\x0e\x63om.iotics.apiB\tMetaProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'iotics.api.meta_pb2', globals())
@@ -23,22 +23,26 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\016com.iotics.apiB\tMetaProtoP\001Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\242\002\003IAX\252\002\nIotics.Api\312\002\nIotics\\Api'
-  _SPARQLRESULTTYPE._serialized_start=1009
-  _SPARQLRESULTTYPE._serialized_end=1123
-  _SPARQLQUERYREQUEST._serialized_start=88
-  _SPARQLQUERYREQUEST._serialized_end=371
-  _SPARQLQUERYREQUEST_PAYLOAD._serialized_start=264
-  _SPARQLQUERYREQUEST_PAYLOAD._serialized_end=371
-  _SPARQLQUERYRESPONSE._serialized_start=374
-  _SPARQLQUERYRESPONSE._serialized_end=763
-  _SPARQLQUERYRESPONSE_PAYLOAD._serialized_start=512
-  _SPARQLQUERYRESPONSE_PAYLOAD._serialized_end=763
-  _SPARQLUPDATEREQUEST._serialized_start=766
-  _SPARQLUPDATEREQUEST._serialized_end=936
-  _SPARQLUPDATEREQUEST_PAYLOAD._serialized_start=903
-  _SPARQLUPDATEREQUEST_PAYLOAD._serialized_end=936
-  _SPARQLUPDATERESPONSE._serialized_start=938
-  _SPARQLUPDATERESPONSE._serialized_end=1007
-  _METAAPI._serialized_start=1126
-  _METAAPI._serialized_end=1304
+  _SPARQLRESULTTYPE._serialized_start=1261
+  _SPARQLRESULTTYPE._serialized_end=1375
+  _EXPLORERREQUEST._serialized_start=88
+  _EXPLORERREQUEST._serialized_end=369
+  _EXPLORERREQUEST_PAYLOAD._serialized_start=258
+  _EXPLORERREQUEST_PAYLOAD._serialized_end=369
+  _SPARQLQUERYREQUEST._serialized_start=372
+  _SPARQLQUERYREQUEST._serialized_end=655
+  _SPARQLQUERYREQUEST_PAYLOAD._serialized_start=548
+  _SPARQLQUERYREQUEST_PAYLOAD._serialized_end=655
+  _SPARQLQUERYRESPONSE._serialized_start=658
+  _SPARQLQUERYRESPONSE._serialized_end=1015
+  _SPARQLQUERYRESPONSE_PAYLOAD._serialized_start=796
+  _SPARQLQUERYRESPONSE_PAYLOAD._serialized_end=1015
+  _SPARQLUPDATEREQUEST._serialized_start=1018
+  _SPARQLUPDATEREQUEST._serialized_end=1188
+  _SPARQLUPDATEREQUEST_PAYLOAD._serialized_start=1155
+  _SPARQLUPDATEREQUEST_PAYLOAD._serialized_end=1188
+  _SPARQLUPDATERESPONSE._serialized_start=1190
+  _SPARQLUPDATERESPONSE._serialized_end=1259
+  _METAAPI._serialized_start=1378
+  _METAAPI._serialized_end=1639
 # @@protoc_insertion_point(module_scope)

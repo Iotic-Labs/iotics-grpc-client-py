@@ -44,18 +44,25 @@ def get_twin_models(api):
         create_property(rdf_property_type_key, rdf_property_type_value_model, is_uri=True),
     ])
 
-    hosts = set()
+    local_host_id = api.get_local_host_id()
+
+    host_count = 0
     twins_total_count = 0
     for response in api.search_iter(client_app_id, payload, scope=Scope.GLOBAL, timeout=5):
-        hostId = response.payload.remoteHostId.value or 'local'
+        hostId = response.payload.hostId
         status = response.payload.status.message or 'OK'
         page = int(response.headers.clientRef.split('_page')[1]) + 1
         twins_count = len(response.payload.twins)
-        print(f'Host: {hostId:>53} Twins: {twins_count:>3} Page: {page:>2} Status: {status}')
-        hosts.add(hostId)
+        print(f'Host: {"(local host)" if not hostId or local_host_id == hostId else ""}{hostId:>53} Twins: {twins_count:>3} Page: {page:>2} Status: {status}')
+
         twins_total_count += twins_count
 
-    print(f'Got replies from {len(hosts)} hosts and found {twins_total_count} twins in total.')
+        twins_count = len(response.payload.twins)
+        host_count += 1
+
+        twins_total_count += twins_count
+
+    print(f'Got replies from {host_count} hosts and found {twins_total_count} twins in total.')
 
 
 if __name__ == '__main__':
