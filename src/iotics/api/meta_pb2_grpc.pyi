@@ -38,6 +38,11 @@ class MetaAPIStub:
     1. http://data.iotics.com/graph#custom-public (aka custom public graph) - All metadata written to this graph will be
        visible during SPARQL queries both with local & global scope (and thus, the Iotics network).
     """
+    ExplorerQuery: grpc.UnaryStreamMultiCallable[
+        iotics.api.meta_pb2.ExplorerRequest,
+        iotics.api.meta_pb2.SparqlQueryResponse,
+    ]
+    """ExplorerQuery - Deprecated - use SparqlQuery instead."""
 
 class MetaAPIServicer(metaclass=abc.ABCMeta):
     """---------------------------------------------------------------------------------------------------------------------
@@ -70,5 +75,12 @@ class MetaAPIServicer(metaclass=abc.ABCMeta):
         1. http://data.iotics.com/graph#custom-public (aka custom public graph) - All metadata written to this graph will be
            visible during SPARQL queries both with local & global scope (and thus, the Iotics network).
         """
+    @abc.abstractmethod
+    def ExplorerQuery(
+        self,
+        request: iotics.api.meta_pb2.ExplorerRequest,
+        context: grpc.ServicerContext,
+    ) -> collections.abc.Iterator[iotics.api.meta_pb2.SparqlQueryResponse]:
+        """ExplorerQuery - Deprecated - use SparqlQuery instead."""
 
 def add_MetaAPIServicer_to_server(servicer: MetaAPIServicer, server: grpc.Server) -> None: ...

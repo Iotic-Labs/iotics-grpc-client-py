@@ -27,21 +27,6 @@ class InterestAPIStub:
         iotics.api.interest_pb2.FetchInterestResponse,
     ]
     """Fetch last data shared on this interest. (local and remote)"""
-    ListAllInterests: grpc.UnaryUnaryMultiCallable[
-        iotics.api.interest_pb2.ListAllInterestsRequest,
-        iotics.api.interest_pb2.ListAllInterestsResponse,
-    ]
-    """List all interests associated to a given follower twin (Not implemented yet)."""
-    CreateInterest: grpc.UnaryUnaryMultiCallable[
-        iotics.api.interest_pb2.CreateInterestRequest,
-        iotics.api.interest_pb2.CreateInterestResponse,
-    ]
-    """Create an interest between a follower twin and a followed feed. (Not implemented yet)."""
-    DeleteInterest: grpc.UnaryUnaryMultiCallable[
-        iotics.api.interest_pb2.DeleteInterestRequest,
-        iotics.api.interest_pb2.DeleteInterestResponse,
-    ]
-    """Delete an existing interest. (Not implemented yet)."""
     SendInputMessage: grpc.UnaryUnaryMultiCallable[
         iotics.api.interest_pb2.SendInputMessageRequest,
         iotics.api.interest_pb2.SendInputMessageResponse,
@@ -68,27 +53,6 @@ class InterestAPIServicer(metaclass=abc.ABCMeta):
         context: grpc.ServicerContext,
     ) -> iotics.api.interest_pb2.FetchInterestResponse:
         """Fetch last data shared on this interest. (local and remote)"""
-    @abc.abstractmethod
-    def ListAllInterests(
-        self,
-        request: iotics.api.interest_pb2.ListAllInterestsRequest,
-        context: grpc.ServicerContext,
-    ) -> iotics.api.interest_pb2.ListAllInterestsResponse:
-        """List all interests associated to a given follower twin (Not implemented yet)."""
-    @abc.abstractmethod
-    def CreateInterest(
-        self,
-        request: iotics.api.interest_pb2.CreateInterestRequest,
-        context: grpc.ServicerContext,
-    ) -> iotics.api.interest_pb2.CreateInterestResponse:
-        """Create an interest between a follower twin and a followed feed. (Not implemented yet)."""
-    @abc.abstractmethod
-    def DeleteInterest(
-        self,
-        request: iotics.api.interest_pb2.DeleteInterestRequest,
-        context: grpc.ServicerContext,
-    ) -> iotics.api.interest_pb2.DeleteInterestResponse:
-        """Delete an existing interest. (Not implemented yet)."""
     @abc.abstractmethod
     def SendInputMessage(
         self,

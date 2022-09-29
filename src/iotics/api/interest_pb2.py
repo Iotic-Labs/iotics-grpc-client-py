@@ -17,7 +17,7 @@ from iotics.api import feed_pb2 as iotics_dot_api_dot_feed__pb2
 from iotics.api import input_pb2 as iotics_dot_api_dot_input__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19iotics/api/interest.proto\x12\niotics.api\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x17iotics/api/common.proto\x1a\x15iotics/api/feed.proto\x1a\x16iotics/api/input.proto\"\xfa\x01\n\rInputInterest\x12\x36\n\x0csenderTwinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x0csenderTwinId\x12H\n\tdestInput\x18\x02 \x01(\x0b\x32*.iotics.api.InputInterest.DestinationInputR\tdestInput\x1ag\n\x10\x44\x65stinationInput\x12\'\n\x05input\x18\x01 \x01(\x0b\x32\x11.iotics.api.InputR\x05input\x12*\n\x06hostId\x18\x02 \x01(\x0b\x32\x12.iotics.api.HostIDR\x06hostId\"\xd5\x02\n\x17SendInputMessageRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x41\n\x04\x61rgs\x18\x02 \x01(\x0b\x32-.iotics.api.SendInputMessageRequest.ArgumentsR\x04\x61rgs\x12\x45\n\x07payload\x18\x03 \x01(\x0b\x32+.iotics.api.SendInputMessageRequest.PayloadR\x07payload\x1a=\n\x07Payload\x12\x32\n\x07message\x18\x01 \x01(\x0b\x32\x18.iotics.api.InputMessageR\x07message\x1a\x42\n\tArguments\x12\x35\n\x08interest\x18\x01 \x01(\x0b\x32\x19.iotics.api.InputInterestR\x08interest\"I\n\x18SendInputMessageResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\"\xef\x01\n\x08Interest\x12:\n\x0e\x66ollowerTwinId\x18\x02 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x0e\x66ollowerTwinId\x12\x45\n\x0c\x66ollowedFeed\x18\x03 \x01(\x0b\x32!.iotics.api.Interest.FollowedFeedR\x0c\x66ollowedFeed\x1a`\n\x0c\x46ollowedFeed\x12$\n\x04\x66\x65\x65\x64\x18\x01 \x01(\x0b\x32\x10.iotics.api.FeedR\x04\x66\x65\x65\x64\x12*\n\x06hostId\x18\x02 \x01(\x0b\x32\x12.iotics.api.HostIDR\x06hostId\"\xc2\x02\n\x15\x43reateInterestRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x04\x61rgs\x18\x02 \x01(\x0b\x32+.iotics.api.CreateInterestRequest.ArgumentsR\x04\x61rgs\x12\x43\n\x07payload\x18\x03 \x01(\x0b\x32).iotics.api.CreateInterestRequest.PayloadR\x07payload\x1a;\n\x07Payload\x12\x30\n\x08interest\x18\x02 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xf2\x01\n\x16\x43reateInterestResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x44\n\x07payload\x18\x02 \x01(\x0b\x32*.iotics.api.CreateInterestResponse.PayloadR\x07payload\x1a\x63\n\x07Payload\x12\x30\n\x08interest\x18\x02 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\x12&\n\x0e\x61lreadyCreated\x18\x03 \x01(\x08R\x0e\x61lreadyCreated\"\xed\x01\n\x17ListAllInterestsRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x41\n\x04\x61rgs\x18\x02 \x01(\x0b\x32-.iotics.api.ListAllInterestsRequest.ArgumentsR\x04\x61rgs\x12\'\n\x05range\x18\x14 \x01(\x0b\x32\x11.iotics.api.RangeR\x05range\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xd0\x01\n\x18ListAllInterestsResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x46\n\x07payload\x18\x02 \x01(\x0b\x32,.iotics.api.ListAllInterestsResponse.PayloadR\x07payload\x1a=\n\x07Payload\x12\x32\n\tinterests\x18\x01 \x03(\x0b\x32\x14.iotics.api.InterestR\tinterests\"\x8a\x02\n\x14\x46\x65tchInterestRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12>\n\x04\x61rgs\x18\x02 \x01(\x0b\x32*.iotics.api.FetchInterestRequest.ArgumentsR\x04\x61rgs\x12\x44\n\x0f\x66\x65tchLastStored\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.BoolValueR\x0f\x66\x65tchLastStored\x1a=\n\tArguments\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\"\xfa\x01\n\x15\x46\x65tchInterestResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x43\n\x07payload\x18\x02 \x01(\x0b\x32).iotics.api.FetchInterestResponse.PayloadR\x07payload\x1am\n\x07Payload\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\x12\x30\n\x08\x66\x65\x65\x64\x44\x61ta\x18\x02 \x01(\x0b\x32\x14.iotics.api.FeedDataR\x08\x66\x65\x65\x64\x44\x61ta\"\xc8\x01\n\x16\x46\x65tchLastStoredRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x04\x61rgs\x18\x02 \x01(\x0b\x32,.iotics.api.FetchLastStoredRequest.ArgumentsR\x04\x61rgs\x1a=\n\tArguments\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\"\xc6\x01\n\x15\x44\x65leteInterestRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x04\x61rgs\x18\x02 \x01(\x0b\x32+.iotics.api.DeleteInterestRequest.ArgumentsR\x04\x61rgs\x1a=\n\tArguments\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\"\xca\x01\n\x16\x44\x65leteInterestResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x44\n\x07payload\x18\x02 \x01(\x0b\x32*.iotics.api.DeleteInterestResponse.PayloadR\x07payload\x1a;\n\x07Payload\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest2\xbc\x04\n\x0bInterestAPI\x12Y\n\x0e\x46\x65tchInterests\x12 .iotics.api.FetchInterestRequest\x1a!.iotics.api.FetchInterestResponse\"\x00\x30\x01\x12Z\n\x0f\x46\x65tchLastStored\x12\".iotics.api.FetchLastStoredRequest\x1a!.iotics.api.FetchInterestResponse\"\x00\x12_\n\x10ListAllInterests\x12#.iotics.api.ListAllInterestsRequest\x1a$.iotics.api.ListAllInterestsResponse\"\x00\x12Y\n\x0e\x43reateInterest\x12!.iotics.api.CreateInterestRequest\x1a\".iotics.api.CreateInterestResponse\"\x00\x12Y\n\x0e\x44\x65leteInterest\x12!.iotics.api.DeleteInterestRequest\x1a\".iotics.api.DeleteInterestResponse\"\x00\x12_\n\x10SendInputMessage\x12#.iotics.api.SendInputMessageRequest\x1a$.iotics.api.SendInputMessageResponse\"\x00\x42\x81\x01\n\x0e\x63om.iotics.apiB\rInterestProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19iotics/api/interest.proto\x12\niotics.api\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x17iotics/api/common.proto\x1a\x15iotics/api/feed.proto\x1a\x16iotics/api/input.proto\"~\n\rInputInterest\x12\x36\n\x0csenderTwinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x0csenderTwinId\x12\x35\n\x0b\x64\x65stInputId\x18\x02 \x01(\x0b\x32\x13.iotics.api.InputIDR\x0b\x64\x65stInputId\"\xd5\x02\n\x17SendInputMessageRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x41\n\x04\x61rgs\x18\x02 \x01(\x0b\x32-.iotics.api.SendInputMessageRequest.ArgumentsR\x04\x61rgs\x12\x45\n\x07payload\x18\x03 \x01(\x0b\x32+.iotics.api.SendInputMessageRequest.PayloadR\x07payload\x1a=\n\x07Payload\x12\x32\n\x07message\x18\x01 \x01(\x0b\x32\x18.iotics.api.InputMessageR\x07message\x1a\x42\n\tArguments\x12\x35\n\x08interest\x18\x01 \x01(\x0b\x32\x19.iotics.api.InputInterestR\x08interest\"I\n\x18SendInputMessageResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\"\x82\x01\n\x08Interest\x12:\n\x0e\x66ollowerTwinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x0e\x66ollowerTwinId\x12:\n\x0e\x66ollowedFeedId\x18\x02 \x01(\x0b\x32\x12.iotics.api.FeedIDR\x0e\x66ollowedFeedId\"\x8a\x02\n\x14\x46\x65tchInterestRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12>\n\x04\x61rgs\x18\x02 \x01(\x0b\x32*.iotics.api.FetchInterestRequest.ArgumentsR\x04\x61rgs\x12\x44\n\x0f\x66\x65tchLastStored\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.BoolValueR\x0f\x66\x65tchLastStored\x1a=\n\tArguments\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\"\xfa\x01\n\x15\x46\x65tchInterestResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x43\n\x07payload\x18\x02 \x01(\x0b\x32).iotics.api.FetchInterestResponse.PayloadR\x07payload\x1am\n\x07Payload\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest\x12\x30\n\x08\x66\x65\x65\x64\x44\x61ta\x18\x02 \x01(\x0b\x32\x14.iotics.api.FeedDataR\x08\x66\x65\x65\x64\x44\x61ta\"\xc8\x01\n\x16\x46\x65tchLastStoredRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x04\x61rgs\x18\x02 \x01(\x0b\x32,.iotics.api.FetchLastStoredRequest.ArgumentsR\x04\x61rgs\x1a=\n\tArguments\x12\x30\n\x08interest\x18\x01 \x01(\x0b\x32\x14.iotics.api.InterestR\x08interest2\xa5\x02\n\x0bInterestAPI\x12Y\n\x0e\x46\x65tchInterests\x12 .iotics.api.FetchInterestRequest\x1a!.iotics.api.FetchInterestResponse\"\x00\x30\x01\x12Z\n\x0f\x46\x65tchLastStored\x12\".iotics.api.FetchLastStoredRequest\x1a!.iotics.api.FetchInterestResponse\"\x00\x12_\n\x10SendInputMessage\x12#.iotics.api.SendInputMessageRequest\x1a$.iotics.api.SendInputMessageResponse\"\x00\x42\x81\x01\n\x0e\x63om.iotics.apiB\rInterestProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'iotics.api.interest_pb2', globals())
@@ -25,60 +25,30 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\016com.iotics.apiB\rInterestProtoP\001Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\242\002\003IAX\252\002\nIotics.Api\312\002\nIotics\\Api'
-  _INPUTINTEREST._serialized_start=146
-  _INPUTINTEREST._serialized_end=396
-  _INPUTINTEREST_DESTINATIONINPUT._serialized_start=293
-  _INPUTINTEREST_DESTINATIONINPUT._serialized_end=396
-  _SENDINPUTMESSAGEREQUEST._serialized_start=399
-  _SENDINPUTMESSAGEREQUEST._serialized_end=740
-  _SENDINPUTMESSAGEREQUEST_PAYLOAD._serialized_start=611
-  _SENDINPUTMESSAGEREQUEST_PAYLOAD._serialized_end=672
-  _SENDINPUTMESSAGEREQUEST_ARGUMENTS._serialized_start=674
-  _SENDINPUTMESSAGEREQUEST_ARGUMENTS._serialized_end=740
-  _SENDINPUTMESSAGERESPONSE._serialized_start=742
-  _SENDINPUTMESSAGERESPONSE._serialized_end=815
-  _INTEREST._serialized_start=818
-  _INTEREST._serialized_end=1057
-  _INTEREST_FOLLOWEDFEED._serialized_start=961
-  _INTEREST_FOLLOWEDFEED._serialized_end=1057
-  _CREATEINTERESTREQUEST._serialized_start=1060
-  _CREATEINTERESTREQUEST._serialized_end=1382
-  _CREATEINTERESTREQUEST_PAYLOAD._serialized_start=1266
-  _CREATEINTERESTREQUEST_PAYLOAD._serialized_end=1325
-  _CREATEINTERESTREQUEST_ARGUMENTS._serialized_start=1327
-  _CREATEINTERESTREQUEST_ARGUMENTS._serialized_end=1382
-  _CREATEINTERESTRESPONSE._serialized_start=1385
-  _CREATEINTERESTRESPONSE._serialized_end=1627
-  _CREATEINTERESTRESPONSE_PAYLOAD._serialized_start=1528
-  _CREATEINTERESTRESPONSE_PAYLOAD._serialized_end=1627
-  _LISTALLINTERESTSREQUEST._serialized_start=1630
-  _LISTALLINTERESTSREQUEST._serialized_end=1867
-  _LISTALLINTERESTSREQUEST_ARGUMENTS._serialized_start=1327
-  _LISTALLINTERESTSREQUEST_ARGUMENTS._serialized_end=1382
-  _LISTALLINTERESTSRESPONSE._serialized_start=1870
-  _LISTALLINTERESTSRESPONSE._serialized_end=2078
-  _LISTALLINTERESTSRESPONSE_PAYLOAD._serialized_start=2017
-  _LISTALLINTERESTSRESPONSE_PAYLOAD._serialized_end=2078
-  _FETCHINTERESTREQUEST._serialized_start=2081
-  _FETCHINTERESTREQUEST._serialized_end=2347
-  _FETCHINTERESTREQUEST_ARGUMENTS._serialized_start=2286
-  _FETCHINTERESTREQUEST_ARGUMENTS._serialized_end=2347
-  _FETCHINTERESTRESPONSE._serialized_start=2350
-  _FETCHINTERESTRESPONSE._serialized_end=2600
-  _FETCHINTERESTRESPONSE_PAYLOAD._serialized_start=2491
-  _FETCHINTERESTRESPONSE_PAYLOAD._serialized_end=2600
-  _FETCHLASTSTOREDREQUEST._serialized_start=2603
-  _FETCHLASTSTOREDREQUEST._serialized_end=2803
-  _FETCHLASTSTOREDREQUEST_ARGUMENTS._serialized_start=2286
-  _FETCHLASTSTOREDREQUEST_ARGUMENTS._serialized_end=2347
-  _DELETEINTERESTREQUEST._serialized_start=2806
-  _DELETEINTERESTREQUEST._serialized_end=3004
-  _DELETEINTERESTREQUEST_ARGUMENTS._serialized_start=2286
-  _DELETEINTERESTREQUEST_ARGUMENTS._serialized_end=2347
-  _DELETEINTERESTRESPONSE._serialized_start=3007
-  _DELETEINTERESTRESPONSE._serialized_end=3209
-  _DELETEINTERESTRESPONSE_PAYLOAD._serialized_start=2491
-  _DELETEINTERESTRESPONSE_PAYLOAD._serialized_end=2550
-  _INTERESTAPI._serialized_start=3212
-  _INTERESTAPI._serialized_end=3784
+  _INPUTINTEREST._serialized_start=145
+  _INPUTINTEREST._serialized_end=271
+  _SENDINPUTMESSAGEREQUEST._serialized_start=274
+  _SENDINPUTMESSAGEREQUEST._serialized_end=615
+  _SENDINPUTMESSAGEREQUEST_PAYLOAD._serialized_start=486
+  _SENDINPUTMESSAGEREQUEST_PAYLOAD._serialized_end=547
+  _SENDINPUTMESSAGEREQUEST_ARGUMENTS._serialized_start=549
+  _SENDINPUTMESSAGEREQUEST_ARGUMENTS._serialized_end=615
+  _SENDINPUTMESSAGERESPONSE._serialized_start=617
+  _SENDINPUTMESSAGERESPONSE._serialized_end=690
+  _INTEREST._serialized_start=693
+  _INTEREST._serialized_end=823
+  _FETCHINTERESTREQUEST._serialized_start=826
+  _FETCHINTERESTREQUEST._serialized_end=1092
+  _FETCHINTERESTREQUEST_ARGUMENTS._serialized_start=1031
+  _FETCHINTERESTREQUEST_ARGUMENTS._serialized_end=1092
+  _FETCHINTERESTRESPONSE._serialized_start=1095
+  _FETCHINTERESTRESPONSE._serialized_end=1345
+  _FETCHINTERESTRESPONSE_PAYLOAD._serialized_start=1236
+  _FETCHINTERESTRESPONSE_PAYLOAD._serialized_end=1345
+  _FETCHLASTSTOREDREQUEST._serialized_start=1348
+  _FETCHLASTSTOREDREQUEST._serialized_end=1548
+  _FETCHLASTSTOREDREQUEST_ARGUMENTS._serialized_start=1031
+  _FETCHLASTSTOREDREQUEST_ARGUMENTS._serialized_end=1092
+  _INTERESTAPI._serialized_start=1551
+  _INTERESTAPI._serialized_end=1844
 # @@protoc_insertion_point(module_scope)

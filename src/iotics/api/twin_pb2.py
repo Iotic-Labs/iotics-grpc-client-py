@@ -11,12 +11,13 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 from iotics.api import common_pb2 as iotics_dot_api_dot_common__pb2
 from iotics.api import feed_pb2 as iotics_dot_api_dot_feed__pb2
 from iotics.api import input_pb2 as iotics_dot_api_dot_input__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15iotics/api/twin.proto\x12\niotics.api\x1a\x17iotics/api/common.proto\x1a\x15iotics/api/feed.proto\x1a\x16iotics/api/input.proto\"b\n\x04Twin\x12\"\n\x02id\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x02id\x12\x36\n\nvisibility\x18\x02 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\"m\n\x13ListAllTwinsRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\'\n\x05range\x18\x14 \x01(\x0b\x32\x11.iotics.api.RangeR\x05range\"\xaf\x03\n\x14ListAllTwinsResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x42\n\x07payload\x18\x02 \x01(\x0b\x32(.iotics.api.ListAllTwinsResponse.PayloadR\x07payload\x1a\xd4\x01\n\x0bTwinDetails\x12\"\n\x02id\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x02id\x12\x36\n\nvisibility\x18\x02 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\x12\x33\n\x08location\x18\x03 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x34\n\nproperties\x18\x05 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1aM\n\x07Payload\x12\x42\n\x05twins\x18\x01 \x03(\x0b\x32,.iotics.api.ListAllTwinsResponse.TwinDetailsR\x05twins\"\xba\x01\n\x11\x43reateTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x07payload\x18\x02 \x01(\x0b\x32%.iotics.api.CreateTwinRequest.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xbc\x01\n\x12\x43reateTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.CreateTwinResponse.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xb8\x01\n\x11\x44\x65leteTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12;\n\x04\x61rgs\x18\x02 \x01(\x0b\x32\'.iotics.api.DeleteTwinRequest.ArgumentsR\x04\x61rgs\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xbc\x01\n\x12\x44\x65leteTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.DeleteTwinResponse.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xf4\x01\n\x13\x44\x65scribeTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12=\n\x04\x61rgs\x18\x03 \x01(\x0b\x32).iotics.api.DescribeTwinRequest.ArgumentsR\x04\x61rgs\x1ao\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\x12\x36\n\x0cremoteHostId\x18\x02 \x01(\x0b\x32\x12.iotics.api.HostIDR\x0cremoteHostId\"T\n\x08\x46\x65\x65\x64Meta\x12*\n\x06\x66\x65\x65\x64Id\x18\x01 \x01(\x0b\x32\x12.iotics.api.FeedIDR\x06\x66\x65\x65\x64Id\x12\x1c\n\tstoreLast\x18\x03 \x01(\x08R\tstoreLast\":\n\tInputMeta\x12-\n\x07inputId\x18\x01 \x01(\x0b\x32\x13.iotics.api.InputIDR\x07inputId\"\x8d\x04\n\x14\x44\x65scribeTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x42\n\x07payload\x18\x02 \x01(\x0b\x32(.iotics.api.DescribeTwinResponse.PayloadR\x07payload\x1a\xd2\x01\n\nMetaResult\x12\x33\n\x08location\x18\x01 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12*\n\x05\x66\x65\x65\x64s\x18\x04 \x03(\x0b\x32\x14.iotics.api.FeedMetaR\x05\x66\x65\x65\x64s\x12-\n\x06inputs\x18\x05 \x03(\x0b\x32\x15.iotics.api.InputMetaR\x06inputs\x12\x34\n\nproperties\x18\x06 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x1a\xac\x01\n\x07Payload\x12$\n\x04twin\x18\x01 \x01(\x0b\x32\x10.iotics.api.TwinR\x04twin\x12\x43\n\x06result\x18\x02 \x01(\x0b\x32+.iotics.api.DescribeTwinResponse.MetaResultR\x06result\x12\x36\n\x0cremoteHostId\x18\x03 \x01(\x0b\x32\x12.iotics.api.HostIDR\x0cremoteHostId\"J\n\x10VisibilityUpdate\x12\x36\n\nvisibility\x18\x01 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\"H\n\x11GeoLocationUpdate\x12\x33\n\x08location\x18\x01 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\"\xc0\x03\n\x11UpdateTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12;\n\x04\x61rgs\x18\x02 \x01(\x0b\x32\'.iotics.api.UpdateTwinRequest.ArgumentsR\x04\x61rgs\x12?\n\x07payload\x18\x03 \x01(\x0b\x32%.iotics.api.UpdateTwinRequest.PayloadR\x07payload\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\x1a\xc4\x01\n\x07Payload\x12\x42\n\rnewVisibility\x18\x02 \x01(\x0b\x32\x1c.iotics.api.VisibilityUpdateR\rnewVisibility\x12:\n\nproperties\x18\x03 \x01(\x0b\x32\x1a.iotics.api.PropertyUpdateR\nproperties\x12\x39\n\x08location\x18\x06 \x01(\x0b\x32\x1d.iotics.api.GeoLocationUpdateR\x08location\"\xbc\x01\n\x12UpdateTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.UpdateTwinResponse.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xb9\x03\n\x11UpsertTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x07payload\x18\x02 \x01(\x0b\x32%.iotics.api.UpsertTwinRequest.PayloadR\x07payload\x1a\xb3\x02\n\x07Payload\x12\x16\n\x06twinId\x18\x01 \x01(\tR\x06twinId\x12\x36\n\nvisibility\x18\x02 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\x12\x34\n\nproperties\x18\x05 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x12\x33\n\x08location\x18\x06 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x34\n\x05\x66\x65\x65\x64s\x18\x07 \x03(\x0b\x32\x1e.iotics.api.UpsertFeedWithMetaR\x05\x66\x65\x65\x64s\x12\x37\n\x06inputs\x18\x08 \x03(\x0b\x32\x1f.iotics.api.UpsertInputWithMetaR\x06inputs\"\xa8\x01\n\x12UpsertTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.UpsertTwinResponse.PayloadR\x07payload\x1a!\n\x07Payload\x12\x16\n\x06twinId\x18\x01 \x01(\tR\x06twinId2\xef\x03\n\x07TwinAPI\x12M\n\nCreateTwin\x12\x1d.iotics.api.CreateTwinRequest\x1a\x1e.iotics.api.CreateTwinResponse\"\x00\x12M\n\nUpsertTwin\x12\x1d.iotics.api.UpsertTwinRequest\x1a\x1e.iotics.api.UpsertTwinResponse\"\x00\x12M\n\nDeleteTwin\x12\x1d.iotics.api.DeleteTwinRequest\x1a\x1e.iotics.api.DeleteTwinResponse\"\x00\x12M\n\nUpdateTwin\x12\x1d.iotics.api.UpdateTwinRequest\x1a\x1e.iotics.api.UpdateTwinResponse\"\x00\x12S\n\x0c\x44\x65scribeTwin\x12\x1f.iotics.api.DescribeTwinRequest\x1a .iotics.api.DescribeTwinResponse\"\x00\x12S\n\x0cListAllTwins\x12\x1f.iotics.api.ListAllTwinsRequest\x1a .iotics.api.ListAllTwinsResponse\"\x00\x42}\n\x0e\x63om.iotics.apiB\tTwinProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15iotics/api/twin.proto\x12\niotics.api\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17iotics/api/common.proto\x1a\x15iotics/api/feed.proto\x1a\x16iotics/api/input.proto\"m\n\x13ListAllTwinsRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\'\n\x05range\x18\x14 \x01(\x0b\x32\x11.iotics.api.RangeR\x05range\"\xab\x04\n\x14ListAllTwinsResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x42\n\x07payload\x18\x02 \x01(\x0b\x32(.iotics.api.ListAllTwinsResponse.PayloadR\x07payload\x1a\xd0\x02\n\x0bTwinDetails\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\x12\x36\n\nvisibility\x18\x02 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\x12\x33\n\x08location\x18\x03 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x34\n\nproperties\x18\x05 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x12\x38\n\tcreatedAt\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x38\n\tupdatedAt\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tupdatedAt\x1aM\n\x07Payload\x12\x42\n\x05twins\x18\x01 \x03(\x0b\x32,.iotics.api.ListAllTwinsResponse.TwinDetailsR\x05twins\"\x9e\x01\n\x11\x43reateTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x07payload\x18\x02 \x01(\x0b\x32%.iotics.api.CreateTwinRequest.PayloadR\x07payload\x1a\x19\n\x07Payload\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\xbc\x01\n\x12\x43reateTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.CreateTwinResponse.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xb8\x01\n\x11\x44\x65leteTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12;\n\x04\x61rgs\x18\x02 \x01(\x0b\x32\'.iotics.api.DeleteTwinRequest.ArgumentsR\x04\x61rgs\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xbc\x01\n\x12\x44\x65leteTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.DeleteTwinResponse.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xbc\x01\n\x13\x44\x65scribeTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12=\n\x04\x61rgs\x18\x03 \x01(\x0b\x32).iotics.api.DescribeTwinRequest.ArgumentsR\x04\x61rgs\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"T\n\x08\x46\x65\x65\x64Meta\x12*\n\x06\x66\x65\x65\x64Id\x18\x01 \x01(\x0b\x32\x12.iotics.api.FeedIDR\x06\x66\x65\x65\x64Id\x12\x1c\n\tstoreLast\x18\x03 \x01(\x08R\tstoreLast\":\n\tInputMeta\x12-\n\x07inputId\x18\x01 \x01(\x0b\x32\x13.iotics.api.InputIDR\x07inputId\"\x86\x05\n\x14\x44\x65scribeTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x42\n\x07payload\x18\x02 \x01(\x0b\x32(.iotics.api.DescribeTwinResponse.PayloadR\x07payload\x1a\xfe\x02\n\nMetaResult\x12\x33\n\x08location\x18\x01 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x36\n\nvisibility\x18\x02 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\x12*\n\x05\x66\x65\x65\x64s\x18\x04 \x03(\x0b\x32\x14.iotics.api.FeedMetaR\x05\x66\x65\x65\x64s\x12-\n\x06inputs\x18\x05 \x03(\x0b\x32\x15.iotics.api.InputMetaR\x06inputs\x12\x34\n\nproperties\x18\x06 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x12\x38\n\tcreatedAt\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x38\n\tupdatedAt\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tupdatedAt\x1az\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\x12\x43\n\x06result\x18\x02 \x01(\x0b\x32+.iotics.api.DescribeTwinResponse.MetaResultR\x06result\"J\n\x10VisibilityUpdate\x12\x36\n\nvisibility\x18\x01 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\"H\n\x11GeoLocationUpdate\x12\x33\n\x08location\x18\x01 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\"\xc0\x03\n\x11UpdateTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12;\n\x04\x61rgs\x18\x02 \x01(\x0b\x32\'.iotics.api.UpdateTwinRequest.ArgumentsR\x04\x61rgs\x12?\n\x07payload\x18\x03 \x01(\x0b\x32%.iotics.api.UpdateTwinRequest.PayloadR\x07payload\x1a\x37\n\tArguments\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\x1a\xc4\x01\n\x07Payload\x12\x42\n\rnewVisibility\x18\x02 \x01(\x0b\x32\x1c.iotics.api.VisibilityUpdateR\rnewVisibility\x12:\n\nproperties\x18\x03 \x01(\x0b\x32\x1a.iotics.api.PropertyUpdateR\nproperties\x12\x39\n\x08location\x18\x06 \x01(\x0b\x32\x1d.iotics.api.GeoLocationUpdateR\x08location\"\xbc\x01\n\x12UpdateTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.UpdateTwinResponse.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\xcd\x03\n\x11UpsertTwinRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x07payload\x18\x02 \x01(\x0b\x32%.iotics.api.UpsertTwinRequest.PayloadR\x07payload\x1a\xc7\x02\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\x12\x36\n\nvisibility\x18\x02 \x01(\x0e\x32\x16.iotics.api.VisibilityR\nvisibility\x12\x34\n\nproperties\x18\x05 \x03(\x0b\x32\x14.iotics.api.PropertyR\nproperties\x12\x33\n\x08location\x18\x06 \x01(\x0b\x32\x17.iotics.api.GeoLocationR\x08location\x12\x34\n\x05\x66\x65\x65\x64s\x18\x07 \x03(\x0b\x32\x1e.iotics.api.UpsertFeedWithMetaR\x05\x66\x65\x65\x64s\x12\x37\n\x06inputs\x18\x08 \x03(\x0b\x32\x1f.iotics.api.UpsertInputWithMetaR\x06inputs\"\xbc\x01\n\x12UpsertTwinResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.UpsertTwinResponse.PayloadR\x07payload\x1a\x35\n\x07Payload\x12*\n\x06twinId\x18\x01 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId2\xef\x03\n\x07TwinAPI\x12M\n\nCreateTwin\x12\x1d.iotics.api.CreateTwinRequest\x1a\x1e.iotics.api.CreateTwinResponse\"\x00\x12M\n\nUpsertTwin\x12\x1d.iotics.api.UpsertTwinRequest\x1a\x1e.iotics.api.UpsertTwinResponse\"\x00\x12M\n\nDeleteTwin\x12\x1d.iotics.api.DeleteTwinRequest\x1a\x1e.iotics.api.DeleteTwinResponse\"\x00\x12M\n\nUpdateTwin\x12\x1d.iotics.api.UpdateTwinRequest\x1a\x1e.iotics.api.UpdateTwinResponse\"\x00\x12S\n\x0c\x44\x65scribeTwin\x12\x1f.iotics.api.DescribeTwinRequest\x1a .iotics.api.DescribeTwinResponse\"\x00\x12S\n\x0cListAllTwins\x12\x1f.iotics.api.ListAllTwinsRequest\x1a .iotics.api.ListAllTwinsResponse\"\x00\x42}\n\x0e\x63om.iotics.apiB\tTwinProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'iotics.api.twin_pb2', globals())
@@ -24,68 +25,66 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\016com.iotics.apiB\tTwinProtoP\001Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\242\002\003IAX\252\002\nIotics.Api\312\002\nIotics\\Api'
-  _TWIN._serialized_start=109
-  _TWIN._serialized_end=207
-  _LISTALLTWINSREQUEST._serialized_start=209
-  _LISTALLTWINSREQUEST._serialized_end=318
-  _LISTALLTWINSRESPONSE._serialized_start=321
-  _LISTALLTWINSRESPONSE._serialized_end=752
-  _LISTALLTWINSRESPONSE_TWINDETAILS._serialized_start=461
-  _LISTALLTWINSRESPONSE_TWINDETAILS._serialized_end=673
-  _LISTALLTWINSRESPONSE_PAYLOAD._serialized_start=675
-  _LISTALLTWINSRESPONSE_PAYLOAD._serialized_end=752
-  _CREATETWINREQUEST._serialized_start=755
-  _CREATETWINREQUEST._serialized_end=941
-  _CREATETWINREQUEST_PAYLOAD._serialized_start=888
-  _CREATETWINREQUEST_PAYLOAD._serialized_end=941
-  _CREATETWINRESPONSE._serialized_start=944
-  _CREATETWINRESPONSE._serialized_end=1132
-  _CREATETWINRESPONSE_PAYLOAD._serialized_start=888
-  _CREATETWINRESPONSE_PAYLOAD._serialized_end=941
-  _DELETETWINREQUEST._serialized_start=1135
-  _DELETETWINREQUEST._serialized_end=1319
-  _DELETETWINREQUEST_ARGUMENTS._serialized_start=1264
-  _DELETETWINREQUEST_ARGUMENTS._serialized_end=1319
-  _DELETETWINRESPONSE._serialized_start=1322
-  _DELETETWINRESPONSE._serialized_end=1510
-  _DELETETWINRESPONSE_PAYLOAD._serialized_start=888
-  _DELETETWINRESPONSE_PAYLOAD._serialized_end=941
-  _DESCRIBETWINREQUEST._serialized_start=1513
-  _DESCRIBETWINREQUEST._serialized_end=1757
-  _DESCRIBETWINREQUEST_ARGUMENTS._serialized_start=1646
-  _DESCRIBETWINREQUEST_ARGUMENTS._serialized_end=1757
-  _FEEDMETA._serialized_start=1759
-  _FEEDMETA._serialized_end=1843
-  _INPUTMETA._serialized_start=1845
-  _INPUTMETA._serialized_end=1903
-  _DESCRIBETWINRESPONSE._serialized_start=1906
-  _DESCRIBETWINRESPONSE._serialized_end=2431
-  _DESCRIBETWINRESPONSE_METARESULT._serialized_start=2046
-  _DESCRIBETWINRESPONSE_METARESULT._serialized_end=2256
-  _DESCRIBETWINRESPONSE_PAYLOAD._serialized_start=2259
-  _DESCRIBETWINRESPONSE_PAYLOAD._serialized_end=2431
-  _VISIBILITYUPDATE._serialized_start=2433
-  _VISIBILITYUPDATE._serialized_end=2507
-  _GEOLOCATIONUPDATE._serialized_start=2509
-  _GEOLOCATIONUPDATE._serialized_end=2581
-  _UPDATETWINREQUEST._serialized_start=2584
-  _UPDATETWINREQUEST._serialized_end=3032
-  _UPDATETWINREQUEST_ARGUMENTS._serialized_start=1264
-  _UPDATETWINREQUEST_ARGUMENTS._serialized_end=1319
-  _UPDATETWINREQUEST_PAYLOAD._serialized_start=2836
-  _UPDATETWINREQUEST_PAYLOAD._serialized_end=3032
-  _UPDATETWINRESPONSE._serialized_start=3035
-  _UPDATETWINRESPONSE._serialized_end=3223
-  _UPDATETWINRESPONSE_PAYLOAD._serialized_start=888
-  _UPDATETWINRESPONSE_PAYLOAD._serialized_end=941
-  _UPSERTTWINREQUEST._serialized_start=3226
-  _UPSERTTWINREQUEST._serialized_end=3667
-  _UPSERTTWINREQUEST_PAYLOAD._serialized_start=3360
-  _UPSERTTWINREQUEST_PAYLOAD._serialized_end=3667
-  _UPSERTTWINRESPONSE._serialized_start=3670
-  _UPSERTTWINRESPONSE._serialized_end=3838
-  _UPSERTTWINRESPONSE_PAYLOAD._serialized_start=3360
-  _UPSERTTWINRESPONSE_PAYLOAD._serialized_end=3393
-  _TWINAPI._serialized_start=3841
-  _TWINAPI._serialized_end=4336
+  _LISTALLTWINSREQUEST._serialized_start=142
+  _LISTALLTWINSREQUEST._serialized_end=251
+  _LISTALLTWINSRESPONSE._serialized_start=254
+  _LISTALLTWINSRESPONSE._serialized_end=809
+  _LISTALLTWINSRESPONSE_TWINDETAILS._serialized_start=394
+  _LISTALLTWINSRESPONSE_TWINDETAILS._serialized_end=730
+  _LISTALLTWINSRESPONSE_PAYLOAD._serialized_start=732
+  _LISTALLTWINSRESPONSE_PAYLOAD._serialized_end=809
+  _CREATETWINREQUEST._serialized_start=812
+  _CREATETWINREQUEST._serialized_end=970
+  _CREATETWINREQUEST_PAYLOAD._serialized_start=945
+  _CREATETWINREQUEST_PAYLOAD._serialized_end=970
+  _CREATETWINRESPONSE._serialized_start=973
+  _CREATETWINRESPONSE._serialized_end=1161
+  _CREATETWINRESPONSE_PAYLOAD._serialized_start=1108
+  _CREATETWINRESPONSE_PAYLOAD._serialized_end=1161
+  _DELETETWINREQUEST._serialized_start=1164
+  _DELETETWINREQUEST._serialized_end=1348
+  _DELETETWINREQUEST_ARGUMENTS._serialized_start=1293
+  _DELETETWINREQUEST_ARGUMENTS._serialized_end=1348
+  _DELETETWINRESPONSE._serialized_start=1351
+  _DELETETWINRESPONSE._serialized_end=1539
+  _DELETETWINRESPONSE_PAYLOAD._serialized_start=1108
+  _DELETETWINRESPONSE_PAYLOAD._serialized_end=1161
+  _DESCRIBETWINREQUEST._serialized_start=1542
+  _DESCRIBETWINREQUEST._serialized_end=1730
+  _DESCRIBETWINREQUEST_ARGUMENTS._serialized_start=1293
+  _DESCRIBETWINREQUEST_ARGUMENTS._serialized_end=1348
+  _FEEDMETA._serialized_start=1732
+  _FEEDMETA._serialized_end=1816
+  _INPUTMETA._serialized_start=1818
+  _INPUTMETA._serialized_end=1876
+  _DESCRIBETWINRESPONSE._serialized_start=1879
+  _DESCRIBETWINRESPONSE._serialized_end=2525
+  _DESCRIBETWINRESPONSE_METARESULT._serialized_start=2019
+  _DESCRIBETWINRESPONSE_METARESULT._serialized_end=2401
+  _DESCRIBETWINRESPONSE_PAYLOAD._serialized_start=2403
+  _DESCRIBETWINRESPONSE_PAYLOAD._serialized_end=2525
+  _VISIBILITYUPDATE._serialized_start=2527
+  _VISIBILITYUPDATE._serialized_end=2601
+  _GEOLOCATIONUPDATE._serialized_start=2603
+  _GEOLOCATIONUPDATE._serialized_end=2675
+  _UPDATETWINREQUEST._serialized_start=2678
+  _UPDATETWINREQUEST._serialized_end=3126
+  _UPDATETWINREQUEST_ARGUMENTS._serialized_start=1293
+  _UPDATETWINREQUEST_ARGUMENTS._serialized_end=1348
+  _UPDATETWINREQUEST_PAYLOAD._serialized_start=2930
+  _UPDATETWINREQUEST_PAYLOAD._serialized_end=3126
+  _UPDATETWINRESPONSE._serialized_start=3129
+  _UPDATETWINRESPONSE._serialized_end=3317
+  _UPDATETWINRESPONSE_PAYLOAD._serialized_start=1108
+  _UPDATETWINRESPONSE_PAYLOAD._serialized_end=1161
+  _UPSERTTWINREQUEST._serialized_start=3320
+  _UPSERTTWINREQUEST._serialized_end=3781
+  _UPSERTTWINREQUEST_PAYLOAD._serialized_start=3454
+  _UPSERTTWINREQUEST_PAYLOAD._serialized_end=3781
+  _UPSERTTWINRESPONSE._serialized_start=3784
+  _UPSERTTWINRESPONSE._serialized_end=3972
+  _UPSERTTWINRESPONSE_PAYLOAD._serialized_start=1108
+  _UPSERTTWINRESPONSE_PAYLOAD._serialized_end=1161
+  _TWINAPI._serialized_start=3975
+  _TWINAPI._serialized_end=4470
 # @@protoc_insertion_point(module_scope)

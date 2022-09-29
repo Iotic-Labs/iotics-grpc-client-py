@@ -33,9 +33,17 @@ class _VisibilityEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._Enu
     PUBLIC: _Visibility.ValueType  # 1
 
 class Visibility(_Visibility, metaclass=_VisibilityEnumTypeWrapper):
-    """Visibility defines who a twin is visible to.
-    PRIVATE - the twin is only visible in a LOCAL scope.
-    PUBLIC - the twin is visible in any scope.
+    """DEPRECATED
+    This field will be temporarily maintained alongside the metadata network allowlist for backwards compatibility.
+    Going forward, the metadata network allowlist should be used instead.
+
+    Read behaviour:
+    PRIVATE - the twin is only visible in a LOCAL scope or according to the metadata network allowlist
+    PUBLIC - the twin is visible in any scope. (ie. metadata network allowlist [ALLOW_ALL])
+
+    Write behaviour:
+    PRIVATE - set the metadata network allowlist to ALLOW_NONE: the twin is only visible in a LOCAL scope
+    PUBLIC - set the metadata network allowlist to ALLOW_ALL: the twin is visible in any scope.
     """
 
 PRIVATE: Visibility.ValueType  # 0
@@ -360,73 +368,28 @@ class SubscriptionHeaders(google.protobuf.message.Message):
 
 global___SubscriptionHeaders = SubscriptionHeaders
 
-class HostID(google.protobuf.message.Message):
-    """HostID is a unique host identifier."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    VALUE_FIELD_NUMBER: builtins.int
-    value: builtins.str
-    """Host Identifier string representation"""
-    def __init__(
-        self,
-        *,
-        value: builtins.str = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["value", b"value"]) -> None: ...
-
-global___HostID = HostID
-
 class TwinID(google.protobuf.message.Message):
-    """TwinID is a unique twin identifier."""
+    """TwinID is the virtual representation of a (physical, purely virtual or hybrid) device,
+    is only ever located in the host it was created.
+    """
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    VALUE_FIELD_NUMBER: builtins.int
-    value: builtins.str
+    ID_FIELD_NUMBER: builtins.int
+    HOSTID_FIELD_NUMBER: builtins.int
+    id: builtins.str
     """Twin Identifier (using DID format)"""
+    hostId: builtins.str
+    """Host Identifier (using DID format)"""
     def __init__(
         self,
         *,
-        value: builtins.str = ...,
+        id: builtins.str = ...,
+        hostId: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["value", b"value"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["hostId", b"hostId", "id", b"id"]) -> None: ...
 
 global___TwinID = TwinID
-
-class FeedID(google.protobuf.message.Message):
-    """FeedID is a unique feed identifier (scoped to the set of feeds for a TwinID)."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    VALUE_FIELD_NUMBER: builtins.int
-    value: builtins.str
-    """Feed Identifier string representation (simple string)"""
-    def __init__(
-        self,
-        *,
-        value: builtins.str = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["value", b"value"]) -> None: ...
-
-global___FeedID = FeedID
-
-class InputID(google.protobuf.message.Message):
-    """InputID is a unique input identifier (scoped to the set of inputs for a TwinID)."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    VALUE_FIELD_NUMBER: builtins.int
-    value: builtins.str
-    """Input Identifier string representation (simple string)"""
-    def __init__(
-        self,
-        *,
-        value: builtins.str = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["value", b"value"]) -> None: ...
-
-global___InputID = InputID
 
 class Value(google.protobuf.message.Message):
     """Value is the definition of an individual piece of data within a Feed share or an Input send. Values are purely descriptive, e.g. a

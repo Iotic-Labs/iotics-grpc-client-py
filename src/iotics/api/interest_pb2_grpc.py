@@ -27,21 +27,6 @@ class InterestAPIStub(object):
                 request_serializer=iotics_dot_api_dot_interest__pb2.FetchLastStoredRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_interest__pb2.FetchInterestResponse.FromString,
                 )
-        self.ListAllInterests = channel.unary_unary(
-                '/iotics.api.InterestAPI/ListAllInterests',
-                request_serializer=iotics_dot_api_dot_interest__pb2.ListAllInterestsRequest.SerializeToString,
-                response_deserializer=iotics_dot_api_dot_interest__pb2.ListAllInterestsResponse.FromString,
-                )
-        self.CreateInterest = channel.unary_unary(
-                '/iotics.api.InterestAPI/CreateInterest',
-                request_serializer=iotics_dot_api_dot_interest__pb2.CreateInterestRequest.SerializeToString,
-                response_deserializer=iotics_dot_api_dot_interest__pb2.CreateInterestResponse.FromString,
-                )
-        self.DeleteInterest = channel.unary_unary(
-                '/iotics.api.InterestAPI/DeleteInterest',
-                request_serializer=iotics_dot_api_dot_interest__pb2.DeleteInterestRequest.SerializeToString,
-                response_deserializer=iotics_dot_api_dot_interest__pb2.DeleteInterestResponse.FromString,
-                )
         self.SendInputMessage = channel.unary_unary(
                 '/iotics.api.InterestAPI/SendInputMessage',
                 request_serializer=iotics_dot_api_dot_interest__pb2.SendInputMessageRequest.SerializeToString,
@@ -69,27 +54,6 @@ class InterestAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ListAllInterests(self, request, context):
-        """List all interests associated to a given follower twin (Not implemented yet).
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def CreateInterest(self, request, context):
-        """Create an interest between a follower twin and a followed feed. (Not implemented yet).
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def DeleteInterest(self, request, context):
-        """Delete an existing interest. (Not implemented yet).
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def SendInputMessage(self, request, context):
         """Send a message to an input. (local and remote)
         """
@@ -109,21 +73,6 @@ def add_InterestAPIServicer_to_server(servicer, server):
                     servicer.FetchLastStored,
                     request_deserializer=iotics_dot_api_dot_interest__pb2.FetchLastStoredRequest.FromString,
                     response_serializer=iotics_dot_api_dot_interest__pb2.FetchInterestResponse.SerializeToString,
-            ),
-            'ListAllInterests': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListAllInterests,
-                    request_deserializer=iotics_dot_api_dot_interest__pb2.ListAllInterestsRequest.FromString,
-                    response_serializer=iotics_dot_api_dot_interest__pb2.ListAllInterestsResponse.SerializeToString,
-            ),
-            'CreateInterest': grpc.unary_unary_rpc_method_handler(
-                    servicer.CreateInterest,
-                    request_deserializer=iotics_dot_api_dot_interest__pb2.CreateInterestRequest.FromString,
-                    response_serializer=iotics_dot_api_dot_interest__pb2.CreateInterestResponse.SerializeToString,
-            ),
-            'DeleteInterest': grpc.unary_unary_rpc_method_handler(
-                    servicer.DeleteInterest,
-                    request_deserializer=iotics_dot_api_dot_interest__pb2.DeleteInterestRequest.FromString,
-                    response_serializer=iotics_dot_api_dot_interest__pb2.DeleteInterestResponse.SerializeToString,
             ),
             'SendInputMessage': grpc.unary_unary_rpc_method_handler(
                     servicer.SendInputMessage,
@@ -174,57 +123,6 @@ class InterestAPI(object):
         return grpc.experimental.unary_unary(request, target, '/iotics.api.InterestAPI/FetchLastStored',
             iotics_dot_api_dot_interest__pb2.FetchLastStoredRequest.SerializeToString,
             iotics_dot_api_dot_interest__pb2.FetchInterestResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def ListAllInterests(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.InterestAPI/ListAllInterests',
-            iotics_dot_api_dot_interest__pb2.ListAllInterestsRequest.SerializeToString,
-            iotics_dot_api_dot_interest__pb2.ListAllInterestsResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def CreateInterest(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.InterestAPI/CreateInterest',
-            iotics_dot_api_dot_interest__pb2.CreateInterestRequest.SerializeToString,
-            iotics_dot_api_dot_interest__pb2.CreateInterestResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def DeleteInterest(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.InterestAPI/DeleteInterest',
-            iotics_dot_api_dot_interest__pb2.DeleteInterestRequest.SerializeToString,
-            iotics_dot_api_dot_interest__pb2.DeleteInterestResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

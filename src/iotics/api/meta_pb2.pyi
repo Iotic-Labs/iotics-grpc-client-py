@@ -59,6 +59,55 @@ RDF_NTRIPLES: SparqlResultType.ValueType  # 5
 """Applicable to CONSTRUCT/DESCRIBE (RDF 1.1 N-Triples)"""
 global___SparqlResultType = SparqlResultType
 
+class ExplorerRequest(google.protobuf.message.Message):
+    """ExplorerRequest - Deprecated. Use SparqlQueryRequest instead."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    class Payload(google.protobuf.message.Message):
+        """Explorer request payload."""
+
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+        RESULTCONTENTTYPE_FIELD_NUMBER: builtins.int
+        KEYWORD_FIELD_NUMBER: builtins.int
+        resultContentType: global___SparqlResultType.ValueType
+        """The desired result content type. Note that choosing an invalid result type for the type of query will result in
+        an error status reported in the response. (See SparqlResultType for valid content-query type combinations.)
+        """
+        keyword: builtins.str
+        """keyword defines the search term associated to the explorer request."""
+        def __init__(
+            self,
+            *,
+            resultContentType: global___SparqlResultType.ValueType = ...,
+            keyword: builtins.str = ...,
+        ) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["keyword", b"keyword", "resultContentType", b"resultContentType"]) -> None: ...
+
+    HEADERS_FIELD_NUMBER: builtins.int
+    SCOPE_FIELD_NUMBER: builtins.int
+    PAYLOAD_FIELD_NUMBER: builtins.int
+    @property
+    def headers(self) -> iotics.api.common_pb2.Headers:
+        """Explorer request headers"""
+    scope: iotics.api.common_pb2.Scope.ValueType
+    """Explorer request scope"""
+    @property
+    def payload(self) -> global___ExplorerRequest.Payload:
+        """Explorer request payload"""
+    def __init__(
+        self,
+        *,
+        headers: iotics.api.common_pb2.Headers | None = ...,
+        scope: iotics.api.common_pb2.Scope.ValueType = ...,
+        payload: global___ExplorerRequest.Payload | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload", "scope", b"scope"]) -> None: ...
+
+global___ExplorerRequest = ExplorerRequest
+
 class SparqlQueryRequest(google.protobuf.message.Message):
     """SparqlQueryRequest describes a SPARQL query."""
 
@@ -111,7 +160,7 @@ global___SparqlQueryRequest = SparqlQueryRequest
 class SparqlQueryResponse(google.protobuf.message.Message):
     """SparqlQueryResponse is a part of a result for a SPARQL query request. Multiple chunks form a complete result. Related
     chunks can be identified by a combination of:
-    - The host ID (unset for local results)
+    - The hostId
     - Client reference (in headers, set by caller)
     - Chunk sequence number
     """
@@ -123,17 +172,16 @@ class SparqlQueryResponse(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        REMOTEHOSTID_FIELD_NUMBER: builtins.int
+        HOSTID_FIELD_NUMBER: builtins.int
         SEQNUM_FIELD_NUMBER: builtins.int
         LAST_FIELD_NUMBER: builtins.int
         STATUS_FIELD_NUMBER: builtins.int
         CONTENTTYPE_FIELD_NUMBER: builtins.int
         RESULTCHUNK_FIELD_NUMBER: builtins.int
-        @property
-        def remoteHostId(self) -> iotics.api.common_pb2.HostID:
-            """Result host identifier. Indicates from which host this result chunk came from. For a local result, this field
-            will be unset.
-            """
+        hostId: builtins.str
+        """Result host identifier. Indicates from which host this result chunk came from. For a local result, this field
+        will be unset.
+        """
         seqNum: builtins.int
         """Position of a chunk in result from a given host (and request). The first chunk has a sequence number of 0."""
         last: builtins.bool
@@ -142,7 +190,7 @@ class SparqlQueryResponse(google.protobuf.message.Message):
         """
         @property
         def status(self) -> google.rpc.status_pb2.Status:
-            """Result error status (only applicable to local results, i.e. when remoteHostId is unset). If set, this will
+            """Result error status (only applicable to local results). If set, this will
             indicate a problem with running the query (e.g. invalid syntax or content type) as opposed to a more general
             issue (in which case the standard gRPC error mechanism will be used and the stream terminated).
             """
@@ -156,15 +204,15 @@ class SparqlQueryResponse(google.protobuf.message.Message):
         def __init__(
             self,
             *,
-            remoteHostId: iotics.api.common_pb2.HostID | None = ...,
+            hostId: builtins.str = ...,
             seqNum: builtins.int = ...,
             last: builtins.bool = ...,
             status: google.rpc.status_pb2.Status | None = ...,
             contentType: global___SparqlResultType.ValueType = ...,
             resultChunk: builtins.bytes = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["remoteHostId", b"remoteHostId", "status", b"status"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["contentType", b"contentType", "last", b"last", "remoteHostId", b"remoteHostId", "resultChunk", b"resultChunk", "seqNum", b"seqNum", "status", b"status"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["status", b"status"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["contentType", b"contentType", "hostId", b"hostId", "last", b"last", "resultChunk", b"resultChunk", "seqNum", b"seqNum", "status", b"status"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
