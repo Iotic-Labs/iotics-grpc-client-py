@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 BUF_VERSION ?= 1.6.0
-PROTOC_VERSION ?= 21.2
+PROTOC_VERSION ?= 21.6
 VENV_PATH ?= ./env
 
 GOBIN := $(shell go env GOPATH)/bin
@@ -11,7 +11,7 @@ UNAME_M := $(shell uname -m)
 ifeq ($(UNAME_S), Darwin)
   PROTOC_ARCHIVE="protoc-$(PROTOC_VERSION)-osx-x86_64.zip"
 else
-  PROTOC_ARCHIVE="protoc-$(PROTOC_VERSION)-$(UNAME_S)-$(UNAME_M).zip"
+  PROTOC_ARCHIVE="protoc-$(PROTOC_VERSION)-$(UNAME_S)-aarch_64.zip"
 endif
 BUF_URL := "https://github.com/bufbuild/buf/releases/download/v$(BUF_VERSION)/buf-$(UNAME_S)-$(UNAME_M)"
 PROTOC_URL := "https://github.com/protocolbuffers/protobuf/releases/download/v$(PROTOC_VERSION)/$(PROTOC_ARCHIVE)"
