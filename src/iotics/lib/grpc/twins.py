@@ -43,7 +43,7 @@ class TwinApi(ApiBase):
         """
         req = twin_pb2.CreateTwinRequest(
             headers=headers or create_headers(),
-            payload=twin_pb2.CreateTwinRequest.Payload(twinId=common_pb2.TwinID(value=twin_did))
+            payload=twin_pb2.CreateTwinRequest.Payload(id=twin_did)
         )
         return self.stub.CreateTwin(req)
 
@@ -62,12 +62,12 @@ class TwinApi(ApiBase):
 
         Returns: Response object describing the twin
         """
+
         req = twin_pb2.DescribeTwinRequest(
             headers=headers or create_headers(),
             args=twin_pb2.DescribeTwinRequest.Arguments(
-                twinId=common_pb2.TwinID(value=twin_did),
-                remoteHostId=common_pb2.HostID(value=remote_host_id)
-        ))
+                twinId=common_pb2.TwinID(id=twin_did, hostId=remote_host_id)),
+        )
         return self.stub.DescribeTwin(req)
 
     def delete_twin(
@@ -83,9 +83,10 @@ class TwinApi(ApiBase):
 
         Returns: Response object confirming the DID of the deleted twin
         """
+
         req = twin_pb2.DeleteTwinRequest(
             headers=headers or create_headers(),
-            args=twin_pb2.DeleteTwinRequest.Arguments(twinId=common_pb2.TwinID(value=twin_did)))
+            args=twin_pb2.DeleteTwinRequest.Arguments(twinId=common_pb2.TwinID(id=twin_did)))
         return self.stub.DeleteTwin(req)
 
     def list_twins(self, headers: typing.Optional[common_pb2.Headers] = None) -> twin_pb2.ListAllTwinsResponse:
@@ -124,9 +125,10 @@ class TwinApi(ApiBase):
 
         Returns: Response object confirming the ID of the twin that was updated
         """
+
         req = twin_pb2.UpdateTwinRequest(
             headers=headers or create_headers(),
-            args=twin_pb2.UpdateTwinRequest.Arguments(twinId=common_pb2.TwinID(value=twin_did)),
+            args=twin_pb2.UpdateTwinRequest.Arguments(twinId=common_pb2.TwinID(id=twin_did)),
             payload=twin_pb2.UpdateTwinRequest.Payload(
                 newVisibility=twin_pb2.VisibilityUpdate(visibility=visibility) if visibility else None,
                 location=twin_pb2.GeoLocationUpdate(location=location) if location else None,
@@ -165,10 +167,11 @@ class TwinApi(ApiBase):
 
         Returns: Response object confirming the ID of the twin that was upserted
         """
+
         req = twin_pb2.UpsertTwinRequest(
             headers=headers or create_headers(),
             payload=twin_pb2.UpsertTwinRequest.Payload(
-                twinId=twin_did,
+                twinId=common_pb2.TwinID(id=twin_did),
                 visibility=visibility,
                 location=location,
                 properties=properties,

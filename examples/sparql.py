@@ -7,7 +7,8 @@ from iotics.api.meta_pb2 import SparqlQueryResponse
 
 
 def get_auth():
-    import dotenv, os
+    import dotenv
+    import os
     dotenv.load_dotenv()
     auth = IdentityAuth(
         os.environ['SPACE'],
@@ -29,7 +30,7 @@ def do_query(query, api):
     try:
         for response in stream:
             # Chunk processing per host per seq number
-            host_id = response.payload.remoteHostId.value or 'localhost'
+            host_id = response.payload.hostId or 'localhost'
             chunks = chunks_per_host.setdefault(host_id, {})
             chunks[response.payload.seqNum] = response
     # Exit the loop based on the timeout error (normal case)
