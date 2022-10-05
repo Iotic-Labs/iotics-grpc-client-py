@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 BUF_VERSION ?= 1.6.0
-PROTOC_VERSION ?= 21.6
+PROTOC_VERSION ?= 21.7
 VENV_PATH ?= ./env
 
 GOBIN := $(shell go env GOPATH)/bin

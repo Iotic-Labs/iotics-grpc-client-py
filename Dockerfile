@@ -30,7 +30,7 @@ ARG UID=1000
 ARG GID=1000
 
 # adding group 
-RUN groupadd -g $GID $UNAME && useradd -lm -u $UID -g $GID -s /bin/bash $UNAME
+RUN groupadd -g $GID $UNAME || useradd -lm -u $UID -g $GID -s /bin/bash $UNAME
 
 # Set up Golang
 ENV GOROOT=/usr/local/go
