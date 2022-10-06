@@ -17,9 +17,6 @@ RUN cd grpc.git && git submodule update --init
 # RUN apt-get -y install nodejs && \
 #     npm install -g @bazel/bazelisk
 
-# # for building on mac, needs to install unzip
-# RUN if [[$(command unzip)]] ; then echo "unzip is installed" ; else apt-get install -y --no-install-recommends unzip ; fi
-
 # Get Bazel build tool
 RUN apt-get install -y --no-install-recommends curl gnupg
 RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > /etc/apt/trusted.gpg.d/bazel.gpg
