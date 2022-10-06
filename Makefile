@@ -11,7 +11,7 @@ UNAME_M := $(shell uname -m)
 ifeq ($(UNAME_S), Darwin)
   PROTOC_ARCHIVE="protoc-$(PROTOC_VERSION)-osx-x86_64.zip"
 else
-  PROTOC_ARCHIVE="protoc-$(PROTOC_VERSION)-$(UNAME_S)-aarch_64.zip"
+  PROTOC_ARCHIVE="protoc-$(PROTOC_VERSION)-$(UNAME_S)-$(UNAME_M).zip"
 endif
 BUF_URL := "https://github.com/bufbuild/buf/releases/download/v$(BUF_VERSION)/buf-$(UNAME_S)-$(UNAME_M)"
 PROTOC_URL := "https://github.com/protocolbuffers/protobuf/releases/download/v$(PROTOC_VERSION)/$(PROTOC_ARCHIVE)"
