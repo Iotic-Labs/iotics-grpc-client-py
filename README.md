@@ -77,7 +77,16 @@ Should contain a summary of the changes in [CHANGELOG.md](https://github.com/Iot
 
 ## Versioning
 
-This package will have the same version as the [API](https://github.com/Iotic-Labs/api/tags) but with the API's minor and patch numbers bumped to major and minor. If/when there's a change in the grpc client but not in the API we will change the patch number. We can then know that e.g. API version 0.2.5 works with grpc clients 2.5.X
+This package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
+
+
+## Version compatibility with Iotics host:
+
+| iotics-grpc-client-py | iotics-host |
+|----------------------:| ----------- |
+|      `>= 0.10.0`       | `>= 4`       |
+|         `>= 2`       | `>= 5`       |
+
 
 ## Releasing
 * Update package version in [setup.py](./setup.py) for the release:
