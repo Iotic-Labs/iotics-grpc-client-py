@@ -2,10 +2,13 @@
 A Python library for interacting with Iotics API.
 
 
-## Usage
-```shell
-pip install iotics-grpc-client
-```
+## Usage and Version Compatibility with Iotics host:
+
+| iotics-grpc-client-py | iotics-host |
+|----------------------| ----------- |
+|      `pip install iotics-grpc-client~=2.0`       | `>= 5`       |
+|      `pip install iotics-grpc-client~=0.10.0`      | `>= 4`     |
+
 
 
 # Examples
@@ -78,14 +81,6 @@ Should contain a summary of the changes in [CHANGELOG.md](https://github.com/Iot
 ## Versioning
 
 This package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
-
-
-## Version compatibility with Iotics host:
-
-| iotics-grpc-client-py | iotics-host |
-|----------------------:| ----------- |
-|      `>= 0.10.0`       | `>= 4`       |
-|         `>= 2`       | `>= 5`       |
 
 
 ## Releasing
