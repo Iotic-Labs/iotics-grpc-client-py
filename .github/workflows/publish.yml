@@ -19,36 +19,34 @@ on:
     types: [published]
 
 jobs:
-  # Cannot verify against space until breaking change host is released
-
   # Ensure package correctly imports dependencies and can communicate with the IOTICSpace.
-  # verify:
-  #   name: Verify against a Space
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Check out repository
-  #       uses: actions/checkout@v3
-  #     - name: Check that the package can be imported
-  #       run: make verify-import
-  #     - name: Mask secrets
-  #       run: |
-  #         echo "::add-mask::${{ secrets.SPACE }}"
-  #         echo "::add-mask::${{ secrets.USER_SEED }}"
-  #         echo "::add-mask::${{ secrets.USER_KEY_NAME }}"
-  #         echo "::add-mask::${{ secrets.USER_NAME }}"
-  #         echo "::add-mask::${{ secrets.AGENT_SEED }}"
-  #         echo "::add-mask::${{ secrets.AGENT_KEY_NAME }}"
-  #         echo "::add-mask::${{ secrets.AGENT_NAME }}"
-  #     - name: Run examples
-  #       run: make run-examples
-  #       env:
-  #         SPACE: ${{ secrets.SPACE }}
-  #         USER_SEED: ${{ secrets.USER_SEED }}
-  #         USER_KEY_NAME: ${{ secrets.USER_KEY_NAME }}
-  #         USER_NAME: ${{ secrets.USER_NAME }}
-  #         AGENT_SEED: ${{ secrets.AGENT_SEED }}
-  #         AGENT_KEY_NAME: ${{ secrets.AGENT_KEY_NAME }}
-  #         AGENT_NAME: ${{ secrets.AGENT_NAME }}
+  verify:
+    name: Verify against a Space
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Check that the package can be imported
+        run: make verify-import
+      - name: Mask secrets
+        run: |
+          echo "::add-mask::${{ secrets.SPACE }}"
+          echo "::add-mask::${{ secrets.USER_SEED }}"
+          echo "::add-mask::${{ secrets.USER_KEY_NAME }}"
+          echo "::add-mask::${{ secrets.USER_NAME }}"
+          echo "::add-mask::${{ secrets.AGENT_SEED }}"
+          echo "::add-mask::${{ secrets.AGENT_KEY_NAME }}"
+          echo "::add-mask::${{ secrets.AGENT_NAME }}"
+      - name: Run examples
+        run: make run-examples
+        env:
+          SPACE: ${{ secrets.SPACE }}
+          USER_SEED: ${{ secrets.USER_SEED }}
+          USER_KEY_NAME: ${{ secrets.USER_KEY_NAME }}
+          USER_NAME: ${{ secrets.USER_NAME }}
+          AGENT_SEED: ${{ secrets.AGENT_SEED }}
+          AGENT_KEY_NAME: ${{ secrets.AGENT_KEY_NAME }}
+          AGENT_NAME: ${{ secrets.AGENT_NAME }}
 
   package:
     name: Package the library
