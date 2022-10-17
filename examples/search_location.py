@@ -53,7 +53,7 @@ def get_twins_in_cambridge(api):
             return
 
         twins = [
-            f'- {twin.id} ({prop.langLiteralValue.lang}): {prop.langLiteralValue.value}'
+            f'- {twin.twinId.id} ({prop.langLiteralValue.lang}): {prop.langLiteralValue.value}'
             for twin in response.payload.twins
             for prop in twin.properties
             if prop.key == 'http://www.w3.org/2000/01/rdf-schema#label'
