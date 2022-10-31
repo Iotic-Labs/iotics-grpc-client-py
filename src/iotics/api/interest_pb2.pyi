@@ -21,6 +21,7 @@ else:
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class InputInterest(google.protobuf.message.Message):
     """An interest is the relationship between a Twin and an Input."""
 
@@ -45,11 +46,13 @@ class InputInterest(google.protobuf.message.Message):
 
 global___InputInterest = InputInterest
 
+@typing_extensions.final
 class SendInputMessageRequest(google.protobuf.message.Message):
     """SendInputMessageRequest is used to send a message to a given input."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """SendInputMessageRequest payload."""
 
@@ -67,6 +70,7 @@ class SendInputMessageRequest(google.protobuf.message.Message):
         def HasField(self, field_name: typing_extensions.Literal["message", b"message"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing_extensions.Literal["message", b"message"]) -> None: ...
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """SendInputMessageRequest arguments."""
 
@@ -108,6 +112,7 @@ class SendInputMessageRequest(google.protobuf.message.Message):
 
 global___SendInputMessageRequest = SendInputMessageRequest
 
+@typing_extensions.final
 class SendInputMessageResponse(google.protobuf.message.Message):
     """SendInputMessageResponse is used to indicate a successful send."""
 
@@ -127,6 +132,7 @@ class SendInputMessageResponse(google.protobuf.message.Message):
 
 global___SendInputMessageResponse = SendInputMessageResponse
 
+@typing_extensions.final
 class Interest(google.protobuf.message.Message):
     """An interest is the relationship between a Twin and a Feed. For example, creating
     an interest on (following) a Feed results in any data shared on said Feed to be forwarded to
@@ -155,6 +161,7 @@ class Interest(google.protobuf.message.Message):
 
 global___Interest = Interest
 
+@typing_extensions.final
 class FetchInterestRequest(google.protobuf.message.Message):
     """---------------------------------------
 
@@ -163,6 +170,7 @@ class FetchInterestRequest(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """FetchInterestRequest mandatory arguments."""
 
@@ -204,11 +212,13 @@ class FetchInterestRequest(google.protobuf.message.Message):
 
 global___FetchInterestRequest = FetchInterestRequest
 
+@typing_extensions.final
 class FetchInterestResponse(google.protobuf.message.Message):
     """FetchInterestResponse describes a feed value shared on a given interest."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """FetchInterestResponse payload."""
 
@@ -250,6 +260,7 @@ class FetchInterestResponse(google.protobuf.message.Message):
 
 global___FetchInterestResponse = FetchInterestResponse
 
+@typing_extensions.final
 class FetchLastStoredRequest(google.protobuf.message.Message):
     """---------------------------------------
 
@@ -258,6 +269,7 @@ class FetchLastStoredRequest(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """FetchLastStoredRequest mandatory arguments."""
 

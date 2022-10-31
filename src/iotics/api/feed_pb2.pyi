@@ -21,6 +21,7 @@ else:
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class FeedID(google.protobuf.message.Message):
     """A feed representation."""
 
@@ -46,11 +47,13 @@ class FeedID(google.protobuf.message.Message):
 
 global___FeedID = FeedID
 
+@typing_extensions.final
 class CreateFeedRequest(google.protobuf.message.Message):
     """CreateFeedRequestCreate is used to create a new feed in a given twin."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """Payload describes the data needed to create a feed."""
 
@@ -66,6 +69,7 @@ class CreateFeedRequest(google.protobuf.message.Message):
         ) -> None: ...
         def ClearField(self, field_name: typing_extensions.Literal["id", b"id"]) -> None: ...
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """Arguments describes the mandatory arguments to identify the twin the feed belongs to."""
 
@@ -107,11 +111,13 @@ class CreateFeedRequest(google.protobuf.message.Message):
 
 global___CreateFeedRequest = CreateFeedRequest
 
+@typing_extensions.final
 class CreateFeedResponse(google.protobuf.message.Message):
     """CreateFeedResponse describes a created feed."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """CreateFeedResponse payload."""
 
@@ -148,11 +154,13 @@ class CreateFeedResponse(google.protobuf.message.Message):
 
 global___CreateFeedResponse = CreateFeedResponse
 
+@typing_extensions.final
 class DeleteFeedRequest(google.protobuf.message.Message):
     """DeleteFeedRequest is used to delete a feed from a given twin."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """DeleteFeedRequest arguments."""
 
@@ -189,11 +197,13 @@ class DeleteFeedRequest(google.protobuf.message.Message):
 
 global___DeleteFeedRequest = DeleteFeedRequest
 
+@typing_extensions.final
 class DeleteFeedResponse(google.protobuf.message.Message):
     """DeleteFeedResponse describes a deleted feed."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """DeleteFeedResponse payload."""
 
@@ -230,11 +240,13 @@ class DeleteFeedResponse(google.protobuf.message.Message):
 
 global___DeleteFeedResponse = DeleteFeedResponse
 
+@typing_extensions.final
 class UpdateFeedRequest(google.protobuf.message.Message):
     """UpdateFeedRequest is used to update attributes (including metadata) of a given feed."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """UpdateFeedRequest payload. One or more fields can be provided, depending on what needs to be updated.
         Note that the specified metadata changes are applied in the following order:
@@ -265,6 +277,7 @@ class UpdateFeedRequest(google.protobuf.message.Message):
         def HasField(self, field_name: typing_extensions.Literal["properties", b"properties", "storeLast", b"storeLast", "values", b"values"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing_extensions.Literal["properties", b"properties", "storeLast", b"storeLast", "values", b"values"]) -> None: ...
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """UpdateFeedRequest arguments."""
 
@@ -305,11 +318,13 @@ class UpdateFeedRequest(google.protobuf.message.Message):
 
 global___UpdateFeedRequest = UpdateFeedRequest
 
+@typing_extensions.final
 class UpdateFeedResponse(google.protobuf.message.Message):
     """UpdateFeedResponse is used to indicate a successful update."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """UpdateFeedResponse payload."""
 
@@ -346,11 +361,13 @@ class UpdateFeedResponse(google.protobuf.message.Message):
 
 global___UpdateFeedResponse = UpdateFeedResponse
 
+@typing_extensions.final
 class ShareFeedDataRequest(google.protobuf.message.Message):
     """ShareFeedDataRequest is used to share a new sample of data for the given feed."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """ShareFeedDataRequest payload."""
 
@@ -368,6 +385,7 @@ class ShareFeedDataRequest(google.protobuf.message.Message):
         def HasField(self, field_name: typing_extensions.Literal["sample", b"sample"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing_extensions.Literal["sample", b"sample"]) -> None: ...
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """ShareFeedDataRequest arguments."""
 
@@ -409,6 +427,7 @@ class ShareFeedDataRequest(google.protobuf.message.Message):
 
 global___ShareFeedDataRequest = ShareFeedDataRequest
 
+@typing_extensions.final
 class ShareFeedDataResponse(google.protobuf.message.Message):
     """ShareFeedDataResponse is used to indicate a successful feed share."""
 
@@ -428,11 +447,13 @@ class ShareFeedDataResponse(google.protobuf.message.Message):
 
 global___ShareFeedDataResponse = ShareFeedDataResponse
 
+@typing_extensions.final
 class ListAllFeedsRequest(google.protobuf.message.Message):
     """ListAllFeedsRequest is used to list all the feeds owned by a given twin."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """ListAllFeedsRequest mandatory arguments."""
 
@@ -476,11 +497,13 @@ class ListAllFeedsRequest(google.protobuf.message.Message):
 
 global___ListAllFeedsRequest = ListAllFeedsRequest
 
+@typing_extensions.final
 class ListAllFeedsResponse(google.protobuf.message.Message):
     """ListAllFeedsResponse describes the list of the feeds owned by a twin."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """ListAllFeedsResponse payload."""
 
@@ -516,11 +539,13 @@ class ListAllFeedsResponse(google.protobuf.message.Message):
 
 global___ListAllFeedsResponse = ListAllFeedsResponse
 
+@typing_extensions.final
 class DescribeFeedRequest(google.protobuf.message.Message):
     """Description of twin: Provides public metadata lookup for individual resources."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """DescribeFeedRequest arguments."""
 
@@ -557,11 +582,13 @@ class DescribeFeedRequest(google.protobuf.message.Message):
 
 global___DescribeFeedRequest = DescribeFeedRequest
 
+@typing_extensions.final
 class DescribeFeedResponse(google.protobuf.message.Message):
     """Describe feed response."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class MetaResult(google.protobuf.message.Message):
         """Metadata result databag."""
 
@@ -589,6 +616,7 @@ class DescribeFeedResponse(google.protobuf.message.Message):
         ) -> None: ...
         def ClearField(self, field_name: typing_extensions.Literal["properties", b"properties", "storeLast", b"storeLast", "values", b"values"]) -> None: ...
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """DescribeFeedResponse payload."""
 
@@ -630,6 +658,7 @@ class DescribeFeedResponse(google.protobuf.message.Message):
 
 global___DescribeFeedResponse = DescribeFeedResponse
 
+@typing_extensions.final
 class UpsertFeedWithMeta(google.protobuf.message.Message):
     """UpsertFeedWithMeta is used to describe the full feed state. Used in UpsertTwinRequest."""
 

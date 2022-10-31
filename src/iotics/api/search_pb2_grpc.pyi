@@ -34,6 +34,11 @@ class SearchAPIStub:
         iotics.api.search_pb2.SearchResponse,
     ]
     """Receive all search responses associated to a set of Search request for a given client application ID."""
+    AdvancedSearch: grpc.UnaryStreamMultiCallable[
+        iotics.api.search_pb2.AdvancedSearchRequest,
+        iotics.api.search_pb2.SearchResponse,
+    ]
+    """Run an advanced (filter) search request on a user timeout and return formatted results."""
 
 class SearchAPIServicer(metaclass=abc.ABCMeta):
     """---------------------------------------------------------------------------------------------------------------------
@@ -63,5 +68,12 @@ class SearchAPIServicer(metaclass=abc.ABCMeta):
         context: grpc.ServicerContext,
     ) -> collections.abc.Iterator[iotics.api.search_pb2.SearchResponse]:
         """Receive all search responses associated to a set of Search request for a given client application ID."""
+    @abc.abstractmethod
+    def AdvancedSearch(
+        self,
+        request: iotics.api.search_pb2.AdvancedSearchRequest,
+        context: grpc.ServicerContext,
+    ) -> collections.abc.Iterator[iotics.api.search_pb2.SearchResponse]:
+        """Run an advanced (filter) search request on a user timeout and return formatted results."""
 
 def add_SearchAPIServicer_to_server(servicer: SearchAPIServicer, server: grpc.Server) -> None: ...

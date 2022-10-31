@@ -27,7 +27,7 @@ class _Visibility:
     ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
 
-class _VisibilityEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Visibility.ValueType], builtins.type):  # noqa: F821
+class _VisibilityEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Visibility.ValueType], builtins.type):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     PRIVATE: _Visibility.ValueType  # 0
     PUBLIC: _Visibility.ValueType  # 1
@@ -54,7 +54,7 @@ class _Scope:
     ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
 
-class _ScopeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Scope.ValueType], builtins.type):  # noqa: F821
+class _ScopeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Scope.ValueType], builtins.type):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     GLOBAL: _Scope.ValueType  # 0
     LOCAL: _Scope.ValueType  # 1
@@ -69,6 +69,7 @@ GLOBAL: Scope.ValueType  # 0
 LOCAL: Scope.ValueType  # 1
 global___Scope = Scope
 
+@typing_extensions.final
 class Limit(google.protobuf.message.Message):
     """---------------------------------------------------------------------------------------------------------------------
 
@@ -89,6 +90,7 @@ class Limit(google.protobuf.message.Message):
 
 global___Limit = Limit
 
+@typing_extensions.final
 class Offset(google.protobuf.message.Message):
     """Offset is a request parameter applicable in conjunction with the "Limit"
     request parameter to start returning results from the given offset.
@@ -108,6 +110,7 @@ class Offset(google.protobuf.message.Message):
 
 global___Offset = Offset
 
+@typing_extensions.final
 class Range(google.protobuf.message.Message):
     """Range is the combination of the "Limit" and "Offset" is a request parameters. It is
     used to return a specific range of results. Default value is applied if no limit is specified.
@@ -132,6 +135,7 @@ class Range(google.protobuf.message.Message):
 
 global___Range = Range
 
+@typing_extensions.final
 class LangLiteral(google.protobuf.message.Message):
     """LangLiteral is a metadata property type describing a string with a given language (implicit datatype: rdf:langString)."""
 
@@ -153,6 +157,7 @@ class LangLiteral(google.protobuf.message.Message):
 
 global___LangLiteral = LangLiteral
 
+@typing_extensions.final
 class StringLiteral(google.protobuf.message.Message):
     """StringLiteral is a metadata property type describing a string without a language (implicit datatype: rdf:string)."""
 
@@ -170,6 +175,7 @@ class StringLiteral(google.protobuf.message.Message):
 
 global___StringLiteral = StringLiteral
 
+@typing_extensions.final
 class Literal(google.protobuf.message.Message):
     """Literal is a metadata property type describing a literal with the given datatype (implicit datatype: rdfs:Literal)."""
 
@@ -196,6 +202,7 @@ class Literal(google.protobuf.message.Message):
 
 global___Literal = Literal
 
+@typing_extensions.final
 class Uri(google.protobuf.message.Message):
     """Uri is a metadata property type describing am Uri."""
 
@@ -213,6 +220,7 @@ class Uri(google.protobuf.message.Message):
 
 global___Uri = Uri
 
+@typing_extensions.final
 class Property(google.protobuf.message.Message):
     """Property is a metadata property with a single value.
     Multiple instances are used to represent a key (predicate) with multiple values.
@@ -250,6 +258,7 @@ class Property(google.protobuf.message.Message):
 
 global___Property = Property
 
+@typing_extensions.final
 class GeoLocation(google.protobuf.message.Message):
     """GeoLocation is the geographic location of a Twin."""
 
@@ -271,6 +280,7 @@ class GeoLocation(google.protobuf.message.Message):
 
 global___GeoLocation = GeoLocation
 
+@typing_extensions.final
 class GeoCircle(google.protobuf.message.Message):
     """GeoCircle is an approximate geographic location."""
 
@@ -293,6 +303,7 @@ class GeoCircle(google.protobuf.message.Message):
 
 global___GeoCircle = GeoCircle
 
+@typing_extensions.final
 class Headers(google.protobuf.message.Message):
     """Headers describes the common headers applicable to all the API requests
     (except for Search subscribe: see SubscriptionHeaders).
@@ -336,6 +347,7 @@ class Headers(google.protobuf.message.Message):
 
 global___Headers = Headers
 
+@typing_extensions.final
 class SubscriptionHeaders(google.protobuf.message.Message):
     """SubscriptionHeaders describes a Search subscribe header. (Will be DEPRECATED with the client-ref from Headers)."""
 
@@ -368,6 +380,7 @@ class SubscriptionHeaders(google.protobuf.message.Message):
 
 global___SubscriptionHeaders = SubscriptionHeaders
 
+@typing_extensions.final
 class TwinID(google.protobuf.message.Message):
     """TwinID is the virtual representation of a (physical, purely virtual or hybrid) device,
     is only ever located in the host it was created.
@@ -391,6 +404,7 @@ class TwinID(google.protobuf.message.Message):
 
 global___TwinID = TwinID
 
+@typing_extensions.final
 class Value(google.protobuf.message.Message):
     """Value is the definition of an individual piece of data within a Feed share or an Input send. Values are purely descriptive, e.g. a
     follower should expect data to match the values associated with said Feed/Input but must be able to recover where this
@@ -427,6 +441,7 @@ class Value(google.protobuf.message.Message):
 
 global___Value = Value
 
+@typing_extensions.final
 class Values(google.protobuf.message.Message):
     """Values defines a set of values to be added and/or deleted."""
 
@@ -452,6 +467,7 @@ class Values(google.protobuf.message.Message):
 
 global___Values = Values
 
+@typing_extensions.final
 class FeedData(google.protobuf.message.Message):
     """FeedData is set of datapoints shared via a Feed."""
 
@@ -484,6 +500,7 @@ class FeedData(google.protobuf.message.Message):
 
 global___FeedData = FeedData
 
+@typing_extensions.final
 class PropertyUpdate(google.protobuf.message.Message):
     """PropertyUpdate describes the update of a twin properties.
     Can be used to add, replace, or delete properties. The order of operations is:
