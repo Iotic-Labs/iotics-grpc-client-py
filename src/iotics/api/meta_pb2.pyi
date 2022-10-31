@@ -25,7 +25,7 @@ class _SparqlResultType:
     ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
 
-class _SparqlResultTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_SparqlResultType.ValueType], builtins.type):  # noqa: F821
+class _SparqlResultTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_SparqlResultType.ValueType], builtins.type):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     SPARQL_JSON: _SparqlResultType.ValueType  # 0
     """Applicable to SELECT/ASK (SPARQL 1.1 Query Results JSON Format)"""
@@ -59,11 +59,13 @@ RDF_NTRIPLES: SparqlResultType.ValueType  # 5
 """Applicable to CONSTRUCT/DESCRIBE (RDF 1.1 N-Triples)"""
 global___SparqlResultType = SparqlResultType
 
+@typing_extensions.final
 class ExplorerRequest(google.protobuf.message.Message):
     """ExplorerRequest - Deprecated. Use SparqlQueryRequest instead."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """Explorer request payload."""
 
@@ -108,11 +110,13 @@ class ExplorerRequest(google.protobuf.message.Message):
 
 global___ExplorerRequest = ExplorerRequest
 
+@typing_extensions.final
 class SparqlQueryRequest(google.protobuf.message.Message):
     """SparqlQueryRequest describes a SPARQL query."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """SPARQL query request payload."""
 
@@ -157,6 +161,7 @@ class SparqlQueryRequest(google.protobuf.message.Message):
 
 global___SparqlQueryRequest = SparqlQueryRequest
 
+@typing_extensions.final
 class SparqlQueryResponse(google.protobuf.message.Message):
     """SparqlQueryResponse is a part of a result for a SPARQL query request. Multiple chunks form a complete result. Related
     chunks can be identified by a combination of:
@@ -167,6 +172,7 @@ class SparqlQueryResponse(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """Payload of the query result chunk"""
 
@@ -233,11 +239,13 @@ class SparqlQueryResponse(google.protobuf.message.Message):
 
 global___SparqlQueryResponse = SparqlQueryResponse
 
+@typing_extensions.final
 class SparqlUpdateRequest(google.protobuf.message.Message):
     """Performs a SPARQL update against custom metadata only."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """SPARQL update request payload."""
 
@@ -272,6 +280,7 @@ class SparqlUpdateRequest(google.protobuf.message.Message):
 
 global___SparqlUpdateRequest = SparqlUpdateRequest
 
+@typing_extensions.final
 class SparqlUpdateResponse(google.protobuf.message.Message):
     """Response of the SPARQL update request."""
 

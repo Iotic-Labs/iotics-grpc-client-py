@@ -31,7 +31,7 @@ class _ResponseType:
     ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
 
-class _ResponseTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_ResponseType.ValueType], builtins.type):  # noqa: F821
+class _ResponseTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_ResponseType.ValueType], builtins.type):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     FULL: _ResponseType.ValueType  # 0
     LOCATED: _ResponseType.ValueType  # 1
@@ -49,16 +49,19 @@ LOCATED: ResponseType.ValueType  # 1
 MINIMAL: ResponseType.ValueType  # 2
 global___ResponseType = ResponseType
 
+@typing_extensions.final
 class SearchRequest(google.protobuf.message.Message):
     """SearchRequest describes a search request used for both synchronous and asynchronous search."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """Search request payload."""
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+        @typing_extensions.final
         class Filter(google.protobuf.message.Message):
             """Search request filters, any of these can be used in combination or on their own."""
 
@@ -69,7 +72,7 @@ class SearchRequest(google.protobuf.message.Message):
             PROPERTIES_FIELD_NUMBER: builtins.int
             @property
             def text(self) -> google.protobuf.wrappers_pb2.StringValue:
-                """Text filtering. One or more keywords which must match text from twin properies. Note that any (rather than all)
+                """Text filtering. One or more keywords which must match text from twin properties. Note that any (rather than all)
                 of the keywords will produce a match.
                 """
             @property
@@ -142,6 +145,63 @@ class SearchRequest(google.protobuf.message.Message):
 
 global___SearchRequest = SearchRequest
 
+@typing_extensions.final
+class AdvancedSearchRequest(google.protobuf.message.Message):
+    """AdvancedSearchRequest describes a search request with more filtering possibilities than SearchRequest. It returns
+    formatted details about the twins matched by the supplied filter.
+    """
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing_extensions.final
+    class Payload(google.protobuf.message.Message):
+        """Search request payload."""
+
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+        RESPONSETYPE_FIELD_NUMBER: builtins.int
+        FILTER_FIELD_NUMBER: builtins.int
+        responseType: global___ResponseType.ValueType
+        """Expected response type"""
+        filter: builtins.str
+        """The search filter, expressed as a JSON-encoded AST (in JSONLogic style)"""
+        def __init__(
+            self,
+            *,
+            responseType: global___ResponseType.ValueType = ...,
+            filter: builtins.str = ...,
+        ) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["filter", b"filter", "responseType", b"responseType"]) -> None: ...
+
+    HEADERS_FIELD_NUMBER: builtins.int
+    SCOPE_FIELD_NUMBER: builtins.int
+    PAYLOAD_FIELD_NUMBER: builtins.int
+    RANGE_FIELD_NUMBER: builtins.int
+    @property
+    def headers(self) -> iotics.api.common_pb2.Headers:
+        """Search request headers"""
+    scope: iotics.api.common_pb2.Scope.ValueType
+    """Search request scope"""
+    @property
+    def payload(self) -> global___AdvancedSearchRequest.Payload:
+        """Search request payload"""
+    @property
+    def range(self) -> iotics.api.common_pb2.Range:
+        """Search request range"""
+    def __init__(
+        self,
+        *,
+        headers: iotics.api.common_pb2.Headers | None = ...,
+        scope: iotics.api.common_pb2.Scope.ValueType = ...,
+        payload: global___AdvancedSearchRequest.Payload | None = ...,
+        range: iotics.api.common_pb2.Range | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload", "range", b"range"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload", "range", b"range", "scope", b"scope"]) -> None: ...
+
+global___AdvancedSearchRequest = AdvancedSearchRequest
+
+@typing_extensions.final
 class SearchResponse(google.protobuf.message.Message):
     """---------------------------------------------------------------------------------------------------------------------
 
@@ -153,6 +213,7 @@ class SearchResponse(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class FeedDetails(google.protobuf.message.Message):
         """Search response feed details. Included with response type: FULL."""
 
@@ -179,6 +240,7 @@ class SearchResponse(google.protobuf.message.Message):
         def HasField(self, field_name: typing_extensions.Literal["feedId", b"feedId"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing_extensions.Literal["feedId", b"feedId", "properties", b"properties", "storeLast", b"storeLast"]) -> None: ...
 
+    @typing_extensions.final
     class InputDetails(google.protobuf.message.Message):
         """Search response input details. Included with response type: FULL."""
 
@@ -201,6 +263,7 @@ class SearchResponse(google.protobuf.message.Message):
         def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId", "properties", b"properties"]) -> None: ...
 
+    @typing_extensions.final
     class TwinDetails(google.protobuf.message.Message):
         """Search response twin details."""
 
@@ -252,6 +315,7 @@ class SearchResponse(google.protobuf.message.Message):
         def HasField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "location", b"location", "twinId", b"twinId", "updatedAt", b"updatedAt"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "feeds", b"feeds", "inputs", b"inputs", "location", b"location", "properties", b"properties", "twinId", b"twinId", "updatedAt", b"updatedAt", "visibility", b"visibility"]) -> None: ...
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """Search Response Payload."""
 
@@ -300,6 +364,7 @@ class SearchResponse(google.protobuf.message.Message):
 
 global___SearchResponse = SearchResponse
 
+@typing_extensions.final
 class DispatchSearchResponse(google.protobuf.message.Message):
     """---------------------------------------------------------------------------------------------------------------------
 

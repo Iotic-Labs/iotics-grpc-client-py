@@ -21,6 +21,7 @@ else:
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class InputID(google.protobuf.message.Message):
     """Representation of an input."""
 
@@ -46,11 +47,13 @@ class InputID(google.protobuf.message.Message):
 
 global___InputID = InputID
 
+@typing_extensions.final
 class DeleteInputRequest(google.protobuf.message.Message):
     """DeleteInputRequest is used to delete an input from a given twin."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """DeleteInputRequest arguments."""
 
@@ -87,11 +90,13 @@ class DeleteInputRequest(google.protobuf.message.Message):
 
 global___DeleteInputRequest = DeleteInputRequest
 
+@typing_extensions.final
 class DeleteInputResponse(google.protobuf.message.Message):
     """DeleteInputResponse describes a deleted input."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """DeleteInputResponse payload."""
 
@@ -128,11 +133,13 @@ class DeleteInputResponse(google.protobuf.message.Message):
 
 global___DeleteInputResponse = DeleteInputResponse
 
+@typing_extensions.final
 class DescribeInputRequest(google.protobuf.message.Message):
     """DescribeInputRequest is used to request the input metadata."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """DescribeInputRequest arguments."""
 
@@ -169,11 +176,13 @@ class DescribeInputRequest(google.protobuf.message.Message):
 
 global___DescribeInputRequest = DescribeInputRequest
 
+@typing_extensions.final
 class DescribeInputResponse(google.protobuf.message.Message):
     """DescribeInputResponse provides metadata lookup for individual input resources."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class MetaResult(google.protobuf.message.Message):
         """DescribeInputResponse metadata result."""
 
@@ -195,6 +204,7 @@ class DescribeInputResponse(google.protobuf.message.Message):
         ) -> None: ...
         def ClearField(self, field_name: typing_extensions.Literal["properties", b"properties", "values", b"values"]) -> None: ...
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """DescribeInputResponse payload."""
 
@@ -236,6 +246,7 @@ class DescribeInputResponse(google.protobuf.message.Message):
 
 global___DescribeInputResponse = DescribeInputResponse
 
+@typing_extensions.final
 class UpsertInputWithMeta(google.protobuf.message.Message):
     """UpsertInputWithMeta is used to describe the full input state. Used in UpsertTwinRequest."""
 
@@ -263,6 +274,7 @@ class UpsertInputWithMeta(google.protobuf.message.Message):
 
 global___UpsertInputWithMeta = UpsertInputWithMeta
 
+@typing_extensions.final
 class InputMessage(google.protobuf.message.Message):
     """InputMessage describe a message that can be sent to an input"""
 
@@ -295,11 +307,13 @@ class InputMessage(google.protobuf.message.Message):
 
 global___InputMessage = InputMessage
 
+@typing_extensions.final
 class ReceiveInputMessageRequest(google.protobuf.message.Message):
     """ReceiveInputMessageRequest is used to receive messages sent to a given Input."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """ReceiveInputMessageRequest arguments."""
 
@@ -336,11 +350,13 @@ class ReceiveInputMessageRequest(google.protobuf.message.Message):
 
 global___ReceiveInputMessageRequest = ReceiveInputMessageRequest
 
+@typing_extensions.final
 class ReceiveInputMessageResponse(google.protobuf.message.Message):
     """ReceiveInputMessageResponse contains a message sent to the Input."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
