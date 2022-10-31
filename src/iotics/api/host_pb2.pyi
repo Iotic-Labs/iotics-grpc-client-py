@@ -18,6 +18,7 @@ else:
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class GetHostIDRequest(google.protobuf.message.Message):
     """GetHostIDRequest: gets the local host twin's ID"""
 
@@ -36,11 +37,13 @@ class GetHostIDRequest(google.protobuf.message.Message):
 
 global___GetHostIDRequest = GetHostIDRequest
 
+@typing_extensions.final
 class GetHostIDResponse(google.protobuf.message.Message):
     """GetHostIDResponse: response containing the local host twin's ID"""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 

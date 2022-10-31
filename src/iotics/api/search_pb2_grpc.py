@@ -34,6 +34,11 @@ class SearchAPIStub(object):
                 request_serializer=iotics_dot_api_dot_common__pb2.SubscriptionHeaders.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_search__pb2.SearchResponse.FromString,
                 )
+        self.AdvancedSearch = channel.unary_stream(
+                '/iotics.api.SearchAPI/AdvancedSearch',
+                request_serializer=iotics_dot_api_dot_search__pb2.AdvancedSearchRequest.SerializeToString,
+                response_deserializer=iotics_dot_api_dot_search__pb2.SearchResponse.FromString,
+                )
 
 
 class SearchAPIServicer(object):
@@ -64,6 +69,13 @@ class SearchAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AdvancedSearch(self, request, context):
+        """Run an advanced (filter) search request on a user timeout and return formatted results.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_SearchAPIServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -80,6 +92,11 @@ def add_SearchAPIServicer_to_server(servicer, server):
             'ReceiveAllSearchResponses': grpc.unary_stream_rpc_method_handler(
                     servicer.ReceiveAllSearchResponses,
                     request_deserializer=iotics_dot_api_dot_common__pb2.SubscriptionHeaders.FromString,
+                    response_serializer=iotics_dot_api_dot_search__pb2.SearchResponse.SerializeToString,
+            ),
+            'AdvancedSearch': grpc.unary_stream_rpc_method_handler(
+                    servicer.AdvancedSearch,
+                    request_deserializer=iotics_dot_api_dot_search__pb2.AdvancedSearchRequest.FromString,
                     response_serializer=iotics_dot_api_dot_search__pb2.SearchResponse.SerializeToString,
             ),
     }
@@ -143,6 +160,23 @@ class SearchAPI(object):
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/iotics.api.SearchAPI/ReceiveAllSearchResponses',
             iotics_dot_api_dot_common__pb2.SubscriptionHeaders.SerializeToString,
+            iotics_dot_api_dot_search__pb2.SearchResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AdvancedSearch(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/iotics.api.SearchAPI/AdvancedSearch',
+            iotics_dot_api_dot_search__pb2.AdvancedSearchRequest.SerializeToString,
             iotics_dot_api_dot_search__pb2.SearchResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

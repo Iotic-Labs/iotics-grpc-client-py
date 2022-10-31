@@ -23,6 +23,7 @@ else:
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class ListAllTwinsRequest(google.protobuf.message.Message):
     """List all twins."""
 
@@ -46,6 +47,7 @@ class ListAllTwinsRequest(google.protobuf.message.Message):
 
 global___ListAllTwinsRequest = ListAllTwinsRequest
 
+@typing_extensions.final
 class ListAllTwinsResponse(google.protobuf.message.Message):
     """Response of the list all twins request.
     Note this is useful for sync responses. In case there are too many twins (millions)
@@ -54,6 +56,7 @@ class ListAllTwinsResponse(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class TwinDetails(google.protobuf.message.Message):
         """ListAllTwinsResponse twin details."""
 
@@ -95,6 +98,7 @@ class ListAllTwinsResponse(google.protobuf.message.Message):
         def HasField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "location", b"location", "twinId", b"twinId", "updatedAt", b"updatedAt"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "location", b"location", "properties", b"properties", "twinId", b"twinId", "updatedAt", b"updatedAt", "visibility", b"visibility"]) -> None: ...
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """Payload of listed twins."""
 
@@ -127,11 +131,13 @@ class ListAllTwinsResponse(google.protobuf.message.Message):
 
 global___ListAllTwinsResponse = ListAllTwinsResponse
 
+@typing_extensions.final
 class CreateTwinRequest(google.protobuf.message.Message):
     """CreateTwinRequest is made to create a twin (idempotent)."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """Arguments identifies the twin to create."""
 
@@ -166,11 +172,13 @@ class CreateTwinRequest(google.protobuf.message.Message):
 
 global___CreateTwinRequest = CreateTwinRequest
 
+@typing_extensions.final
 class CreateTwinResponse(google.protobuf.message.Message):
     """CreateTwinResponse is received when a twin has been created."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """Payload identifies the twin which was created."""
 
@@ -207,6 +215,7 @@ class CreateTwinResponse(google.protobuf.message.Message):
 
 global___CreateTwinResponse = CreateTwinResponse
 
+@typing_extensions.final
 class DeleteTwinRequest(google.protobuf.message.Message):
     """---------------------------------------
 
@@ -215,6 +224,7 @@ class DeleteTwinRequest(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """Arguments identifies the twin to delete."""
 
@@ -251,11 +261,13 @@ class DeleteTwinRequest(google.protobuf.message.Message):
 
 global___DeleteTwinRequest = DeleteTwinRequest
 
+@typing_extensions.final
 class DeleteTwinResponse(google.protobuf.message.Message):
     """Deleted is received when a twin has been deleted."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """Payload identifies the twin which was deleted."""
 
@@ -292,11 +304,13 @@ class DeleteTwinResponse(google.protobuf.message.Message):
 
 global___DeleteTwinResponse = DeleteTwinResponse
 
+@typing_extensions.final
 class DescribeTwinRequest(google.protobuf.message.Message):
     """Description of twin: Provides public metadata lookup for individual resources."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """Only one action argument is necessary."""
 
@@ -331,6 +345,7 @@ class DescribeTwinRequest(google.protobuf.message.Message):
 
 global___DescribeTwinRequest = DescribeTwinRequest
 
+@typing_extensions.final
 class FeedMeta(google.protobuf.message.Message):
     """Metadata message for this Feed."""
 
@@ -352,6 +367,7 @@ class FeedMeta(google.protobuf.message.Message):
 
 global___FeedMeta = FeedMeta
 
+@typing_extensions.final
 class InputMeta(google.protobuf.message.Message):
     """Metadata message for this input."""
 
@@ -370,11 +386,13 @@ class InputMeta(google.protobuf.message.Message):
 
 global___InputMeta = InputMeta
 
+@typing_extensions.final
 class DescribeTwinResponse(google.protobuf.message.Message):
     """The response for a description request on this twin."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class MetaResult(google.protobuf.message.Message):
         """Metadata result data bag for this feed."""
 
@@ -418,6 +436,7 @@ class DescribeTwinResponse(google.protobuf.message.Message):
         def HasField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "location", b"location", "updatedAt", b"updatedAt"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "feeds", b"feeds", "inputs", b"inputs", "location", b"location", "properties", b"properties", "updatedAt", b"updatedAt", "visibility", b"visibility"]) -> None: ...
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """Payload of described twins."""
 
@@ -457,6 +476,7 @@ class DescribeTwinResponse(google.protobuf.message.Message):
 
 global___DescribeTwinResponse = DescribeTwinResponse
 
+@typing_extensions.final
 class VisibilityUpdate(google.protobuf.message.Message):
     """---------------------------------------
 
@@ -477,6 +497,7 @@ class VisibilityUpdate(google.protobuf.message.Message):
 
 global___VisibilityUpdate = VisibilityUpdate
 
+@typing_extensions.final
 class GeoLocationUpdate(google.protobuf.message.Message):
     """GeoLocationUpdate describes the update of a twin location."""
 
@@ -496,11 +517,13 @@ class GeoLocationUpdate(google.protobuf.message.Message):
 
 global___GeoLocationUpdate = GeoLocationUpdate
 
+@typing_extensions.final
 class UpdateTwinRequest(google.protobuf.message.Message):
     """UpdateTwinRequest is used to update attributes (including metadata) of a given twin."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Arguments(google.protobuf.message.Message):
         """UpdateTwinRequest mandatory arguments."""
 
@@ -518,6 +541,7 @@ class UpdateTwinRequest(google.protobuf.message.Message):
         def HasField(self, field_name: typing_extensions.Literal["twinId", b"twinId"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing_extensions.Literal["twinId", b"twinId"]) -> None: ...
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """UpdateTwinRequest payload. One or more fields can be provided, depending on what needs to be updated.
         Note that the specified metadata changes are applied in the following order:
@@ -572,11 +596,13 @@ class UpdateTwinRequest(google.protobuf.message.Message):
 
 global___UpdateTwinRequest = UpdateTwinRequest
 
+@typing_extensions.final
 class UpdateTwinResponse(google.protobuf.message.Message):
     """UpdateTwinResponse describes an updated twin. It is received when the update operation is successful."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """UpdateTwinResponse payload."""
 
@@ -613,11 +639,13 @@ class UpdateTwinResponse(google.protobuf.message.Message):
 
 global___UpdateTwinResponse = UpdateTwinResponse
 
+@typing_extensions.final
 class UpsertTwinRequest(google.protobuf.message.Message):
     """UpsertTwinRequest describes the full state of a twin + its feeds to create or update (full update)"""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """UpsertTwinRequest payload. This state will be applied to the twin/feeds"""
 
@@ -682,11 +710,13 @@ class UpsertTwinRequest(google.protobuf.message.Message):
 
 global___UpsertTwinRequest = UpsertTwinRequest
 
+@typing_extensions.final
 class UpsertTwinResponse(google.protobuf.message.Message):
     """UpsertTwinResponse is received when a twin and its feeds have been created/updated."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Payload(google.protobuf.message.Message):
         """Payload identifies the twin which was created."""
 
