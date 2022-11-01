@@ -21,7 +21,7 @@ class IdentityAuth(AuthInterface):
         agent_seed: str,
         agent_key_name: str,
         agent_name: typing.Optional[str],
-        token_ttl: int = 30
+        token_ttl: int = 3600
     ):
         try:
             int(user_seed, 16)

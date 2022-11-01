@@ -10,6 +10,7 @@ from iotics.lib.grpc.iotics_api import IoticsApi
 import pibrella
 
 CAMBRIDGE = create_location(52.2, 0.1)
+KEGS = create_location(52.2509719,0.7012496)
 INPUT_NAME = 'countdown'
 VALUE_NAME = 'countdown'
 FEED_NAME = 'tl_state'
@@ -46,7 +47,7 @@ def create_twin(api: IoticsApi):
     rdf_property_sdo_city = 'https://schema.org/City'
     rdf_property_wd_cambridge = 'https://www.wikidata.org/wiki/Q350'
 
-    api.update_twin(receiver_did, location=CAMBRIDGE, visibility=Visibility.PUBLIC, props_added=[
+    api.update_twin(receiver_did, location=KEGS, visibility=Visibility.PUBLIC, props_added=[
         create_property(rdf_property_type_key, rdf_property_type_value_tl, is_uri=True),
         create_property(rdf_property_label_key, rdf_property_label_value_tl, is_uri=False),
         create_property(rdf_property_sdo_city, rdf_property_wd_cambridge, is_uri=True)
@@ -75,8 +76,6 @@ def receive_messages(api: IoticsApi, twin_did, input_name, tl):
         data = json.loads(latest.payload.message.data)
         t = data[VALUE_NAME]
         print("Received message: %s" % t)
-        if t == "stop":
-            break
         next_state = next(tl.state)
         api.share_feed_data(twin_did, FEED_NAME, {'state': next_state})
         print("traffic state: %s" % next_state)
@@ -109,7 +108,7 @@ class TrafficLights():
             yield("amber")
 
             pibrella.light.yellow.off()
-        
+
 
 def main():
     try:
@@ -121,7 +120,7 @@ def main():
     tl = TrafficLights()
 
     api = IoticsApi(auth)
-    # Create two twins: One which will send messages, and another which presents an input which will receive them.
+    # Create twin: which presents an input will receive state change messages
     print('Creating twin...')
     receiver_did = create_twin(api)
     print('Preparing to receive messages...')
@@ -151,7 +150,6 @@ def main():
         pass
     finally:
         print('Cleaning space...')
-        api.send_input_message({VALUE_NAME: "stop"}, receiver_did, receiver_did, INPUT_NAME)
         api.delete_twin(receiver_did)
         print('Done!')
 
