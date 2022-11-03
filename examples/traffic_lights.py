@@ -1,5 +1,5 @@
 import json
-import threading
+from threading import Thread, Event
 from time import sleep
 
 from identity_auth import IdentityAuth, IdentityAuthError
@@ -66,13 +66,15 @@ def create_twin(api: IoticsApi):
     return receiver_did
 
 
-def receive_messages(api: IoticsApi, twin_did, input_name, tl):
+def receive_messages(api: IoticsApi, twin_did, input_name, tl, stop_threads):
     # Here we tell the receiver to begin allowing messages on its input, and get back a generator which will return the
     # messages that are shared to it.
     shares = api.receive_input_messages(twin_did, input_name)
 
     while True:
         latest = next(shares)
+        if  stop_threads.is_set():
+            break
         data = json.loads(latest.payload.message.data)
         t = data[VALUE_NAME]
         print("Received message: %s" % t)
@@ -124,8 +126,8 @@ def main():
     print('Creating twin...')
     receiver_did = create_twin(api)
     print('Preparing to receive messages...')
-    stop_threads = False
-    receiver_thread = threading.Thread(target=receive_messages, args=(api, receiver_did, INPUT_NAME, tl))
+    stop_threads = Event()
+    receiver_thread = Thread(target=receive_messages, args=(api, receiver_did, INPUT_NAME, tl, stop_threads))
     receiver_thread.start()
 
     # pibrella stuff
@@ -150,6 +152,8 @@ def main():
         pass
     finally:
         print('Cleaning space...')
+        stop_threads.set() # set the stop_threads flag and then send ourselves a message to ensure the loop runs
+        api.send_input_message({VALUE_NAME: ""}, receiver_did, receiver_did, INPUT_NAME)
         api.delete_twin(receiver_did)
         print('Done!')
 
