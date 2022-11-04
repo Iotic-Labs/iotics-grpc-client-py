@@ -67,7 +67,6 @@ class IdentityAuth(AuthInterface):
         # To keep your twins secure, you should ensure that the twin key name is secret and not easy to guess,
         # Optionally you can use password to make it more secure (defaults to none).
         key_name = twin_name
-        twin_name = '#' + twin_name
         twin_registered_identity = self.high_level_api.create_twin_with_control_delegation(
-            seed, key_name, self.agent_registered_id, '#AuthorityDelegation', twin_name)
+            seed, key_name, self.agent_registered_id, '#AuthorityDelegation')
         return twin_registered_identity.did
