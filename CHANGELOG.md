@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+- different mandatory env vars for the IdentityAuth example, no user seed, user&agent pre-created
 
 ## [2.0.1] - 2022-10-31
 - change to use tagged version 0.0.16 of api from PR of api

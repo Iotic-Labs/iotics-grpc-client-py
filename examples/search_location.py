@@ -16,12 +16,12 @@ def main():
         auth = IdentityAuth(
             os.environ['SPACE'],
             os.getenv('DID_RESOLVER_URL'),
-            os.environ['USER_SEED'],
-            os.environ['USER_KEY_NAME'],
-            os.getenv('USER_NAME'),
-            os.environ['AGENT_SEED'],
+            os.environ['USER_DID'],
+            os.environ['AGENT_DID'],
             os.environ['AGENT_KEY_NAME'],
-            os.getenv('AGENT_NAME'),
+            os.environ['AGENT_NAME'],
+            os.environ['AGENT_SECRET'],
+            os.getenv('TOKEN_TTL')
         )
     except IdentityAuthError as error:
         print(error)

@@ -18,18 +18,16 @@ more information on the meaning of these values and how to create them, consult 
 * __Required__:
   * `SPACE` - Domain name of the IOTICSpace with which to communicate. The scheme can be omitted, eg. examplecorp.
     iotics.space
-  * `USER_SEED` - __secret__ value used to (re)create user public and private keys.
-  * `AGENT_SEED` - __secret__ value used to (re)create agent public and private keys.
+  * `USER_DID` - Identity of the user
+  * `AGENT_DID` - Identity of the agent authorised to operate on the user's behalf
+  * `AGENT_KEY_NAME` - __secret__ value used to (re)create multiple key pairs
+  * `AGENT_NAME` - registered identity name that can be used to e.g. identify public keys
+  * `AGENT SECRET` - __secret__ value, the agent's private key
 
 * __Optional__:
-  * `DID_RESOLVER_URL` - Where the database of identity documents is accesible, defaults to the one used by the given 
+  * `DID_RESOLVER_URL` - Where the database of identity documents is accessible, defaults to the one used by the given 
     space.
-  * `USER_KEY_NAME` - __secret__ value used to (re)create multiple key pairs, defaults to empty.
-  * `USER_NAME` - used to create/identify public keys, defaults to `#user-0`.
-  * `AGENT_KEY_NAME` - __secret__ value used to (re)create multiple key pairs, defaults to empty.
-  * `AGENT_NAME` - registered identity name that can be used to e.g. identify public keys, defaults to 
-   `#agent-0`.
-
+  * `TOKEN_TTL` - How long in seconds auth tokens will last if not specified in the method call, defaults to 30
 ## Running example scripts
 Next, create and activate your virtual environment and run any of the scripts in the [examples](https://github.com/Iotic-Labs/iotics-grpc-client-py/tree/main/examples) directory, 
 e.g.:

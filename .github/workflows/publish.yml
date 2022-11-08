@@ -33,20 +33,18 @@ jobs:
       - name: Mask secrets
         run: |
           echo "::add-mask::${{ secrets.SPACE }}"
-          echo "::add-mask::${{ secrets.USER_SEED }}"
-          echo "::add-mask::${{ secrets.USER_KEY_NAME }}"
-          echo "::add-mask::${{ secrets.USER_NAME }}"
-          echo "::add-mask::${{ secrets.AGENT_SEED }}"
+          echo "::add-mask::${{ secrets.USER_DID }}"
+          echo "::add-mask::${{ secrets.AGENT_DID }}"
+          echo "::add-mask::${{ secrets.AGENT_SECRET }}"
           echo "::add-mask::${{ secrets.AGENT_KEY_NAME }}"
           echo "::add-mask::${{ secrets.AGENT_NAME }}"
       - name: Run examples
         run: make run-examples
         env:
           SPACE: ${{ secrets.SPACE }}
-          USER_SEED: ${{ secrets.USER_SEED }}
-          USER_KEY_NAME: ${{ secrets.USER_KEY_NAME }}
-          USER_NAME: ${{ secrets.USER_NAME }}
-          AGENT_SEED: ${{ secrets.AGENT_SEED }}
+          USER_DID: ${{ secrets.USER_DID }}
+          AGENT_DID: ${{ secrets.AGENT_DID }}
+          AGENT_SECRET: ${{ secrets.AGENT_SECRET }}
           AGENT_KEY_NAME: ${{ secrets.AGENT_KEY_NAME }}
           AGENT_NAME: ${{ secrets.AGENT_NAME }}
 

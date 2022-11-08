@@ -1,7 +1,8 @@
 import typing
 
 import requests
-from iotics.lib.identity import get_rest_high_level_identity_api
+from iotics.lib.identity import make_identifier, get_rest_high_level_identity_api, get_rest_identity_api,\
+    HighLevelIdentityApi, KeyPairSecretsHelper, RegisteredIdentity, SeedMethod
 
 from iotics.lib.grpc.auth import AuthInterface
 
@@ -11,27 +12,23 @@ class IdentityAuthError(Exception):
 
 
 class IdentityAuth(AuthInterface):
+    agent: RegisteredIdentity = None
+    api: HighLevelIdentityApi = None
+    grpc_url: str = None
+    token_ttl: int = 30
+    user_did: str = None
+
     def __init__(
         self,
         space: str,
         resolver_url: typing.Optional[str],
-        user_seed: str,
-        user_key_name: str,
-        user_name: typing.Optional[str],
-        agent_seed: str,
+        user_did: str,
+        agent_did: str,
         agent_key_name: str,
-        agent_name: typing.Optional[str],
-        token_ttl: int = 30
+        agent_name: str,
+        agent_secret: str,
+        token_ttl: typing.Optional[str]
     ):
-        try:
-            int(user_seed, 16)
-            int(agent_seed, 16)
-            if len(user_seed) != 64 or len(agent_seed) != 64:
-                raise
-        except:
-            raise IdentityAuthError(
-                'Please provide values for USER_SEED and AGENT_SEED that are 64-character hexadecimal strings.'
-            )
         split_url = space.partition('://')
         space = split_url[2] or split_url[0]
         self.grpc_url = space + ':10001'
@@ -41,33 +38,61 @@ class IdentityAuth(AuthInterface):
                 resolver_url = requests.get(index_url).json()['resolver']
             except requests.exceptions.ConnectionError:
                 raise IdentityAuthError(f'Could not fetch resolver URL from `{index_url}`.')
-
-        self.high_level_api = api = get_rest_high_level_identity_api(resolver_url=resolver_url)
-        user_registered_id, self.agent_registered_id = api.create_user_and_agent_with_auth_delegation(
-            user_seed=bytearray.fromhex(user_seed),
-            user_key_name=user_key_name,
-            agent_seed=bytearray.fromhex(agent_seed),
-            agent_key_name=agent_key_name,
-            user_name=user_name,
-            agent_name=agent_name,
+        if token_ttl:
+            self.token_ttl = int(token_ttl)
+        if not agent_name.startswith('#'):
+            agent_name = '#' + agent_name
+        self.agent = self._get_agent(
+            resolver_url,
+            agent_did,
+            agent_key_name,
+            agent_name,
+            agent_secret
         )
-        print(f'User DID: {user_registered_id.did}')
-        print(f'Agent DID: {self.agent_registered_id.did}')
-        self.grpc_token = api.create_agent_auth_token(self.agent_registered_id, user_registered_id.did, token_ttl)
+        self.api = get_rest_high_level_identity_api(resolver_url=resolver_url)
+        self.grpc_token = self.api.create_agent_auth_token(
+            self.agent, user_did, self.token_ttl
+        )
 
     def get_host(self) -> str:
         return self.grpc_url
 
-    def get_token(self) -> str:
+    def get_token(self, ttl: typing.Optional[int] = None) -> str:
+        if self.grpc_token:
+            return self.grpc_token
+
+        self.refresh_token(ttl or self.token_ttl)
         return self.grpc_token
+
+    def refresh_token(self, ttl: typing.Optional[int] = None):
+        self.api.create_agent_auth_token(self.agent, self.user_did, ttl or self.token_ttl)
 
     def generate_twin_did(self, twin_name) -> str:
         # Reuse the agent secret seed for simplicity and ease of twin maintenance.
-        seed = self.agent_registered_id.key_pair_secrets.seed
-        # To keep your twins secure, you should ensure that the twin key name is secret and not easy to guess,
-        # Optionally you can use password to make it more secure (defaults to none).
-        key_name = twin_name
-        twin_name = '#' + twin_name
-        twin_registered_identity = self.high_level_api.create_twin_with_control_delegation(
-            seed, key_name, self.agent_registered_id, '#AuthorityDelegation', twin_name)
+        seed = self.agent.key_pair_secrets.seed
+        twin_registered_identity = self.api.create_twin_with_control_delegation(
+            seed, twin_name, self.agent, '#AuthorityDelegation')
         return twin_registered_identity.did
+
+    @staticmethod
+    def _get_agent(resolver_url: str, agent_did: str, agent_key_name: str, agent_name: str, agent_secret: str):
+        # Gets an agent identity using the provided credentials, taking into account that the agent DID may have been
+        # generated using either of two SeedMethods
+        agent_secret = bytes.fromhex(agent_secret)
+        api = get_rest_identity_api(resolver_url)
+        agent = api.get_agent_identity(
+            agent_secret,
+            agent_key_name,
+            agent_did,
+            agent_name
+        )
+        did_from_keys = make_identifier(KeyPairSecretsHelper.get_key_pair(agent.key_pair_secrets).public_bytes)
+        if did_from_keys == agent_did:
+            return agent
+        return api.get_agent_identity(
+            agent_secret,
+            agent_key_name,
+            agent_did,
+            agent_name,
+            SeedMethod.SEED_METHOD_NONE
+        )
