@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import typing
+
 
 class AuthInterface:
     """Authenticator for gRPC requests to IOTICSpace."""
@@ -22,8 +24,16 @@ class AuthInterface:
         """
         raise NotImplementedError
 
-    def get_token(self) -> str:
+    def get_token(self, ttl: typing.Optional[int]) -> str:
         """Provides an authentication token for a gRPC requests.
+        Once generated, will return the same one until refresh_token is called.
+
+        Returns: Encoded JSON Web Token.
+        """
+        raise NotImplementedError
+
+    def refresh_token(self, ttl: typing.Optional[int]) -> str:
+        """Provides a new authentication token for a gRPC requests.
 
         Returns: Encoded JSON Web Token.
         """
