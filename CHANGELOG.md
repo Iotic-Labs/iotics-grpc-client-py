@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.2] - 2022-11-09
+- different mandatory env vars for the IdentityAuth example, no user seed, user&agent pre-created
+
 ## [2.0.1] - 2022-10-31
 - change to use tagged version 0.0.16 of api from PR of api
 
@@ -14,5 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - BREAKING CHANGE - Update to handle breaking changes in Iotics API, major change here is the change of TwinID Protobuf definition to include hostId (HostTwinDID)
 - docker and makefile fixes for mac and changes in buf
 
-[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.0...HEAD
-[2.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.0...v0.10.0
+[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.2...HEAD
+[2.0.2]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.1...v2.0.2
+[2.0.1]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.0...v2.0.1
+[2.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v0.10.0...v2.0.0
