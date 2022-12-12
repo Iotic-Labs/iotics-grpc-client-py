@@ -41,29 +41,13 @@ class IoticsApi:
         self._host_api: typing.Optional[HostApi] = None
         self._local_host_id: str = None
 
-        self.create_feed = self.feed_api.create_feed
-        self.delete_feed = self.feed_api.delete_feed
-        self.update_feed = self.feed_api.update_feed
-        self.share_feed_data = self.feed_api.share_feed_data
-        self.list_all_feeds = self.feed_api.list_all_feeds
-        self.describe_feed = self.feed_api.describe_feed
-        self.describe_input = self.input_api.describe_input
-        self.delete_input = self.input_api.delete_input
-        self.receive_input_messages = self.input_api.receive_input_messages
-        self.send_input_message = self.interest_api.send_input_message
-        self.fetch_interests = self.interest_api.fetch_interests
-        self.fetch_last_stored = self.interest_api.fetch_last_stored
-        self.get_search_payload = self.search_api.get_search_payload
-        self.search_iter = self.search_api.search_iter
-        self.sparql_query = self.sparql_api.sparql_query
-        self.sparql_update = self.sparql_api.sparql_update
-        self.create_twin = self.twin_api.create_twin
-        self.describe_twin = self.twin_api.describe_twin
-        self.delete_twin = self.twin_api.delete_twin
-        self.list_twins = self.twin_api.list_twins
-        self.update_twin = self.twin_api.update_twin
-        self.upsert_twin = self.twin_api.upsert_twin
-        self.get_local_host_id = self.host_api.get_local_host_id
+        self._initialise_twin_api()
+        self._initialise_feed_api()
+        self._initialise_input_api()
+        self._initialise_interest_api()
+        self._initialise_search_api()
+        self._initialise_sparql_api()
+        self._initialise_host_api()
 
     @property
     def auth(self) -> AuthInterface:
@@ -78,43 +62,43 @@ class IoticsApi:
     @property
     def twin_api(self) -> TwinApi:
         if not self._twin_api:
-            self._twin_api = TwinApi(self._auth, self.channel)
+            self._initialise_twin_api()
         return self._twin_api
 
     @property
     def feed_api(self) -> FeedApi:
         if not self._feed_api:
-            self._feed_api = FeedApi(self._auth, self.channel)
+            self._initialise_feed_api()
         return self._feed_api
 
     @property
     def input_api(self) -> InputApi:
         if not self._input_api:
-            self._input_api = InputApi(self._auth, self.channel)
+            self._initialise_input_api()
         return self._input_api
 
     @property
     def interest_api(self) -> InterestApi:
         if not self._interest_api:
-            self._interest_api = InterestApi(self._auth, self.channel)
+            self._initialise_interest_api()
         return self._interest_api
 
     @property
     def search_api(self) -> SearchApi:
         if not self._search_api:
-            self._search_api = SearchApi(self._auth, self.channel)
+            self._initialise_search_api()
         return self._search_api
 
     @property
     def sparql_api(self) -> SparqlApi:
         if not self._sparql_api:
-            self._sparql_api = SparqlApi(self._auth, self.channel)
+            self._initialise_sparql_api()
         return self._sparql_api
 
     @property
     def host_api(self) -> HostApi:
         if not self._host_api:
-            self._host_api = HostApi(self._auth, self.channel)
+            self._initialise_host_api()
         return self._host_api
 
     def update_auth(self, auth, channel=None):
@@ -125,46 +109,67 @@ class IoticsApi:
         self._channel = channel or get_channel(self._auth)
         for api in self._apis():
             if api:
-                self._update_api(api, channel)
+                self._update_api(api)
 
-    def _update_api(self, api: ApiBase, channel: grpc.Channel):
+    def _update_api(self, api: ApiBase):
         if isinstance(api, TwinApi):
-            self._twin_api = TwinApi(self._auth, channel)
-            self.create_twin = self.twin_api.create_twin
-            self.describe_twin = self.twin_api.describe_twin
-            self.delete_twin = self.twin_api.delete_twin
-            self.list_twins = self.twin_api.list_twins
-            self.update_twin = self.twin_api.update_twin
-            self.upsert_twin = self.twin_api.upsert_twin
+            self._initialise_twin_api()
         elif isinstance(api, FeedApi):
-            self._feed_api = FeedApi(self._auth, channel)
-            self.create_feed = self.feed_api.create_feed
-            self.delete_feed = self.feed_api.delete_feed
-            self.update_feed = self.feed_api.update_feed
-            self.share_feed_data = self.feed_api.share_feed_data
-            self.list_all_feeds = self.feed_api.list_all_feeds
-            self.describe_feed = self.feed_api.describe_feed
+            self._initialise_feed_api()
         elif isinstance(api, InputApi):
-            self._input_api = InputApi(self._auth, channel)
-            self.describe_input = self.input_api.describe_input
-            self.delete_input = self.input_api.delete_input
-            self.receive_input_messages = self.input_api.receive_input_messages
+            self._initialise_input_api()
         elif isinstance(api, InterestApi):
-            self._interest_api = InterestApi(self._auth, channel)
-            self.send_input_message = self.interest_api.send_input_message
-            self.fetch_interests = self.interest_api.fetch_interests
-            self.fetch_last_stored = self.interest_api.fetch_last_stored
+            self._initialise_interest_api()
         elif isinstance(api, SearchApi):
-            self._search_api = SearchApi(self._auth, channel)
-            self.get_search_payload = self.search_api.get_search_payload
-            self.search_iter = self.search_api.search_iter
+            self._initialise_search_api()
         elif isinstance(api, SparqlApi):
-            self._sparql_api = SparqlApi(self._auth, channel)
-            self.sparql_query = self.sparql_api.sparql_query
-            self.sparql_update = self.sparql_api.sparql_update
+            self._initialise_sparql_api()
         elif isinstance(api, HostApi):
-            self._host_api = HostApi(self._auth, channel)
-            self.get_local_host_id = self.host_api.get_local_host_id
+            self._initialise_host_api()
+
+    def _initialise_twin_api(self):
+        self._twin_api = TwinApi(self._auth, self._channel)
+        self.create_twin = self.twin_api.create_twin
+        self.describe_twin = self.twin_api.describe_twin
+        self.delete_twin = self.twin_api.delete_twin
+        self.list_twins = self.twin_api.list_twins
+        self.update_twin = self.twin_api.update_twin
+        self.upsert_twin = self.twin_api.upsert_twin
+
+    def _initialise_feed_api(self):
+        self._feed_api = FeedApi(self._auth, self._channel)
+        self.create_feed = self.feed_api.create_feed
+        self.delete_feed = self.feed_api.delete_feed
+        self.update_feed = self.feed_api.update_feed
+        self.share_feed_data = self.feed_api.share_feed_data
+        self.list_all_feeds = self.feed_api.list_all_feeds
+        self.describe_feed = self.feed_api.describe_feed
+
+    def _initialise_input_api(self):
+        self._input_api = InputApi(self._auth, self._channel)
+        self.describe_input = self.input_api.describe_input
+        self.delete_input = self.input_api.delete_input
+        self.receive_input_messages = self.input_api.receive_input_messages
+
+    def _initialise_interest_api(self):
+        self._interest_api = InterestApi(self._auth, self._channel)
+        self.send_input_message = self.interest_api.send_input_message
+        self.fetch_interests = self.interest_api.fetch_interests
+        self.fetch_last_stored = self.interest_api.fetch_last_stored
+
+    def _initialise_search_api(self):
+        self._search_api = SearchApi(self._auth, self._channel)
+        self.get_search_payload = self.search_api.get_search_payload
+        self.search_iter = self.search_api.search_iter
+
+    def _initialise_sparql_api(self):
+        self._sparql_api = SparqlApi(self._auth, self._channel)
+        self.sparql_query = self.sparql_api.sparql_query
+        self.sparql_update = self.sparql_api.sparql_update
+
+    def _initialise_host_api(self):
+        self._host_api = HostApi(self._auth, self._channel)
+        self.get_local_host_id = self.host_api.get_local_host_id
 
     def _apis(self):
         return [
