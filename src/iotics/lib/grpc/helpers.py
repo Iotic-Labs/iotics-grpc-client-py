@@ -119,11 +119,11 @@ PROPERTY_CREATED_BY_MODEL = Property(
 )
 PROPERTY_ALLOW_ALL = Property(
     key='http://data.iotics.com/public#hostAllowList',
-    uriValue=Uri(value='http://data.iotics.com/public#allHosts')
+    uriValue=Uri(value='http://data.iotics.com/public#all')
 )
 PROPERTY_ALLOW_NONE = Property(
     key='http://data.iotics.com/public#hostAllowList',
-    uriValue=Uri(value='http://data.iotics.com/public#noHost')
+    uriValue=Uri(value='http://data.iotics.com/public#none')
 )
 PROPERTY_KEY_HAS_MODEL = 'https://data.iotics.com/app#model'
 PROPERTY_KEY_COLOR = 'https://data.iotics.com/app#color'
