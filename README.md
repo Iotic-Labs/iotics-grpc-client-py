@@ -6,6 +6,7 @@ A Python library for interacting with Iotics API.
 
 | iotics-grpc-client-py | iotics-host |
 |----------------------| ----------- |
+|      `pip install iotics-grpc-client~=3.0`       | `>= 6`       |
 |      `pip install iotics-grpc-client~=2.0`       | `>= 5`       |
 |      `pip install iotics-grpc-client~=0.10.0`      | `>= 4`     |
 
