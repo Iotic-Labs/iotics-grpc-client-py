@@ -38,6 +38,18 @@ python examples/search_twin_models.py
 ```
 
 
+# FAQs
+
+## Installing on Raspberry PI get: Import error GLIBC_2.33 not found
+
+If you see this error running the exmaples on a Rapberry PI, the current workaround is to install Ubuntu for RPi which has a later version of glibc.
+
+```bash
+ImportError: /lib/arm-linux-gnueabihf/libc.so.6: version 'GLIBC_2.33' not found (required by /home/pi/work/starting/iotics-grpc-client-py/env/lib/python3.9/site-packages/grpc/_cython/cygrpc.cpython-39-arm-linux-gnueabihf.so)
+```
+
+
+
 # Contributing
 
 

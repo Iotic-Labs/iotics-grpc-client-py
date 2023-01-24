@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+- Updated the grpcio dependency to >=1.50.0
 
 ## [2.0.3] - 2022-12-13
 - Fixed bug in the `update_channel` method of the `IoticsApi` Class. It now creates and initialises new instances of the APIs in order to correctly use an updated version of their methods.
