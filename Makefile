@@ -2,12 +2,18 @@ SHELL := /bin/bash
 BUF_VERSION ?= 1.6.0
 PROTOC_VERSION ?= 21.7
 VENV_PATH ?= ./env
+UNAME_S := $(shell uname -s)
+UNAME_M := $(shell uname -m)
+
+ifeq ($(OS),Windows_NT)
+  VENV_PATH_DIR=Scripts
+else
+  VENV_PATH_DIR=bin
+endif
 
 GOBIN := $(shell go env GOPATH)/bin
 BUF := $(GOBIN)/buf
 PROTOC := $(GOBIN)/protoc
-UNAME_S := $(shell uname -s)
-UNAME_M := $(shell uname -m)
 ifeq ($(UNAME_S), Darwin)
   PROTOC_ARCHIVE="protoc-$(PROTOC_VERSION)-osx-x86_64.zip"
 else
@@ -83,12 +89,11 @@ deps-buf: buf.lock
 deps-buf-update buf.lock:
 	$(BUF) mod update
 
-deps-py: $(VENV_PATH)/bin
-$(VENV_PATH)/bin:
-	python3 -m venv "$(VENV_PATH)"
-	source "$(VENV_PATH)"/bin/activate \
-	&& pip install -U pip setuptools \
-	&& pip install -e '.[dev]'
+deps-py:
+	python -m venv "$(VENV_PATH)"
+	source "$(VENV_PATH)"/"$(VENV_PATH_DIR)"/activate \
+	&& python -m pip install -U pip setuptools \
+	&& python -m pip install -e '.[dev]'
 deps-py-update: clean deps-py
 
 
@@ -97,11 +102,11 @@ deps-py-update: clean deps-py
 ################
 
 verify-import: deps-py
-	source "$(VENV_PATH)"/bin/activate \
+	source "$(VENV_PATH)"/"$(VENV_PATH_DIR)"/activate \
 	&& python -c 'from iotics.lib.grpc import IoticsApi'
 
 run-examples: deps-py
-	source "$(VENV_PATH)"/bin/activate \
+	source "$(VENV_PATH)"/"$(VENV_PATH_DIR)"/activate \
 	&& python examples/search_twin_models.py \
 	&& python examples/search_location.py \
 	&& python examples/sparql.py \
