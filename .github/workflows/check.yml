@@ -54,8 +54,18 @@ jobs:
 
   # Ensure package correctly imports dependencies and can communicate with the IOTICSpace.
   verify:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+        version: ['3.9', '3.10', '3.11']
+      fail-fast: true
+      max-parallel: 1
+    runs-on: ${{ matrix.os }}
     steps:
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.version }}
       - name: Check out repository
         uses: actions/checkout@v3
       - name: Check that the package can be imported
