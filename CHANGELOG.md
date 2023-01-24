@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+
+
+## [2.0.4] - 2023-01-24
 - Updated the grpcio dependency to >=1.50.0
 
 ## [2.0.3] - 2022-12-13
@@ -21,7 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - BREAKING CHANGE - Update to handle breaking changes in Iotics API, major change here is the change of TwinID Protobuf definition to include hostId (HostTwinDID)
 - docker and makefile fixes for mac and changes in buf
 
-[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.3...HEAD
+[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.4...HEAD
+[2.0.4]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.2...v2.0.4
 [2.0.3]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.0...v2.0.1
