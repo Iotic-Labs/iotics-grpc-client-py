@@ -112,4 +112,5 @@ run-examples: deps-py
 	&& python examples/sparql.py \
 	&& python examples/create_edit_twins_feeds.py \
 	&& python examples/follow_feed.py \
+	&& python examples/create_update_inputs.py \
 	&& python examples/inputs.py
