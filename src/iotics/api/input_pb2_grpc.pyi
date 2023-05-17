@@ -33,16 +33,6 @@ class InputAPIStub:
         iotics.api.input_pb2.ReceiveInputMessageResponse,
     ]
     """Receives input messages for a specific input."""
-    CreateInput: grpc.UnaryUnaryMultiCallable[
-        iotics.api.input_pb2.CreateInputRequest,
-        iotics.api.input_pb2.CreateInputResponse,
-    ]
-    """Creates an input owned by a twin. (Idempotent)"""
-    UpdateInput: grpc.UnaryUnaryMultiCallable[
-        iotics.api.input_pb2.UpdateInputRequest,
-        iotics.api.input_pb2.UpdateInputResponse,
-    ]
-    """Updates attributes of an input, including its metadata."""
 
 class InputAPIServicer(metaclass=abc.ABCMeta):
     """---------------------------------------------------------------------------------------------------------------------
@@ -72,19 +62,5 @@ class InputAPIServicer(metaclass=abc.ABCMeta):
         context: grpc.ServicerContext,
     ) -> collections.abc.Iterator[iotics.api.input_pb2.ReceiveInputMessageResponse]:
         """Receives input messages for a specific input."""
-    @abc.abstractmethod
-    def CreateInput(
-        self,
-        request: iotics.api.input_pb2.CreateInputRequest,
-        context: grpc.ServicerContext,
-    ) -> iotics.api.input_pb2.CreateInputResponse:
-        """Creates an input owned by a twin. (Idempotent)"""
-    @abc.abstractmethod
-    def UpdateInput(
-        self,
-        request: iotics.api.input_pb2.UpdateInputRequest,
-        context: grpc.ServicerContext,
-    ) -> iotics.api.input_pb2.UpdateInputResponse:
-        """Updates attributes of an input, including its metadata."""
 
 def add_InputAPIServicer_to_server(servicer: InputAPIServicer, server: grpc.Server) -> None: ...

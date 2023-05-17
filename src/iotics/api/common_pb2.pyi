@@ -502,7 +502,7 @@ global___FeedData = FeedData
 
 @typing_extensions.final
 class PropertyUpdate(google.protobuf.message.Message):
-    """PropertyUpdate describes the update of resource's underlying properties.
+    """PropertyUpdate describes the update of a twin properties.
     Can be used to add, replace, or delete properties. The order of operations is:
     clearedAll (if True), deleted, deletedByKey, added.
     Note that internal properties (such as location) cannot be modified here.
@@ -515,7 +515,7 @@ class PropertyUpdate(google.protobuf.message.Message):
     DELETEDBYKEY_FIELD_NUMBER: builtins.int
     ADDED_FIELD_NUMBER: builtins.int
     clearedAll: builtins.bool
-    """Delete all properties currently set on the resource."""
+    """Delete all properties currently set on the twin."""
     @property
     def deleted(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Property]:
         """Delete specific exact properties (by key and value). This operation is ignored if clearAll is True."""
