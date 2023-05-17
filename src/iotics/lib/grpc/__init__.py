@@ -15,7 +15,6 @@
 from iotics.api.common_pb2 import Scope, Visibility
 from iotics.api.feed_pb2 import CreateFeedResponse, DeleteFeedResponse, DescribeFeedResponse, ListAllFeedsResponse, \
     ShareFeedDataResponse, UpdateFeedResponse
-from iotics.lib.grpc.input import InputApi
 from iotics.api.interest_pb2 import FetchInterestResponse
 from iotics.api.search_pb2 import SearchRequest, SearchResponse
 from iotics.api.meta_pb2 import SparqlQueryResponse, SparqlResultType, SparqlUpdateResponse
@@ -23,6 +22,7 @@ from iotics.api.twin_pb2 import CreateTwinResponse, DeleteTwinResponse, Describe
     UpdateTwinResponse, UpsertTwinResponse
 from iotics.lib.grpc.iotics_api import IoticsApi
 from iotics.lib.grpc.feeds import FeedApi
+from iotics.lib.grpc.input import InputApi
 from iotics.lib.grpc.interest import InterestApi
 from iotics.lib.grpc.search import SearchApi
 from iotics.lib.grpc.sparql import SparqlApi
