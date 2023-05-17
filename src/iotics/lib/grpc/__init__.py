@@ -15,6 +15,7 @@
 from iotics.api.common_pb2 import Scope, Visibility
 from iotics.api.feed_pb2 import CreateFeedResponse, DeleteFeedResponse, DescribeFeedResponse, ListAllFeedsResponse, \
     ShareFeedDataResponse, UpdateFeedResponse
+from iotics.lib.grpc.input import InputApi
 from iotics.api.interest_pb2 import FetchInterestResponse
 from iotics.api.search_pb2 import SearchRequest, SearchResponse
 from iotics.api.meta_pb2 import SparqlQueryResponse, SparqlResultType, SparqlUpdateResponse

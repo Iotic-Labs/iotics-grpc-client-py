@@ -147,6 +147,8 @@ class IoticsApi:
 
     def _initialise_input_api(self):
         self._input_api = InputApi(self._auth, self._channel)
+        self.create_input = self.input_api.create_input
+        self.update_input = self.input_api.update_input
         self.describe_input = self.input_api.describe_input
         self.delete_input = self.input_api.delete_input
         self.receive_input_messages = self.input_api.receive_input_messages

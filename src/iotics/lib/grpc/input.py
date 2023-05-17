@@ -30,6 +30,67 @@ class InputApi(ApiBase):
     stub_class = input_pb2_grpc.InputAPIStub
     stub: input_pb2_grpc.InputAPIStub
 
+    def create_input(
+            self, twin_did: str,
+            input_id: str,
+            headers: typing.Optional[common_pb2.Headers] = None
+    ) -> input_pb2.CreateInputResponse:
+        """Create a input on the given twin
+        Args:
+            twin_did: Decentralized Identifier of the twin on which a input should be created
+            input_id: A string identifying this input that is unique to this twin
+            headers: optional request headers
+        Returns: Response object confirming the input's details (ie, the two IDs that were given)
+        """
+        req = input_pb2.CreateInputRequest(
+            headers=headers or create_headers(),
+            args=input_pb2.CreateInputRequest.Arguments(twinId=common_pb2.TwinID(id=twin_did)),
+            payload=input_pb2.CreateInputRequest.Payload(id=input_id)
+        )
+        return self.stub.CreateInput(req)
+
+    def update_input(
+            self,
+            twin_did: str,
+            input_id: str,
+            values_added: typing.Optional[list] = None,
+            values_deleted: typing.Optional[list] = None,
+            props_added: typing.Optional[list] = None,
+            props_deleted: typing.Optional[list] = None,
+            props_keys_deleted: typing.Optional[list] = None,
+            clear_all_props: bool = False,
+            headers: typing.Optional[common_pb2.Headers] = None
+    ) -> input_pb2.UpdateInputResponse:
+        """Update the details of the given input. Any arguments omitted will have their values unchanged
+        Args:
+            twin_did: Decentralized Identifier of the twin providing this input
+            input_id: A string identifying this input that is unique to this twin
+            values_added: A list of Value objects (metadata describing the structure of shared data) to be added to the
+                input. These may be created via the create_value helper
+            values_deleted: A list of Value objects to be removed from the input
+            props_added: A list of semantic properties to be added to the input
+            props_deleted: A list of semantic properties to be removed from the input
+            props_keys_deleted: A list of any property keys for which all values should be removed from the input
+            clear_all_props: Whether or not to remove all semantic properties from the input
+            headers: optional request headers
+        Returns: Response object confirming the IDs of the twin and input being updated
+        """
+        req = input_pb2.UpdateInputRequest(
+            headers=headers or create_headers(),
+            args=input_pb2.UpdateInputRequest.Arguments(
+                inputId=input_pb2.InputID(id=input_id, twinId=twin_did)
+            ),
+            payload=input_pb2.UpdateInputRequest.Payload(
+                values=common_pb2.Values(added=values_added, deletedByLabel=values_deleted),
+                properties=common_pb2.PropertyUpdate(
+                    added=props_added, deleted=props_deleted, deletedByKey=props_keys_deleted,
+                    clearedAll=clear_all_props
+                )
+            )
+        )
+        return self.stub.UpdateInput(req)
+
+
     def describe_input(
         self,
         twin_id: str,
