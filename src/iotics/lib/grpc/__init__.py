@@ -22,6 +22,7 @@ from iotics.api.twin_pb2 import CreateTwinResponse, DeleteTwinResponse, Describe
     UpdateTwinResponse, UpsertTwinResponse
 from iotics.lib.grpc.iotics_api import IoticsApi
 from iotics.lib.grpc.feeds import FeedApi
+from iotics.lib.grpc.input import InputApi
 from iotics.lib.grpc.interest import InterestApi
 from iotics.lib.grpc.search import SearchApi
 from iotics.lib.grpc.sparql import SparqlApi
