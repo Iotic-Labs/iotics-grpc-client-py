@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [3.0.1] - 2023-05-23
-Add CreateInput and UpdateInput methods.
+- Add CreateInput and UpdateInput methods.
 
 ## [3.0.0] - 2023-01-31
 - Rename allowlist allhost/nohost values to all/none
@@ -32,7 +32,6 @@ Add CreateInput and UpdateInput methods.
 [Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v3.0.1...HEAD
 
 [3.0.1]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v3.0.0...v3.0.1
-[3.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.4...v3.0.0
 [3.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.4...v3.0.0
 [2.0.4]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.2...v2.0.3
