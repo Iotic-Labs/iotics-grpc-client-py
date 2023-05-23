@@ -30,6 +30,7 @@ Add CreateInput and UpdateInput methods.
 - docker and makefile fixes for mac and changes in buf
 
 [Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v3.0.1...HEAD
+
 [3.0.1]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.4...v3.0.0
 [3.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.4...v3.0.0
