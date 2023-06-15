@@ -95,7 +95,7 @@ class TwinApi(ApiBase):
         Args:
             headers: optional request headers
 
-        Returns: Response object listing twins with their location, visibility, and properties
+        Returns: Response object listing twins with their location and properties
         """
         req = twin_pb2.ListAllTwinsRequest(headers=headers or create_headers())
         return self.stub.ListAllTwins(req)
@@ -103,7 +103,6 @@ class TwinApi(ApiBase):
     def update_twin(
             self,
             twin_did: str,
-            visibility: common_pb2.Visibility = None,
             location: typing.Optional[common_pb2.GeoLocation] = None,
             props_added: typing.Optional[list] = None,
             props_deleted: typing.Optional[list] = None,
@@ -111,11 +110,10 @@ class TwinApi(ApiBase):
             props_clear_all: bool = False,
             headers: typing.Optional[common_pb2.Headers] = None
     ) -> twin_pb2.UpdateTwinResponse:
-        """Update a twin to have the given visibility, location, and/or properties. Arguments omitted will not have
+        """Update a twin to have the given location, and/or properties. Arguments omitted will not have
         their values updated
         Args:
             twin_did: Decentralized Identifier of the twin to update
-            visibility: The new Visibility for the twin, PUBLIC or PRIVATE
             location: The new GeoLocation for the twin, created from lat/lon values using the create_location helper
             props_added: A list of semantic properties to be added to the twin, created using the create_property helper
             props_deleted: A list of semantic properties to be removed from the twin
@@ -130,7 +128,7 @@ class TwinApi(ApiBase):
             headers=headers or create_headers(),
             args=twin_pb2.UpdateTwinRequest.Arguments(twinId=common_pb2.TwinID(id=twin_did)),
             payload=twin_pb2.UpdateTwinRequest.Payload(
-                newVisibility=twin_pb2.VisibilityUpdate(visibility=visibility) if visibility else None,
+                newVisibility=None,                
                 location=twin_pb2.GeoLocationUpdate(location=location) if location else None,
                 properties=common_pb2.PropertyUpdate(
                     added=props_added,
@@ -144,7 +142,6 @@ class TwinApi(ApiBase):
     def upsert_twin(
             self,
             twin_did: str,
-            visibility: common_pb2.Visibility.ValueType = None,
             location: typing.Optional[common_pb2.GeoLocation] = None,
             properties: typing.Optional[typing.Iterable[common_pb2.Property]] = None,
             feeds: typing.Optional[typing.Iterable[feed_pb2.UpsertFeedWithMeta]] = None,
@@ -156,7 +153,6 @@ class TwinApi(ApiBase):
 
         Args:
             twin_did: Decentralized Identifier of the twin to upsert
-            visibility: The Visibility for the twin, PUBLIC (default) or PRIVATE
             location: The GeoLocation for the twin, created from lat/lon values using the create_location helper
             properties: A list of semantic properties providing further information about the twin, created using the
                 create_property helper
@@ -172,7 +168,7 @@ class TwinApi(ApiBase):
             headers=headers or create_headers(),
             payload=twin_pb2.UpsertTwinRequest.Payload(
                 twinId=common_pb2.TwinID(id=twin_did),
-                visibility=visibility,
+                visibility=None,
                 location=location,
                 properties=properties,
                 feeds=feeds,
