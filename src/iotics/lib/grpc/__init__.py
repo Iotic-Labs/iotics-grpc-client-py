@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from iotics.api.common_pb2 import Scope, Visibility
+from iotics.api.common_pb2 import Scope
 from iotics.api.feed_pb2 import CreateFeedResponse, DeleteFeedResponse, DescribeFeedResponse, ListAllFeedsResponse, \
     ShareFeedDataResponse, UpdateFeedResponse
 from iotics.api.interest_pb2 import FetchInterestResponse
