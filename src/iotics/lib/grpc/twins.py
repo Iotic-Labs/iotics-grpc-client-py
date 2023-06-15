@@ -128,7 +128,6 @@ class TwinApi(ApiBase):
             headers=headers or create_headers(),
             args=twin_pb2.UpdateTwinRequest.Arguments(twinId=common_pb2.TwinID(id=twin_did)),
             payload=twin_pb2.UpdateTwinRequest.Payload(
-                newVisibility=None,                
                 location=twin_pb2.GeoLocationUpdate(location=location) if location else None,
                 properties=common_pb2.PropertyUpdate(
                     added=props_added,
@@ -168,7 +167,6 @@ class TwinApi(ApiBase):
             headers=headers or create_headers(),
             payload=twin_pb2.UpsertTwinRequest.Payload(
                 twinId=common_pb2.TwinID(id=twin_did),
-                visibility=None,
                 location=location,
                 properties=properties,
                 feeds=feeds,

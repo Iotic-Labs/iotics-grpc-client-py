@@ -23,33 +23,6 @@ else:
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-class _Visibility:
-    ValueType = typing.NewType("ValueType", builtins.int)
-    V: typing_extensions.TypeAlias = ValueType
-
-class _VisibilityEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Visibility.ValueType], builtins.type):
-    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
-    PRIVATE: _Visibility.ValueType  # 0
-    PUBLIC: _Visibility.ValueType  # 1
-
-class Visibility(_Visibility, metaclass=_VisibilityEnumTypeWrapper):
-    """DEPRECATED
-    This field will be temporarily maintained alongside the metadata network allowlist for backwards compatibility.
-    Going forward, the metadata network allowlist should be used instead.
-
-    Read behaviour:
-    PRIVATE - the twin is only visible in a LOCAL scope or according to the metadata network allowlist
-    PUBLIC - the twin is visible in any scope. (ie. metadata network allowlist [ALLOW_ALL])
-
-    Write behaviour:
-    PRIVATE - set the metadata network allowlist to ALLOW_NONE: the twin is only visible in a LOCAL scope
-    PUBLIC - set the metadata network allowlist to ALLOW_ALL: the twin is visible in any scope.
-    """
-
-PRIVATE: Visibility.ValueType  # 0
-PUBLIC: Visibility.ValueType  # 1
-global___Visibility = Visibility
-
 class _Scope:
     ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType

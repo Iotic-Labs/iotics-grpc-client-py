@@ -271,7 +271,6 @@ class SearchResponse(google.protobuf.message.Message):
 
         TWINID_FIELD_NUMBER: builtins.int
         LOCATION_FIELD_NUMBER: builtins.int
-        VISIBILITY_FIELD_NUMBER: builtins.int
         PROPERTIES_FIELD_NUMBER: builtins.int
         FEEDS_FIELD_NUMBER: builtins.int
         INPUTS_FIELD_NUMBER: builtins.int
@@ -283,8 +282,6 @@ class SearchResponse(google.protobuf.message.Message):
         @property
         def location(self) -> iotics.api.common_pb2.GeoLocation:
             """Twin location (if set). Included with response type: FULL and LOCATED"""
-        visibility: iotics.api.common_pb2.Visibility.ValueType
-        """DEPRECATED - see field description for details."""
         @property
         def properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Property]:
             """Twin custom properties."""
@@ -305,7 +302,6 @@ class SearchResponse(google.protobuf.message.Message):
             *,
             twinId: iotics.api.common_pb2.TwinID | None = ...,
             location: iotics.api.common_pb2.GeoLocation | None = ...,
-            visibility: iotics.api.common_pb2.Visibility.ValueType = ...,
             properties: collections.abc.Iterable[iotics.api.common_pb2.Property] | None = ...,
             feeds: collections.abc.Iterable[global___SearchResponse.FeedDetails] | None = ...,
             inputs: collections.abc.Iterable[global___SearchResponse.InputDetails] | None = ...,
@@ -313,7 +309,7 @@ class SearchResponse(google.protobuf.message.Message):
             updatedAt: google.protobuf.timestamp_pb2.Timestamp | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "location", b"location", "twinId", b"twinId", "updatedAt", b"updatedAt"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "feeds", b"feeds", "inputs", b"inputs", "location", b"location", "properties", b"properties", "twinId", b"twinId", "updatedAt", b"updatedAt", "visibility", b"visibility"]) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "feeds", b"feeds", "inputs", b"inputs", "location", b"location", "properties", b"properties", "twinId", b"twinId", "updatedAt", b"updatedAt"]) -> None: ...
 
     @typing_extensions.final
     class Payload(google.protobuf.message.Message):

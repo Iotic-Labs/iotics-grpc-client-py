@@ -6,6 +6,7 @@ A Python library for interacting with Iotics API.
 
 | iotics-grpc-client-py | iotics-host |
 |----------------------| ----------- |
+|      `pip install iotics-grpc-client~=4.0`       | `>= 6`       |
 |      `pip install iotics-grpc-client~=3.0`       | `>= 6`       |
 |      `pip install iotics-grpc-client~=2.0`       | `>= 5`       |
 |      `pip install iotics-grpc-client~=0.10.0`      | `>= 4`     |
@@ -23,7 +24,7 @@ more information on the meaning of these values and how to create them, consult 
   * `AGENT_DID` - Identity of the agent authorised to operate on the user's behalf
   * `AGENT_KEY_NAME` - __secret__ value used to (re)create multiple key pairs
   * `AGENT_NAME` - registered identity name that can be used to e.g. identify public keys
-  * `AGENT SECRET` - __secret__ value, the agent's private key
+  * `AGENT_SECRET` - __secret__ value, the agent's private key
 
 * __Optional__:
   * `DID_RESOLVER_URL` - Where the database of identity documents is accessible, defaults to the one used by the given 

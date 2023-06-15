@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+- BREAKING CHANGE - Removed deprecated visibility
+- BREAKING CHANGE - Changed made parameter names more consistent
 
 ## [3.0.1] - 2023-05-23
 - Add CreateInput and UpdateInput methods.
