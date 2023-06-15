@@ -1,6 +1,5 @@
 from identity_auth import IdentityAuth, IdentityAuthError
-from iotics.api.common_pb2 import Visibility
-from iotics.lib.grpc.helpers import create_location, create_property, create_feed_with_meta, create_value
+from iotics.lib.grpc.helpers import METADATA_ALLOW_ALL, create_location, create_property, create_feed_with_meta, create_value
 from iotics.lib.grpc.iotics_api import IoticsApi
 
 FEED_NAME = 'myFeed'
@@ -35,7 +34,8 @@ def main():
     # You can now use this DID to create a twin.
     api.create_twin(twin_did)
     # Make the twin findable by providing some metadata, such as its location and a semantic property.
-    api.update_twin(twin_did, location=CAMBRIDGE, visibility=Visibility.PUBLIC, props_added=[
+    api.update_twin(twin_did, location=CAMBRIDGE, props_added=[
+        METADATA_ALLOW_ALL,
         create_property(key='http://test-ontology.com/test#key', value='12', datatype='integer')
     ])
     # IOTICS Twins can provide real-time streams of data using Feeds. Create a feed, making sure the name you provide
@@ -55,8 +55,8 @@ def main():
     api.share_feed_data(twin_did, FEED_NAME, {'temp': 42})
     # Using the upsert command we can replace twin and feed metadata at the same time, creating any that weren't already
     # present.
-    api.upsert_twin(twin_did, location=LONDON, visibility=Visibility.PRIVATE, properties=[
-        create_property(key='http://test-ontology.com/test#key', value='hi', language='en')
+    api.upsert_twin(twin_did, location=LONDON, properties=[
+        create_property(key='http://test-ontology.com/test#key', value='hi', language='en'),
     ], feeds=[create_feed_with_meta('foo', values=[create_value(
         'speed', 'speed in m/s', 'http://purl.obolibrary.org/obo/UO_0000094', 'float'
     )], properties=[create_property(key='http://test-ontology.com/test#feedIs', value='terrible')])])

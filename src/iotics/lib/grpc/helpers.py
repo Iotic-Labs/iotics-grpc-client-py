@@ -117,6 +117,18 @@ PROPERTY_CREATED_BY_MODEL = Property(
     key='http://data.iotics.com/app#CreationMeans',
     uriValue=Uri(value='http://data.iotics.com/app#ByModel')
 )
+
+# whether or not twins can be found from other spaces
+METADATA_ALLOW_ALL = Property(
+    key='http://data.iotics.com/public#hostMetadataAllowList',
+    uriValue=Uri(value='http://data.iotics.com/public#all')
+)
+METADATA_ALLOW_NONE = Property(
+    key='http://data.iotics.com/public#hostMetadataAllowList',
+    uriValue=Uri(value='http://data.iotics.com/public#none')
+)
+
+# whether or not twins feeds can be followed from other spaces
 PROPERTY_ALLOW_ALL = Property(
     key='http://data.iotics.com/public#hostAllowList',
     uriValue=Uri(value='http://data.iotics.com/public#all')
@@ -125,6 +137,7 @@ PROPERTY_ALLOW_NONE = Property(
     key='http://data.iotics.com/public#hostAllowList',
     uriValue=Uri(value='http://data.iotics.com/public#none')
 )
+
 PROPERTY_KEY_HAS_MODEL = 'https://data.iotics.com/app#model'
 PROPERTY_KEY_COLOR = 'https://data.iotics.com/app#color'
 PROPERTY_KEY_CREATED_AT = 'https://data.iotics.com/app#createdAt'
