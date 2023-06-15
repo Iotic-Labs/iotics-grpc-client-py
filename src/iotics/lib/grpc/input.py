@@ -93,7 +93,7 @@ class InputApi(ApiBase):
 
     def describe_input(
         self,
-        twin_id: str,
+        twin_did: str,
         input_id: str,
         remote_host_id: typing.Optional[str] = None,
         headers: typing.Optional[common_pb2.Headers] = None,
@@ -101,7 +101,7 @@ class InputApi(ApiBase):
         """Describes an input (local and remote).
 
         Args:
-            twin_id: The twin whose input will be described
+            twin_did: The twin whose input will be described
             input_id: The ID of the input to be described
             remote_host_id: The remote host on which the twin is found -- None if twin is local
             headers: optional request headers
@@ -111,21 +111,21 @@ class InputApi(ApiBase):
         request = input_pb2.DescribeInputRequest(
             headers=headers or create_headers(),
             args=input_pb2.DescribeInputRequest.Arguments(
-                inputId=InputID(id=input_id, twinId=twin_id, hostId=remote_host_id),
+                inputId=InputID(id=input_id, twinId=twin_did, hostId=remote_host_id),
             )
         )
         return self.stub.DescribeInput(request)
 
     def delete_input(
         self,
-        twin_id: str,
+        twin_did: str,
         input_id: str,
         headers: typing.Optional[common_pb2.Headers] = None,
     ) -> input_pb2.DeleteInputResponse:
         """Deletes an input (idempotent).
 
         Args:
-            twin_id: The twin whose input will be deleted
+            twin_did: The twin whose input will be deleted
             input_id: The ID of the input to be deleted
             headers: optional request headers
 
@@ -134,13 +134,13 @@ class InputApi(ApiBase):
         """
         request = input_pb2.DeleteInputRequest(
             headers=headers or create_headers(),
-            args=input_pb2.DeleteInputRequest.Arguments(inputId=InputID(id=input_id, twinId=twin_id)),
+            args=input_pb2.DeleteInputRequest.Arguments(inputId=InputID(id=input_id, twinId=twin_did)),
         )
         return self.stub.DeleteInput(request)
 
     def receive_input_messages(
             self,
-            twin_id: str,
+            twin_did: str,
             input_id: str,
             timeout: typing.Optional[int] = None,
             headers: typing.Optional[common_pb2.Headers] = None
@@ -150,14 +150,14 @@ class InputApi(ApiBase):
         Note: This function must be called before `InterestApi.send_input_message` otherwise messages may be lost.
 
         Args:
-            twin_id: The twin offering the input to receive messages on
+            twin_did: The twin offering the input to receive messages on
             input_id: The input that will receive the messages
             timeout: How long before the input stops listening
             headers: optional request headers
 
         Returns: Response iterator with extra blocking (e.g. `time_remaining`) and non-blocking (e.g. `code`) methods.
         """
-        args = input_pb2.ReceiveInputMessageRequest.Arguments(inputId=InputID(id=input_id, twinId=twin_id))
+        args = input_pb2.ReceiveInputMessageRequest.Arguments(inputId=InputID(id=input_id, twinId=twin_did))
         request = input_pb2.ReceiveInputMessageRequest(headers=headers or create_headers(), args=args)
 
         # Define type here to avoid: `TypeError: 'ABCMeta' object is not subscriptable`.

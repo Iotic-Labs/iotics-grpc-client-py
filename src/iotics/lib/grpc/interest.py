@@ -122,8 +122,8 @@ class InterestApi(ApiBase):
     def send_input_message(
         self,
         message: typing.Any,
-        sender_twin_id: str,
-        receiver_twin_id: str,
+        sender_twin_did: str,
+        receiver_twin_did: str,
         input_id: str,
         remote_host_id: typing.Optional[str] = None,
         headers: typing.Optional[common_pb2.Headers] = None,
@@ -132,8 +132,8 @@ class InterestApi(ApiBase):
 
         Args:
             message: What to send the remote twin, usually in the form of a dict with keys matching the input's Values
-            sender_twin_id: The twin sending the message
-            receiver_twin_id: The twin receiving the message
+            sender_twin_did: The twin sending the message
+            receiver_twin_did: The twin receiving the message
             input_id: The ID of the input where the message will be sent
             remote_host_id: If the receiver twin is remote, its host ID (None if local)
             headers: optional request headers
@@ -142,8 +142,8 @@ class InterestApi(ApiBase):
 
         """
         input_interest = interest_pb2.InputInterest(
-            senderTwinId=common_pb2.TwinID(id=sender_twin_id),
-            destInputId=InputID(id=input_id, twinId=receiver_twin_id, hostId=remote_host_id),
+            senderTwinId=common_pb2.TwinID(id=sender_twin_did),
+            destInputId=InputID(id=input_id, twinId=receiver_twin_did, hostId=remote_host_id),
         )
         input_message = input_pb2.InputMessage(
             occurredAt=create_timestamp(),
