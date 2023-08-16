@@ -31,7 +31,7 @@ class IdentityAuth(AuthInterface):
     ):
         split_url = space.partition('://')
         space = split_url[2] or split_url[0]
-        self.grpc_url = space + ':10001'
+        self.grpc_url = space
         if not resolver_url:
             index_url = f'https://{space}/index.json'
             try:
