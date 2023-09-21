@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.1] - 2023-09-21
+- Bug fix - feed sharing invalid mimetype
+
 ## [4.0.0] - 2023-06-28
 - BREAKING CHANGE - Removed deprecated visibility
 - BREAKING CHANGE - Changed made parameter names more consistent
@@ -33,8 +36,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - BREAKING CHANGE - Update to handle breaking changes in Iotics API, major change here is the change of TwinID Protobuf definition to include hostId (HostTwinDID)
 - docker and makefile fixes for mac and changes in buf
 
-[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v4.0.0...HEAD
 
+[4.0.1]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v3.0.1...v4.0.0
 [3.0.1]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v2.0.4...v3.0.0

@@ -146,7 +146,7 @@ class FeedApi(ApiBase):
             ),
             payload=feed_pb2.ShareFeedDataRequest.Payload(sample=common_pb2.FeedData(
                 occurredAt=Timestamp(seconds=occurred_at if occurred_at else int(time.time())),
-                mime="text/json",
+                mime="application/json",
                 data=bytes(json.dumps(data), 'utf-8'))),
         )
         return self.stub.ShareFeedData(req)
