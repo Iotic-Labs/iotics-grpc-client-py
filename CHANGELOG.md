@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+-   Enable keep alive of grpc channel by default
 
 ## [4.0.1] - 2023-09-21
 - Bug fix - feed sharing invalid mimetype
