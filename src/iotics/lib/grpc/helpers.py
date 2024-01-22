@@ -17,26 +17,63 @@ import uuid
 import grpc
 from google.protobuf.timestamp_pb2 import Timestamp
 
-from iotics.api.common_pb2 import GeoLocation, Headers, LangLiteral, Literal, Property, StringLiteral, Uri, Value
+from iotics.api.common_pb2 import (
+    GeoLocation,
+    Headers,
+    LangLiteral,
+    Literal,
+    Property,
+    StringLiteral,
+    Uri,
+    Value,
+)
 from iotics.api.feed_pb2 import UpsertFeedWithMeta
 from iotics.lib.grpc.auth import AuthInterface
 from iotics.api.input_pb2 import UpsertInputWithMeta
 
 
-def get_channel(auth: AuthInterface) -> grpc.Channel:
+# by default we use these options when creating a channel
+# in order for the client to better know when e.g. the server is down
+# https://github.com/grpc/grpc/issues/32095
+# https://github.com/grpc/grpc/blob/master/doc/keepalive.md#defaults-values
+KEEP_ALIVE_CHANNEL_OPTIONS = [
+    # How often to PING
+    ("grpc.keepalive_time_ms", 60000),
+    # How long to wait for PONG response
+    ("grpc.keepalive_timeout_ms", 30000),
+    # When there are idle streams (e.g. followed feeds), the default of 2 will prevent
+    # pings from being sent unless writes are requested. Therefore disable this option
+    # and allow for pings to work regardless.
+    ("grpc.http2.max_pings_without_data", 0),
+]
+
+
+def get_channel(
+    auth: AuthInterface, channel_options: [tuple, ...] = None
+) -> grpc.Channel:
     """Creates a gRPC channel to IOTICSpace and instantiates API stub.
 
     Args:
         auth: Required to get a space host name and authentication token.
+        channel_options: options argument passed to the grpc.secure_channel call
+          by default will use KEEP_ALIVE_CHANNEL_OPTIONS
 
     Returns: gRPC channel.
     """
+
+    if channel_options is None:
+        channel_options = KEEP_ALIVE_CHANNEL_OPTIONS
+
     # note: for testing against a local server without ssl
     # you can use 'grpc.local_channel_credentials()' here instead
     channel_credentials = grpc.ssl_channel_credentials()
     call_credentials = grpc.access_token_call_credentials(auth.get_token())
-    composite_credentials = grpc.composite_channel_credentials(channel_credentials, call_credentials)
-    return grpc.secure_channel(auth.get_host(), composite_credentials)
+    composite_credentials = grpc.composite_channel_credentials(
+        channel_credentials, call_credentials
+    )
+    return grpc.secure_channel(
+        auth.get_host(), composite_credentials, options=channel_options
+    )
 
 
 def create_property(key, value, language=None, datatype=None, is_uri=False):
