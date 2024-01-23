@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+
+## [4.0.2] - 2024-01-23
 -   Enable keep alive of grpc channel by default
 
 ## [4.0.1] - 2023-09-21
@@ -38,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - docker and makefile fixes for mac and changes in buf
 
 
+[4.0.2]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v4.0.1...v4.0.2
 [4.0.1]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v3.0.1...v4.0.0
 [3.0.1]: https://github.com/Iotic-Labs/iotics-grpc-client-py/compare/v3.0.0...v3.0.1
