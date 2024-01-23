@@ -96,8 +96,8 @@ This package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 
 ## Releasing
-* Update package version in [setup.py](./setup.py) for the release:
-* Update [CHANGELOG.md](https://github.com/Iotic-Labs/iotics-grpc-client-py/blob/main/CHANGELOG.md) (move notes from unreleased section, ensure right tags are used, etc.)
+* Update package version in [setup.cfg](./setup.cfg) for the release:
+* Update [CHANGELOG.md](./CHANGELOG.md) (move notes from unreleased section, ensure right tags are used, etc.)
   and any other files as needed.
 * Commit changes and create a [PR](https://github.com/Iotic-Labs/iotics-grpc-client-py/compare).
 * Once PR is merged manually run the [Create Draft Release GitHub Action](https://github.com/Iotic-Labs/iotics-grpc-client-py/actions/workflows/draft_release.yml), this will create a tag with the version in setup.py and create a draft release in [releases](https://github.com/Iotic-Labs/iotics-grpc-client-py/releases).
