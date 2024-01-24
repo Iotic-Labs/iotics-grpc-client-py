@@ -6,8 +6,19 @@ Copyright (c) 2019-2022 Iotic Labs Ltd. All rights reserved.
 Iotics Web protocol definitions (feed)
 """
 import abc
+import collections.abc
 import grpc
+import grpc.aio
 import iotics.api.feed_pb2
+import typing
+
+_T = typing.TypeVar('_T')
+
+class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Iterator[_T], metaclass=abc.ABCMeta):
+    ...
+
+class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore
+    ...
 
 class FeedAPIStub:
     """---------------------------------------------------------------------------------------------------------------------
@@ -18,7 +29,7 @@ class FeedAPIStub:
     Services only affect local resources, unless stated otherwise.
     """
 
-    def __init__(self, channel: grpc.Channel) -> None: ...
+    def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
     CreateFeed: grpc.UnaryUnaryMultiCallable[
         iotics.api.feed_pb2.CreateFeedRequest,
         iotics.api.feed_pb2.CreateFeedResponse,
@@ -39,12 +50,66 @@ class FeedAPIStub:
         iotics.api.feed_pb2.ShareFeedDataResponse,
     ]
     """Shares a new sample of data for the given feed which any (interest) subscribers can receive."""
+    StreamFeedData: grpc.StreamUnaryMultiCallable[
+        iotics.api.feed_pb2.ShareFeedDataRequest,
+        iotics.api.feed_pb2.ShareFeedDataResponse,
+    ]
+    """Shares feed data over a stream, any sharing error will return the error and close the stream.
+    Note: cannot share to different feeds over the same stream.
+    """
     ListAllFeeds: grpc.UnaryUnaryMultiCallable[
         iotics.api.feed_pb2.ListAllFeedsRequest,
         iotics.api.feed_pb2.ListAllFeedsResponse,
     ]
     """Lists all feeds owned by a twin."""
     DescribeFeed: grpc.UnaryUnaryMultiCallable[
+        iotics.api.feed_pb2.DescribeFeedRequest,
+        iotics.api.feed_pb2.DescribeFeedResponse,
+    ]
+    """Describes a feed. (local and remote)"""
+
+class FeedAPIAsyncStub:
+    """---------------------------------------------------------------------------------------------------------------------
+
+    Create a feed owned by the provided twin.
+    A twin may have one or more feeds. Any twin can subscribe to a feed (access control permitting).
+    A feed generates data in a 1-to-many relationship: one feed may produce data that is used by many consumers (twins).
+    Services only affect local resources, unless stated otherwise.
+    """
+
+    CreateFeed: grpc.aio.UnaryUnaryMultiCallable[
+        iotics.api.feed_pb2.CreateFeedRequest,
+        iotics.api.feed_pb2.CreateFeedResponse,
+    ]
+    """Creates a feed owned by a twin. (Idempotent)"""
+    DeleteFeed: grpc.aio.UnaryUnaryMultiCallable[
+        iotics.api.feed_pb2.DeleteFeedRequest,
+        iotics.api.feed_pb2.DeleteFeedResponse,
+    ]
+    """Deletes a feed owned by a twin. (Idempotent)"""
+    UpdateFeed: grpc.aio.UnaryUnaryMultiCallable[
+        iotics.api.feed_pb2.UpdateFeedRequest,
+        iotics.api.feed_pb2.UpdateFeedResponse,
+    ]
+    """Updates attributes of a feed, including its metadata."""
+    ShareFeedData: grpc.aio.UnaryUnaryMultiCallable[
+        iotics.api.feed_pb2.ShareFeedDataRequest,
+        iotics.api.feed_pb2.ShareFeedDataResponse,
+    ]
+    """Shares a new sample of data for the given feed which any (interest) subscribers can receive."""
+    StreamFeedData: grpc.aio.StreamUnaryMultiCallable[
+        iotics.api.feed_pb2.ShareFeedDataRequest,
+        iotics.api.feed_pb2.ShareFeedDataResponse,
+    ]
+    """Shares feed data over a stream, any sharing error will return the error and close the stream.
+    Note: cannot share to different feeds over the same stream.
+    """
+    ListAllFeeds: grpc.aio.UnaryUnaryMultiCallable[
+        iotics.api.feed_pb2.ListAllFeedsRequest,
+        iotics.api.feed_pb2.ListAllFeedsResponse,
+    ]
+    """Lists all feeds owned by a twin."""
+    DescribeFeed: grpc.aio.UnaryUnaryMultiCallable[
         iotics.api.feed_pb2.DescribeFeedRequest,
         iotics.api.feed_pb2.DescribeFeedResponse,
     ]
@@ -63,43 +128,52 @@ class FeedAPIServicer(metaclass=abc.ABCMeta):
     def CreateFeed(
         self,
         request: iotics.api.feed_pb2.CreateFeedRequest,
-        context: grpc.ServicerContext,
-    ) -> iotics.api.feed_pb2.CreateFeedResponse:
+        context: _ServicerContext,
+    ) -> typing.Union[iotics.api.feed_pb2.CreateFeedResponse, collections.abc.Awaitable[iotics.api.feed_pb2.CreateFeedResponse]]:
         """Creates a feed owned by a twin. (Idempotent)"""
     @abc.abstractmethod
     def DeleteFeed(
         self,
         request: iotics.api.feed_pb2.DeleteFeedRequest,
-        context: grpc.ServicerContext,
-    ) -> iotics.api.feed_pb2.DeleteFeedResponse:
+        context: _ServicerContext,
+    ) -> typing.Union[iotics.api.feed_pb2.DeleteFeedResponse, collections.abc.Awaitable[iotics.api.feed_pb2.DeleteFeedResponse]]:
         """Deletes a feed owned by a twin. (Idempotent)"""
     @abc.abstractmethod
     def UpdateFeed(
         self,
         request: iotics.api.feed_pb2.UpdateFeedRequest,
-        context: grpc.ServicerContext,
-    ) -> iotics.api.feed_pb2.UpdateFeedResponse:
+        context: _ServicerContext,
+    ) -> typing.Union[iotics.api.feed_pb2.UpdateFeedResponse, collections.abc.Awaitable[iotics.api.feed_pb2.UpdateFeedResponse]]:
         """Updates attributes of a feed, including its metadata."""
     @abc.abstractmethod
     def ShareFeedData(
         self,
         request: iotics.api.feed_pb2.ShareFeedDataRequest,
-        context: grpc.ServicerContext,
-    ) -> iotics.api.feed_pb2.ShareFeedDataResponse:
+        context: _ServicerContext,
+    ) -> typing.Union[iotics.api.feed_pb2.ShareFeedDataResponse, collections.abc.Awaitable[iotics.api.feed_pb2.ShareFeedDataResponse]]:
         """Shares a new sample of data for the given feed which any (interest) subscribers can receive."""
+    @abc.abstractmethod
+    def StreamFeedData(
+        self,
+        request_iterator: _MaybeAsyncIterator[iotics.api.feed_pb2.ShareFeedDataRequest],
+        context: _ServicerContext,
+    ) -> typing.Union[iotics.api.feed_pb2.ShareFeedDataResponse, collections.abc.Awaitable[iotics.api.feed_pb2.ShareFeedDataResponse]]:
+        """Shares feed data over a stream, any sharing error will return the error and close the stream.
+        Note: cannot share to different feeds over the same stream.
+        """
     @abc.abstractmethod
     def ListAllFeeds(
         self,
         request: iotics.api.feed_pb2.ListAllFeedsRequest,
-        context: grpc.ServicerContext,
-    ) -> iotics.api.feed_pb2.ListAllFeedsResponse:
+        context: _ServicerContext,
+    ) -> typing.Union[iotics.api.feed_pb2.ListAllFeedsResponse, collections.abc.Awaitable[iotics.api.feed_pb2.ListAllFeedsResponse]]:
         """Lists all feeds owned by a twin."""
     @abc.abstractmethod
     def DescribeFeed(
         self,
         request: iotics.api.feed_pb2.DescribeFeedRequest,
-        context: grpc.ServicerContext,
-    ) -> iotics.api.feed_pb2.DescribeFeedResponse:
+        context: _ServicerContext,
+    ) -> typing.Union[iotics.api.feed_pb2.DescribeFeedResponse, collections.abc.Awaitable[iotics.api.feed_pb2.DescribeFeedResponse]]:
         """Describes a feed. (local and remote)"""
 
-def add_FeedAPIServicer_to_server(servicer: FeedAPIServicer, server: grpc.Server) -> None: ...
+def add_FeedAPIServicer_to_server(servicer: FeedAPIServicer, server: typing.Union[grpc.Server, grpc.aio.Server]) -> None: ...

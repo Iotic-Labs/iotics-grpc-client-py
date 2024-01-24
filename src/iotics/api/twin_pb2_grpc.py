@@ -65,8 +65,8 @@ class TwinAPIServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def UpsertTwin(self, request, context):
-        """UpsertTwin creates or update a twin with its metadata + the twin feeds with their metadata.
-        The full state is applied (ie. if the operation succeeds the state of the twin/feeds will be the one
+        """UpsertTwin creates or update a twin with its metadata + the twin feeds and inputs with their metadata.
+        The full state is applied (ie. if the operation succeeds the state of the twin, feeds and inputs will be the one
         described in the payload)
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)

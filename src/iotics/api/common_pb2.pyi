@@ -177,7 +177,7 @@ global___Literal = Literal
 
 @typing_extensions.final
 class Uri(google.protobuf.message.Message):
-    """Uri is a metadata property type describing am Uri."""
+    """Uri is a metadata property type describing a Uri."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -277,6 +277,53 @@ class GeoCircle(google.protobuf.message.Message):
 global___GeoCircle = GeoCircle
 
 @typing_extensions.final
+class RequestInfo(google.protobuf.message.Message):
+    """RequestInfo is a request parameter used to provide additional information about the request.
+    It will also be included in the response.
+    """
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing_extensions.final
+    class TraceCtxEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+        value: builtins.str
+        def __init__(
+            self,
+            *,
+            key: builtins.str = ...,
+            value: builtins.str = ...,
+        ) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["key", b"key", "value", b"value"]) -> None: ...
+
+    STARTTIME_FIELD_NUMBER: builtins.int
+    TRACECTX_FIELD_NUMBER: builtins.int
+    @property
+    def startTime(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """Start timestamp of the request, from the perspective of the host (server). Values supplied by the client will be
+        ignored
+        """
+    @property
+    def traceCtx(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
+        """Headers for tracing support (W3C Trace Context / Baggage). If no valid context is provided by the client, the host
+        (server) will initialise one.
+        """
+    def __init__(
+        self,
+        *,
+        startTime: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        traceCtx: collections.abc.Mapping[builtins.str, builtins.str] | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["startTime", b"startTime"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["startTime", b"startTime", "traceCtx", b"traceCtx"]) -> None: ...
+
+global___RequestInfo = RequestInfo
+
+@typing_extensions.final
 class Headers(google.protobuf.message.Message):
     """Headers describes the common headers applicable to all the API requests
     (except for Search subscribe: see SubscriptionHeaders).
@@ -289,6 +336,7 @@ class Headers(google.protobuf.message.Message):
     TRANSACTIONREF_FIELD_NUMBER: builtins.int
     CONSUMERGROUP_FIELD_NUMBER: builtins.int
     REQUESTTIMEOUT_FIELD_NUMBER: builtins.int
+    REQUESTINFO_FIELD_NUMBER: builtins.int
     clientRef: builtins.str
     """Optional client reference. Any responses associated with the request will include this reference."""
     clientAppId: builtins.str
@@ -306,6 +354,8 @@ class Headers(google.protobuf.message.Message):
     @property
     def requestTimeout(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """Client request timeout used to stop the request processing once the timeout is reached"""
+    @property
+    def requestInfo(self) -> global___RequestInfo: ...
     def __init__(
         self,
         *,
@@ -314,9 +364,10 @@ class Headers(google.protobuf.message.Message):
         transactionRef: collections.abc.Iterable[builtins.str] | None = ...,
         consumerGroup: google.protobuf.wrappers_pb2.StringValue | None = ...,
         requestTimeout: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        requestInfo: global___RequestInfo | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["consumerGroup", b"consumerGroup", "requestTimeout", b"requestTimeout"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["clientAppId", b"clientAppId", "clientRef", b"clientRef", "consumerGroup", b"consumerGroup", "requestTimeout", b"requestTimeout", "transactionRef", b"transactionRef"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["consumerGroup", b"consumerGroup", "requestInfo", b"requestInfo", "requestTimeout", b"requestTimeout"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["clientAppId", b"clientAppId", "clientRef", b"clientRef", "consumerGroup", b"consumerGroup", "requestInfo", b"requestInfo", "requestTimeout", b"requestTimeout", "transactionRef", b"transactionRef"]) -> None: ...
 
 global___Headers = Headers
 

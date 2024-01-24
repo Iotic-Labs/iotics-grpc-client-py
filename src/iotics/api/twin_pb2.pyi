@@ -65,7 +65,6 @@ class ListAllTwinsResponse(google.protobuf.message.Message):
         TWINID_FIELD_NUMBER: builtins.int
         LOCATION_FIELD_NUMBER: builtins.int
         PROPERTIES_FIELD_NUMBER: builtins.int
-        CREATEDAT_FIELD_NUMBER: builtins.int
         UPDATEDAT_FIELD_NUMBER: builtins.int
         @property
         def twinId(self) -> iotics.api.common_pb2.TwinID:
@@ -77,9 +76,6 @@ class ListAllTwinsResponse(google.protobuf.message.Message):
         def properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Property]:
             """Twin custom properties."""
         @property
-        def createdAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
-            """Twin createdAt timestamp."""
-        @property
         def updatedAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
             """Twin updatedAt timestamp."""
         def __init__(
@@ -88,11 +84,10 @@ class ListAllTwinsResponse(google.protobuf.message.Message):
             twinId: iotics.api.common_pb2.TwinID | None = ...,
             location: iotics.api.common_pb2.GeoLocation | None = ...,
             properties: collections.abc.Iterable[iotics.api.common_pb2.Property] | None = ...,
-            createdAt: google.protobuf.timestamp_pb2.Timestamp | None = ...,
             updatedAt: google.protobuf.timestamp_pb2.Timestamp | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "location", b"location", "twinId", b"twinId", "updatedAt", b"updatedAt"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "location", b"location", "properties", b"properties", "twinId", b"twinId", "updatedAt", b"updatedAt"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["location", b"location", "twinId", b"twinId", "updatedAt", b"updatedAt"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["location", b"location", "properties", b"properties", "twinId", b"twinId", "updatedAt", b"updatedAt"]) -> None: ...
 
     @typing_extensions.final
     class Payload(google.protobuf.message.Message):
@@ -398,7 +393,6 @@ class DescribeTwinResponse(google.protobuf.message.Message):
         FEEDS_FIELD_NUMBER: builtins.int
         INPUTS_FIELD_NUMBER: builtins.int
         PROPERTIES_FIELD_NUMBER: builtins.int
-        CREATEDAT_FIELD_NUMBER: builtins.int
         UPDATEDAT_FIELD_NUMBER: builtins.int
         @property
         def location(self) -> iotics.api.common_pb2.GeoLocation: ...
@@ -410,9 +404,6 @@ class DescribeTwinResponse(google.protobuf.message.Message):
         def properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Property]:
             """Custom properties associated with this twin."""
         @property
-        def createdAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
-            """Twin createdAt timestamp."""
-        @property
         def updatedAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
             """Twin updatedAt timestamp."""
         def __init__(
@@ -422,11 +413,10 @@ class DescribeTwinResponse(google.protobuf.message.Message):
             feeds: collections.abc.Iterable[global___FeedMeta] | None = ...,
             inputs: collections.abc.Iterable[global___InputMeta] | None = ...,
             properties: collections.abc.Iterable[iotics.api.common_pb2.Property] | None = ...,
-            createdAt: google.protobuf.timestamp_pb2.Timestamp | None = ...,
             updatedAt: google.protobuf.timestamp_pb2.Timestamp | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "location", b"location", "updatedAt", b"updatedAt"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "feeds", b"feeds", "inputs", b"inputs", "location", b"location", "properties", b"properties", "updatedAt", b"updatedAt"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["location", b"location", "updatedAt", b"updatedAt"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["feeds", b"feeds", "inputs", b"inputs", "location", b"location", "properties", b"properties", "updatedAt", b"updatedAt"]) -> None: ...
 
     @typing_extensions.final
     class Payload(google.protobuf.message.Message):
@@ -610,13 +600,13 @@ global___UpdateTwinResponse = UpdateTwinResponse
 
 @typing_extensions.final
 class UpsertTwinRequest(google.protobuf.message.Message):
-    """UpsertTwinRequest describes the full state of a twin + its feeds to create or update (full update)"""
+    """UpsertTwinRequest describes the full state of a twin + its feeds and inputs to create or update (full update)"""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing_extensions.final
     class Payload(google.protobuf.message.Message):
-        """UpsertTwinRequest payload. This state will be applied to the twin/feeds"""
+        """UpsertTwinRequest payload. This state will be applied to the twin, feeds and inputs"""
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -673,7 +663,7 @@ global___UpsertTwinRequest = UpsertTwinRequest
 
 @typing_extensions.final
 class UpsertTwinResponse(google.protobuf.message.Message):
-    """UpsertTwinResponse is received when a twin and its feeds have been created/updated."""
+    """UpsertTwinResponse is received when a twin and its feeds and inputs have been created/updated."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 

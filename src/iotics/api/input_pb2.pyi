@@ -33,7 +33,7 @@ class InputID(google.protobuf.message.Message):
     id: builtins.str
     """Input Identifier string representation (simple string) (unique within the scope of a twin identifier's input set)"""
     twinId: builtins.str
-    """Twin identifier string representation (simple string) (twin to which the feed belongs)"""
+    """Twin identifier string representation (simple string) (twin to which the input belongs)"""
     hostId: builtins.str
     """Host identifier string representation (simple string) (Host to which the twin belongs)"""
     def __init__(
@@ -497,7 +497,7 @@ global___UpsertInputWithMeta = UpsertInputWithMeta
 
 @typing_extensions.final
 class InputMessage(google.protobuf.message.Message):
-    """InputMessage describe a message that can be sent to an input"""
+    """InputMessage describes a message that can be sent to an input"""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
