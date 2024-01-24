@@ -8,7 +8,7 @@ from iotics.api import interest_pb2 as iotics_dot_api_dot_interest__pb2
 class InterestAPIStub(object):
     """---------------------------------------------------------------------------------------------------------------------
 
-    InterestAPI enables creation and management of interests between a twin and a feed.
+    InterestAPI enables creation and management of interests between a twin and a feed or an input.
     """
 
     def __init__(self, channel):
@@ -37,7 +37,7 @@ class InterestAPIStub(object):
 class InterestAPIServicer(object):
     """---------------------------------------------------------------------------------------------------------------------
 
-    InterestAPI enables creation and management of interests between a twin and a feed.
+    InterestAPI enables creation and management of interests between a twin and a feed or an input.
     """
 
     def FetchInterests(self, request, context):
@@ -89,7 +89,7 @@ def add_InterestAPIServicer_to_server(servicer, server):
 class InterestAPI(object):
     """---------------------------------------------------------------------------------------------------------------------
 
-    InterestAPI enables creation and management of interests between a twin and a feed.
+    InterestAPI enables creation and management of interests between a twin and a feed or an input.
     """
 
     @staticmethod

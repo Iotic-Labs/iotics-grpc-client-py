@@ -39,7 +39,7 @@ class _ResponseTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._E
 
 class ResponseType(_ResponseType, metaclass=_ResponseTypeEnumTypeWrapper):
     """ResponseType describes the type of the search response.
-    - FULL - Returns full responses including twins and feeds identifiers, labels/comments (for all languages if no language provided), properties and location
+    - FULL - Returns full responses including twins, feeds and inputs identifiers, properties and location
     - LOCATED - Returns located responses including twins identifier, location and label (for the provided language or default)
     - MINIMAL - Returns minimal responses including twins identifier only
     """
@@ -206,7 +206,7 @@ class SearchResponse(google.protobuf.message.Message):
     """---------------------------------------------------------------------------------------------------------------------
 
     SearchResponse describes a result associated to a search request.
-    It contains all the matching twins/feeds according to the request scope/range/lang/filters in the expected response type format.
+    It contains all the matching twins/feeds/inputs according to the request scope/range/lang/filters in the expected response type format.
     In the decentralised iotics operating environment, each node in the network generates a response and the client is expected to
     receive a stream of response messages.
     """
@@ -274,7 +274,6 @@ class SearchResponse(google.protobuf.message.Message):
         PROPERTIES_FIELD_NUMBER: builtins.int
         FEEDS_FIELD_NUMBER: builtins.int
         INPUTS_FIELD_NUMBER: builtins.int
-        CREATEDAT_FIELD_NUMBER: builtins.int
         UPDATEDAT_FIELD_NUMBER: builtins.int
         @property
         def twinId(self) -> iotics.api.common_pb2.TwinID:
@@ -292,9 +291,6 @@ class SearchResponse(google.protobuf.message.Message):
         def inputs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SearchResponse.InputDetails]:
             """Input details. Included with response type: FULL"""
         @property
-        def createdAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
-            """Twin createdAt timestamp."""
-        @property
         def updatedAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
             """Twin updatedAt timestamp."""
         def __init__(
@@ -305,11 +301,10 @@ class SearchResponse(google.protobuf.message.Message):
             properties: collections.abc.Iterable[iotics.api.common_pb2.Property] | None = ...,
             feeds: collections.abc.Iterable[global___SearchResponse.FeedDetails] | None = ...,
             inputs: collections.abc.Iterable[global___SearchResponse.InputDetails] | None = ...,
-            createdAt: google.protobuf.timestamp_pb2.Timestamp | None = ...,
             updatedAt: google.protobuf.timestamp_pb2.Timestamp | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "location", b"location", "twinId", b"twinId", "updatedAt", b"updatedAt"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["createdAt", b"createdAt", "feeds", b"feeds", "inputs", b"inputs", "location", b"location", "properties", b"properties", "twinId", b"twinId", "updatedAt", b"updatedAt"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["location", b"location", "twinId", b"twinId", "updatedAt", b"updatedAt"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["feeds", b"feeds", "inputs", b"inputs", "location", b"location", "properties", b"properties", "twinId", b"twinId", "updatedAt", b"updatedAt"]) -> None: ...
 
     @typing_extensions.final
     class Payload(google.protobuf.message.Message):

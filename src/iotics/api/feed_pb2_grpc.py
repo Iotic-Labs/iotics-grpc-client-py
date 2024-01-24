@@ -40,6 +40,11 @@ class FeedAPIStub(object):
                 request_serializer=iotics_dot_api_dot_feed__pb2.ShareFeedDataRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_feed__pb2.ShareFeedDataResponse.FromString,
                 )
+        self.StreamFeedData = channel.stream_unary(
+                '/iotics.api.FeedAPI/StreamFeedData',
+                request_serializer=iotics_dot_api_dot_feed__pb2.ShareFeedDataRequest.SerializeToString,
+                response_deserializer=iotics_dot_api_dot_feed__pb2.ShareFeedDataResponse.FromString,
+                )
         self.ListAllFeeds = channel.unary_unary(
                 '/iotics.api.FeedAPI/ListAllFeeds',
                 request_serializer=iotics_dot_api_dot_feed__pb2.ListAllFeedsRequest.SerializeToString,
@@ -89,6 +94,14 @@ class FeedAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def StreamFeedData(self, request_iterator, context):
+        """Shares feed data over a stream, any sharing error will return the error and close the stream.
+        Note: cannot share to different feeds over the same stream.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def ListAllFeeds(self, request, context):
         """Lists all feeds owned by a twin.
         """
@@ -123,6 +136,11 @@ def add_FeedAPIServicer_to_server(servicer, server):
             ),
             'ShareFeedData': grpc.unary_unary_rpc_method_handler(
                     servicer.ShareFeedData,
+                    request_deserializer=iotics_dot_api_dot_feed__pb2.ShareFeedDataRequest.FromString,
+                    response_serializer=iotics_dot_api_dot_feed__pb2.ShareFeedDataResponse.SerializeToString,
+            ),
+            'StreamFeedData': grpc.stream_unary_rpc_method_handler(
+                    servicer.StreamFeedData,
                     request_deserializer=iotics_dot_api_dot_feed__pb2.ShareFeedDataRequest.FromString,
                     response_serializer=iotics_dot_api_dot_feed__pb2.ShareFeedDataResponse.SerializeToString,
             ),
@@ -215,6 +233,23 @@ class FeedAPI(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/iotics.api.FeedAPI/ShareFeedData',
+            iotics_dot_api_dot_feed__pb2.ShareFeedDataRequest.SerializeToString,
+            iotics_dot_api_dot_feed__pb2.ShareFeedDataResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def StreamFeedData(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_unary(request_iterator, target, '/iotics.api.FeedAPI/StreamFeedData',
             iotics_dot_api_dot_feed__pb2.ShareFeedDataRequest.SerializeToString,
             iotics_dot_api_dot_feed__pb2.ShareFeedDataResponse.FromString,
             options, channel_credentials,

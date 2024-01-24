@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.0] - 2024-01-24
+- BREAKING CHANGE - IOTICS Public API - removed createdAt from SearchResponse, ListAllTwinsResponse, and DescribeTwinResponse
+
 ## [4.0.2] - 2024-01-23
 -   Enable keep alive of grpc channel by default
 

@@ -8,15 +8,25 @@ Iotics Web protocol definitions (interests)
 import abc
 import collections.abc
 import grpc
+import grpc.aio
 import iotics.api.interest_pb2
+import typing
+
+_T = typing.TypeVar('_T')
+
+class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Iterator[_T], metaclass=abc.ABCMeta):
+    ...
+
+class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore
+    ...
 
 class InterestAPIStub:
     """---------------------------------------------------------------------------------------------------------------------
 
-    InterestAPI enables creation and management of interests between a twin and a feed.
+    InterestAPI enables creation and management of interests between a twin and a feed or an input.
     """
 
-    def __init__(self, channel: grpc.Channel) -> None: ...
+    def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
     FetchInterests: grpc.UnaryStreamMultiCallable[
         iotics.api.interest_pb2.FetchInterestRequest,
         iotics.api.interest_pb2.FetchInterestResponse,
@@ -33,32 +43,54 @@ class InterestAPIStub:
     ]
     """Send a message to an input. (local and remote)"""
 
+class InterestAPIAsyncStub:
+    """---------------------------------------------------------------------------------------------------------------------
+
+    InterestAPI enables creation and management of interests between a twin and a feed or an input.
+    """
+
+    FetchInterests: grpc.aio.UnaryStreamMultiCallable[
+        iotics.api.interest_pb2.FetchInterestRequest,
+        iotics.api.interest_pb2.FetchInterestResponse,
+    ]
+    """Fetch feed data for this interest. (local and remote)"""
+    FetchLastStored: grpc.aio.UnaryUnaryMultiCallable[
+        iotics.api.interest_pb2.FetchLastStoredRequest,
+        iotics.api.interest_pb2.FetchInterestResponse,
+    ]
+    """Fetch last data shared on this interest. (local and remote)"""
+    SendInputMessage: grpc.aio.UnaryUnaryMultiCallable[
+        iotics.api.interest_pb2.SendInputMessageRequest,
+        iotics.api.interest_pb2.SendInputMessageResponse,
+    ]
+    """Send a message to an input. (local and remote)"""
+
 class InterestAPIServicer(metaclass=abc.ABCMeta):
     """---------------------------------------------------------------------------------------------------------------------
 
-    InterestAPI enables creation and management of interests between a twin and a feed.
+    InterestAPI enables creation and management of interests between a twin and a feed or an input.
     """
 
     @abc.abstractmethod
     def FetchInterests(
         self,
         request: iotics.api.interest_pb2.FetchInterestRequest,
-        context: grpc.ServicerContext,
-    ) -> collections.abc.Iterator[iotics.api.interest_pb2.FetchInterestResponse]:
+        context: _ServicerContext,
+    ) -> typing.Union[collections.abc.Iterator[iotics.api.interest_pb2.FetchInterestResponse], collections.abc.AsyncIterator[iotics.api.interest_pb2.FetchInterestResponse]]:
         """Fetch feed data for this interest. (local and remote)"""
     @abc.abstractmethod
     def FetchLastStored(
         self,
         request: iotics.api.interest_pb2.FetchLastStoredRequest,
-        context: grpc.ServicerContext,
-    ) -> iotics.api.interest_pb2.FetchInterestResponse:
+        context: _ServicerContext,
+    ) -> typing.Union[iotics.api.interest_pb2.FetchInterestResponse, collections.abc.Awaitable[iotics.api.interest_pb2.FetchInterestResponse]]:
         """Fetch last data shared on this interest. (local and remote)"""
     @abc.abstractmethod
     def SendInputMessage(
         self,
         request: iotics.api.interest_pb2.SendInputMessageRequest,
-        context: grpc.ServicerContext,
-    ) -> iotics.api.interest_pb2.SendInputMessageResponse:
+        context: _ServicerContext,
+    ) -> typing.Union[iotics.api.interest_pb2.SendInputMessageResponse, collections.abc.Awaitable[iotics.api.interest_pb2.SendInputMessageResponse]]:
         """Send a message to an input. (local and remote)"""
 
-def add_InterestAPIServicer_to_server(servicer: InterestAPIServicer, server: grpc.Server) -> None: ...
+def add_InterestAPIServicer_to_server(servicer: InterestAPIServicer, server: typing.Union[grpc.Server, grpc.aio.Server]) -> None: ...
