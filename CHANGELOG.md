@@ -7,10 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.0.0] - 2024-05-29
+
 - BREAKING CHANGE
-  - removal of hostId from SparqlResponse
-  - enable SPARQL queries over federated knowledge graph
+  - removal of hostId from SparqlQueryResponse
   - structure of SparqlQueryResponse no longer treated as dictionary of dictionaries
+  - enable SPARQL queries over federated knowledge graph
 
 ## [5.0.0] - 2024-01-24
 
