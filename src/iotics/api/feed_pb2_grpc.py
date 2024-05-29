@@ -24,37 +24,37 @@ class FeedAPIStub(object):
                 '/iotics.api.FeedAPI/CreateFeed',
                 request_serializer=iotics_dot_api_dot_feed__pb2.CreateFeedRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_feed__pb2.CreateFeedResponse.FromString,
-                )
+                _registered_method=True)
         self.DeleteFeed = channel.unary_unary(
                 '/iotics.api.FeedAPI/DeleteFeed',
                 request_serializer=iotics_dot_api_dot_feed__pb2.DeleteFeedRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_feed__pb2.DeleteFeedResponse.FromString,
-                )
+                _registered_method=True)
         self.UpdateFeed = channel.unary_unary(
                 '/iotics.api.FeedAPI/UpdateFeed',
                 request_serializer=iotics_dot_api_dot_feed__pb2.UpdateFeedRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_feed__pb2.UpdateFeedResponse.FromString,
-                )
+                _registered_method=True)
         self.ShareFeedData = channel.unary_unary(
                 '/iotics.api.FeedAPI/ShareFeedData',
                 request_serializer=iotics_dot_api_dot_feed__pb2.ShareFeedDataRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_feed__pb2.ShareFeedDataResponse.FromString,
-                )
+                _registered_method=True)
         self.StreamFeedData = channel.stream_unary(
                 '/iotics.api.FeedAPI/StreamFeedData',
                 request_serializer=iotics_dot_api_dot_feed__pb2.ShareFeedDataRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_feed__pb2.ShareFeedDataResponse.FromString,
-                )
+                _registered_method=True)
         self.ListAllFeeds = channel.unary_unary(
                 '/iotics.api.FeedAPI/ListAllFeeds',
                 request_serializer=iotics_dot_api_dot_feed__pb2.ListAllFeedsRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_feed__pb2.ListAllFeedsResponse.FromString,
-                )
+                _registered_method=True)
         self.DescribeFeed = channel.unary_unary(
                 '/iotics.api.FeedAPI/DescribeFeed',
                 request_serializer=iotics_dot_api_dot_feed__pb2.DescribeFeedRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_feed__pb2.DescribeFeedResponse.FromString,
-                )
+                _registered_method=True)
 
 
 class FeedAPIServicer(object):
@@ -158,6 +158,7 @@ def add_FeedAPIServicer_to_server(servicer, server):
     generic_handler = grpc.method_handlers_generic_handler(
             'iotics.api.FeedAPI', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
+    server.add_registered_method_handlers('iotics.api.FeedAPI', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -181,11 +182,21 @@ class FeedAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.FeedAPI/CreateFeed',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.FeedAPI/CreateFeed',
             iotics_dot_api_dot_feed__pb2.CreateFeedRequest.SerializeToString,
             iotics_dot_api_dot_feed__pb2.CreateFeedResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def DeleteFeed(request,
@@ -198,11 +209,21 @@ class FeedAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.FeedAPI/DeleteFeed',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.FeedAPI/DeleteFeed',
             iotics_dot_api_dot_feed__pb2.DeleteFeedRequest.SerializeToString,
             iotics_dot_api_dot_feed__pb2.DeleteFeedResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def UpdateFeed(request,
@@ -215,11 +236,21 @@ class FeedAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.FeedAPI/UpdateFeed',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.FeedAPI/UpdateFeed',
             iotics_dot_api_dot_feed__pb2.UpdateFeedRequest.SerializeToString,
             iotics_dot_api_dot_feed__pb2.UpdateFeedResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def ShareFeedData(request,
@@ -232,11 +263,21 @@ class FeedAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.FeedAPI/ShareFeedData',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.FeedAPI/ShareFeedData',
             iotics_dot_api_dot_feed__pb2.ShareFeedDataRequest.SerializeToString,
             iotics_dot_api_dot_feed__pb2.ShareFeedDataResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def StreamFeedData(request_iterator,
@@ -249,11 +290,21 @@ class FeedAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_unary(request_iterator, target, '/iotics.api.FeedAPI/StreamFeedData',
+        return grpc.experimental.stream_unary(
+            request_iterator,
+            target,
+            '/iotics.api.FeedAPI/StreamFeedData',
             iotics_dot_api_dot_feed__pb2.ShareFeedDataRequest.SerializeToString,
             iotics_dot_api_dot_feed__pb2.ShareFeedDataResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def ListAllFeeds(request,
@@ -266,11 +317,21 @@ class FeedAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.FeedAPI/ListAllFeeds',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.FeedAPI/ListAllFeeds',
             iotics_dot_api_dot_feed__pb2.ListAllFeedsRequest.SerializeToString,
             iotics_dot_api_dot_feed__pb2.ListAllFeedsResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def DescribeFeed(request,
@@ -283,8 +344,18 @@ class FeedAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.FeedAPI/DescribeFeed',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.FeedAPI/DescribeFeed',
             iotics_dot_api_dot_feed__pb2.DescribeFeedRequest.SerializeToString,
             iotics_dot_api_dot_feed__pb2.DescribeFeedResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)

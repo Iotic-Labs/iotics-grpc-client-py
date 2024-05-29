@@ -5,6 +5,7 @@ Copyright (c) 2019-2022 Iotic Labs Ltd. All rights reserved.
 
 Iotics Web protocol definitions (search)
 """
+
 import abc
 import collections.abc
 import grpc
@@ -13,12 +14,11 @@ import iotics.api.common_pb2
 import iotics.api.search_pb2
 import typing
 
-_T = typing.TypeVar('_T')
+_T = typing.TypeVar("_T")
 
-class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Iterator[_T], metaclass=abc.ABCMeta):
-    ...
+class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Iterator[_T], metaclass=abc.ABCMeta): ...
 
-class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore
+class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore[misc, type-arg]
     ...
 
 class SearchAPIStub:
@@ -34,16 +34,19 @@ class SearchAPIStub:
         iotics.api.search_pb2.DispatchSearchResponse,
     ]
     """Send a search request. Results are expected asynchronously. (local and remote)"""
+
     SynchronousSearch: grpc.UnaryStreamMultiCallable[
         iotics.api.search_pb2.SearchRequest,
         iotics.api.search_pb2.SearchResponse,
     ]
     """Run a synchronous search based on a user timeout. (local and remote)"""
+
     ReceiveAllSearchResponses: grpc.UnaryStreamMultiCallable[
         iotics.api.common_pb2.SubscriptionHeaders,
         iotics.api.search_pb2.SearchResponse,
     ]
     """Receive all search responses associated to a set of Search request for a given client application ID."""
+
     AdvancedSearch: grpc.UnaryStreamMultiCallable[
         iotics.api.search_pb2.AdvancedSearchRequest,
         iotics.api.search_pb2.SearchResponse,
@@ -62,16 +65,19 @@ class SearchAPIAsyncStub:
         iotics.api.search_pb2.DispatchSearchResponse,
     ]
     """Send a search request. Results are expected asynchronously. (local and remote)"""
+
     SynchronousSearch: grpc.aio.UnaryStreamMultiCallable[
         iotics.api.search_pb2.SearchRequest,
         iotics.api.search_pb2.SearchResponse,
     ]
     """Run a synchronous search based on a user timeout. (local and remote)"""
+
     ReceiveAllSearchResponses: grpc.aio.UnaryStreamMultiCallable[
         iotics.api.common_pb2.SubscriptionHeaders,
         iotics.api.search_pb2.SearchResponse,
     ]
     """Receive all search responses associated to a set of Search request for a given client application ID."""
+
     AdvancedSearch: grpc.aio.UnaryStreamMultiCallable[
         iotics.api.search_pb2.AdvancedSearchRequest,
         iotics.api.search_pb2.SearchResponse,
@@ -92,6 +98,7 @@ class SearchAPIServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[iotics.api.search_pb2.DispatchSearchResponse, collections.abc.Awaitable[iotics.api.search_pb2.DispatchSearchResponse]]:
         """Send a search request. Results are expected asynchronously. (local and remote)"""
+
     @abc.abstractmethod
     def SynchronousSearch(
         self,
@@ -99,6 +106,7 @@ class SearchAPIServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[collections.abc.Iterator[iotics.api.search_pb2.SearchResponse], collections.abc.AsyncIterator[iotics.api.search_pb2.SearchResponse]]:
         """Run a synchronous search based on a user timeout. (local and remote)"""
+
     @abc.abstractmethod
     def ReceiveAllSearchResponses(
         self,
@@ -106,6 +114,7 @@ class SearchAPIServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[collections.abc.Iterator[iotics.api.search_pb2.SearchResponse], collections.abc.AsyncIterator[iotics.api.search_pb2.SearchResponse]]:
         """Receive all search responses associated to a set of Search request for a given client application ID."""
+
     @abc.abstractmethod
     def AdvancedSearch(
         self,

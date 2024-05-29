@@ -22,17 +22,17 @@ class MetaAPIStub(object):
                 '/iotics.api.MetaAPI/SparqlQuery',
                 request_serializer=iotics_dot_api_dot_meta__pb2.SparqlQueryRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_meta__pb2.SparqlQueryResponse.FromString,
-                )
+                _registered_method=True)
         self.SparqlUpdate = channel.unary_unary(
                 '/iotics.api.MetaAPI/SparqlUpdate',
                 request_serializer=iotics_dot_api_dot_meta__pb2.SparqlUpdateRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_meta__pb2.SparqlUpdateResponse.FromString,
-                )
+                _registered_method=True)
         self.ExplorerQuery = channel.unary_stream(
                 '/iotics.api.MetaAPI/ExplorerQuery',
                 request_serializer=iotics_dot_api_dot_meta__pb2.ExplorerRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_meta__pb2.SparqlQueryResponse.FromString,
-                )
+                _registered_method=True)
 
 
 class MetaAPIServicer(object):
@@ -93,6 +93,7 @@ def add_MetaAPIServicer_to_server(servicer, server):
     generic_handler = grpc.method_handlers_generic_handler(
             'iotics.api.MetaAPI', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
+    server.add_registered_method_handlers('iotics.api.MetaAPI', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -114,11 +115,21 @@ class MetaAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/iotics.api.MetaAPI/SparqlQuery',
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/iotics.api.MetaAPI/SparqlQuery',
             iotics_dot_api_dot_meta__pb2.SparqlQueryRequest.SerializeToString,
             iotics_dot_api_dot_meta__pb2.SparqlQueryResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def SparqlUpdate(request,
@@ -131,11 +142,21 @@ class MetaAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.MetaAPI/SparqlUpdate',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.MetaAPI/SparqlUpdate',
             iotics_dot_api_dot_meta__pb2.SparqlUpdateRequest.SerializeToString,
             iotics_dot_api_dot_meta__pb2.SparqlUpdateResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def ExplorerQuery(request,
@@ -148,8 +169,18 @@ class MetaAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/iotics.api.MetaAPI/ExplorerQuery',
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/iotics.api.MetaAPI/ExplorerQuery',
             iotics_dot_api_dot_meta__pb2.ExplorerRequest.SerializeToString,
             iotics_dot_api_dot_meta__pb2.SparqlQueryResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)

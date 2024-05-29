@@ -22,7 +22,7 @@ class HostAPIStub(object):
                 '/iotics.api.HostAPI/GetHostID',
                 request_serializer=iotics_dot_api_dot_host__pb2.GetHostIDRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_host__pb2.GetHostIDResponse.FromString,
-                )
+                _registered_method=True)
 
 
 class HostAPIServicer(object):
@@ -51,6 +51,7 @@ def add_HostAPIServicer_to_server(servicer, server):
     generic_handler = grpc.method_handlers_generic_handler(
             'iotics.api.HostAPI', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
+    server.add_registered_method_handlers('iotics.api.HostAPI', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -72,8 +73,18 @@ class HostAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.HostAPI/GetHostID',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.HostAPI/GetHostID',
             iotics_dot_api_dot_host__pb2.GetHostIDRequest.SerializeToString,
             iotics_dot_api_dot_host__pb2.GetHostIDResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)

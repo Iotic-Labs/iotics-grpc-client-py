@@ -22,27 +22,27 @@ class InputAPIStub(object):
                 '/iotics.api.InputAPI/DeleteInput',
                 request_serializer=iotics_dot_api_dot_input__pb2.DeleteInputRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_input__pb2.DeleteInputResponse.FromString,
-                )
+                _registered_method=True)
         self.DescribeInput = channel.unary_unary(
                 '/iotics.api.InputAPI/DescribeInput',
                 request_serializer=iotics_dot_api_dot_input__pb2.DescribeInputRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_input__pb2.DescribeInputResponse.FromString,
-                )
+                _registered_method=True)
         self.ReceiveInputMessages = channel.unary_stream(
                 '/iotics.api.InputAPI/ReceiveInputMessages',
                 request_serializer=iotics_dot_api_dot_input__pb2.ReceiveInputMessageRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_input__pb2.ReceiveInputMessageResponse.FromString,
-                )
+                _registered_method=True)
         self.CreateInput = channel.unary_unary(
                 '/iotics.api.InputAPI/CreateInput',
                 request_serializer=iotics_dot_api_dot_input__pb2.CreateInputRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_input__pb2.CreateInputResponse.FromString,
-                )
+                _registered_method=True)
         self.UpdateInput = channel.unary_unary(
                 '/iotics.api.InputAPI/UpdateInput',
                 request_serializer=iotics_dot_api_dot_input__pb2.UpdateInputRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_input__pb2.UpdateInputResponse.FromString,
-                )
+                _registered_method=True)
 
 
 class InputAPIServicer(object):
@@ -119,6 +119,7 @@ def add_InputAPIServicer_to_server(servicer, server):
     generic_handler = grpc.method_handlers_generic_handler(
             'iotics.api.InputAPI', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
+    server.add_registered_method_handlers('iotics.api.InputAPI', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -140,11 +141,21 @@ class InputAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.InputAPI/DeleteInput',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.InputAPI/DeleteInput',
             iotics_dot_api_dot_input__pb2.DeleteInputRequest.SerializeToString,
             iotics_dot_api_dot_input__pb2.DeleteInputResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def DescribeInput(request,
@@ -157,11 +168,21 @@ class InputAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.InputAPI/DescribeInput',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.InputAPI/DescribeInput',
             iotics_dot_api_dot_input__pb2.DescribeInputRequest.SerializeToString,
             iotics_dot_api_dot_input__pb2.DescribeInputResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def ReceiveInputMessages(request,
@@ -174,11 +195,21 @@ class InputAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/iotics.api.InputAPI/ReceiveInputMessages',
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/iotics.api.InputAPI/ReceiveInputMessages',
             iotics_dot_api_dot_input__pb2.ReceiveInputMessageRequest.SerializeToString,
             iotics_dot_api_dot_input__pb2.ReceiveInputMessageResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def CreateInput(request,
@@ -191,11 +222,21 @@ class InputAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.InputAPI/CreateInput',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.InputAPI/CreateInput',
             iotics_dot_api_dot_input__pb2.CreateInputRequest.SerializeToString,
             iotics_dot_api_dot_input__pb2.CreateInputResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def UpdateInput(request,
@@ -208,8 +249,18 @@ class InputAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.InputAPI/UpdateInput',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.InputAPI/UpdateInput',
             iotics_dot_api_dot_input__pb2.UpdateInputRequest.SerializeToString,
             iotics_dot_api_dot_input__pb2.UpdateInputResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
