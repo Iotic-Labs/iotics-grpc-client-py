@@ -77,6 +77,7 @@ class ExplorerRequest(google.protobuf.message.Message):
         resultContentType: global___SparqlResultType.ValueType
         """The desired result content type. Note that choosing an invalid result type for the type of query will result in
         an error status reported in the response. (See SparqlResultType for valid content-query type combinations.)
+        If not explicitly specified, this field will default to the SPARQL_JSON (the first enum entry).
         """
         keyword: builtins.str
         """keyword defines the search term associated to the explorer request."""
@@ -170,6 +171,80 @@ global___SparqlQueryRequest = SparqlQueryRequest
 class SparqlQueryResponse(google.protobuf.message.Message):
     """SparqlQueryResponse is a part of a result for a SPARQL query request. Multiple chunks form a complete result. Related
     chunks can be identified by a combination of:
+    - Client reference (in headers, set by caller)
+    - Chunk sequence number
+    """
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class Payload(google.protobuf.message.Message):
+        """Payload of the query result chunk"""
+
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+        SEQNUM_FIELD_NUMBER: builtins.int
+        LAST_FIELD_NUMBER: builtins.int
+        STATUS_FIELD_NUMBER: builtins.int
+        CONTENTTYPE_FIELD_NUMBER: builtins.int
+        RESULTCHUNK_FIELD_NUMBER: builtins.int
+        seqNum: builtins.int
+        """Position of a chunk in result for a given request. The first chunk has a sequence number of 0."""
+        last: builtins.bool
+        """Indicates whether this is the last chunk, for a specific request. Results for different requests can be
+        identified by setting a unique clientRef in the request headers.
+        """
+        contentType: global___SparqlResultType.ValueType
+        """Content type of the result."""
+        resultChunk: builtins.bytes
+        """Query result chunk, encoded according to actualType.
+        Note that:
+        - The maximum size of each chunk is host-specific. A typical default value is 4MiB.
+        """
+        @property
+        def status(self) -> google.rpc.status_pb2.Status:
+            """Result error status. If set, this will indicate a problem with running the query (e.g. invalid syntax or content
+            type) as opposed to a more general issue (in which case the standard gRPC error mechanism will be used and the
+            stream terminated).
+            """
+
+        def __init__(
+            self,
+            *,
+            seqNum: builtins.int = ...,
+            last: builtins.bool = ...,
+            status: google.rpc.status_pb2.Status | None = ...,
+            contentType: global___SparqlResultType.ValueType = ...,
+            resultChunk: builtins.bytes = ...,
+        ) -> None: ...
+        def HasField(self, field_name: typing.Literal["status", b"status"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["contentType", b"contentType", "last", b"last", "resultChunk", b"resultChunk", "seqNum", b"seqNum", "status", b"status"]) -> None: ...
+
+    HEADERS_FIELD_NUMBER: builtins.int
+    PAYLOAD_FIELD_NUMBER: builtins.int
+    @property
+    def headers(self) -> iotics.api.common_pb2.Headers:
+        """Headers for the query result. clientRef within can be used to identify which query the result applies to."""
+
+    @property
+    def payload(self) -> global___SparqlQueryResponse.Payload:
+        """SPARQL query result chunk payload."""
+
+    def __init__(
+        self,
+        *,
+        headers: iotics.api.common_pb2.Headers | None = ...,
+        payload: global___SparqlQueryResponse.Payload | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
+
+global___SparqlQueryResponse = SparqlQueryResponse
+
+@typing.final
+class ExplorerResponse(google.protobuf.message.Message):
+    """ExplorerResponse is a part of a result for an explorer query request. Multiple chunks form a complete result. Related
+    chunks can be identified by a combination of:
     - The hostId
     - Client reference (in headers, set by caller)
     - Chunk sequence number
@@ -233,19 +308,19 @@ class SparqlQueryResponse(google.protobuf.message.Message):
         """Headers for the query result. clientRef within can be used to identify which query the result applies to."""
 
     @property
-    def payload(self) -> global___SparqlQueryResponse.Payload:
+    def payload(self) -> global___ExplorerResponse.Payload:
         """SPARQL query result chunk payload."""
 
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
-        payload: global___SparqlQueryResponse.Payload | None = ...,
+        payload: global___ExplorerResponse.Payload | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
 
-global___SparqlQueryResponse = SparqlQueryResponse
+global___ExplorerResponse = ExplorerResponse
 
 @typing.final
 class SparqlUpdateRequest(google.protobuf.message.Message):

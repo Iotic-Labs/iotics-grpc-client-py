@@ -25,15 +25,14 @@ def get_auth():
 
 
 def do_query(query, api):
-    # Map of responses per sequence number (remove potential duplication) per host
-    chunks_per_host: Dict[str, Dict[int, SparqlQueryResponse]] = {}
+    # Map of responses per sequence number (remove potential duplication)
+    chunks: Dict[int, SparqlQueryResponse] = {}
     stream = api.sparql_query(query)
     try:
         for response in stream:
-            # Chunk processing per host per seq number
-            host_id = response.payload.hostId or 'localhost'
-            chunks = chunks_per_host.setdefault(host_id, {})
+            # Chunk processing per seq number
             chunks[response.payload.seqNum] = response
+            print(f'Chunk {response.payload.seqNum} received: {response.payload.resultChunk.decode()}')
     # Exit the loop based on the timeout error (normal case)
     # Or any other GRPCError (anomaly)
     except grpc.RpcError as err:
@@ -41,18 +40,15 @@ def do_query(query, api):
             raise err
         print("timeout occurred")
 
-    for host_id, chunks in chunks_per_host.items():
-        sorted_chunks = sorted(chunks.values(), key=lambda r: r.payload.seqNum)
-        last_chunk = sorted_chunks[-1]
+    sorted_chunks = sorted(chunks.values(), key=lambda r: r.payload.seqNum)
+    last_chunk = sorted_chunks[-1]
 
-        if not last_chunk.payload.last or len(chunks) != last_chunk.payload.seqNum + 1:
-            print(f'Incomplete response from {host_id} - skip')
-            continue
+    if not last_chunk.payload.last or len(chunks) != last_chunk.payload.seqNum + 1:
+        print(f'Incomplete response')
 
-        resp = ''.join([c.payload.resultChunk.decode() for c in sorted_chunks])
-        print('%s chunks received' % len(sorted_chunks))
-        print(f'Response from host: {host_id}')
-        print(resp)
+    resp = ''.join([c.payload.resultChunk.decode() for c in sorted_chunks])
+    print('%s chunks received' % len(sorted_chunks))
+    print(resp)
 
 
 def main():

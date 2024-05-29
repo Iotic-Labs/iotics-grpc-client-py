@@ -36,7 +36,7 @@ class SparqlApi(ApiBase):
             timeout: int = 5,
             headers: typing.Optional[common_pb2.Headers] = None
     ) -> meta_pb2.SparqlQueryResponse:
-        """Submit a SPARQL query to the network of IOTIC Hosts and receive a chunked stream of responses
+        """Submit a SPARQL query against the Federated Knowledge Graph of the Iotics network and receive a chunked stream of responses.
 
         Args:
             query: the SPARQL query to submit
@@ -46,8 +46,7 @@ class SparqlApi(ApiBase):
             timeout: How long to wait for responses, in seconds
             headers: optional request headers
 
-        Returns: A result chunk with details of what host it came from, where it is in that host's sequence, and whether
-        it is the last chunk
+        Returns: A result chunk with details of where it is in the sequence, and whether it is the last chunk
         """
         req = meta_pb2.SparqlQueryRequest(
             headers=headers or create_headers(),
