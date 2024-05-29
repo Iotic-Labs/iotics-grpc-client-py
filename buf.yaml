@@ -1,25 +1,30 @@
-# See https://docs.buf.build/lint-usage
-# See https://docs.buf.build/breaking-usage
-# https://github.com/iamrajiv/helloworld-grpc-gateway
-version: v1beta1
-build:
-  roots:
-    - iotics-api.git/proto
+version: v2
+modules:
+  - path: iotics-api.git/proto
+deps:
+  - buf.build/googleapis/googleapis
 lint:
   use:
     - DEFAULT
   except:
-    - PACKAGE_VERSION_SUFFIX
-    - FIELD_LOWER_SNAKE_CASE
+    - ENUM_FIRST_VALUE_ZERO
     - ENUM_VALUE_PREFIX
     - ENUM_ZERO_VALUE_SUFFIX
-    - SERVICE_SUFFIX
+    - FIELD_LOWER_SNAKE_CASE
+    - FIELD_NOT_REQUIRED
+    - IMPORT_USED
+    - PACKAGE_NO_IMPORT_CYCLE
+    - PACKAGE_VERSION_SUFFIX
+    - PROTOVALIDATE
+    - RPC_REQUEST_RESPONSE_UNIQUE
     - RPC_REQUEST_STANDARD_NAME
     - RPC_RESPONSE_STANDARD_NAME
-    - RPC_REQUEST_RESPONSE_UNIQUE
+    - SERVICE_SUFFIX
+    - SYNTAX_SPECIFIED
+  disallow_comment_ignores: true
 breaking:
   use:
     - FILE
-deps:
-  - buf.build/googleapis/googleapis
-  - buf.build/grpc-ecosystem/grpc-gateway
+  except:
+    - EXTENSION_NO_DELETE
+    - FIELD_SAME_DEFAULT

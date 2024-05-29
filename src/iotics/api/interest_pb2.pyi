@@ -5,6 +5,7 @@ Copyright (c) 2019-2022 Iotic Labs Ltd. All rights reserved.
 
 Iotics Web protocol definitions (interests)
 """
+
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
@@ -12,16 +13,11 @@ import google.protobuf.wrappers_pb2
 import iotics.api.common_pb2
 import iotics.api.feed_pb2
 import iotics.api.input_pb2
-import sys
-
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class InputInterest(google.protobuf.message.Message):
     """An interest is the relationship between a Twin and an Input."""
 
@@ -32,27 +28,29 @@ class InputInterest(google.protobuf.message.Message):
     @property
     def senderTwinId(self) -> iotics.api.common_pb2.TwinID:
         """Sender twin unique identifier."""
+
     @property
     def destInputId(self) -> iotics.api.input_pb2.InputID:
         """a reference to the input of interest"""
+
     def __init__(
         self,
         *,
         senderTwinId: iotics.api.common_pb2.TwinID | None = ...,
         destInputId: iotics.api.input_pb2.InputID | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["destInputId", b"destInputId", "senderTwinId", b"senderTwinId"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["destInputId", b"destInputId", "senderTwinId", b"senderTwinId"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["destInputId", b"destInputId", "senderTwinId", b"senderTwinId"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["destInputId", b"destInputId", "senderTwinId", b"senderTwinId"]) -> None: ...
 
 global___InputInterest = InputInterest
 
-@typing_extensions.final
+@typing.final
 class SendInputMessageRequest(google.protobuf.message.Message):
     """SendInputMessageRequest is used to send a message to a given input."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Payload(google.protobuf.message.Message):
         """SendInputMessageRequest payload."""
 
@@ -62,15 +60,16 @@ class SendInputMessageRequest(google.protobuf.message.Message):
         @property
         def message(self) -> iotics.api.input_pb2.InputMessage:
             """Message to send"""
+
         def __init__(
             self,
             *,
             message: iotics.api.input_pb2.InputMessage | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["message", b"message"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["message", b"message"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["message", b"message"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["message", b"message"]) -> None: ...
 
-    @typing_extensions.final
+    @typing.final
     class Arguments(google.protobuf.message.Message):
         """SendInputMessageRequest arguments."""
 
@@ -80,13 +79,14 @@ class SendInputMessageRequest(google.protobuf.message.Message):
         @property
         def interest(self) -> global___InputInterest:
             """The interest"""
+
         def __init__(
             self,
             *,
             interest: global___InputInterest | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["interest", b"interest"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["interest", b"interest"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["interest", b"interest"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["interest", b"interest"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
@@ -94,12 +94,15 @@ class SendInputMessageRequest(google.protobuf.message.Message):
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """SendInputMessageRequest headers"""
+
     @property
     def args(self) -> global___SendInputMessageRequest.Arguments:
         """SendInputMessageRequest mandatory arguments"""
+
     @property
     def payload(self) -> global___SendInputMessageRequest.Payload:
         """SendInputMessageRequest payload"""
+
     def __init__(
         self,
         *,
@@ -107,12 +110,12 @@ class SendInputMessageRequest(google.protobuf.message.Message):
         args: global___SendInputMessageRequest.Arguments | None = ...,
         payload: global___SendInputMessageRequest.Payload | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers", "payload", b"payload"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["args", b"args", "headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["args", b"args", "headers", b"headers", "payload", b"payload"]) -> None: ...
 
 global___SendInputMessageRequest = SendInputMessageRequest
 
-@typing_extensions.final
+@typing.final
 class SendInputMessageResponse(google.protobuf.message.Message):
     """SendInputMessageResponse is used to indicate a successful send."""
 
@@ -122,17 +125,18 @@ class SendInputMessageResponse(google.protobuf.message.Message):
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """SendInputMessageResponse headers"""
+
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers"]) -> None: ...
 
 global___SendInputMessageResponse = SendInputMessageResponse
 
-@typing_extensions.final
+@typing.final
 class Interest(google.protobuf.message.Message):
     """An interest is the relationship between a Twin and a Feed. For example, creating
     an interest on (following) a Feed results in any data shared on said Feed to be forwarded to
@@ -147,21 +151,23 @@ class Interest(google.protobuf.message.Message):
     @property
     def followerTwinId(self) -> iotics.api.common_pb2.TwinID:
         """Follower twin unique identifier."""
+
     @property
     def followedFeedId(self) -> iotics.api.feed_pb2.FeedID:
         """a reference to the interested feed"""
+
     def __init__(
         self,
         *,
         followerTwinId: iotics.api.common_pb2.TwinID | None = ...,
         followedFeedId: iotics.api.feed_pb2.FeedID | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["followedFeedId", b"followedFeedId", "followerTwinId", b"followerTwinId"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["followedFeedId", b"followedFeedId", "followerTwinId", b"followerTwinId"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["followedFeedId", b"followedFeedId", "followerTwinId", b"followerTwinId"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["followedFeedId", b"followedFeedId", "followerTwinId", b"followerTwinId"]) -> None: ...
 
 global___Interest = Interest
 
-@typing_extensions.final
+@typing.final
 class FetchInterestRequest(google.protobuf.message.Message):
     """---------------------------------------
 
@@ -170,7 +176,7 @@ class FetchInterestRequest(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Arguments(google.protobuf.message.Message):
         """FetchInterestRequest mandatory arguments."""
 
@@ -180,13 +186,14 @@ class FetchInterestRequest(google.protobuf.message.Message):
         @property
         def interest(self) -> global___Interest:
             """The interest"""
+
         def __init__(
             self,
             *,
             interest: global___Interest | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["interest", b"interest"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["interest", b"interest"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["interest", b"interest"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["interest", b"interest"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
@@ -194,12 +201,15 @@ class FetchInterestRequest(google.protobuf.message.Message):
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """FetchInterestRequest headers"""
+
     @property
     def args(self) -> global___FetchInterestRequest.Arguments:
         """FetchInterestRequest arguments"""
+
     @property
     def fetchLastStored(self) -> google.protobuf.wrappers_pb2.BoolValue:
         """whether to fetch the last stored value if available (false by default)"""
+
     def __init__(
         self,
         *,
@@ -207,18 +217,18 @@ class FetchInterestRequest(google.protobuf.message.Message):
         args: global___FetchInterestRequest.Arguments | None = ...,
         fetchLastStored: google.protobuf.wrappers_pb2.BoolValue | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["args", b"args", "fetchLastStored", b"fetchLastStored", "headers", b"headers"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["args", b"args", "fetchLastStored", b"fetchLastStored", "headers", b"headers"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["args", b"args", "fetchLastStored", b"fetchLastStored", "headers", b"headers"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["args", b"args", "fetchLastStored", b"fetchLastStored", "headers", b"headers"]) -> None: ...
 
 global___FetchInterestRequest = FetchInterestRequest
 
-@typing_extensions.final
+@typing.final
 class FetchInterestResponse(google.protobuf.message.Message):
     """FetchInterestResponse describes a feed value shared on a given interest."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Payload(google.protobuf.message.Message):
         """FetchInterestResponse payload."""
 
@@ -229,38 +239,42 @@ class FetchInterestResponse(google.protobuf.message.Message):
         @property
         def interest(self) -> global___Interest:
             """The interest"""
+
         @property
         def feedData(self) -> iotics.api.common_pb2.FeedData:
             """The shared data"""
+
         def __init__(
             self,
             *,
             interest: global___Interest | None = ...,
             feedData: iotics.api.common_pb2.FeedData | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["feedData", b"feedData", "interest", b"interest"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["feedData", b"feedData", "interest", b"interest"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["feedData", b"feedData", "interest", b"interest"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["feedData", b"feedData", "interest", b"interest"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """FetchInterestResponse headers"""
+
     @property
     def payload(self) -> global___FetchInterestResponse.Payload:
         """FetchInterestResponse payload"""
+
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
         payload: global___FetchInterestResponse.Payload | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
 
 global___FetchInterestResponse = FetchInterestResponse
 
-@typing_extensions.final
+@typing.final
 class FetchLastStoredRequest(google.protobuf.message.Message):
     """---------------------------------------
 
@@ -269,7 +283,7 @@ class FetchLastStoredRequest(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Arguments(google.protobuf.message.Message):
         """FetchLastStoredRequest mandatory arguments."""
 
@@ -279,29 +293,32 @@ class FetchLastStoredRequest(google.protobuf.message.Message):
         @property
         def interest(self) -> global___Interest:
             """The interest"""
+
         def __init__(
             self,
             *,
             interest: global___Interest | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["interest", b"interest"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["interest", b"interest"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["interest", b"interest"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["interest", b"interest"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """FetchLastStoredRequest headers"""
+
     @property
     def args(self) -> global___FetchLastStoredRequest.Arguments:
         """FetchLastStoredRequest arguments"""
+
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
         args: global___FetchLastStoredRequest.Arguments | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["args", b"args", "headers", b"headers"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["args", b"args", "headers", b"headers"]) -> None: ...
 
 global___FetchLastStoredRequest = FetchLastStoredRequest

@@ -22,32 +22,32 @@ class TwinAPIStub(object):
                 '/iotics.api.TwinAPI/CreateTwin',
                 request_serializer=iotics_dot_api_dot_twin__pb2.CreateTwinRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_twin__pb2.CreateTwinResponse.FromString,
-                )
+                _registered_method=True)
         self.UpsertTwin = channel.unary_unary(
                 '/iotics.api.TwinAPI/UpsertTwin',
                 request_serializer=iotics_dot_api_dot_twin__pb2.UpsertTwinRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_twin__pb2.UpsertTwinResponse.FromString,
-                )
+                _registered_method=True)
         self.DeleteTwin = channel.unary_unary(
                 '/iotics.api.TwinAPI/DeleteTwin',
                 request_serializer=iotics_dot_api_dot_twin__pb2.DeleteTwinRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_twin__pb2.DeleteTwinResponse.FromString,
-                )
+                _registered_method=True)
         self.UpdateTwin = channel.unary_unary(
                 '/iotics.api.TwinAPI/UpdateTwin',
                 request_serializer=iotics_dot_api_dot_twin__pb2.UpdateTwinRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_twin__pb2.UpdateTwinResponse.FromString,
-                )
+                _registered_method=True)
         self.DescribeTwin = channel.unary_unary(
                 '/iotics.api.TwinAPI/DescribeTwin',
                 request_serializer=iotics_dot_api_dot_twin__pb2.DescribeTwinRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_twin__pb2.DescribeTwinResponse.FromString,
-                )
+                _registered_method=True)
         self.ListAllTwins = channel.unary_unary(
                 '/iotics.api.TwinAPI/ListAllTwins',
                 request_serializer=iotics_dot_api_dot_twin__pb2.ListAllTwinsRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_twin__pb2.ListAllTwinsResponse.FromString,
-                )
+                _registered_method=True)
 
 
 class TwinAPIServicer(object):
@@ -138,6 +138,7 @@ def add_TwinAPIServicer_to_server(servicer, server):
     generic_handler = grpc.method_handlers_generic_handler(
             'iotics.api.TwinAPI', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
+    server.add_registered_method_handlers('iotics.api.TwinAPI', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -159,11 +160,21 @@ class TwinAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.TwinAPI/CreateTwin',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.TwinAPI/CreateTwin',
             iotics_dot_api_dot_twin__pb2.CreateTwinRequest.SerializeToString,
             iotics_dot_api_dot_twin__pb2.CreateTwinResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def UpsertTwin(request,
@@ -176,11 +187,21 @@ class TwinAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.TwinAPI/UpsertTwin',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.TwinAPI/UpsertTwin',
             iotics_dot_api_dot_twin__pb2.UpsertTwinRequest.SerializeToString,
             iotics_dot_api_dot_twin__pb2.UpsertTwinResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def DeleteTwin(request,
@@ -193,11 +214,21 @@ class TwinAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.TwinAPI/DeleteTwin',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.TwinAPI/DeleteTwin',
             iotics_dot_api_dot_twin__pb2.DeleteTwinRequest.SerializeToString,
             iotics_dot_api_dot_twin__pb2.DeleteTwinResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def UpdateTwin(request,
@@ -210,11 +241,21 @@ class TwinAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.TwinAPI/UpdateTwin',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.TwinAPI/UpdateTwin',
             iotics_dot_api_dot_twin__pb2.UpdateTwinRequest.SerializeToString,
             iotics_dot_api_dot_twin__pb2.UpdateTwinResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def DescribeTwin(request,
@@ -227,11 +268,21 @@ class TwinAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.TwinAPI/DescribeTwin',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.TwinAPI/DescribeTwin',
             iotics_dot_api_dot_twin__pb2.DescribeTwinRequest.SerializeToString,
             iotics_dot_api_dot_twin__pb2.DescribeTwinResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def ListAllTwins(request,
@@ -244,8 +295,18 @@ class TwinAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.TwinAPI/ListAllTwins',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.TwinAPI/ListAllTwins',
             iotics_dot_api_dot_twin__pb2.ListAllTwinsRequest.SerializeToString,
             iotics_dot_api_dot_twin__pb2.ListAllTwinsResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)

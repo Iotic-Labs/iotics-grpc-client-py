@@ -5,6 +5,7 @@ Copyright (c) 2019-2022 Iotic Labs Ltd. All rights reserved.
 
 Iotics Web protocol definitions (input)
 """
+
 import builtins
 import collections.abc
 import google.protobuf.descriptor
@@ -12,16 +13,11 @@ import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.timestamp_pb2
 import iotics.api.common_pb2
-import sys
-
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class InputID(google.protobuf.message.Message):
     """Representation of an input."""
 
@@ -43,17 +39,17 @@ class InputID(google.protobuf.message.Message):
         twinId: builtins.str = ...,
         hostId: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["hostId", b"hostId", "id", b"id", "twinId", b"twinId"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["hostId", b"hostId", "id", b"id", "twinId", b"twinId"]) -> None: ...
 
 global___InputID = InputID
 
-@typing_extensions.final
+@typing.final
 class DeleteInputRequest(google.protobuf.message.Message):
     """DeleteInputRequest is used to delete an input from a given twin."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Arguments(google.protobuf.message.Message):
         """DeleteInputRequest arguments."""
 
@@ -63,40 +59,43 @@ class DeleteInputRequest(google.protobuf.message.Message):
         @property
         def inputId(self) -> global___InputID:
             """Input to delete"""
+
         def __init__(
             self,
             *,
             inputId: global___InputID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["inputId", b"inputId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["inputId", b"inputId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """DeleteInputRequest headers"""
+
     @property
     def args(self) -> global___DeleteInputRequest.Arguments:
         """DeleteInputRequest mandatory arguments"""
+
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
         args: global___DeleteInputRequest.Arguments | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["args", b"args", "headers", b"headers"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["args", b"args", "headers", b"headers"]) -> None: ...
 
 global___DeleteInputRequest = DeleteInputRequest
 
-@typing_extensions.final
+@typing.final
 class DeleteInputResponse(google.protobuf.message.Message):
     """DeleteInputResponse describes a deleted input."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Payload(google.protobuf.message.Message):
         """DeleteInputResponse payload."""
 
@@ -106,40 +105,43 @@ class DeleteInputResponse(google.protobuf.message.Message):
         @property
         def inputId(self) -> global___InputID:
             """Deleted input"""
+
         def __init__(
             self,
             *,
             inputId: global___InputID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["inputId", b"inputId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["inputId", b"inputId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """DeleteInputResponse headers"""
+
     @property
     def payload(self) -> global___DeleteInputResponse.Payload:
         """DeleteInputResponse payload"""
+
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
         payload: global___DeleteInputResponse.Payload | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
 
 global___DeleteInputResponse = DeleteInputResponse
 
-@typing_extensions.final
+@typing.final
 class CreateInputRequest(google.protobuf.message.Message):
     """CreateInputRequest describes a created input."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Payload(google.protobuf.message.Message):
         """CreateInputRequest payload."""
 
@@ -153,9 +155,9 @@ class CreateInputRequest(google.protobuf.message.Message):
             *,
             id: builtins.str = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing_extensions.Literal["id", b"id"]) -> None: ...
+        def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
 
-    @typing_extensions.final
+    @typing.final
     class Arguments(google.protobuf.message.Message):
         """Arguments describes the mandatory arguments to identify the twin owning this input"""
 
@@ -165,13 +167,14 @@ class CreateInputRequest(google.protobuf.message.Message):
         @property
         def twinId(self) -> iotics.api.common_pb2.TwinID:
             """Identifier of the twin owning this input"""
+
         def __init__(
             self,
             *,
             twinId: iotics.api.common_pb2.TwinID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["twinId", b"twinId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["twinId", b"twinId"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["twinId", b"twinId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["twinId", b"twinId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
@@ -179,12 +182,15 @@ class CreateInputRequest(google.protobuf.message.Message):
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """CreateInputRequest headers"""
+
     @property
     def args(self) -> global___CreateInputRequest.Arguments:
         """CreateInputRequest arguments"""
+
     @property
     def payload(self) -> global___CreateInputRequest.Payload:
         """CreateInputRequest payload"""
+
     def __init__(
         self,
         *,
@@ -192,18 +198,18 @@ class CreateInputRequest(google.protobuf.message.Message):
         args: global___CreateInputRequest.Arguments | None = ...,
         payload: global___CreateInputRequest.Payload | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers", "payload", b"payload"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["args", b"args", "headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["args", b"args", "headers", b"headers", "payload", b"payload"]) -> None: ...
 
 global___CreateInputRequest = CreateInputRequest
 
-@typing_extensions.final
+@typing.final
 class CreateInputResponse(google.protobuf.message.Message):
     """CreateInputResponse describes a created input."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Payload(google.protobuf.message.Message):
         """CreateInputResponse payload."""
 
@@ -213,40 +219,43 @@ class CreateInputResponse(google.protobuf.message.Message):
         @property
         def inputId(self) -> global___InputID:
             """Created input"""
+
         def __init__(
             self,
             *,
             inputId: global___InputID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["inputId", b"inputId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["inputId", b"inputId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """CreateInputResponse headers"""
+
     @property
     def payload(self) -> global___CreateInputResponse.Payload:
         """CreateInputResponse payload"""
+
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
         payload: global___CreateInputResponse.Payload | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
 
 global___CreateInputResponse = CreateInputResponse
 
-@typing_extensions.final
+@typing.final
 class UpdateInputRequest(google.protobuf.message.Message):
     """UpdateInputRequest is used to update an input."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Payload(google.protobuf.message.Message):
         """UdpateInputRequest payload used to update one or more field"""
 
@@ -257,19 +266,21 @@ class UpdateInputRequest(google.protobuf.message.Message):
         @property
         def values(self) -> iotics.api.common_pb2.Values:
             """Values describe individual data items to add/remove"""
+
         @property
         def properties(self) -> iotics.api.common_pb2.PropertyUpdate:
             """Properties describe individual properties to add/remove. Note only custom properties can be modified here."""
+
         def __init__(
             self,
             *,
             values: iotics.api.common_pb2.Values | None = ...,
             properties: iotics.api.common_pb2.PropertyUpdate | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["properties", b"properties", "values", b"values"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["properties", b"properties", "values", b"values"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["properties", b"properties", "values", b"values"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["properties", b"properties", "values", b"values"]) -> None: ...
 
-    @typing_extensions.final
+    @typing.final
     class Arguments(google.protobuf.message.Message):
         """UpdateInputRequest arguments"""
 
@@ -279,13 +290,14 @@ class UpdateInputRequest(google.protobuf.message.Message):
         @property
         def inputId(self) -> global___InputID:
             """Input to update"""
+
         def __init__(
             self,
             *,
             inputId: global___InputID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["inputId", b"inputId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["inputId", b"inputId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
@@ -293,12 +305,15 @@ class UpdateInputRequest(google.protobuf.message.Message):
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """UpdateInputRequest headers"""
+
     @property
     def args(self) -> global___UpdateInputRequest.Arguments:
         """UpdateInputRequest arguments"""
+
     @property
     def payload(self) -> global___UpdateInputRequest.Payload:
         """UpdateInputRequest payload"""
+
     def __init__(
         self,
         *,
@@ -306,18 +321,18 @@ class UpdateInputRequest(google.protobuf.message.Message):
         args: global___UpdateInputRequest.Arguments | None = ...,
         payload: global___UpdateInputRequest.Payload | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers", "payload", b"payload"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["args", b"args", "headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["args", b"args", "headers", b"headers", "payload", b"payload"]) -> None: ...
 
 global___UpdateInputRequest = UpdateInputRequest
 
-@typing_extensions.final
+@typing.final
 class UpdateInputResponse(google.protobuf.message.Message):
     """UpdateInputResponse describes an updated input."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Payload(google.protobuf.message.Message):
         """UpdateInputResponse payload."""
 
@@ -327,40 +342,43 @@ class UpdateInputResponse(google.protobuf.message.Message):
         @property
         def inputId(self) -> global___InputID:
             """Updated input"""
+
         def __init__(
             self,
             *,
             inputId: global___InputID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["inputId", b"inputId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["inputId", b"inputId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """UpdateInputResponse headers"""
+
     @property
     def payload(self) -> global___UpdateInputResponse.Payload:
         """UpdateInputResponse payload"""
+
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
         payload: global___UpdateInputResponse.Payload | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
 
 global___UpdateInputResponse = UpdateInputResponse
 
-@typing_extensions.final
+@typing.final
 class DescribeInputRequest(google.protobuf.message.Message):
     """DescribeInputRequest is used to request the input metadata."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Arguments(google.protobuf.message.Message):
         """DescribeInputRequest arguments."""
 
@@ -370,40 +388,43 @@ class DescribeInputRequest(google.protobuf.message.Message):
         @property
         def inputId(self) -> global___InputID:
             """Input to describe"""
+
         def __init__(
             self,
             *,
             inputId: global___InputID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["inputId", b"inputId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["inputId", b"inputId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """DescribeInputRequest headers"""
+
     @property
     def args(self) -> global___DescribeInputRequest.Arguments:
         """DescribeInputRequest mandatory arguments"""
+
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
         args: global___DescribeInputRequest.Arguments | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["args", b"args", "headers", b"headers"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["args", b"args", "headers", b"headers"]) -> None: ...
 
 global___DescribeInputRequest = DescribeInputRequest
 
-@typing_extensions.final
+@typing.final
 class DescribeInputResponse(google.protobuf.message.Message):
     """DescribeInputResponse provides metadata lookup for individual input resources."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class MetaResult(google.protobuf.message.Message):
         """DescribeInputResponse metadata result."""
 
@@ -414,18 +435,20 @@ class DescribeInputResponse(google.protobuf.message.Message):
         @property
         def values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Value]:
             """Values semantically describing the Input messages"""
+
         @property
         def properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Property]:
             """Custom properties associated with this input."""
+
         def __init__(
             self,
             *,
             values: collections.abc.Iterable[iotics.api.common_pb2.Value] | None = ...,
             properties: collections.abc.Iterable[iotics.api.common_pb2.Property] | None = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing_extensions.Literal["properties", b"properties", "values", b"values"]) -> None: ...
+        def ClearField(self, field_name: typing.Literal["properties", b"properties", "values", b"values"]) -> None: ...
 
-    @typing_extensions.final
+    @typing.final
     class Payload(google.protobuf.message.Message):
         """DescribeInputResponse payload."""
 
@@ -436,38 +459,42 @@ class DescribeInputResponse(google.protobuf.message.Message):
         @property
         def inputId(self) -> global___InputID:
             """Described input"""
+
         @property
         def result(self) -> global___DescribeInputResponse.MetaResult:
             """Metadata result"""
+
         def __init__(
             self,
             *,
             inputId: global___InputID | None = ...,
             result: global___DescribeInputResponse.MetaResult | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId", "result", b"result"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId", "result", b"result"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["inputId", b"inputId", "result", b"result"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["inputId", b"inputId", "result", b"result"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """DescribeInputResponse headers"""
+
     @property
     def payload(self) -> global___DescribeInputResponse.Payload:
         """DescribeInputResponse payload"""
+
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
         payload: global___DescribeInputResponse.Payload | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
 
 global___DescribeInputResponse = DescribeInputResponse
 
-@typing_extensions.final
+@typing.final
 class UpsertInputWithMeta(google.protobuf.message.Message):
     """UpsertInputWithMeta is used to describe the full input state. Used in UpsertTwinRequest."""
 
@@ -481,9 +508,11 @@ class UpsertInputWithMeta(google.protobuf.message.Message):
     @property
     def values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Value]:
         """Values to set"""
+
     @property
     def properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[iotics.api.common_pb2.Property]:
         """Properties to set"""
+
     def __init__(
         self,
         *,
@@ -491,11 +520,11 @@ class UpsertInputWithMeta(google.protobuf.message.Message):
         values: collections.abc.Iterable[iotics.api.common_pb2.Value] | None = ...,
         properties: collections.abc.Iterable[iotics.api.common_pb2.Property] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["id", b"id", "properties", b"properties", "values", b"values"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["id", b"id", "properties", b"properties", "values", b"values"]) -> None: ...
 
 global___UpsertInputWithMeta = UpsertInputWithMeta
 
-@typing_extensions.final
+@typing.final
 class InputMessage(google.protobuf.message.Message):
     """InputMessage describes a message that can be sent to an input"""
 
@@ -504,18 +533,19 @@ class InputMessage(google.protobuf.message.Message):
     OCCURREDAT_FIELD_NUMBER: builtins.int
     MIME_FIELD_NUMBER: builtins.int
     DATA_FIELD_NUMBER: builtins.int
-    @property
-    def occurredAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        """OccurredAt is the UTC timestamp of the message.
-        Typically this is either the time at which an application sent this message
-        or the time applicable to the message itself. (Optional: set to host time if not provided)
-        """
     mime: builtins.str
     """Mime is the mime type of the encoded data."""
     data: builtins.bytes
     """Data is the actual message, encoded according the the mime type. The data should follow the Input's
     value definitions but that is not enforced. (See also Value)
     """
+    @property
+    def occurredAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """OccurredAt is the UTC timestamp of the message.
+        Typically this is either the time at which an application sent this message
+        or the time applicable to the message itself. (Optional: set to host time if not provided)
+        """
+
     def __init__(
         self,
         *,
@@ -523,18 +553,18 @@ class InputMessage(google.protobuf.message.Message):
         mime: builtins.str = ...,
         data: builtins.bytes = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["occurredAt", b"occurredAt"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["data", b"data", "mime", b"mime", "occurredAt", b"occurredAt"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["occurredAt", b"occurredAt"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["data", b"data", "mime", b"mime", "occurredAt", b"occurredAt"]) -> None: ...
 
 global___InputMessage = InputMessage
 
-@typing_extensions.final
+@typing.final
 class ReceiveInputMessageRequest(google.protobuf.message.Message):
     """ReceiveInputMessageRequest is used to receive messages sent to a given Input."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Arguments(google.protobuf.message.Message):
         """ReceiveInputMessageRequest arguments."""
 
@@ -544,40 +574,43 @@ class ReceiveInputMessageRequest(google.protobuf.message.Message):
         @property
         def inputId(self) -> global___InputID:
             """Input to listen messages from"""
+
         def __init__(
             self,
             *,
             inputId: global___InputID | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["inputId", b"inputId"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["inputId", b"inputId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """ReceiveInputMessageRequest headers"""
+
     @property
     def args(self) -> global___ReceiveInputMessageRequest.Arguments:
         """ReceiveInputMessageRequest mandatory arguments"""
+
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
         args: global___ReceiveInputMessageRequest.Arguments | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["args", b"args", "headers", b"headers"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["args", b"args", "headers", b"headers"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["args", b"args", "headers", b"headers"]) -> None: ...
 
 global___ReceiveInputMessageRequest = ReceiveInputMessageRequest
 
-@typing_extensions.final
+@typing.final
 class ReceiveInputMessageResponse(google.protobuf.message.Message):
     """ReceiveInputMessageResponse contains a message sent to the Input."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Payload(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -586,33 +619,37 @@ class ReceiveInputMessageResponse(google.protobuf.message.Message):
         @property
         def inputId(self) -> global___InputID:
             """Input the message has been sent to"""
+
         @property
         def message(self) -> global___InputMessage:
             """Input message"""
+
         def __init__(
             self,
             *,
             inputId: global___InputID | None = ...,
             message: global___InputMessage | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["inputId", b"inputId", "message", b"message"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["inputId", b"inputId", "message", b"message"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["inputId", b"inputId", "message", b"message"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["inputId", b"inputId", "message", b"message"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """ReceiveInputMessageResponse headers"""
+
     @property
     def payload(self) -> global___ReceiveInputMessageResponse.Payload:
         """ReceiveInputMessageResponse payload"""
+
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
         payload: global___ReceiveInputMessageResponse.Payload | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
 
 global___ReceiveInputMessageResponse = ReceiveInputMessageResponse

@@ -5,6 +5,7 @@ Copyright (c) 2019-2022 Iotic Labs Ltd. All rights reserved.
 
 Iotics Web protocol definitions (hosts)
 """
+
 import abc
 import collections.abc
 import grpc
@@ -12,12 +13,11 @@ import grpc.aio
 import iotics.api.host_pb2
 import typing
 
-_T = typing.TypeVar('_T')
+_T = typing.TypeVar("_T")
 
-class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Iterator[_T], metaclass=abc.ABCMeta):
-    ...
+class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Iterator[_T], metaclass=abc.ABCMeta): ...
 
-class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore
+class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore[misc, type-arg]
     ...
 
 class HostAPIStub:

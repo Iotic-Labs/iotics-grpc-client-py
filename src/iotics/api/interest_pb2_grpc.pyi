@@ -5,6 +5,7 @@ Copyright (c) 2019-2022 Iotic Labs Ltd. All rights reserved.
 
 Iotics Web protocol definitions (interests)
 """
+
 import abc
 import collections.abc
 import grpc
@@ -12,12 +13,11 @@ import grpc.aio
 import iotics.api.interest_pb2
 import typing
 
-_T = typing.TypeVar('_T')
+_T = typing.TypeVar("_T")
 
-class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Iterator[_T], metaclass=abc.ABCMeta):
-    ...
+class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Iterator[_T], metaclass=abc.ABCMeta): ...
 
-class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore
+class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore[misc, type-arg]
     ...
 
 class InterestAPIStub:
@@ -32,11 +32,13 @@ class InterestAPIStub:
         iotics.api.interest_pb2.FetchInterestResponse,
     ]
     """Fetch feed data for this interest. (local and remote)"""
+
     FetchLastStored: grpc.UnaryUnaryMultiCallable[
         iotics.api.interest_pb2.FetchLastStoredRequest,
         iotics.api.interest_pb2.FetchInterestResponse,
     ]
     """Fetch last data shared on this interest. (local and remote)"""
+
     SendInputMessage: grpc.UnaryUnaryMultiCallable[
         iotics.api.interest_pb2.SendInputMessageRequest,
         iotics.api.interest_pb2.SendInputMessageResponse,
@@ -54,11 +56,13 @@ class InterestAPIAsyncStub:
         iotics.api.interest_pb2.FetchInterestResponse,
     ]
     """Fetch feed data for this interest. (local and remote)"""
+
     FetchLastStored: grpc.aio.UnaryUnaryMultiCallable[
         iotics.api.interest_pb2.FetchLastStoredRequest,
         iotics.api.interest_pb2.FetchInterestResponse,
     ]
     """Fetch last data shared on this interest. (local and remote)"""
+
     SendInputMessage: grpc.aio.UnaryUnaryMultiCallable[
         iotics.api.interest_pb2.SendInputMessageRequest,
         iotics.api.interest_pb2.SendInputMessageResponse,
@@ -78,6 +82,7 @@ class InterestAPIServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[collections.abc.Iterator[iotics.api.interest_pb2.FetchInterestResponse], collections.abc.AsyncIterator[iotics.api.interest_pb2.FetchInterestResponse]]:
         """Fetch feed data for this interest. (local and remote)"""
+
     @abc.abstractmethod
     def FetchLastStored(
         self,
@@ -85,6 +90,7 @@ class InterestAPIServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[iotics.api.interest_pb2.FetchInterestResponse, collections.abc.Awaitable[iotics.api.interest_pb2.FetchInterestResponse]]:
         """Fetch last data shared on this interest. (local and remote)"""
+
     @abc.abstractmethod
     def SendInputMessage(
         self,

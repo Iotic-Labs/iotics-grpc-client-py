@@ -5,6 +5,7 @@ Copyright (c) 2019-2022 Iotic Labs Ltd. All rights reserved.
 
 Iotics Web protocol definitions (meta)
 """
+
 import abc
 import collections.abc
 import grpc
@@ -12,12 +13,11 @@ import grpc.aio
 import iotics.api.meta_pb2
 import typing
 
-_T = typing.TypeVar('_T')
+_T = typing.TypeVar("_T")
 
-class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Iterator[_T], metaclass=abc.ABCMeta):
-    ...
+class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Iterator[_T], metaclass=abc.ABCMeta): ...
 
-class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore
+class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore[misc, type-arg]
     ...
 
 class MetaAPIStub:
@@ -39,6 +39,7 @@ class MetaAPIStub:
       choose to end the stream early once they have received enough results. (E.g. in the case of Scope.LOCAL this
       would be after the one and only sequence of chunks has been received.). (local and remote)
     """
+
     SparqlUpdate: grpc.UnaryUnaryMultiCallable[
         iotics.api.meta_pb2.SparqlUpdateRequest,
         iotics.api.meta_pb2.SparqlUpdateResponse,
@@ -48,6 +49,7 @@ class MetaAPIStub:
     1. http://data.iotics.com/graph#custom-public (aka custom public graph) - All metadata written to this graph will be
        visible during SPARQL queries both with local & global scope (and thus, the Iotics network).
     """
+
     ExplorerQuery: grpc.UnaryStreamMultiCallable[
         iotics.api.meta_pb2.ExplorerRequest,
         iotics.api.meta_pb2.SparqlQueryResponse,
@@ -72,6 +74,7 @@ class MetaAPIAsyncStub:
       choose to end the stream early once they have received enough results. (E.g. in the case of Scope.LOCAL this
       would be after the one and only sequence of chunks has been received.). (local and remote)
     """
+
     SparqlUpdate: grpc.aio.UnaryUnaryMultiCallable[
         iotics.api.meta_pb2.SparqlUpdateRequest,
         iotics.api.meta_pb2.SparqlUpdateResponse,
@@ -81,6 +84,7 @@ class MetaAPIAsyncStub:
     1. http://data.iotics.com/graph#custom-public (aka custom public graph) - All metadata written to this graph will be
        visible during SPARQL queries both with local & global scope (and thus, the Iotics network).
     """
+
     ExplorerQuery: grpc.aio.UnaryStreamMultiCallable[
         iotics.api.meta_pb2.ExplorerRequest,
         iotics.api.meta_pb2.SparqlQueryResponse,
@@ -107,6 +111,7 @@ class MetaAPIServicer(metaclass=abc.ABCMeta):
           choose to end the stream early once they have received enough results. (E.g. in the case of Scope.LOCAL this
           would be after the one and only sequence of chunks has been received.). (local and remote)
         """
+
     @abc.abstractmethod
     def SparqlUpdate(
         self,
@@ -118,6 +123,7 @@ class MetaAPIServicer(metaclass=abc.ABCMeta):
         1. http://data.iotics.com/graph#custom-public (aka custom public graph) - All metadata written to this graph will be
            visible during SPARQL queries both with local & global scope (and thus, the Iotics network).
         """
+
     @abc.abstractmethod
     def ExplorerQuery(
         self,

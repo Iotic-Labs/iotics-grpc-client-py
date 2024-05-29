@@ -5,6 +5,7 @@ Copyright (c) 2019-2022 Iotic Labs Ltd. All rights reserved.
 
 Iotics Web protocol definitions (common)
 """
+
 import builtins
 import collections.abc
 import google.protobuf.descriptor
@@ -42,7 +43,7 @@ GLOBAL: Scope.ValueType  # 0
 LOCAL: Scope.ValueType  # 1
 global___Scope = Scope
 
-@typing_extensions.final
+@typing.final
 class Limit(google.protobuf.message.Message):
     """---------------------------------------------------------------------------------------------------------------------
 
@@ -59,11 +60,11 @@ class Limit(google.protobuf.message.Message):
         *,
         value: builtins.int = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["value", b"value"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["value", b"value"]) -> None: ...
 
 global___Limit = Limit
 
-@typing_extensions.final
+@typing.final
 class Offset(google.protobuf.message.Message):
     """Offset is a request parameter applicable in conjunction with the "Limit"
     request parameter to start returning results from the given offset.
@@ -79,11 +80,11 @@ class Offset(google.protobuf.message.Message):
         *,
         value: builtins.int = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["value", b"value"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["value", b"value"]) -> None: ...
 
 global___Offset = Offset
 
-@typing_extensions.final
+@typing.final
 class Range(google.protobuf.message.Message):
     """Range is the combination of the "Limit" and "Offset" is a request parameters. It is
     used to return a specific range of results. Default value is applied if no limit is specified.
@@ -103,12 +104,12 @@ class Range(google.protobuf.message.Message):
         limit: global___Limit | None = ...,
         offset: global___Offset | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["limit", b"limit", "offset", b"offset"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["limit", b"limit", "offset", b"offset"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["limit", b"limit", "offset", b"offset"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["limit", b"limit", "offset", b"offset"]) -> None: ...
 
 global___Range = Range
 
-@typing_extensions.final
+@typing.final
 class LangLiteral(google.protobuf.message.Message):
     """LangLiteral is a metadata property type describing a string with a given language (implicit datatype: rdf:langString)."""
 
@@ -126,11 +127,11 @@ class LangLiteral(google.protobuf.message.Message):
         lang: builtins.str = ...,
         value: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["lang", b"lang", "value", b"value"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["lang", b"lang", "value", b"value"]) -> None: ...
 
 global___LangLiteral = LangLiteral
 
-@typing_extensions.final
+@typing.final
 class StringLiteral(google.protobuf.message.Message):
     """StringLiteral is a metadata property type describing a string without a language (implicit datatype: rdf:string)."""
 
@@ -144,11 +145,11 @@ class StringLiteral(google.protobuf.message.Message):
         *,
         value: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["value", b"value"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["value", b"value"]) -> None: ...
 
 global___StringLiteral = StringLiteral
 
-@typing_extensions.final
+@typing.final
 class Literal(google.protobuf.message.Message):
     """Literal is a metadata property type describing a literal with the given datatype (implicit datatype: rdfs:Literal)."""
 
@@ -171,11 +172,11 @@ class Literal(google.protobuf.message.Message):
         dataType: builtins.str = ...,
         value: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["dataType", b"dataType", "value", b"value"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["dataType", b"dataType", "value", b"value"]) -> None: ...
 
 global___Literal = Literal
 
-@typing_extensions.final
+@typing.final
 class Uri(google.protobuf.message.Message):
     """Uri is a metadata property type describing a Uri."""
 
@@ -189,11 +190,11 @@ class Uri(google.protobuf.message.Message):
         *,
         value: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["value", b"value"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["value", b"value"]) -> None: ...
 
 global___Uri = Uri
 
-@typing_extensions.final
+@typing.final
 class Property(google.protobuf.message.Message):
     """Property is a metadata property with a single value.
     Multiple instances are used to represent a key (predicate) with multiple values.
@@ -225,13 +226,13 @@ class Property(google.protobuf.message.Message):
         stringLiteralValue: global___StringLiteral | None = ...,
         uriValue: global___Uri | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["langLiteralValue", b"langLiteralValue", "literalValue", b"literalValue", "stringLiteralValue", b"stringLiteralValue", "uriValue", b"uriValue", "value", b"value"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["key", b"key", "langLiteralValue", b"langLiteralValue", "literalValue", b"literalValue", "stringLiteralValue", b"stringLiteralValue", "uriValue", b"uriValue", "value", b"value"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing_extensions.Literal["value", b"value"]) -> typing_extensions.Literal["literalValue", "langLiteralValue", "stringLiteralValue", "uriValue"] | None: ...
+    def HasField(self, field_name: typing.Literal["langLiteralValue", b"langLiteralValue", "literalValue", b"literalValue", "stringLiteralValue", b"stringLiteralValue", "uriValue", b"uriValue", "value", b"value"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["key", b"key", "langLiteralValue", b"langLiteralValue", "literalValue", b"literalValue", "stringLiteralValue", b"stringLiteralValue", "uriValue", b"uriValue", "value", b"value"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["literalValue", "langLiteralValue", "stringLiteralValue", "uriValue"] | None: ...
 
 global___Property = Property
 
-@typing_extensions.final
+@typing.final
 class GeoLocation(google.protobuf.message.Message):
     """GeoLocation is the geographic location of a Twin."""
 
@@ -249,11 +250,11 @@ class GeoLocation(google.protobuf.message.Message):
         lat: builtins.float = ...,
         lon: builtins.float = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["lat", b"lat", "lon", b"lon"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["lat", b"lat", "lon", b"lon"]) -> None: ...
 
 global___GeoLocation = GeoLocation
 
-@typing_extensions.final
+@typing.final
 class GeoCircle(google.protobuf.message.Message):
     """GeoCircle is an approximate geographic location."""
 
@@ -261,22 +262,22 @@ class GeoCircle(google.protobuf.message.Message):
 
     LOCATION_FIELD_NUMBER: builtins.int
     RADIUSKM_FIELD_NUMBER: builtins.int
-    @property
-    def location(self) -> global___GeoLocation: ...
     radiusKm: builtins.float
     """Radius (Km) relative to the geolocation"""
+    @property
+    def location(self) -> global___GeoLocation: ...
     def __init__(
         self,
         *,
         location: global___GeoLocation | None = ...,
         radiusKm: builtins.float = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["location", b"location"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["location", b"location", "radiusKm", b"radiusKm"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["location", b"location"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["location", b"location", "radiusKm", b"radiusKm"]) -> None: ...
 
 global___GeoCircle = GeoCircle
 
-@typing_extensions.final
+@typing.final
 class RequestInfo(google.protobuf.message.Message):
     """RequestInfo is a request parameter used to provide additional information about the request.
     It will also be included in the response.
@@ -284,7 +285,7 @@ class RequestInfo(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class TraceCtxEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -298,7 +299,7 @@ class RequestInfo(google.protobuf.message.Message):
             key: builtins.str = ...,
             value: builtins.str = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing_extensions.Literal["key", b"key", "value", b"value"]) -> None: ...
+        def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
 
     STARTTIME_FIELD_NUMBER: builtins.int
     TRACECTX_FIELD_NUMBER: builtins.int
@@ -307,23 +308,25 @@ class RequestInfo(google.protobuf.message.Message):
         """Start timestamp of the request, from the perspective of the host (server). Values supplied by the client will be
         ignored
         """
+
     @property
     def traceCtx(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
         """Headers for tracing support (W3C Trace Context / Baggage). If no valid context is provided by the client, the host
         (server) will initialise one.
         """
+
     def __init__(
         self,
         *,
         startTime: google.protobuf.timestamp_pb2.Timestamp | None = ...,
         traceCtx: collections.abc.Mapping[builtins.str, builtins.str] | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["startTime", b"startTime"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["startTime", b"startTime", "traceCtx", b"traceCtx"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["startTime", b"startTime"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["startTime", b"startTime", "traceCtx", b"traceCtx"]) -> None: ...
 
 global___RequestInfo = RequestInfo
 
-@typing_extensions.final
+@typing.final
 class Headers(google.protobuf.message.Message):
     """Headers describes the common headers applicable to all the API requests
     (except for Search subscribe: see SubscriptionHeaders).
@@ -348,12 +351,15 @@ class Headers(google.protobuf.message.Message):
         a max of 16 elements per list and, for each list item, a max length of 36
         characters
         """
+
     @property
     def consumerGroup(self) -> google.protobuf.wrappers_pb2.StringValue:
         """Used for group listener, optional - Not implemented yet"""
+
     @property
     def requestTimeout(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """Client request timeout used to stop the request processing once the timeout is reached"""
+
     @property
     def requestInfo(self) -> global___RequestInfo: ...
     def __init__(
@@ -366,12 +372,12 @@ class Headers(google.protobuf.message.Message):
         requestTimeout: google.protobuf.timestamp_pb2.Timestamp | None = ...,
         requestInfo: global___RequestInfo | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["consumerGroup", b"consumerGroup", "requestInfo", b"requestInfo", "requestTimeout", b"requestTimeout"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["clientAppId", b"clientAppId", "clientRef", b"clientRef", "consumerGroup", b"consumerGroup", "requestInfo", b"requestInfo", "requestTimeout", b"requestTimeout", "transactionRef", b"transactionRef"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["consumerGroup", b"consumerGroup", "requestInfo", b"requestInfo", "requestTimeout", b"requestTimeout"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["clientAppId", b"clientAppId", "clientRef", b"clientRef", "consumerGroup", b"consumerGroup", "requestInfo", b"requestInfo", "requestTimeout", b"requestTimeout", "transactionRef", b"transactionRef"]) -> None: ...
 
 global___Headers = Headers
 
-@typing_extensions.final
+@typing.final
 class SubscriptionHeaders(google.protobuf.message.Message):
     """SubscriptionHeaders describes a Search subscribe header. (Will be DEPRECATED with the client-ref from Headers)."""
 
@@ -389,9 +395,11 @@ class SubscriptionHeaders(google.protobuf.message.Message):
         a max of 16 elements per list and, for each list item, a max length of 36
         characters
         """
+
     @property
     def consumerGroup(self) -> google.protobuf.wrappers_pb2.StringValue:
         """consumer group (for group listener, optional) - Not implemented yet"""
+
     def __init__(
         self,
         *,
@@ -399,12 +407,12 @@ class SubscriptionHeaders(google.protobuf.message.Message):
         transactionRef: collections.abc.Iterable[builtins.str] | None = ...,
         consumerGroup: google.protobuf.wrappers_pb2.StringValue | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["consumerGroup", b"consumerGroup"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["clientAppId", b"clientAppId", "consumerGroup", b"consumerGroup", "transactionRef", b"transactionRef"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["consumerGroup", b"consumerGroup"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["clientAppId", b"clientAppId", "consumerGroup", b"consumerGroup", "transactionRef", b"transactionRef"]) -> None: ...
 
 global___SubscriptionHeaders = SubscriptionHeaders
 
-@typing_extensions.final
+@typing.final
 class TwinID(google.protobuf.message.Message):
     """TwinID is the virtual representation of a (physical, purely virtual or hybrid) device,
     is only ever located in the host it was created.
@@ -424,11 +432,11 @@ class TwinID(google.protobuf.message.Message):
         id: builtins.str = ...,
         hostId: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["hostId", b"hostId", "id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["hostId", b"hostId", "id", b"id"]) -> None: ...
 
 global___TwinID = TwinID
 
-@typing_extensions.final
+@typing.final
 class Value(google.protobuf.message.Message):
     """Value is the definition of an individual piece of data within a Feed share or an Input send. Values are purely descriptive, e.g. a
     follower should expect data to match the values associated with said Feed/Input but must be able to recover where this
@@ -461,11 +469,11 @@ class Value(google.protobuf.message.Message):
         unit: builtins.str = ...,
         dataType: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["comment", b"comment", "dataType", b"dataType", "label", b"label", "unit", b"unit"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["comment", b"comment", "dataType", b"dataType", "label", b"label", "unit", b"unit"]) -> None: ...
 
 global___Value = Value
 
-@typing_extensions.final
+@typing.final
 class Values(google.protobuf.message.Message):
     """Values defines a set of values to be added and/or deleted."""
 
@@ -478,20 +486,22 @@ class Values(google.protobuf.message.Message):
         """added is the list of values to be added. Note that deletedByLabel takes precedence over this, i.e. if both added
         and deletedByLabel contain the same value, the value will be deleted.
         """
+
     @property
     def deletedByLabel(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """deletedByLabel is the list of labels of values to be deleted."""
+
     def __init__(
         self,
         *,
         added: collections.abc.Iterable[global___Value] | None = ...,
         deletedByLabel: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["added", b"added", "deletedByLabel", b"deletedByLabel"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["added", b"added", "deletedByLabel", b"deletedByLabel"]) -> None: ...
 
 global___Values = Values
 
-@typing_extensions.final
+@typing.final
 class FeedData(google.protobuf.message.Message):
     """FeedData is set of datapoints shared via a Feed."""
 
@@ -500,18 +510,19 @@ class FeedData(google.protobuf.message.Message):
     OCCURREDAT_FIELD_NUMBER: builtins.int
     MIME_FIELD_NUMBER: builtins.int
     DATA_FIELD_NUMBER: builtins.int
-    @property
-    def occurredAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        """occurredAt is the UTC timestamp of the sample. Typically this is either the time at which an application shared
-        this sample or the time applicable to the sample itself (such as an hourly weather observation).
-        (Optional: set to host time if not provided)
-        """
     mime: builtins.str
     """mime is the mime type of the encoded data."""
     data: builtins.bytes
     """data is the actual set of datapoints, encoded according the the mime type. The data should follow the Feed's
     value definitions but that is not enforced. (See also Value)
     """
+    @property
+    def occurredAt(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """occurredAt is the UTC timestamp of the sample. Typically this is either the time at which an application shared
+        this sample or the time applicable to the sample itself (such as an hourly weather observation).
+        (Optional: set to host time if not provided)
+        """
+
     def __init__(
         self,
         *,
@@ -519,12 +530,12 @@ class FeedData(google.protobuf.message.Message):
         mime: builtins.str = ...,
         data: builtins.bytes = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["occurredAt", b"occurredAt"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["data", b"data", "mime", b"mime", "occurredAt", b"occurredAt"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["occurredAt", b"occurredAt"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["data", b"data", "mime", b"mime", "occurredAt", b"occurredAt"]) -> None: ...
 
 global___FeedData = FeedData
 
-@typing_extensions.final
+@typing.final
 class PropertyUpdate(google.protobuf.message.Message):
     """PropertyUpdate describes the update of resource's underlying properties.
     Can be used to add, replace, or delete properties. The order of operations is:
@@ -543,12 +554,15 @@ class PropertyUpdate(google.protobuf.message.Message):
     @property
     def deleted(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Property]:
         """Delete specific exact properties (by key and value). This operation is ignored if clearAll is True."""
+
     @property
     def deletedByKey(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """Delete any properties with the given keys (predicates). This operation is ignored if clearAll is True."""
+
     @property
     def added(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Property]:
         """Adds the given properties"""
+
     def __init__(
         self,
         *,
@@ -557,6 +571,6 @@ class PropertyUpdate(google.protobuf.message.Message):
         deletedByKey: collections.abc.Iterable[builtins.str] | None = ...,
         added: collections.abc.Iterable[global___Property] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["added", b"added", "clearedAll", b"clearedAll", "deleted", b"deleted", "deletedByKey", b"deletedByKey"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["added", b"added", "clearedAll", b"clearedAll", "deleted", b"deleted", "deletedByKey", b"deletedByKey"]) -> None: ...
 
 global___PropertyUpdate = PropertyUpdate

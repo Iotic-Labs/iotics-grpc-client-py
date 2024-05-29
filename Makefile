@@ -1,6 +1,6 @@
 SHELL := /bin/bash
-BUF_VERSION ?= 1.6.0
-PROTOC_VERSION ?= 21.7
+BUF_VERSION ?= 1.32.1
+PROTOC_VERSION ?= 26.1
 VENV_PATH ?= ./env
 UNAME_S := $(shell uname -s)
 UNAME_M := $(shell uname -m)
@@ -34,8 +34,7 @@ GEN_FILES_DIR := src/iotics/api
 ## High level targets ##
 ########################
 
-build: deps-proto deps-docker
-	docker run --rm -v ${PWD}:/iotics-grpc-client-py iotics-grpc-client-py-builder
+build: generate
 
 clean:
 	git clean -f -dX "$(VENV_PATH)" src/iotics_grpc_client.egg-info
@@ -50,16 +49,10 @@ generate: deps-proto deps-py deps-go buf-list buf-lint
 	source "$(VENV_PATH)"/bin/activate \
 	&& $(BUF) generate $(GEN_ARGS)
 
-docker-shell:
-	docker run --rm -it -v ${PWD}:/iotics-grpc-client-py iotics-grpc-client-py-builder /bin/bash
-
 
 #######################
 ## Low level targets ##
 #######################
-
-deps-docker:
-	docker build --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -g) -t iotics-grpc-client-py-builder .
 
 deps-proto: iotics-api.git/.git
 iotics-api.git/.git:
@@ -87,7 +80,7 @@ endif
 
 deps-buf: buf.lock
 deps-buf-update buf.lock:
-	$(BUF) mod update
+	$(BUF) dep update
 
 deps-py:
 	python -m venv "$(VENV_PATH)"
@@ -105,7 +98,7 @@ verify-import: deps-py
 	source "$(VENV_PATH)"/"$(VENV_PATH_DIR)"/activate \
 	&& python -c 'from iotics.lib.grpc import IoticsApi'
 
-run-examples: deps-py
+run-examples: #deps-py
 	source "$(VENV_PATH)"/"$(VENV_PATH_DIR)"/activate \
 	&& python examples/search_twin_models.py \
 	&& python examples/search_location.py \

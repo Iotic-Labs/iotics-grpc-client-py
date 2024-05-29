@@ -5,20 +5,16 @@ Copyright (c) 2019-2022 Iotic Labs Ltd. All rights reserved.
 
 Iotics Web protocol definitions (hosts)
 """
+
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
 import iotics.api.common_pb2
-import sys
-
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class GetHostIDRequest(google.protobuf.message.Message):
     """GetHostIDRequest: gets the local host twin's ID"""
 
@@ -32,18 +28,18 @@ class GetHostIDRequest(google.protobuf.message.Message):
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers"]) -> None: ...
 
 global___GetHostIDRequest = GetHostIDRequest
 
-@typing_extensions.final
+@typing.final
 class GetHostIDResponse(google.protobuf.message.Message):
     """GetHostIDResponse: response containing the local host twin's ID"""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Payload(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -54,7 +50,7 @@ class GetHostIDResponse(google.protobuf.message.Message):
             *,
             hostId: builtins.str = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing_extensions.Literal["hostId", b"hostId"]) -> None: ...
+        def ClearField(self, field_name: typing.Literal["hostId", b"hostId"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
@@ -68,7 +64,7 @@ class GetHostIDResponse(google.protobuf.message.Message):
         headers: iotics.api.common_pb2.Headers | None = ...,
         payload: global___GetHostIDResponse.Payload | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
 
 global___GetHostIDResponse = GetHostIDResponse

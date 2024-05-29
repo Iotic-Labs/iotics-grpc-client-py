@@ -5,6 +5,7 @@ Copyright (c) 2019-2022 Iotic Labs Ltd. All rights reserved.
 
 Iotics Web protocol definitions (input)
 """
+
 import abc
 import collections.abc
 import grpc
@@ -12,12 +13,11 @@ import grpc.aio
 import iotics.api.input_pb2
 import typing
 
-_T = typing.TypeVar('_T')
+_T = typing.TypeVar("_T")
 
-class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Iterator[_T], metaclass=abc.ABCMeta):
-    ...
+class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Iterator[_T], metaclass=abc.ABCMeta): ...
 
-class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore
+class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore[misc, type-arg]
     ...
 
 class InputAPIStub:
@@ -33,21 +33,25 @@ class InputAPIStub:
         iotics.api.input_pb2.DeleteInputResponse,
     ]
     """Deletes an input. (Idempotent)"""
+
     DescribeInput: grpc.UnaryUnaryMultiCallable[
         iotics.api.input_pb2.DescribeInputRequest,
         iotics.api.input_pb2.DescribeInputResponse,
     ]
     """Describes an input. (local and remote)"""
+
     ReceiveInputMessages: grpc.UnaryStreamMultiCallable[
         iotics.api.input_pb2.ReceiveInputMessageRequest,
         iotics.api.input_pb2.ReceiveInputMessageResponse,
     ]
     """Receives input messages for a specific input."""
+
     CreateInput: grpc.UnaryUnaryMultiCallable[
         iotics.api.input_pb2.CreateInputRequest,
         iotics.api.input_pb2.CreateInputResponse,
     ]
     """Creates an input owned by a twin. (Idempotent)"""
+
     UpdateInput: grpc.UnaryUnaryMultiCallable[
         iotics.api.input_pb2.UpdateInputRequest,
         iotics.api.input_pb2.UpdateInputResponse,
@@ -66,21 +70,25 @@ class InputAPIAsyncStub:
         iotics.api.input_pb2.DeleteInputResponse,
     ]
     """Deletes an input. (Idempotent)"""
+
     DescribeInput: grpc.aio.UnaryUnaryMultiCallable[
         iotics.api.input_pb2.DescribeInputRequest,
         iotics.api.input_pb2.DescribeInputResponse,
     ]
     """Describes an input. (local and remote)"""
+
     ReceiveInputMessages: grpc.aio.UnaryStreamMultiCallable[
         iotics.api.input_pb2.ReceiveInputMessageRequest,
         iotics.api.input_pb2.ReceiveInputMessageResponse,
     ]
     """Receives input messages for a specific input."""
+
     CreateInput: grpc.aio.UnaryUnaryMultiCallable[
         iotics.api.input_pb2.CreateInputRequest,
         iotics.api.input_pb2.CreateInputResponse,
     ]
     """Creates an input owned by a twin. (Idempotent)"""
+
     UpdateInput: grpc.aio.UnaryUnaryMultiCallable[
         iotics.api.input_pb2.UpdateInputRequest,
         iotics.api.input_pb2.UpdateInputResponse,
@@ -101,6 +109,7 @@ class InputAPIServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[iotics.api.input_pb2.DeleteInputResponse, collections.abc.Awaitable[iotics.api.input_pb2.DeleteInputResponse]]:
         """Deletes an input. (Idempotent)"""
+
     @abc.abstractmethod
     def DescribeInput(
         self,
@@ -108,6 +117,7 @@ class InputAPIServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[iotics.api.input_pb2.DescribeInputResponse, collections.abc.Awaitable[iotics.api.input_pb2.DescribeInputResponse]]:
         """Describes an input. (local and remote)"""
+
     @abc.abstractmethod
     def ReceiveInputMessages(
         self,
@@ -115,6 +125,7 @@ class InputAPIServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[collections.abc.Iterator[iotics.api.input_pb2.ReceiveInputMessageResponse], collections.abc.AsyncIterator[iotics.api.input_pb2.ReceiveInputMessageResponse]]:
         """Receives input messages for a specific input."""
+
     @abc.abstractmethod
     def CreateInput(
         self,
@@ -122,6 +133,7 @@ class InputAPIServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[iotics.api.input_pb2.CreateInputResponse, collections.abc.Awaitable[iotics.api.input_pb2.CreateInputResponse]]:
         """Creates an input owned by a twin. (Idempotent)"""
+
     @abc.abstractmethod
     def UpdateInput(
         self,

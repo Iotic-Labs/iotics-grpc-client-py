@@ -5,6 +5,7 @@ Copyright (c) 2019-2022 Iotic Labs Ltd. All rights reserved.
 
 Iotics Web protocol definitions (meta)
 """
+
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.internal.enum_type_wrapper
@@ -59,13 +60,13 @@ RDF_NTRIPLES: SparqlResultType.ValueType  # 5
 """Applicable to CONSTRUCT/DESCRIBE (RDF 1.1 N-Triples)"""
 global___SparqlResultType = SparqlResultType
 
-@typing_extensions.final
+@typing.final
 class ExplorerRequest(google.protobuf.message.Message):
     """ExplorerRequest - Deprecated. Use SparqlQueryRequest instead."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Payload(google.protobuf.message.Message):
         """Explorer request payload."""
 
@@ -85,19 +86,21 @@ class ExplorerRequest(google.protobuf.message.Message):
             resultContentType: global___SparqlResultType.ValueType = ...,
             keyword: builtins.str = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing_extensions.Literal["keyword", b"keyword", "resultContentType", b"resultContentType"]) -> None: ...
+        def ClearField(self, field_name: typing.Literal["keyword", b"keyword", "resultContentType", b"resultContentType"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     SCOPE_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
-    @property
-    def headers(self) -> iotics.api.common_pb2.Headers:
-        """Explorer request headers"""
     scope: iotics.api.common_pb2.Scope.ValueType
     """Explorer request scope"""
     @property
+    def headers(self) -> iotics.api.common_pb2.Headers:
+        """Explorer request headers"""
+
+    @property
     def payload(self) -> global___ExplorerRequest.Payload:
         """Explorer request payload"""
+
     def __init__(
         self,
         *,
@@ -105,18 +108,18 @@ class ExplorerRequest(google.protobuf.message.Message):
         scope: iotics.api.common_pb2.Scope.ValueType = ...,
         payload: global___ExplorerRequest.Payload | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload", "scope", b"scope"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload", "scope", b"scope"]) -> None: ...
 
 global___ExplorerRequest = ExplorerRequest
 
-@typing_extensions.final
+@typing.final
 class SparqlQueryRequest(google.protobuf.message.Message):
     """SparqlQueryRequest describes a SPARQL query."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Payload(google.protobuf.message.Message):
         """SPARQL query request payload."""
 
@@ -136,19 +139,21 @@ class SparqlQueryRequest(google.protobuf.message.Message):
             resultContentType: global___SparqlResultType.ValueType = ...,
             query: builtins.bytes = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing_extensions.Literal["query", b"query", "resultContentType", b"resultContentType"]) -> None: ...
+        def ClearField(self, field_name: typing.Literal["query", b"query", "resultContentType", b"resultContentType"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     SCOPE_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
-    @property
-    def headers(self) -> iotics.api.common_pb2.Headers:
-        """SPARQL query request headers"""
     scope: iotics.api.common_pb2.Scope.ValueType
     """SPARQL query request scope"""
     @property
+    def headers(self) -> iotics.api.common_pb2.Headers:
+        """SPARQL query request headers"""
+
+    @property
     def payload(self) -> global___SparqlQueryRequest.Payload:
         """SPARQL query request payload"""
+
     def __init__(
         self,
         *,
@@ -156,12 +161,12 @@ class SparqlQueryRequest(google.protobuf.message.Message):
         scope: iotics.api.common_pb2.Scope.ValueType = ...,
         payload: global___SparqlQueryRequest.Payload | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload", "scope", b"scope"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload", "scope", b"scope"]) -> None: ...
 
 global___SparqlQueryRequest = SparqlQueryRequest
 
-@typing_extensions.final
+@typing.final
 class SparqlQueryResponse(google.protobuf.message.Message):
     """SparqlQueryResponse is a part of a result for a SPARQL query request. Multiple chunks form a complete result. Related
     chunks can be identified by a combination of:
@@ -172,7 +177,7 @@ class SparqlQueryResponse(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Payload(google.protobuf.message.Message):
         """Payload of the query result chunk"""
 
@@ -194,12 +199,6 @@ class SparqlQueryResponse(google.protobuf.message.Message):
         """Indicates whether this is the last chunk from a given host, for a specific request. Results for different
         requests can be identified by setting a unique clientRef in the request headers.
         """
-        @property
-        def status(self) -> google.rpc.status_pb2.Status:
-            """Result error status (only applicable to local results). If set, this will
-            indicate a problem with running the query (e.g. invalid syntax or content type) as opposed to a more general
-            issue (in which case the standard gRPC error mechanism will be used and the stream terminated).
-            """
         contentType: global___SparqlResultType.ValueType
         """Content type of the result."""
         resultChunk: builtins.bytes
@@ -207,6 +206,13 @@ class SparqlQueryResponse(google.protobuf.message.Message):
         Note that:
         - The maximum size of each chunk is host-specific.
         """
+        @property
+        def status(self) -> google.rpc.status_pb2.Status:
+            """Result error status (only applicable to local results). If set, this will
+            indicate a problem with running the query (e.g. invalid syntax or content type) as opposed to a more general
+            issue (in which case the standard gRPC error mechanism will be used and the stream terminated).
+            """
+
         def __init__(
             self,
             *,
@@ -217,35 +223,37 @@ class SparqlQueryResponse(google.protobuf.message.Message):
             contentType: global___SparqlResultType.ValueType = ...,
             resultChunk: builtins.bytes = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["status", b"status"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["contentType", b"contentType", "hostId", b"hostId", "last", b"last", "resultChunk", b"resultChunk", "seqNum", b"seqNum", "status", b"status"]) -> None: ...
+        def HasField(self, field_name: typing.Literal["status", b"status"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["contentType", b"contentType", "hostId", b"hostId", "last", b"last", "resultChunk", b"resultChunk", "seqNum", b"seqNum", "status", b"status"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """Headers for the query result. clientRef within can be used to identify which query the result applies to."""
+
     @property
     def payload(self) -> global___SparqlQueryResponse.Payload:
         """SPARQL query result chunk payload."""
+
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
         payload: global___SparqlQueryResponse.Payload | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
 
 global___SparqlQueryResponse = SparqlQueryResponse
 
-@typing_extensions.final
+@typing.final
 class SparqlUpdateRequest(google.protobuf.message.Message):
     """Performs a SPARQL update against custom metadata only."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class Payload(google.protobuf.message.Message):
         """SPARQL update request payload."""
 
@@ -259,28 +267,30 @@ class SparqlUpdateRequest(google.protobuf.message.Message):
             *,
             update: builtins.bytes = ...,
         ) -> None: ...
-        def ClearField(self, field_name: typing_extensions.Literal["update", b"update"]) -> None: ...
+        def ClearField(self, field_name: typing.Literal["update", b"update"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """SPARQL update request headers"""
+
     @property
     def payload(self) -> global___SparqlUpdateRequest.Payload:
         """SPARQL update request payload."""
+
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
         payload: global___SparqlUpdateRequest.Payload | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> None: ...
 
 global___SparqlUpdateRequest = SparqlUpdateRequest
 
-@typing_extensions.final
+@typing.final
 class SparqlUpdateResponse(google.protobuf.message.Message):
     """Response of the SPARQL update request."""
 
@@ -290,12 +300,13 @@ class SparqlUpdateResponse(google.protobuf.message.Message):
     @property
     def headers(self) -> iotics.api.common_pb2.Headers:
         """SPARQL update response headers"""
+
     def __init__(
         self,
         *,
         headers: iotics.api.common_pb2.Headers | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["headers", b"headers"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["headers", b"headers"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["headers", b"headers"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["headers", b"headers"]) -> None: ...
 
 global___SparqlUpdateResponse = SparqlUpdateResponse

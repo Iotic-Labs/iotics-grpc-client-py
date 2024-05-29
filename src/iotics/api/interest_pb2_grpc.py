@@ -21,17 +21,17 @@ class InterestAPIStub(object):
                 '/iotics.api.InterestAPI/FetchInterests',
                 request_serializer=iotics_dot_api_dot_interest__pb2.FetchInterestRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_interest__pb2.FetchInterestResponse.FromString,
-                )
+                _registered_method=True)
         self.FetchLastStored = channel.unary_unary(
                 '/iotics.api.InterestAPI/FetchLastStored',
                 request_serializer=iotics_dot_api_dot_interest__pb2.FetchLastStoredRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_interest__pb2.FetchInterestResponse.FromString,
-                )
+                _registered_method=True)
         self.SendInputMessage = channel.unary_unary(
                 '/iotics.api.InterestAPI/SendInputMessage',
                 request_serializer=iotics_dot_api_dot_interest__pb2.SendInputMessageRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_interest__pb2.SendInputMessageResponse.FromString,
-                )
+                _registered_method=True)
 
 
 class InterestAPIServicer(object):
@@ -83,6 +83,7 @@ def add_InterestAPIServicer_to_server(servicer, server):
     generic_handler = grpc.method_handlers_generic_handler(
             'iotics.api.InterestAPI', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
+    server.add_registered_method_handlers('iotics.api.InterestAPI', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -103,11 +104,21 @@ class InterestAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/iotics.api.InterestAPI/FetchInterests',
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/iotics.api.InterestAPI/FetchInterests',
             iotics_dot_api_dot_interest__pb2.FetchInterestRequest.SerializeToString,
             iotics_dot_api_dot_interest__pb2.FetchInterestResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def FetchLastStored(request,
@@ -120,11 +131,21 @@ class InterestAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.InterestAPI/FetchLastStored',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.InterestAPI/FetchLastStored',
             iotics_dot_api_dot_interest__pb2.FetchLastStoredRequest.SerializeToString,
             iotics_dot_api_dot_interest__pb2.FetchInterestResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def SendInputMessage(request,
@@ -137,8 +158,18 @@ class InterestAPI(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/iotics.api.InterestAPI/SendInputMessage',
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.InterestAPI/SendInputMessage',
             iotics_dot_api_dot_interest__pb2.SendInputMessageRequest.SerializeToString,
             iotics_dot_api_dot_interest__pb2.SendInputMessageResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
