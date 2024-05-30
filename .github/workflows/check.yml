@@ -30,6 +30,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
         continue-on-error: true
+      - name: Setup Golang
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.20'
       - name: Generate client (stubs) files
         # Install all dependencies and generate API stubs.
         run: make build

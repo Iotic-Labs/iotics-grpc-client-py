@@ -98,7 +98,7 @@ verify-import: deps-py
 	source "$(VENV_PATH)"/"$(VENV_PATH_DIR)"/activate \
 	&& python -c 'from iotics.lib.grpc import IoticsApi'
 
-run-examples: #deps-py
+run-examples: deps-py
 	source "$(VENV_PATH)"/"$(VENV_PATH_DIR)"/activate \
 	&& python examples/search_twin_models.py \
 	&& python examples/search_location.py \
