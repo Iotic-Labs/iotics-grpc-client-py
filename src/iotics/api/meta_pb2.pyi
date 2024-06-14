@@ -61,59 +61,6 @@ RDF_NTRIPLES: SparqlResultType.ValueType  # 5
 global___SparqlResultType = SparqlResultType
 
 @typing.final
-class ExplorerRequest(google.protobuf.message.Message):
-    """ExplorerRequest - Deprecated. Use SparqlQueryRequest instead."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    @typing.final
-    class Payload(google.protobuf.message.Message):
-        """Explorer request payload."""
-
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-        RESULTCONTENTTYPE_FIELD_NUMBER: builtins.int
-        KEYWORD_FIELD_NUMBER: builtins.int
-        resultContentType: global___SparqlResultType.ValueType
-        """The desired result content type. Note that choosing an invalid result type for the type of query will result in
-        an error status reported in the response. (See SparqlResultType for valid content-query type combinations.)
-        """
-        keyword: builtins.str
-        """keyword defines the search term associated to the explorer request."""
-        def __init__(
-            self,
-            *,
-            resultContentType: global___SparqlResultType.ValueType = ...,
-            keyword: builtins.str = ...,
-        ) -> None: ...
-        def ClearField(self, field_name: typing.Literal["keyword", b"keyword", "resultContentType", b"resultContentType"]) -> None: ...
-
-    HEADERS_FIELD_NUMBER: builtins.int
-    SCOPE_FIELD_NUMBER: builtins.int
-    PAYLOAD_FIELD_NUMBER: builtins.int
-    scope: iotics.api.common_pb2.Scope.ValueType
-    """Explorer request scope"""
-    @property
-    def headers(self) -> iotics.api.common_pb2.Headers:
-        """Explorer request headers"""
-
-    @property
-    def payload(self) -> global___ExplorerRequest.Payload:
-        """Explorer request payload"""
-
-    def __init__(
-        self,
-        *,
-        headers: iotics.api.common_pb2.Headers | None = ...,
-        scope: iotics.api.common_pb2.Scope.ValueType = ...,
-        payload: global___ExplorerRequest.Payload | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["headers", b"headers", "payload", b"payload", "scope", b"scope"]) -> None: ...
-
-global___ExplorerRequest = ExplorerRequest
-
-@typing.final
 class SparqlQueryRequest(google.protobuf.message.Message):
     """SparqlQueryRequest describes a SPARQL query."""
 
@@ -170,7 +117,6 @@ global___SparqlQueryRequest = SparqlQueryRequest
 class SparqlQueryResponse(google.protobuf.message.Message):
     """SparqlQueryResponse is a part of a result for a SPARQL query request. Multiple chunks form a complete result. Related
     chunks can be identified by a combination of:
-    - The hostId
     - Client reference (in headers, set by caller)
     - Chunk sequence number
     """
@@ -183,40 +129,34 @@ class SparqlQueryResponse(google.protobuf.message.Message):
 
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        HOSTID_FIELD_NUMBER: builtins.int
         SEQNUM_FIELD_NUMBER: builtins.int
         LAST_FIELD_NUMBER: builtins.int
         STATUS_FIELD_NUMBER: builtins.int
         CONTENTTYPE_FIELD_NUMBER: builtins.int
         RESULTCHUNK_FIELD_NUMBER: builtins.int
-        hostId: builtins.str
-        """Result host identifier. Indicates from which host this result chunk came from. For a local result, this field
-        will be unset.
-        """
         seqNum: builtins.int
-        """Position of a chunk in result from a given host (and request). The first chunk has a sequence number of 0."""
+        """Position of a chunk in result for a given request. The first chunk has a sequence number of 0."""
         last: builtins.bool
-        """Indicates whether this is the last chunk from a given host, for a specific request. Results for different
-        requests can be identified by setting a unique clientRef in the request headers.
+        """Indicates whether this is the last chunk, for a specific request. Results for different requests can be
+        identified by setting a unique clientRef in the request headers.
         """
         contentType: global___SparqlResultType.ValueType
         """Content type of the result."""
         resultChunk: builtins.bytes
         """Query result chunk, encoded according to actualType.
         Note that:
-        - The maximum size of each chunk is host-specific.
+        - The maximum size of each chunk is host-specific. A typical default value is 4MiB.
         """
         @property
         def status(self) -> google.rpc.status_pb2.Status:
-            """Result error status (only applicable to local results). If set, this will
-            indicate a problem with running the query (e.g. invalid syntax or content type) as opposed to a more general
-            issue (in which case the standard gRPC error mechanism will be used and the stream terminated).
+            """Result error status. If set, this will indicate a problem with running the query (e.g. invalid syntax or content
+            type) as opposed to a more general issue (in which case the standard gRPC error mechanism will be used and the
+            stream terminated).
             """
 
         def __init__(
             self,
             *,
-            hostId: builtins.str = ...,
             seqNum: builtins.int = ...,
             last: builtins.bool = ...,
             status: google.rpc.status_pb2.Status | None = ...,
@@ -224,7 +164,7 @@ class SparqlQueryResponse(google.protobuf.message.Message):
             resultChunk: builtins.bytes = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["status", b"status"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing.Literal["contentType", b"contentType", "hostId", b"hostId", "last", b"last", "resultChunk", b"resultChunk", "seqNum", b"seqNum", "status", b"status"]) -> None: ...
+        def ClearField(self, field_name: typing.Literal["contentType", b"contentType", "last", b"last", "resultChunk", b"resultChunk", "seqNum", b"seqNum", "status", b"status"]) -> None: ...
 
     HEADERS_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int

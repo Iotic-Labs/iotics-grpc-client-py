@@ -32,12 +32,13 @@ class MetaAPIStub:
         iotics.api.meta_pb2.SparqlQueryRequest,
         iotics.api.meta_pb2.SparqlQueryResponse,
     ]
-    """SparqlQuery performs a SPARQL 1.1 query and returns one or more results, each as a sequence of chunks. Note that:
-    - Chunks for a particular result will arrive in-order though they might be interleaved with chunks from other
-      results (when performing a non-local query). See scope parameter in SparqlQueryRequest;
-    - The call will only complete once the (specified or host default) request timeout has been reached. The client can
-      choose to end the stream early once they have received enough results. (E.g. in the case of Scope.LOCAL this
-      would be after the one and only sequence of chunks has been received.). (local and remote)
+    """SparqlQuery performs a SPARQL 1.1 query against the Federated Knowledge Graph of the Iotics network to which this
+    host belongs. The result is returned as a sequence of chunks. Note that:
+    - Result chunks MIGHT arrive out of order and it is the client's responsibility to re-assemble them.
+    - This RPC is currently in beta, it means:
+         - the logic should remain unchanged,
+         - the rpc call should remain unchanged,
+         - the service can be interrupted without notice.
     """
 
     SparqlUpdate: grpc.UnaryUnaryMultiCallable[
@@ -50,12 +51,6 @@ class MetaAPIStub:
        visible during SPARQL queries both with local & global scope (and thus, the Iotics network).
     """
 
-    ExplorerQuery: grpc.UnaryStreamMultiCallable[
-        iotics.api.meta_pb2.ExplorerRequest,
-        iotics.api.meta_pb2.SparqlQueryResponse,
-    ]
-    """ExplorerQuery - Deprecated - use SparqlQuery instead."""
-
 class MetaAPIAsyncStub:
     """---------------------------------------------------------------------------------------------------------------------
 
@@ -67,12 +62,13 @@ class MetaAPIAsyncStub:
         iotics.api.meta_pb2.SparqlQueryRequest,
         iotics.api.meta_pb2.SparqlQueryResponse,
     ]
-    """SparqlQuery performs a SPARQL 1.1 query and returns one or more results, each as a sequence of chunks. Note that:
-    - Chunks for a particular result will arrive in-order though they might be interleaved with chunks from other
-      results (when performing a non-local query). See scope parameter in SparqlQueryRequest;
-    - The call will only complete once the (specified or host default) request timeout has been reached. The client can
-      choose to end the stream early once they have received enough results. (E.g. in the case of Scope.LOCAL this
-      would be after the one and only sequence of chunks has been received.). (local and remote)
+    """SparqlQuery performs a SPARQL 1.1 query against the Federated Knowledge Graph of the Iotics network to which this
+    host belongs. The result is returned as a sequence of chunks. Note that:
+    - Result chunks MIGHT arrive out of order and it is the client's responsibility to re-assemble them.
+    - This RPC is currently in beta, it means:
+         - the logic should remain unchanged,
+         - the rpc call should remain unchanged,
+         - the service can be interrupted without notice.
     """
 
     SparqlUpdate: grpc.aio.UnaryUnaryMultiCallable[
@@ -84,12 +80,6 @@ class MetaAPIAsyncStub:
     1. http://data.iotics.com/graph#custom-public (aka custom public graph) - All metadata written to this graph will be
        visible during SPARQL queries both with local & global scope (and thus, the Iotics network).
     """
-
-    ExplorerQuery: grpc.aio.UnaryStreamMultiCallable[
-        iotics.api.meta_pb2.ExplorerRequest,
-        iotics.api.meta_pb2.SparqlQueryResponse,
-    ]
-    """ExplorerQuery - Deprecated - use SparqlQuery instead."""
 
 class MetaAPIServicer(metaclass=abc.ABCMeta):
     """---------------------------------------------------------------------------------------------------------------------
@@ -104,12 +94,13 @@ class MetaAPIServicer(metaclass=abc.ABCMeta):
         request: iotics.api.meta_pb2.SparqlQueryRequest,
         context: _ServicerContext,
     ) -> typing.Union[collections.abc.Iterator[iotics.api.meta_pb2.SparqlQueryResponse], collections.abc.AsyncIterator[iotics.api.meta_pb2.SparqlQueryResponse]]:
-        """SparqlQuery performs a SPARQL 1.1 query and returns one or more results, each as a sequence of chunks. Note that:
-        - Chunks for a particular result will arrive in-order though they might be interleaved with chunks from other
-          results (when performing a non-local query). See scope parameter in SparqlQueryRequest;
-        - The call will only complete once the (specified or host default) request timeout has been reached. The client can
-          choose to end the stream early once they have received enough results. (E.g. in the case of Scope.LOCAL this
-          would be after the one and only sequence of chunks has been received.). (local and remote)
+        """SparqlQuery performs a SPARQL 1.1 query against the Federated Knowledge Graph of the Iotics network to which this
+        host belongs. The result is returned as a sequence of chunks. Note that:
+        - Result chunks MIGHT arrive out of order and it is the client's responsibility to re-assemble them.
+        - This RPC is currently in beta, it means:
+             - the logic should remain unchanged,
+             - the rpc call should remain unchanged,
+             - the service can be interrupted without notice.
         """
 
     @abc.abstractmethod
@@ -123,13 +114,5 @@ class MetaAPIServicer(metaclass=abc.ABCMeta):
         1. http://data.iotics.com/graph#custom-public (aka custom public graph) - All metadata written to this graph will be
            visible during SPARQL queries both with local & global scope (and thus, the Iotics network).
         """
-
-    @abc.abstractmethod
-    def ExplorerQuery(
-        self,
-        request: iotics.api.meta_pb2.ExplorerRequest,
-        context: _ServicerContext,
-    ) -> typing.Union[collections.abc.Iterator[iotics.api.meta_pb2.SparqlQueryResponse], collections.abc.AsyncIterator[iotics.api.meta_pb2.SparqlQueryResponse]]:
-        """ExplorerQuery - Deprecated - use SparqlQuery instead."""
 
 def add_MetaAPIServicer_to_server(servicer: MetaAPIServicer, server: typing.Union[grpc.Server, grpc.aio.Server]) -> None: ...
