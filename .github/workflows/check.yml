@@ -28,6 +28,8 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
         continue-on-error: true
+        with:
+          submodules: 'recursive'
       - name: Setup Golang
         uses: actions/setup-go@v5
         with:
@@ -45,6 +47,7 @@ jobs:
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         uses: actions/github-script@v6
         with:
+          debug: true
           script: |
             core.setFailed("Modified files detected: ${{ steps.verify-changed-files.outputs.changed_files }}")
 
