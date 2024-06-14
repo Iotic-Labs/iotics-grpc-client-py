@@ -31,7 +31,7 @@ class MetaAPIStub(object):
         self.ExplorerQuery = channel.unary_stream(
                 '/iotics.api.MetaAPI/ExplorerQuery',
                 request_serializer=iotics_dot_api_dot_meta__pb2.ExplorerRequest.SerializeToString,
-                response_deserializer=iotics_dot_api_dot_meta__pb2.ExplorerResponse.FromString,
+                response_deserializer=iotics_dot_api_dot_meta__pb2.SparqlQueryResponse.FromString,
                 _registered_method=True)
 
 
@@ -43,13 +43,12 @@ class MetaAPIServicer(object):
     """
 
     def SparqlQuery(self, request, context):
-        """SparqlQuery performs a SPARQL 1.1 query against the Federated Knowledge Graph of the Iotics network to which this
-        host belongs. The result is returned as a sequence of chunks. Note that:
-        - Result chunks MIGHT arrive out of order and it is the client's responsibility to re-assemble them.
-        - This RPC is currently in beta, it means:
-        - the logic should remain unchanged,
-        - the rpc call should remain unchanged,
-        - the service can be interrupted without notice.
+        """SparqlQuery performs a SPARQL 1.1 query and returns one or more results, each as a sequence of chunks. Note that:
+        - Chunks for a particular result will arrive in-order though they might be interleaved with chunks from other
+        results (when performing a non-local query). See scope parameter in SparqlQueryRequest;
+        - The call will only complete once the (specified or host default) request timeout has been reached. The client can
+        choose to end the stream early once they have received enough results. (E.g. in the case of Scope.LOCAL this
+        would be after the one and only sequence of chunks has been received.). (local and remote)
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -88,7 +87,7 @@ def add_MetaAPIServicer_to_server(servicer, server):
             'ExplorerQuery': grpc.unary_stream_rpc_method_handler(
                     servicer.ExplorerQuery,
                     request_deserializer=iotics_dot_api_dot_meta__pb2.ExplorerRequest.FromString,
-                    response_serializer=iotics_dot_api_dot_meta__pb2.ExplorerResponse.SerializeToString,
+                    response_serializer=iotics_dot_api_dot_meta__pb2.SparqlQueryResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -175,7 +174,7 @@ class MetaAPI(object):
             target,
             '/iotics.api.MetaAPI/ExplorerQuery',
             iotics_dot_api_dot_meta__pb2.ExplorerRequest.SerializeToString,
-            iotics_dot_api_dot_meta__pb2.ExplorerResponse.FromString,
+            iotics_dot_api_dot_meta__pb2.SparqlQueryResponse.FromString,
             options,
             channel_credentials,
             insecure,
