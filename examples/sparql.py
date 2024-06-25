@@ -2,6 +2,7 @@ from time import sleep
 from typing import Dict
 
 import grpc
+import grpc._channel
 from identity_auth import IdentityAuth, IdentityAuthError
 from iotics.lib.grpc.iotics_api import IoticsApi
 from iotics.api.meta_pb2 import SparqlQueryResponse
@@ -27,8 +28,8 @@ def get_auth():
 def do_query(query, api):
     # Map of responses per sequence number (remove potential duplication)
     chunks: Dict[int, SparqlQueryResponse] = {}
-    stream = api.sparql_query(query)
     try:
+        stream = api.sparql_query(query)
         for response in stream:
             # Chunk processing per seq number
             chunks[response.payload.seqNum] = response
@@ -36,9 +37,13 @@ def do_query(query, api):
     # Exit the loop based on the timeout error (normal case)
     # Or any other GRPCError (anomaly)
     except grpc.RpcError as err:
-        if err.code() != grpc.StatusCode.DEADLINE_EXCEEDED:
+        err: grpc._channel._MultiThreadedRendezvous
+        if err.code() == grpc.StatusCode.DEADLINE_EXCEEDED:
+            print("timeout occurred")
+            if not chunks:
+                raise err
+        else:
             raise err
-        print("timeout occurred")
 
     sorted_chunks = sorted(chunks.values(), key=lambda r: r.payload.seqNum)
     last_chunk = sorted_chunks[-1]
