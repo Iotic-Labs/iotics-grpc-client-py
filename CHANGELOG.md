@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.0.0] - 2024-06-25
+
+- Updated to IOTICS Public API v1.3.0
+
 ## [6.0.0] - 2024-05-29
 
 - BREAKING CHANGE
