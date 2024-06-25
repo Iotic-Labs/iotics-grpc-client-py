@@ -28,11 +28,6 @@ class MetaAPIStub(object):
                 request_serializer=iotics_dot_api_dot_meta__pb2.SparqlUpdateRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_meta__pb2.SparqlUpdateResponse.FromString,
                 _registered_method=True)
-        self.ExplorerQuery = channel.unary_stream(
-                '/iotics.api.MetaAPI/ExplorerQuery',
-                request_serializer=iotics_dot_api_dot_meta__pb2.ExplorerRequest.SerializeToString,
-                response_deserializer=iotics_dot_api_dot_meta__pb2.ExplorerResponse.FromString,
-                _registered_method=True)
 
 
 class MetaAPIServicer(object):
@@ -65,13 +60,6 @@ class MetaAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ExplorerQuery(self, request, context):
-        """ExplorerQuery - Deprecated - use SparqlQuery instead.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_MetaAPIServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -84,11 +72,6 @@ def add_MetaAPIServicer_to_server(servicer, server):
                     servicer.SparqlUpdate,
                     request_deserializer=iotics_dot_api_dot_meta__pb2.SparqlUpdateRequest.FromString,
                     response_serializer=iotics_dot_api_dot_meta__pb2.SparqlUpdateResponse.SerializeToString,
-            ),
-            'ExplorerQuery': grpc.unary_stream_rpc_method_handler(
-                    servicer.ExplorerQuery,
-                    request_deserializer=iotics_dot_api_dot_meta__pb2.ExplorerRequest.FromString,
-                    response_serializer=iotics_dot_api_dot_meta__pb2.ExplorerResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -149,33 +132,6 @@ class MetaAPI(object):
             '/iotics.api.MetaAPI/SparqlUpdate',
             iotics_dot_api_dot_meta__pb2.SparqlUpdateRequest.SerializeToString,
             iotics_dot_api_dot_meta__pb2.SparqlUpdateResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def ExplorerQuery(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_stream(
-            request,
-            target,
-            '/iotics.api.MetaAPI/ExplorerQuery',
-            iotics_dot_api_dot_meta__pb2.ExplorerRequest.SerializeToString,
-            iotics_dot_api_dot_meta__pb2.ExplorerResponse.FromString,
             options,
             channel_credentials,
             insecure,

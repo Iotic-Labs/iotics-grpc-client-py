@@ -85,3 +85,4 @@ jobs:
           AGENT_SECRET: ${{ secrets.AGENT_SECRET }}
           AGENT_KEY_NAME: ${{ secrets.AGENT_KEY_NAME }}
           AGENT_NAME: ${{ secrets.AGENT_NAME }}
+          TOKEN_TTL: 60
