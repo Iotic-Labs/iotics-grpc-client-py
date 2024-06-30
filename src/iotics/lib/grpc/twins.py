@@ -20,7 +20,7 @@ from iotics.api import input_pb2
 from iotics.api import twin_pb2
 from iotics.api import twin_pb2_grpc
 from .base import ApiBase
-from .helpers import create_headers
+from .helpers import create_headers,PER_PAGE_LIMIT
 
 
 class TwinApi(ApiBase):
@@ -89,15 +89,25 @@ class TwinApi(ApiBase):
             args=twin_pb2.DeleteTwinRequest.Arguments(twinId=common_pb2.TwinID(id=twin_did)))
         return self.stub.DeleteTwin(req)
 
-    def list_twins(self, headers: typing.Optional[common_pb2.Headers] = None) -> twin_pb2.ListAllTwinsResponse:
+    def list_twins(self, 
+                   page:int =0,
+                   headers: typing.Optional[common_pb2.Headers] = None
+    ) -> twin_pb2.ListAllTwinsResponse:
         """Lists all local twins visible to the user making the request
 
         Args:
+            page: Used to request offsetted results, as responses contain only up to `PER_PAGE_LIMIT` results per request.
             headers: optional request headers
 
         Returns: Response object listing twins with their location and properties
         """
-        req = twin_pb2.ListAllTwinsRequest(headers=headers or create_headers())
+        
+        req = twin_pb2.ListAllTwinsRequest(
+            range=common_pb2.Range(
+                limit=common_pb2.Limit(value=PER_PAGE_LIMIT),
+                offset=common_pb2.Offset(value=PER_PAGE_LIMIT * page)
+            ),
+            headers=headers or create_headers())
         return self.stub.ListAllTwins(req)
 
     def update_twin(

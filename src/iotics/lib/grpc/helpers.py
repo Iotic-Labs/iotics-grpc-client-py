@@ -47,6 +47,7 @@ KEEP_ALIVE_CHANNEL_OPTIONS = [
     ("grpc.http2.max_pings_without_data", 0),
 ]
 
+PER_PAGE_LIMIT = 100
 
 def get_channel(
     auth: AuthInterface, channel_options: [tuple, ...] = None
