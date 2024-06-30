@@ -21,11 +21,8 @@ from google.protobuf.wrappers_pb2 import StringValue
 from iotics.api import common_pb2
 from iotics.api import search_pb2
 from iotics.api import search_pb2_grpc
-from iotics.lib.grpc.helpers import create_headers
+from iotics.lib.grpc.helpers import create_headers, PER_PAGE_LIMIT
 from iotics.lib.grpc.base import ApiBase
-
-PER_PAGE_LIMIT = 100
-
 
 class SearchApi(ApiBase):
     stub_class = search_pb2_grpc.SearchAPIStub
