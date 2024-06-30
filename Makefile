@@ -5,11 +5,11 @@ VENV_PATH ?= ./env
 UNAME_S := $(shell uname -s)
 UNAME_M := $(shell uname -m)
 
-PYTHON_CMD = python3
-PYTHON3_OK := $(shell python3 --version 2>&1)
-ifeq ('$(PYTHON3_OK)','')
-    $(error package 'python3' not found)
-	PYTHON_CMD = python
+PYTHON_CMD = python
+PYTHON_OK := $(shell python --version 2>&1)
+ifeq ('$(PYTHON_OK)','')
+    $(error package 'python' not found)
+	PYTHON_CMD = python3
 endif
 
 ifeq ($(OS),Windows_NT)
