@@ -5,6 +5,13 @@ VENV_PATH ?= ./env
 UNAME_S := $(shell uname -s)
 UNAME_M := $(shell uname -m)
 
+PYTHON_CMD = python3
+PYTHON3_OK := $(shell python3 --version 2>&1)
+ifeq ('$(PYTHON3_OK)','')
+    $(error package 'python3' not found)
+	PYTHON_CMD = python
+endif
+
 ifeq ($(OS),Windows_NT)
   VENV_PATH_DIR=Scripts
 else
@@ -83,10 +90,10 @@ deps-buf-update buf.lock:
 	$(BUF) dep update
 
 deps-py:
-	python -m venv "$(VENV_PATH)"
+	${PYTHON_CMD} -m venv "$(VENV_PATH)"
 	source "$(VENV_PATH)"/"$(VENV_PATH_DIR)"/activate \
-	&& python -m pip install -U pip setuptools \
-	&& python -m pip install -e '.[dev]'
+	&& ${PYTHON_CMD} -m pip install -U pip setuptools \
+	&& ${PYTHON_CMD} -m pip install -e '.[dev]'
 deps-py-update: clean deps-py
 
 
@@ -96,13 +103,13 @@ deps-py-update: clean deps-py
 
 verify-import: deps-py
 	source "$(VENV_PATH)"/"$(VENV_PATH_DIR)"/activate \
-	&& python -c 'from iotics.lib.grpc import IoticsApi'
+	&& ${PYTHON_CMD} -c 'from iotics.lib.grpc import IoticsApi'
 
 run-examples: deps-py
 	source "$(VENV_PATH)"/"$(VENV_PATH_DIR)"/activate \
-	&& python examples/search_twin_models.py \
-	&& python examples/search_location.py \
-	&& python examples/sparql.py \
-	&& python examples/create_edit_twins_feeds.py \
-	&& python examples/follow_feed.py \
-	&& python examples/inputs.py
+	&& ${PYTHON_CMD} examples/search_twin_models.py \
+	&& ${PYTHON_CMD} examples/search_location.py \
+	&& ${PYTHON_CMD} examples/sparql.py \
+	&& ${PYTHON_CMD} examples/create_edit_twins_feeds.py \
+	&& ${PYTHON_CMD} examples/follow_feed.py \
+	&& ${PYTHON_CMD} examples/inputs.py
