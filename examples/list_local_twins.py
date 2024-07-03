@@ -35,10 +35,6 @@ def main():
 
 
 def list_local_twins(api):
-    client_app_id = uuid.uuid4().hex
-
-    host_count = 1
-    local_host_id = api.get_local_host_id()
 
     #limit > 100 throws an grpc param error
     twins_total_count=PER_PAGE_LIMIT
@@ -52,8 +48,6 @@ def list_local_twins(api):
         page_num+=1
 
     print(f'found {all_twin_count} twins in total.')
-
-    #print (twin_list)
 
 if __name__ == '__main__':
     main()
