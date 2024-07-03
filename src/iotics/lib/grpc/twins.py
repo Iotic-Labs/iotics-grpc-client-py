@@ -20,7 +20,7 @@ from iotics.api import input_pb2
 from iotics.api import twin_pb2
 from iotics.api import twin_pb2_grpc
 from .base import ApiBase
-from .helpers import create_headers,PER_PAGE_LIMIT
+from .helpers import create_headers, PER_PAGE_LIMIT
 
 
 class TwinApi(ApiBase):
@@ -90,7 +90,7 @@ class TwinApi(ApiBase):
         return self.stub.DeleteTwin(req)
 
     def list_twins(self, 
-                   page:int =0,
+                   page:int = 0,
                    headers: typing.Optional[common_pb2.Headers] = None
     ) -> twin_pb2.ListAllTwinsResponse:
         """Lists all local twins visible to the user making the request
