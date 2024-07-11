@@ -38,7 +38,7 @@ jobs:
         # Install all dependencies and generate API stubs.
         run: make build
       - name: Check for changed files
-        uses: tj-actions/verify-changed-files@v10
+        uses: tj-actions/verify-changed-files@v44
         id: verify-changed-files
         with:
           files: |
