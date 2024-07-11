@@ -38,7 +38,7 @@ jobs:
         # Install all dependencies and generate API stubs.
         run: make build
       - name: See file change
-          run: |
+        run: |
             cd src/iotics/api && ls && git diff
       - name: Check for changed files
         uses: tj-actions/verify-changed-files@v10
