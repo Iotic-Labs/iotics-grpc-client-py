@@ -43,6 +43,10 @@ jobs:
         with:
           files: |
             src/iotics/api
+          write_output_files: true
+      - name: Verify the contents of the .github/outputs/added_files.txt file
+        run: |
+          cat .github/outputs/added_files.txt
       - name: Check that the generated files are unmodified
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         uses: actions/github-script@v6
