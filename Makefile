@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 BUF_VERSION ?= 1.32.1
-PROTOC_VERSION ?= 26.1
+PROTOC_VERSION ?= 27.1
 VENV_PATH ?= ./env
 UNAME_S := $(shell uname -s)
 UNAME_M := $(shell uname -m)
@@ -45,7 +45,7 @@ buf-lint: deps-buf
 buf-list:
 	$(BUF) ls-files
 
-generate: deps-proto deps-py deps-go buf-list buf-lint
+generate: deps-proto deps-py deps-go deps-go-update buf-list buf-lint
 	source "$(VENV_PATH)"/bin/activate \
 	&& $(BUF) generate $(GEN_ARGS)
 
