@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.0.0] - 2024-07-15
+
+- Add range to list twins
+
 ## [7.0.0] - 2024-06-25
 
 - Updated to IOTICS Public API v1.3.0
