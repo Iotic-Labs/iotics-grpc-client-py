@@ -39,8 +39,7 @@ jobs:
         run: make build
       - name: See file change
         run: |
-            cd src/iotics/api && ls && git diff
-      - name: Check for changed files
+            source ./env/bin/activate && cd src/iotics/api && ls && git diff &&  pip freeze && pip install pipdeptree && pipdeptree -fl
         uses: tj-actions/verify-changed-files@v10
         id: verify-changed-files
         with:
