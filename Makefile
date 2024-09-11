@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 BUF_VERSION ?= 1.32.1
-PROTOC_VERSION ?= 27.1
+PROTOC_VERSION ?= 28.0
 VENV_PATH ?= ./env
 UNAME_S := $(shell uname -s)
 UNAME_M := $(shell uname -m)
