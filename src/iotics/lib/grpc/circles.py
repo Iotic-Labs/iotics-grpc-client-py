@@ -30,7 +30,7 @@ class CircleAPI(ApiBase):
             circle_did: str,
             headers: typing.Optional[common_pb2.Headers] = None
     ) -> circle_pb2.DescribeCircleResponse:
-        """Describes the circle with the given DID, listing its location, properties, and feeds
+        """Describes the circle with the given DID, listing its properties
 
         Args:
             circle_did: Decentralized Identifier uniquely specifying the circle
@@ -42,7 +42,7 @@ class CircleAPI(ApiBase):
         req = circle_pb2.DescribeCircleRequest(
             headers=headers or create_headers(),
             args=circle_pb2.DescribeCircleRequest.Arguments(
-                circleId=common_pb2.CircleID(id=circle_did)),
+                circleId=circle_pb2.CircleID(id=circle_did)),
         )
         return self.stub.DescribeCircle(req)
 
@@ -62,7 +62,7 @@ class CircleAPI(ApiBase):
 
         req = circle_pb2.DeleteCircleRequest(
             headers=headers or create_headers(),
-            args=circle_pb2.DeleteCircleRequest.Arguments(circleId=common_pb2.CircleID(id=circle_did)))
+            args=circle_pb2.DeleteCircleRequest.Arguments(circleId=circle_pb2.CircleID(id=circle_did)))
         return self.stub.DeleteCircle(req)
 
     def list_circles(self,
@@ -107,7 +107,7 @@ class CircleAPI(ApiBase):
         req = circle_pb2.UpsertCircleRequest(
             headers=headers or create_headers(),
             payload=circle_pb2.UpsertCircleRequest.Payload(
-                circleId=common_pb2.CircleID(id=circle_did),
+                circleId=circle_pb2.CircleID(id=circle_did),
                 properties=properties,
             )
         )
