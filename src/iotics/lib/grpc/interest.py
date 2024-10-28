@@ -125,6 +125,7 @@ class InterestApi(ApiBase):
         sender_twin_did: str,
         receiver_twin_did: str,
         input_id: str,
+        mime_type: str = 'application/json',
         remote_host_id: typing.Optional[str] = None,
         headers: typing.Optional[common_pb2.Headers] = None,
     ) -> interest_pb2.SendInputMessageResponse:
@@ -135,6 +136,7 @@ class InterestApi(ApiBase):
             sender_twin_did: The twin sending the message
             receiver_twin_did: The twin receiving the message
             input_id: The ID of the input where the message will be sent
+            mime_type: The MIME type for the message
             remote_host_id: If the receiver twin is remote, its host ID (None if local)
             headers: optional request headers
 
@@ -147,7 +149,7 @@ class InterestApi(ApiBase):
         )
         input_message = input_pb2.InputMessage(
             occurredAt=create_timestamp(),
-            mime='application/json',
+            mime=mime_type,
             data=json.dumps(message).encode(),
         )
         request = interest_pb2.SendInputMessageRequest(
