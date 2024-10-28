@@ -23,6 +23,16 @@ class HostAPIStub(object):
                 request_serializer=iotics_dot_api_dot_host__pb2.GetHostIDRequest.SerializeToString,
                 response_deserializer=iotics_dot_api_dot_host__pb2.GetHostIDResponse.FromString,
                 _registered_method=True)
+        self.IsHostDataAllowed = channel.unary_unary(
+                '/iotics.api.HostAPI/IsHostDataAllowed',
+                request_serializer=iotics_dot_api_dot_host__pb2.IsHostDataAllowedRequest.SerializeToString,
+                response_deserializer=iotics_dot_api_dot_host__pb2.IsHostDataAllowedResponse.FromString,
+                _registered_method=True)
+        self.IsHostMetaAllowed = channel.unary_unary(
+                '/iotics.api.HostAPI/IsHostMetaAllowed',
+                request_serializer=iotics_dot_api_dot_host__pb2.IsHostMetaAllowedRequest.SerializeToString,
+                response_deserializer=iotics_dot_api_dot_host__pb2.IsHostMetaAllowedResponse.FromString,
+                _registered_method=True)
 
 
 class HostAPIServicer(object):
@@ -39,6 +49,22 @@ class HostAPIServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def IsHostDataAllowed(self, request, context):
+        """IsHostDataAllowed determines whether a remote host is allowed to perform data requests against the given twin.
+        An example of a data request is interest.SendInputMessage
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def IsHostMetaAllowed(self, request, context):
+        """IsHostMetaAllowed determines whether a remote host is allowed to perform meta requests against the given twin.
+        An example of a meta(data) request is twin.DescribeTwin
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_HostAPIServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -46,6 +72,16 @@ def add_HostAPIServicer_to_server(servicer, server):
                     servicer.GetHostID,
                     request_deserializer=iotics_dot_api_dot_host__pb2.GetHostIDRequest.FromString,
                     response_serializer=iotics_dot_api_dot_host__pb2.GetHostIDResponse.SerializeToString,
+            ),
+            'IsHostDataAllowed': grpc.unary_unary_rpc_method_handler(
+                    servicer.IsHostDataAllowed,
+                    request_deserializer=iotics_dot_api_dot_host__pb2.IsHostDataAllowedRequest.FromString,
+                    response_serializer=iotics_dot_api_dot_host__pb2.IsHostDataAllowedResponse.SerializeToString,
+            ),
+            'IsHostMetaAllowed': grpc.unary_unary_rpc_method_handler(
+                    servicer.IsHostMetaAllowed,
+                    request_deserializer=iotics_dot_api_dot_host__pb2.IsHostMetaAllowedRequest.FromString,
+                    response_serializer=iotics_dot_api_dot_host__pb2.IsHostMetaAllowedResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -79,6 +115,60 @@ class HostAPI(object):
             '/iotics.api.HostAPI/GetHostID',
             iotics_dot_api_dot_host__pb2.GetHostIDRequest.SerializeToString,
             iotics_dot_api_dot_host__pb2.GetHostIDResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def IsHostDataAllowed(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.HostAPI/IsHostDataAllowed',
+            iotics_dot_api_dot_host__pb2.IsHostDataAllowedRequest.SerializeToString,
+            iotics_dot_api_dot_host__pb2.IsHostDataAllowedResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def IsHostMetaAllowed(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/iotics.api.HostAPI/IsHostMetaAllowed',
+            iotics_dot_api_dot_host__pb2.IsHostMetaAllowedRequest.SerializeToString,
+            iotics_dot_api_dot_host__pb2.IsHostMetaAllowedResponse.FromString,
             options,
             channel_credentials,
             insecure,

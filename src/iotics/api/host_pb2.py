@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from iotics.api import common_pb2 as iotics_dot_api_dot_common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15iotics/api/host.proto\x12\niotics.api\x1a\x17iotics/api/common.proto\"A\n\x10GetHostIDRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\"\xa6\x01\n\x11GetHostIDResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x07payload\x18\x02 \x01(\x0b\x32%.iotics.api.GetHostIDResponse.PayloadR\x07payload\x1a!\n\x07Payload\x12\x16\n\x06hostId\x18\x01 \x01(\tR\x06hostId2U\n\x07HostAPI\x12J\n\tGetHostID\x12\x1c.iotics.api.GetHostIDRequest\x1a\x1d.iotics.api.GetHostIDResponse\"\x00\x42}\n\x0e\x63om.iotics.apiB\tHostProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15iotics/api/host.proto\x12\niotics.api\x1a\x17iotics/api/common.proto\"A\n\x10GetHostIDRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\"\xa6\x01\n\x11GetHostIDResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12?\n\x07payload\x18\x02 \x01(\x0b\x32%.iotics.api.GetHostIDResponse.PayloadR\x07payload\x1a!\n\x07Payload\x12\x16\n\x06hostId\x18\x01 \x01(\tR\x06hostId\"f\n\x14HostAllowedArguments\x12\"\n\x0cremoteHostId\x18\x01 \x01(\tR\x0cremoteHostId\x12*\n\x06twinId\x18\x02 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\"\x86\x01\n\x1aHostAllowedResponsePayload\x12\"\n\x0cremoteHostId\x18\x01 \x01(\tR\x0cremoteHostId\x12*\n\x06twinId\x18\x02 \x01(\x0b\x32\x12.iotics.api.TwinIDR\x06twinId\x12\x18\n\x07\x61llowed\x18\x03 \x01(\x08R\x07\x61llowed\"\x7f\n\x18IsHostDataAllowedRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x34\n\x04\x61rgs\x18\x02 \x01(\x0b\x32 .iotics.api.HostAllowedArgumentsR\x04\x61rgs\"\x8c\x01\n\x19IsHostDataAllowedResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.HostAllowedResponsePayloadR\x07payload\"\x7f\n\x18IsHostMetaAllowedRequest\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12\x34\n\x04\x61rgs\x18\x02 \x01(\x0b\x32 .iotics.api.HostAllowedArgumentsR\x04\x61rgs\"\x8c\x01\n\x19IsHostMetaAllowedResponse\x12-\n\x07headers\x18\x01 \x01(\x0b\x32\x13.iotics.api.HeadersR\x07headers\x12@\n\x07payload\x18\x02 \x01(\x0b\x32&.iotics.api.HostAllowedResponsePayloadR\x07payload2\x9d\x02\n\x07HostAPI\x12J\n\tGetHostID\x12\x1c.iotics.api.GetHostIDRequest\x1a\x1d.iotics.api.GetHostIDResponse\"\x00\x12\x62\n\x11IsHostDataAllowed\x12$.iotics.api.IsHostDataAllowedRequest\x1a%.iotics.api.IsHostDataAllowedResponse\"\x00\x12\x62\n\x11IsHostMetaAllowed\x12$.iotics.api.IsHostMetaAllowedRequest\x1a%.iotics.api.IsHostMetaAllowedResponse\"\x00\x42}\n\x0e\x63om.iotics.apiB\tHostProtoP\x01Z>github.com/Iotic-Labs/iotic-go-proto-qapi/iotics/api;ioticsapi\xa2\x02\x03IAX\xaa\x02\nIotics.Api\xca\x02\nIotics\\Apib\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -39,6 +39,18 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_GETHOSTIDRESPONSE']._serialized_end=296
   _globals['_GETHOSTIDRESPONSE_PAYLOAD']._serialized_start=263
   _globals['_GETHOSTIDRESPONSE_PAYLOAD']._serialized_end=296
-  _globals['_HOSTAPI']._serialized_start=298
-  _globals['_HOSTAPI']._serialized_end=383
+  _globals['_HOSTALLOWEDARGUMENTS']._serialized_start=298
+  _globals['_HOSTALLOWEDARGUMENTS']._serialized_end=400
+  _globals['_HOSTALLOWEDRESPONSEPAYLOAD']._serialized_start=403
+  _globals['_HOSTALLOWEDRESPONSEPAYLOAD']._serialized_end=537
+  _globals['_ISHOSTDATAALLOWEDREQUEST']._serialized_start=539
+  _globals['_ISHOSTDATAALLOWEDREQUEST']._serialized_end=666
+  _globals['_ISHOSTDATAALLOWEDRESPONSE']._serialized_start=669
+  _globals['_ISHOSTDATAALLOWEDRESPONSE']._serialized_end=809
+  _globals['_ISHOSTMETAALLOWEDREQUEST']._serialized_start=811
+  _globals['_ISHOSTMETAALLOWEDREQUEST']._serialized_end=938
+  _globals['_ISHOSTMETAALLOWEDRESPONSE']._serialized_start=941
+  _globals['_ISHOSTMETAALLOWEDRESPONSE']._serialized_end=1081
+  _globals['_HOSTAPI']._serialized_start=1084
+  _globals['_HOSTAPI']._serialized_end=1369
 # @@protoc_insertion_point(module_scope)
