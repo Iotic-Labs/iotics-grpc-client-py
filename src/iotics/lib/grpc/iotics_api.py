@@ -25,6 +25,7 @@ from iotics.lib.grpc.interest import InterestApi
 from iotics.lib.grpc.search import SearchApi
 from iotics.lib.grpc.sparql import SparqlApi
 from iotics.lib.grpc.twins import TwinApi
+from iotics.lib.grpc.circles import CircleAPI
 from iotics.lib.grpc.host import HostApi
 
 
@@ -33,6 +34,7 @@ class IoticsApi:
         self._auth: AuthInterface = auth
         self._channel: typing.Optional[grpc.Channel] = channel
         self._twin_api: typing.Optional[TwinApi] = None
+        self._circle_api: typing.Optional[CircleAPI] = None
         self._feed_api: typing.Optional[FeedApi] = None
         self._input_api: typing.Optional[InputApi] = None
         self._search_api: typing.Optional[SearchApi] = None
@@ -42,6 +44,7 @@ class IoticsApi:
         self._local_host_id: str = None
 
         self._initialise_twin_api()
+        self._initialise_circle_api()
         self._initialise_feed_api()
         self._initialise_input_api()
         self._initialise_interest_api()
@@ -64,6 +67,12 @@ class IoticsApi:
         if not self._twin_api:
             self._initialise_twin_api()
         return self._twin_api
+
+    @property
+    def circle_api(self) -> CircleAPI:
+        if not self._circle_api:
+            self._initialise_circle_api()
+        return self._circle_api
 
     @property
     def feed_api(self) -> FeedApi:
@@ -114,6 +123,8 @@ class IoticsApi:
     def _update_api(self, api: ApiBase):
         if isinstance(api, TwinApi):
             self._initialise_twin_api()
+        if isinstance(api, CircleAPI):
+            self._initialise_circle_api()
         elif isinstance(api, FeedApi):
             self._initialise_feed_api()
         elif isinstance(api, InputApi):
@@ -135,6 +146,13 @@ class IoticsApi:
         self.list_twins = self.twin_api.list_twins
         self.update_twin = self.twin_api.update_twin
         self.upsert_twin = self.twin_api.upsert_twin
+
+    def _initialise_circle_api(self):
+        self._circle_api = CircleAPI(self._auth, self._channel)
+        self.upsert_circle = self.circle_api.upsert_circle
+        self.describe_circle = self.circle_api.describe_circle
+        self.delete_circle = self.circle_api.delete_circle
+        self.list_circles = self.circle_api.list_circles
 
     def _initialise_feed_api(self):
         self._feed_api = FeedApi(self._auth, self._channel)
@@ -182,4 +200,5 @@ class IoticsApi:
             self._interest_api,
             self._sparql_api,
             self._host_api,
+            self._circle_api
         ]
